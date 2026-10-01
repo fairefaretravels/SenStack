@@ -172,7 +172,7 @@ h1{
 
 .controls{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(5,1fr);
   gap:7px;
   margin-top:10px;
 }
@@ -665,6 +665,22 @@ const ECON = {
 
 
 /* ============================================================
+   CREATE RADIO BUTTON BEFORE ANY RADIO EVENT HANDLERS
+============================================================ */
+
+const radioButton = document.createElement("button");
+
+radioButton.id = "radio";
+radioButton.className = "ctrl primary";
+radioButton.textContent = "RADIO";
+radioButton.disabled = true;
+
+document
+  .querySelector(".controls")
+  .appendChild(radioButton);
+
+
+/* ============================================================
    ARTISTS
 ============================================================ */
 
@@ -672,55 +688,68 @@ const ARTISTS = [
 
   {
     display:"Mackinthedark",
+
     photo:"./assets/photos/Mitd1.PNG",
 
     description:
       "Detroit-rooted independent music and catalog discovery.",
 
     fans:1200,
+
     sales:240,
 
     songs:[
+
       {
-        title:"Get Up.mp3",
-        file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/Get%Up.mp3"
+        title:"Get Up",
+        file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/Get%20Up%20(produced%20by%20Jupyter).mp3"
       },
+
       {
-        title:"ALL DAT ASS.mp3",
+        title:"ALL DAT ASS",
         file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/ALL%20DAT%20ASS.mp3"
       },
+
       {
-        title:"Love & Co - Alexa.mp3",
+        title:"Love & Co - Alexa",
         file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/Love%20%26%20Co%20-%20Alexa.mp3"
       },
+
       {
-        title:"Love & Co - TRY.mp3",
+        title:"Love & Co - TRY",
         file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/Love%20%26%20Co%20-%20TRY.mp3"
       },
+
       {
-        title:"Alright.mp3",
+        title:"Alright",
         file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/Alright.mp3"
       },
+
       {
-        title:"Birds.mp3",
+        title:"Birds",
         file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/Birds.mp3"
       },
+
       {
-        title:"Disclaimer.mp3",
+        title:"Disclaimer",
         file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/Disclaimer.mp3"
       },
+
       {
-        title:"drive-me-crazy-(remastered).mp3",
+        title:"drive-me-crazy",
         file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/drive-me-crazy-(remastered).mp3"
       },
+
       {
-        title:"eighteen-and-a-clutch.mp3",
+        title:"eighteen-and-a-clutch",
         file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/eighteen-and-a-clutch.mp3"
       },
+
       {
-        title:"4-x-4-2-(remastered)a.mp3",
+        title:"4-X-4",
         file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/4-x-4-2-(remastered)a.mp3"
       }
+
     ]
   }
 
@@ -781,7 +810,9 @@ let S = {
 const AUD = new Audio();
 
 AUD.preload = "auto";
+
 AUD.loop = false;
+
 AUD.volume = .8;
 
 
@@ -789,77 +820,125 @@ AUD.volume = .8;
    AUDIO ERROR
 ============================================================ */
 
-AUD.onerror = () => {
+AUD.addEventListener("error", () => {
+
+  console.error(
+    "AUDIO ERROR:",
+    AUD.src,
+    AUD.error
+  );
 
   $("mir").textContent = "◉ AUDIO ERROR";
+
   $("mir").classList.remove("on");
 
-  $("tun").textContent = "Audio unavailable";
+  $("tun").textContent =
+    "Audio unavailable";
 
   $("status").textContent =
-    "The selected track could not be loaded.";
-
-};
-
-
-/* ============================================================
-   IMPORTANT:
-   NEXT BILLBOARD ONLY APPEARS AFTER SONG ENDS
-============================================================ */
-
-AUD.addEventListener("ended", () => {
-
-  $("mir").textContent = "◉ OFF AIR";
-  $("mir").classList.remove("on");
-
-  $("tun").textContent = "Track finished";
-
-  if(S.run && S.run.auto){
-
-    spawnNextBillboard();
-
-    return;
-  }
-
-  S.waitingForNextSong = false;
+    "The track could not be loaded.";
 
 });
 
 
 /* ============================================================
-   AUDIO PLAY
+   AUDIO ENDED
+   THIS IS THE ONLY PLACE THAT CREATES THE NEXT BILLBOARD
+============================================================ */
+
+AUD.addEventListener("ended", () => {
+
+  console.log(
+    "TRACK FINISHED"
+  );
+
+  $("mir").textContent =
+    "◉ OFF AIR";
+
+  $("mir").classList.remove("on");
+
+  $("tun").textContent =
+    "Track finished";
+
+
+  /*
+    SINGLE TRACK
+  */
+
+  if(!S.run || !S.run.auto){
+
+    S.waitingForNextSong = false;
+
+    return;
+  }
+
+
+  /*
+    FULL CATALOG
+
+    The next billboard is created
+    ONLY NOW.
+  */
+
+  spawnNextBillboard();
+
+});
+
+
+/* ============================================================
+   PLAY SONG
 ============================================================ */
 
 function play(a,song){
 
-  if(!a || !song) return;
+  if(!a || !song){
+
+    console.warn(
+      "play() missing artist/song"
+    );
+
+    return;
+
+  }
 
 
   /* ---------------------------------------------
      RECORD SPIN
   --------------------------------------------- */
 
-  a.spins = (a.spins || 0) + 1;
+  a.spins =
+    (a.spins || 0) + 1;
 
   S.spins++;
 
-  $("aspin").textContent = a.spins;
-  $("totalSpins").textContent = S.spins;
+
+  $("aspin").textContent =
+    a.spins;
+
+  $("totalSpins").textContent =
+    S.spins;
 
 
   /* ---------------------------------------------
-     EXPOSURE / DEMAND
+     EXPOSURE
   --------------------------------------------- */
 
-  a.exposure = Math.min(
-    100,
-    (a.exposure || 0) + 8
-  );
+  a.exposure =
+    Math.min(
+      100,
+      (a.exposure || 0) + 8
+    );
 
-  a.demand = Math.min(
-    100,
-    (a.demand || 0) + 5
-  );
+
+  /* ---------------------------------------------
+     DEMAND
+  --------------------------------------------- */
+
+  a.demand =
+    Math.min(
+      100,
+      (a.demand || 0) + 5
+    );
 
 
   updateArtistStats(a);
@@ -870,7 +949,11 @@ function play(a,song){
   --------------------------------------------- */
 
   if(!S.rotation.includes(a.display)){
-    S.rotation.push(a.display);
+
+    S.rotation.push(
+      a.display
+    );
+
   }
 
 
@@ -898,20 +981,35 @@ function play(a,song){
 
   AUD.currentTime = 0;
 
-  AUD.src = encodeURI(song.file);
+  AUD.src = song.file;
 
   AUD.loop = false;
 
   AUD.volume = .8;
 
-  const p = AUD.play();
 
-  if(p){
+  console.log(
+    "PLAYING:",
+    song.title,
+    AUD.src
+  );
 
-    p.catch(() => {
+
+  const promise =
+    AUD.play();
+
+
+  if(promise){
+
+    promise.catch(error => {
+
+      console.error(
+        "Audio play failed:",
+        error
+      );
 
       $("tun").textContent =
-        "Tap DRIVE again to start audio";
+        "Tap the drive controls to start audio";
 
     });
 
@@ -928,7 +1026,10 @@ function updateArtistStats(a){
 
   if(!a) return;
 
-  $("aspin").textContent = a.spins || 0;
+
+  $("aspin").textContent =
+    a.spins || 0;
+
 
   $("afans").textContent =
     Math.round(
@@ -936,23 +1037,34 @@ function updateArtistStats(a){
       ((a.spins || 0) * 3)
     );
 
+
   $("asales").textContent =
     Math.round(
       (a.sales || 0) +
       ((a.spins || 0) * 1.5)
     );
 
+
   const exposure =
-    Math.min(100,a.exposure || 0);
+    Math.min(
+      100,
+      a.exposure || 0
+    );
+
 
   const demand =
-    Math.min(100,a.demand || 0);
+    Math.min(
+      100,
+      a.demand || 0
+    );
+
 
   $("exposureBar").style.width =
     exposure + "%";
 
   $("demandBar").style.width =
     demand + "%";
+
 
   $("exposureText").textContent =
     Math.round(exposure) + "%";
@@ -971,19 +1083,21 @@ function renderArtists(){
 
   $("artists").innerHTML = "";
 
+
   ARTISTS.forEach((a,index)=>{
 
     const card =
       document.createElement("div");
 
-    card.className = "artistCard";
+    card.className =
+      "artistCard";
+
 
     card.innerHTML = `
 
       <img
         src="${a.photo}"
         alt="${a.display}"
-        onerror="this.style.opacity='.2'"
       >
 
       <div class="artistInfo">
@@ -993,7 +1107,7 @@ function renderArtists(){
         </div>
 
         <div class="artistMeta">
-          ${(a.songs || []).length} tracks
+          ${a.songs.length} tracks
         </div>
 
         <button
@@ -1007,26 +1121,41 @@ function renderArtists(){
 
     `;
 
-    $("artists").appendChild(card);
+
+    $("artists")
+      .appendChild(card);
 
   });
 
 }
 
 
-$("artists").addEventListener("click",e=>{
+/* ============================================================
+   ARTIST CLICK
+============================================================ */
 
-  const btn =
-    e.target.closest(".artistBtn");
+$("artists").addEventListener(
+  "click",
+  e => {
 
-  if(!btn) return;
+    const btn =
+      e.target.closest(".artistBtn");
 
-  const a =
-    ARTISTS[Number(btn.dataset.index)];
+    if(!btn) return;
 
-  openArtist(a);
 
-});
+    const index =
+      Number(btn.dataset.index);
+
+
+    const artist =
+      ARTISTS[index];
+
+
+    openArtist(artist);
+
+  }
+);
 
 
 /* ============================================================
@@ -1035,19 +1164,35 @@ $("artists").addEventListener("click",e=>{
 
 function openArtist(a){
 
+  if(!a) return;
+
+
   S.artist = a;
 
-  $("radioPanel").classList.add("hidden");
+  S.menu = true;
 
-  $("detail").classList.remove("hidden");
 
-  $("artistPhoto").src = a.photo;
+  $("radioPanel")
+    .classList
+    .add("hidden");
+
+
+  $("detail")
+    .classList
+    .remove("hidden");
+
+
+  $("artistPhoto").src =
+    a.photo;
+
 
   $("name").textContent =
     a.display;
 
+
   $("desc").textContent =
     a.description || "";
+
 
   renderSongs(a);
 
@@ -1064,81 +1209,105 @@ function renderSongs(a){
 
   $("songs").innerHTML = "";
 
-  (a.songs || []).forEach((song,index)=>{
 
-    const row =
-      document.createElement("div");
+  (a.songs || [])
+    .forEach((song,index)=>{
 
-    row.className = "song";
+      const row =
+        document.createElement("div");
 
-    row.innerHTML = `
 
-      <div class="songTitle">
-        ${index+1}. ${song.title}
-      </div>
+      row.className =
+        "song";
 
-      <button
-        class="songBtn"
-        data-song="${index}"
-      >
-        DRIVE
-      </button>
 
-    `;
+      row.innerHTML = `
 
-    $("songs").appendChild(row);
+        <div class="songTitle">
+          ${index + 1}. ${song.title}
+        </div>
 
-  });
+        <button
+          class="songBtn"
+          data-song="${index}"
+        >
+          DRIVE
+        </button>
+
+      `;
+
+
+      $("songs")
+        .appendChild(row);
+
+    });
 
 }
 
 
-$("songs").addEventListener("click",e=>{
+/* ============================================================
+   SONG BUTTON
+============================================================ */
 
-  const btn =
-    e.target.closest(".songBtn");
+$("songs").addEventListener(
+  "click",
+  e => {
 
-  if(!btn || !S.artist) return;
+    const btn =
+      e.target.closest(".songBtn");
 
-  const index =
-    Number(btn.dataset.song);
+    if(!btn || !S.artist) return;
 
-  S.selectedSong =
-    S.artist.songs[index];
 
-  launch(
-    S.artist,
-    index,
-    false
-  );
+    const index =
+      Number(btn.dataset.song);
 
-});
+
+    S.selectedSong =
+      S.artist.songs[index];
+
+
+    launch(
+      S.artist,
+      index,
+      false
+    );
+
+  }
+);
 
 
 /* ============================================================
-   SINGLE TRACK
+   DRIVE TRACK
 ============================================================ */
 
 $("play").onclick = () => {
 
-  const a = S.artist;
+  const a =
+    S.artist;
 
   if(!a) return;
 
-  const index =
-    Math.max(
-      0,
-      (a.songs || []).indexOf(
-        S.selectedSong
-      )
+
+  let index =
+    a.songs.indexOf(
+      S.selectedSong
     );
+
+
+  if(index < 0){
+
+    index = 0;
+
+  }
+
 
   /*
     IMPORTANT:
-    DO NOT PLAY HERE.
 
-    The song starts only when
-    the car passes the billboard.
+    This does NOT play the song.
+
+    It puts the billboard on the road.
   */
 
   launch(
@@ -1151,14 +1320,16 @@ $("play").onclick = () => {
 
 
 /* ============================================================
-   FULL CATALOG
+   DRIVE FULL CATALOG
 ============================================================ */
 
 $("cat").onclick = () => {
 
-  const a = S.artist;
+  const a =
+    S.artist;
 
   if(!a) return;
+
 
   launch(
     a,
@@ -1170,55 +1341,86 @@ $("cat").onclick = () => {
 
 
 /* ============================================================
-   LAUNCH DRIVE
+   LAUNCH
 ============================================================ */
 
-function launch(a,i0,auto){
+function launch(
+  a,
+  startIndex,
+  auto
+){
 
   const list =
-    (a.songs && a.songs.length)
+    a.songs && a.songs.length
       ? a.songs
-      : [
-          {
-            title:a.display,
-            file:a.track
-          }
-        ];
+      : [];
 
+
+  if(!list.length){
+
+    $("status").textContent =
+      "This artist has no tracks.";
+
+    return;
+
+  }
+
+
+  /*
+    Stop anything currently playing.
+  */
+
+  AUD.pause();
+
+  AUD.currentTime = 0;
+
+
+  /*
+    New catalog run.
+  */
 
   S.run = {
 
-    a,
+    a:a,
 
-    list,
+    list:list,
 
     n:list.length,
 
-    auto,
+    auto:auto,
 
-    currentIndex:i0
+    currentIndex:startIndex
 
   };
 
 
-  S.waitingForNextSong = false;
+  S.waitingForNextSong =
+    false;
 
-  S.currentBoard = null;
+
+  S.currentBoard =
+    null;
 
 
   /*
-    ONLY ONE BILLBOARD EXISTS.
+    CRITICAL:
 
-    Nothing else gets created until
-    the current song finishes.
+    ONE BILLBOARD ONLY.
+
+    It starts 30 road units ahead.
+
+    There is NO second billboard.
   */
 
   S.bbs = [
 
     {
       z:S.z + 30,
-      i:i0,
+
+      i:startIndex,
+
       done:false
+
     }
 
   ];
@@ -1229,82 +1431,114 @@ function launch(a,i0,auto){
   S.menu = false;
 
 
-  $("detail").classList.add("hidden");
+  $("detail")
+    .classList
+    .add("hidden");
 
-  $("radioPanel").classList.add("hidden");
+
+  $("radioPanel")
+    .classList
+    .add("hidden");
+
+
+  const song =
+    list[startIndex];
+
+
+  $("status").textContent =
+    auto
+      ? `Driving ${a.display}'s catalog.`
+      : `Driving "${song.title}".`;
 
 
   $("dtx").textContent =
-    `Billboard ahead for "${list[i0].title}". Pass it to start the song.`;
+    `Billboard ahead for "${song.title}". Pass the billboard to start the song.`;
 
 }
 
 
 /* ============================================================
-   PASS BILLBOARD
+   BILLBOARD PASSED
 ============================================================ */
 
-function passBoard(o){
+function passBoard(board){
 
   if(!S.run) return;
 
-  if(o.done) return;
+  if(!board) return;
+
+  if(board.done) return;
 
 
-  const r = S.run;
+  const run =
+    S.run;
+
 
   const song =
-    r.list[o.i];
+    run.list[board.i];
 
 
   if(!song) return;
 
 
   /*
-    Mark billboard complete BEFORE
-    starting audio so it cannot fire twice.
+    Prevent duplicate trigger.
   */
 
-  o.done = true;
+  board.done = true;
 
-  S.currentBoard = o;
+
+  S.currentBoard =
+    board;
 
 
   /*
-    THIS IS WHERE THE SONG STARTS.
-
-    The player physically passes the billboard.
+    THE SONG STARTS HERE.
   */
 
   play(
-    r.a,
+    run.a,
     song
   );
 
 
-  $("dtx").textContent =
-    `Now playing "${song.title}". The next billboard will appear when this song finishes.`;
-
-
   /*
-    REMOVE CURRENT BILLBOARD.
+    REMOVE THE BILLBOARD.
 
-    This is important.
-
-    There is now ZERO billboard ahead
-    while the song is playing.
+    There is now no billboard on the road.
   */
 
   S.bbs = [];
 
 
-  if(r.auto){
+  /*
+    For catalog mode:
 
-    S.waitingForNextSong = true;
+    WAIT.
+
+    Do not create another billboard.
+  */
+
+  if(run.auto){
+
+    S.waitingForNextSong =
+      true;
+
+
+    $("dtx").textContent =
+      `Now playing "${song.title}". The next billboard will appear when the song finishes.`;
 
   }else{
 
+    S.waitingForNextSong =
+      false;
+
+
     S.cruise = 0;
+
+
+    $("dtx").textContent =
+      `"${song.title}" is playing. This track drive is complete.`;
 
   }
 
@@ -1312,29 +1546,49 @@ function passBoard(o){
 
 
 /* ============================================================
-   SPAWN NEXT BILLBOARD
+   NEXT BILLBOARD
 ============================================================ */
 
 function spawnNextBillboard(){
 
-  if(!S.run) return;
+  /*
+    Nothing happens if the run
+    disappeared.
+  */
 
-  if(!S.run.auto) return;
+  if(!S.run){
 
-  const r = S.run;
+    return;
+
+  }
+
+
+  if(!S.run.auto){
+
+    return;
+
+  }
+
+
+  const run =
+    S.run;
 
 
   const nextIndex =
-    r.currentIndex + 1;
+    run.currentIndex + 1;
+
+
+  console.log(
+    "SONG ENDED — NEXT BILLBOARD:",
+    nextIndex
+  );
 
 
   /*
-    CATALOG FINISHED
+    CATALOG COMPLETE
   */
 
-  if(nextIndex >= r.n){
-
-    S.waitingForNextSong = false;
+  if(nextIndex >= run.n){
 
     endRun(
       "Catalog complete. Every track received a spin."
@@ -1346,74 +1600,85 @@ function spawnNextBillboard(){
 
 
   /*
-    ADVANCE TRACK
+    Move to next song.
   */
 
-  r.currentIndex =
+  run.currentIndex =
     nextIndex;
 
 
   /*
-    CREATE EXACTLY ONE BILLBOARD.
+    CREATE ONE NEW BILLBOARD.
 
-    This happens ONLY because the
-    previous song emitted "ended".
+    THIS FUNCTION IS ONLY CALLED
+    FROM AUDIO "ENDED".
   */
-
-  const nextZ =
-    Math.min(
-      S.z + 45,
-      LEN - 20
-    );
-
 
   S.bbs = [
 
     {
-      z:nextZ,
+      z:S.z + 45,
+
       i:nextIndex,
+
       done:false
+
     }
 
   ];
 
 
-  S.waitingForNextSong = false;
+  S.waitingForNextSong =
+    false;
+
+
+  const nextSong =
+    run.list[nextIndex];
 
 
   $("dtx").textContent =
-    `Next billboard ahead: "${r.list[nextIndex].title}". Keep driving.`;
+    `Next billboard ahead: "${nextSong.title}". Drive through it to start the track.`;
 
 }
 
 
 /* ============================================================
-   END RUN
+   END CATALOG
 ============================================================ */
 
 function endRun(message){
 
-  $("status").textContent =
-    message;
+  S.bbs = [];
 
-  $("dtx").textContent =
-    "Drive forward or return to the station.";
+  S.waitingForNextSong =
+    false;
+
+
+  AUD.pause();
+
 
   S.run = null;
 
-  S.bbs = [];
-
-  S.waitingForNextSong = false;
-
-  AUD.pause();
 
   $("mir").textContent =
     "◉ OFF AIR";
 
-  $("mir").classList.remove("on");
+
+  $("mir")
+    .classList
+    .remove("on");
+
 
   $("tun").textContent =
     "8 Mile Radio";
+
+
+  $("status").textContent =
+    message;
+
+
+  $("dtx").textContent =
+    "Catalog complete. You can continue driving.";
 
 }
 
@@ -1424,169 +1689,258 @@ function endRun(message){
 
 $("back").onclick = () => {
 
-  $("detail").classList.add("hidden");
+  $("detail")
+    .classList
+    .add("hidden");
 
-  if(S.driving){
 
-    $("status").textContent =
-      "Keep driving. The road is live.";
+  S.menu = false;
 
-  }
+
+  $("status").textContent =
+    "Back on the road.";
 
 };
 
 
 /* ============================================================
-   RADIO
+   RADIO BUTTON
 ============================================================ */
 
-$("radio").onclick = () => {
+radioButton.onclick = () => {
+
+  if(radioButton.disabled) return;
 
   if(!S.driving) return;
 
-  if(S.menu) return;
+  if(S.run){
 
-  $("radioPanel").classList.remove("hidden");
+    return;
 
-  $("detail").classList.add("hidden");
+  }
+
 
   S.menu = true;
+
+
+  $("radioPanel")
+    .classList
+    .remove("hidden");
+
+
+  $("detail")
+    .classList
+    .add("hidden");
+
+
+  $("status").textContent =
+    "8 Mile Radio — choose an artist.";
+
+
+  $("dtx").textContent =
+    "Choose an artist, then drive through the billboard.";
 
 };
 
 
 /* ============================================================
-   START
+   START DRIVE
 ============================================================ */
 
 $("start").onclick = () => {
 
   if(S.driving) return;
 
+
   S.driving = true;
 
+
   $("start").disabled = true;
+
 
   $("status").textContent =
     "Driving. Find 8 Mile Radio.";
 
+
   $("dtx").textContent =
-    "Use the steering controls and approach the radio station.";
+    "Use GAS to move toward 8 Mile Radio.";
 
 };
 
 
 /* ============================================================
-   CONTROL BUTTONS
+   STEERING
 ============================================================ */
 
-function steer(dir){
+function steer(direction){
 
-  S.steer = dir;
+  S.steer =
+    direction;
+
 
   setTimeout(()=>{
 
-    if(S.steer === dir){
+    if(S.steer === direction){
 
       S.steer = 0;
 
     }
 
-  },120);
+  },140);
 
 }
 
 
-$("L").addEventListener("pointerdown",()=>{
-  steer(-1);
-});
-
-$("R").addEventListener("pointerdown",()=>{
-  steer(1);
-});
+$("L").addEventListener(
+  "pointerdown",
+  () => steer(-1)
+);
 
 
-$("G").addEventListener("pointerdown",()=>{
-
-  S.cruise = Math.min(
-    20,
-    S.cruise + 2
-  );
-
-});
+$("R").addEventListener(
+  "pointerdown",
+  () => steer(1)
+);
 
 
-$("B").addEventListener("pointerdown",()=>{
+/* ============================================================
+   GAS
+============================================================ */
 
-  S.cruise = Math.max(
-    0,
-    S.cruise - 4
-  );
+$("G").addEventListener(
+  "pointerdown",
+  () => {
 
-});
+    S.cruise =
+      Math.min(
+        20,
+        S.cruise + 3
+      );
+
+  }
+);
+
+
+/* ============================================================
+   BRAKE
+============================================================ */
+
+$("B").addEventListener(
+  "pointerdown",
+  () => {
+
+    S.cruise =
+      Math.max(
+        0,
+        S.cruise - 5
+      );
+
+  }
+);
 
 
 /* ============================================================
    KEYBOARD
 ============================================================ */
 
-document.addEventListener("keydown",e=>{
+document.addEventListener(
+  "keydown",
+  e => {
 
-  if(e.key === "ArrowLeft")
-    S.steer = -1;
+    if(e.key === "ArrowLeft"){
 
-  if(e.key === "ArrowRight")
-    S.steer = 1;
+      S.steer = -1;
 
-  if(e.key === "ArrowUp")
-    S.cruise = Math.min(20,S.cruise+1);
+    }
 
-  if(e.key === "ArrowDown")
-    S.cruise = Math.max(0,S.cruise-2);
+    if(e.key === "ArrowRight"){
 
-});
+      S.steer = 1;
 
+    }
 
-document.addEventListener("keyup",e=>{
+    if(e.key === "ArrowUp"){
 
-  if(
-    e.key === "ArrowLeft" ||
-    e.key === "ArrowRight"
-  ){
+      S.cruise =
+        Math.min(
+          20,
+          S.cruise + 1
+        );
 
-    S.steer = 0;
+    }
+
+    if(e.key === "ArrowDown"){
+
+      S.cruise =
+        Math.max(
+          0,
+          S.cruise - 2
+        );
+
+    }
 
   }
+);
 
-});
+
+document.addEventListener(
+  "keyup",
+  e => {
+
+    if(
+      e.key === "ArrowLeft" ||
+      e.key === "ArrowRight"
+    ){
+
+      S.steer = 0;
+
+    }
+
+  }
+);
 
 
 /* ============================================================
-   ROAD DRAWING
+   ROAD
 ============================================================ */
 
 function road(){
 
-  ctx.fillStyle="#071018";
-  ctx.fillRect(0,0,W,HY);
+  ctx.fillStyle =
+    "#071018";
 
-  ctx.fillStyle="#17191c";
-  ctx.fillRect(0,HY,W,H-HY);
+  ctx.fillRect(
+    0,
+    0,
+    W,
+    HY
+  );
 
-  /*
-    horizon glow
-  */
 
   const grad =
     ctx.createLinearGradient(
-      0,HY,
-      0,H
+      0,
+      HY,
+      0,
+      H
     );
 
-  grad.addColorStop(0,"#22262b");
-  grad.addColorStop(1,"#080a0d");
 
-  ctx.fillStyle=grad;
+  grad.addColorStop(
+    0,
+    "#22262b"
+  );
+
+
+  grad.addColorStop(
+    1,
+    "#080a0d"
+  );
+
+
+  ctx.fillStyle =
+    grad;
+
 
   ctx.fillRect(
     0,
@@ -1597,55 +1951,81 @@ function road(){
 
 
   /*
-    ROAD EDGES
+    Road edges
   */
 
-  ctx.strokeStyle="#42464b";
+  ctx.strokeStyle =
+    "#42464b";
 
-  ctx.lineWidth=2;
+  ctx.lineWidth = 2;
+
 
   ctx.beginPath();
 
-  ctx.moveTo(60,HY);
-  ctx.lineTo(0,H);
+  ctx.moveTo(
+    60,
+    HY
+  );
 
-  ctx.moveTo(W-60,HY);
-  ctx.lineTo(W,H);
+  ctx.lineTo(
+    0,
+    H
+  );
+
+
+  ctx.moveTo(
+    W-60,
+    HY
+  );
+
+  ctx.lineTo(
+    W,
+    H
+  );
+
 
   ctx.stroke();
 
 
   /*
-    LANE MARKERS
+    Lane markers
   */
 
-  ctx.strokeStyle="#777";
+  ctx.strokeStyle =
+    "#777";
 
-  ctx.lineWidth=2;
 
   for(let i=0;i<12;i++){
 
     const p =
-      (i/12 + (S.z*.008)%1)%1;
+      (
+        i/12 +
+        (S.z*.008)%1
+      ) % 1;
+
 
     const y =
-      HY + Math.pow(p,1.7)*(H-HY);
+      HY +
+      Math.pow(
+        p,
+        1.7
+      ) *
+      (H-HY);
 
-    const x =
-      W/2;
 
     const size =
       2 + p*8;
 
+
     ctx.beginPath();
 
     ctx.moveTo(
-      x-size,
+      W/2-size,
       y
     );
 
     ctx.lineTo(
-      x+size,
+      W/2+size,
       y
     );
 
@@ -1657,7 +2037,7 @@ function road(){
 
 
 /* ============================================================
-   BILLBOARD DRAW
+   BILLBOARD
 ============================================================ */
 
 function billboard(
@@ -1667,14 +2047,22 @@ function billboard(
   sub
 ){
 
+  if(dz <= NEAR) return;
+
+
   const scale =
     K / dz;
 
+
   const x =
-    W/2 + S.x * scale;
+    W/2 +
+    S.x * scale;
+
 
   const y =
-    HY + CAMH * scale;
+    HY +
+    CAMH * scale;
+
 
   const width =
     Math.max(
@@ -1682,11 +2070,13 @@ function billboard(
       150 * scale
     );
 
+
   const height =
     width * .56;
 
 
   ctx.save();
+
 
   ctx.translate(
     x,
@@ -1695,10 +2085,12 @@ function billboard(
 
 
   /*
-    posts
+    Posts
   */
 
-  ctx.fillStyle="#3a3a38";
+  ctx.fillStyle =
+    "#3a3a38";
+
 
   ctx.fillRect(
     -width*.35,
@@ -1706,6 +2098,7 @@ function billboard(
     width*.07,
     80*scale
   );
+
 
   ctx.fillRect(
     width*.28,
@@ -1716,10 +2109,12 @@ function billboard(
 
 
   /*
-    billboard
+    Board
   */
 
-  ctx.fillStyle="#080a0d";
+  ctx.fillStyle =
+    "#080a0d";
+
 
   ctx.fillRect(
     -width/2,
@@ -1729,10 +2124,16 @@ function billboard(
   );
 
 
-  ctx.strokeStyle=AC;
+  ctx.strokeStyle =
+    AC;
 
-  ctx.lineWidth=
-    Math.max(1,2*scale);
+
+  ctx.lineWidth =
+    Math.max(
+      1,
+      2*scale
+    );
+
 
   ctx.strokeRect(
     -width/2,
@@ -1743,19 +2144,24 @@ function billboard(
 
 
   /*
-    artist photo
+    Artist image
   */
 
   if(artist.photo){
 
     const img =
-      getImage(artist.photo);
+      getImage(
+        artist.photo
+      );
+
 
     if(img && img.complete){
 
       ctx.save();
 
+
       ctx.beginPath();
+
 
       ctx.rect(
         -width/2,
@@ -1764,9 +2170,13 @@ function billboard(
         height
       );
 
+
       ctx.clip();
 
-      ctx.globalAlpha=.55;
+
+      ctx.globalAlpha =
+        .55;
+
 
       ctx.drawImage(
         img,
@@ -1776,6 +2186,7 @@ function billboard(
         height
       );
 
+
       ctx.restore();
 
     }
@@ -1784,11 +2195,12 @@ function billboard(
 
 
   /*
-    dark overlay
+    Overlay
   */
 
-  ctx.fillStyle=
+  ctx.fillStyle =
     "rgba(0,0,0,.55)";
+
 
   ctx.fillRect(
     -width/2,
@@ -1799,15 +2211,20 @@ function billboard(
 
 
   /*
-    text
+    Artist
   */
 
-  ctx.fillStyle="#fff";
+  ctx.fillStyle =
+    "#fff";
 
-  ctx.textAlign="center";
 
-  ctx.font=
+  ctx.textAlign =
+    "center";
+
+
+  ctx.font =
     `bold ${Math.max(8,12*scale)}px Arial`;
+
 
   ctx.fillText(
     artist.display,
@@ -1816,10 +2233,17 @@ function billboard(
   );
 
 
-  ctx.fillStyle=AC;
+  /*
+    Song
+  */
 
-  ctx.font=
+  ctx.fillStyle =
+    AC;
+
+
+  ctx.font =
     `bold ${Math.max(6,8*scale)}px Arial`;
+
 
   ctx.fillText(
     title,
@@ -1828,10 +2252,17 @@ function billboard(
   );
 
 
-  ctx.fillStyle="#ddd";
+  /*
+    Track information
+  */
 
-  ctx.font=
+  ctx.fillStyle =
+    "#ddd";
+
+
+  ctx.font =
     `${Math.max(5,6*scale)}px Arial`;
+
 
   ctx.fillText(
     sub,
@@ -1856,16 +2287,22 @@ function getImage(src){
 
   if(!src) return null;
 
+
   if(!IMAGE_CACHE[src]){
 
     const img =
       new Image();
 
-    img.src = src;
 
-    IMAGE_CACHE[src] = img;
+    img.src =
+      src;
+
+
+    IMAGE_CACHE[src] =
+      img;
 
   }
+
 
   return IMAGE_CACHE[src];
 
@@ -1873,56 +2310,52 @@ function getImage(src){
 
 
 /* ============================================================
-   GAME LOOP
+   GAME UPDATE
 ============================================================ */
-
-let last =
-  performance.now();
-
-
-function loop(now){
-
-  const dt =
-    Math.min(
-      .05,
-      (now-last)/1000
-    );
-
-  last = now;
-
-
-  update(dt);
-
-  draw();
-
-
-  requestAnimationFrame(loop);
-
-}
-
 
 function update(dt){
 
-  /*
-    SPEED
-  */
-
   if(S.driving){
 
+    /*
+      Accelerate toward cruise speed.
+    */
+
     S.v +=
-      (S.cruise-S.v)
-      * Math.min(1,dt*3);
+      (
+        S.cruise -
+        S.v
+      ) *
+      Math.min(
+        1,
+        dt*3
+      );
+
+
+    /*
+      Move road.
+    */
 
     S.z +=
       S.v * dt;
+
+
+    /*
+      Steering.
+    */
 
     S.x +=
       S.steer *
       dt *
       70;
 
+
     S.x *= .985;
 
+
+    /*
+      Loop road.
+    */
 
     if(S.z > LEN){
 
@@ -1938,7 +2371,7 @@ function update(dt){
 
 
   /*
-    WHEEL
+    Steering wheel
   */
 
   $("wheel").style.transform =
@@ -1952,27 +2385,34 @@ function update(dt){
   /*
     BILLBOARD COLLISION
 
-    The billboard triggers ONLY
-    when the player reaches it.
+    IMPORTANT:
 
-    There is no distance-based
-    creation of future billboards.
+    We ONLY check the existing billboard.
+
+    We NEVER create a billboard here.
   */
 
-  if(S.run && !S.waitingForNextSong){
+  if(
+    S.run &&
+    !S.waitingForNextSong
+  ){
 
-    S.bbs.forEach(o=>{
+    for(
+      const board of S.bbs
+    ){
 
       if(
-        !o.done &&
-        S.z > o.z + 1.5
+        !board.done &&
+        S.z >= board.z
       ){
 
-        passBoard(o);
+        passBoard(board);
+
+        break;
 
       }
 
-    });
+    }
 
   }
 
@@ -1982,6 +2422,7 @@ function update(dt){
   */
 
   if(
+    S.driving &&
     Math.abs(S.z-RZ)<9 &&
     S.v<7 &&
     !S.menu &&
@@ -1989,20 +2430,25 @@ function update(dt){
   ){
 
     $("status").textContent =
-      "8 Mile Radio nearby. Slow down and tune in.";
+      "8 Mile Radio nearby. Slow down and tap RADIO.";
 
   }
 
 
   /*
-    CASH / REVENUE
+    Ledger
   */
 
   $("cash").textContent =
-    Math.round(S.cash);
+    Math.round(
+      S.cash
+    );
+
 
   $("gross").textContent =
-    Math.round(S.gross);
+    Math.round(
+      S.gross
+    );
 
 }
 
@@ -2024,38 +2470,58 @@ function draw(){
   road();
 
 
+  const items = [];
+
+
   /*
-    Billboard layer
+    RUN BILLBOARD
   */
-
-  const items=[];
-
 
   if(S.run){
 
-    S.bbs.forEach(o=>{
+    S.bbs.forEach(
+      board => {
 
-      const song =
-        S.run.list[o.i];
+        const song =
+          S.run.list[board.i];
 
-      if(!song) return;
 
-      items.push({
+        if(!song) return;
 
-        dz:o.z-S.z,
 
-        f:()=>billboard(
-          o.z-S.z,
-          S.run.a,
-          song.title,
-          S.run.n>1
-            ? `Track ${o.i+1} of ${S.run.n}`
-            : "Now Playing"
-        )
+        const dz =
+          board.z - S.z;
 
-      });
 
-    });
+        if(
+          dz > NEAR &&
+          dz < 150
+        ){
+
+          items.push({
+
+            dz,
+
+            f:() => {
+
+              billboard(
+                dz,
+                S.run.a,
+                song.title,
+                S.run.n > 1
+                  ? `Track ${board.i+1} of ${S.run.n}`
+                  : "Now Playing"
+              );
+
+            }
+
+          });
+
+        }
+
+      }
+    );
+
 
   }else{
 
@@ -2066,21 +2532,26 @@ function draw(){
     const dz =
       RZ + 9 - S.z;
 
+
     if(
-      dz>NEAR &&
-      dz<150
+      dz > NEAR &&
+      dz < 150
     ){
 
       items.push({
 
         dz,
 
-        f:()=>billboard(
-          dz,
-          ARTISTS[0],
-          "8 Mile Radio",
-          "Independent Artist Discovery"
-        )
+        f:() => {
+
+          billboard(
+            dz,
+            ARTISTS[0],
+            "8 Mile Radio",
+            "Independent Artist Discovery"
+          );
+
+        }
 
       });
 
@@ -2090,81 +2561,151 @@ function draw(){
 
 
   /*
-    Draw far objects first.
+    Far objects first.
   */
 
   items
-    .sort((a,b)=>b.dz-a.dz)
-    .forEach(o=>o.f());
+    .sort(
+      (a,b) =>
+        b.dz-a.dz
+    )
+    .forEach(
+      item =>
+        item.f()
+    );
 
 
   /*
-    Road car hood
+    Hood
   */
 
-  ctx.fillStyle="#090b0e";
+  ctx.fillStyle =
+    "#090b0e";
+
 
   ctx.beginPath();
 
-  ctx.moveTo(0,H);
 
-  ctx.lineTo(65,265);
+  ctx.moveTo(
+    0,
+    H
+  );
 
-  ctx.lineTo(415,265);
 
-  ctx.lineTo(W,H);
+  ctx.lineTo(
+    65,
+    265
+  );
+
+
+  ctx.lineTo(
+    415,
+    265
+  );
+
+
+  ctx.lineTo(
+    W,
+    H
+  );
+
 
   ctx.closePath();
+
 
   ctx.fill();
 
 
-  /*
-    hood line
-  */
+  ctx.strokeStyle =
+    "#30353b";
 
-  ctx.strokeStyle="#30353b";
 
   ctx.beginPath();
 
-  ctx.moveTo(65,265);
 
-  ctx.lineTo(415,265);
+  ctx.moveTo(
+    65,
+    265
+  );
+
+
+  ctx.lineTo(
+    415,
+    265
+  );
+
 
   ctx.stroke();
 
 
   /*
-    Current billboard status
+    Waiting message
   */
 
-  if(S.run && S.waitingForNextSong){
+  if(
+    S.run &&
+    S.waitingForNextSong
+  ){
 
-    ctx.fillStyle=
-      "rgba(0,0,0,.45)";
+    ctx.fillStyle =
+      "rgba(0,0,0,.55)";
+
 
     ctx.fillRect(
-      145,
+      135,
       16,
-      190,
-      25
+      210,
+      27
     );
 
-    ctx.fillStyle="#fff";
 
-    ctx.textAlign="center";
+    ctx.fillStyle =
+      "#fff";
 
-    ctx.font="10px Arial";
+
+    ctx.textAlign =
+      "center";
+
+
+    ctx.font =
+      "10px Arial";
+
 
     ctx.fillText(
-      "WAITING FOR TRACK TO FINISH",
+      "♪ TRACK PLAYING — NEXT BILLBOARD PENDING",
       W/2,
-      32
+      33
     );
 
   }
 
 }
+
+
+/* ============================================================
+   RADIO BUTTON STATE
+============================================================ */
+
+setInterval(() => {
+
+  if(
+    S.driving &&
+    Math.abs(S.z-RZ)<9 &&
+    S.v<7 &&
+    !S.run
+  ){
+
+    radioButton.disabled =
+      false;
+
+  }else{
+
+    radioButton.disabled =
+      true;
+
+  }
+
+},100);
 
 
 /* ============================================================
@@ -2177,124 +2718,70 @@ updateArtistStats(
   ARTISTS[0]
 );
 
-requestAnimationFrame(loop);
-
 
 /* ============================================================
-   RADIO BUTTON
+   GAME LOOP
 ============================================================ */
 
-const radioButton =
-  document.createElement("button");
-
-radioButton.id="radio";
-
-radioButton.className=
-  "ctrl primary";
-
-radioButton.textContent=
-  "RADIO";
-
-radioButton.disabled=true;
+let last =
+  performance.now();
 
 
-/*
-  Put radio button into controls.
-*/
+function loop(now){
 
-document
-  .querySelector(".controls")
-  .appendChild(radioButton);
-
-
-/*
-  Enable radio when near station.
-*/
-
-setInterval(()=>{
-
-  if(
-    S.driving &&
-    Math.abs(S.z-RZ)<9 &&
-    S.v<7 &&
-    !S.run
-  ){
-
-    radioButton.disabled=false;
-
-  }else{
-
-    radioButton.disabled=true;
-
-  }
-
-},100);
+  const dt =
+    Math.min(
+      .05,
+      (now-last)/1000
+    );
 
 
-/*
-  Tune in.
-*/
-
-radioButton.onclick=()=>{
-
-  if(radioButton.disabled) return;
-
-  S.menu=true;
-
-  $("radioPanel").classList.remove("hidden");
-
-  $("detail").classList.add("hidden");
-
-  $("status").textContent =
-    "8 Mile Radio — choose an artist.";
-
-  $("dtx").textContent =
-    "Choose an artist, then select a track or drive the complete catalog.";
-
-};
+  last =
+    now;
 
 
-/* ============================================================
-   RESET MENU WHEN ARTIST SELECTED
-============================================================ */
+  update(dt);
 
-$("radioPanel").addEventListener("click",e=>{
-
-  if(e.target.closest(".artistBtn")){
-
-    S.menu=true;
-
-  }
-
-});
+  draw();
 
 
-/* ============================================================
-   STOP MENU WHEN DRIVING
-============================================================ */
-
-function closeMenus(){
-
-  $("radioPanel").classList.add("hidden");
-
-  $("detail").classList.add("hidden");
-
-  S.menu=false;
+  requestAnimationFrame(
+    loop
+  );
 
 }
 
 
+requestAnimationFrame(
+  loop
+);
+
+
 /* ============================================================
-   AUDIO STOP WHEN PAGE HIDDEN
+   VISIBILITY
 ============================================================ */
 
 document.addEventListener(
   "visibilitychange",
-  ()=>{
+  () => {
 
-    if(document.hidden){
+    if(
+      document.hidden
+    ){
 
-      AUD.pause();
+      /*
+        Do not destroy the run.
+
+        Just pause the audio.
+      */
+
+      if(
+        !AUD.paused
+      ){
+
+        AUD.pause();
+
+      }
 
     }
 
