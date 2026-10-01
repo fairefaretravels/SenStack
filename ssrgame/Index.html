@@ -98,20 +98,19 @@ const W=480,H=300,HY=128,K=250,CAMH=1.25,LEN=600,RZ=130,NEAR=1.9,AC="#d9a441";
 const ECON={artist:.50,pub:.20,dist:.10,your:.20};
 const ARTISTS=[
 {id:"mitd",display:"Mackinthedark",photo:"./assets/photos/Mitd1.PNG",
-track:"./assets/music/Get Up (produced by Jupyter).mp3",
+track:"/assets/music/Get Up (produced by Jupyter).mp3",
 songs:[
-{title:"Get Up (produced by Jupyter)",file:"./assets/music/Get Up (produced by Jupyter).mp3"},
-{title:"Alexa",file:"./assets/music/Love & Co - Alexa.mp3"},
-{title:"TRY",file:"./assets/music/Love & Co - TRY.mp3"},
-{title:"Alright",file:"./assets/music/Alright.mp3"},
-{title:"Best Day Ever",file:"./assets/music/Best Day Ever.mp3"},
-{title:"Disclaimer",file:"./assets/music/Disclaimer.mp3"},
-{title:"Drive Me Crazy (Remastered)",file:"./assets/music/drive-me-crazy-(remastered).mp3"},
-{title:"Eighteen and a Clutch",file:"./assets/music/eighteen-and-a-clutch.mp3"},
-{title:"4-X-4-2 (Remastered)",file:"./assets/music/4-x-4-2-(remastered)a.mp3"}
+{title:"Get Up (produced by Jupyter)",file:"/assets/music/Get Up (produced by Jupyter).mp3"},
+{title:"Alexa",file:"/assets/music/Love & Co - Alexa.mp3"},
+{title:"TRY",file:"/assets/music/Love & Co - TRY.mp3"},
+{title:"Alright",file:"/assets/music/Alright.mp3"},
+{title:"Best Day Ever",file:"/assets/music/Best Day Ever.mp3"},
+{title:"Disclaimer",file:"/assets/music/Disclaimer.mp3"},
+{title:"Drive Me Crazy (Remastered)",file:"/assets/music/drive-me-crazy-(remastered).mp3"},
+{title:"4-X-4",file:"/assets/music/4-x-4-2-(remastered)a.mp3"}
 ],genre:"Alternative / Hip-Hop",desc:"Saneca Mack — independent artist.",exp:5,demand:5,fans:0,spins:0,sales:0,rotation:false,found:true},
-{id:"a2",display:"Unsigned Artist",photo:"./assets/artists/artist2.PNG",track:"./assets/music/artist2.mp3",genre:"Alternative",desc:"Waiting to be discovered.",exp:0,demand:0,fans:0,spins:0,sales:0,rotation:false,found:false},
-{id:"a3",display:"Next Artist",photo:"./assets/artists/artist3.PNG",track:"./assets/music/artist3.mp3",genre:"Hip-Hop",desc:"Waiting to be discovered.",exp:0,demand:0,fans:0,spins:0,sales:0,rotation:false,found:false}
+{id:"a2",display:"Unsigned Artist",photo:"/assets/artists/artist2.PNG",track:"/assets/music/artist2.mp3",genre:"Alternative",desc:"Waiting to be discovered.",exp:0,demand:0,fans:0,spins:0,sales:0,rotation:false,found:false},
+{id:"a3",display:"Next Artist",photo:"/assets/artists/artist3.PNG",track:"/assets/music/artist3.mp3",genre:"Hip-Hop",desc:"Waiting to be discovered.",exp:0,demand:0,fans:0,spins:0,sales:0,rotation:false,found:false}
 ];
 ARTISTS.forEach(a=>{a.img=new Image();a.img.src=a.photo});
 let S={z:2,x:0,v:0,steer:0,cruise:0,cash:0,gross:0,spins:0,rotation:[],driving:false,menu:false,run:null,bbs:[],rh:0,bump:0,artist:null,selectedSong:null};
