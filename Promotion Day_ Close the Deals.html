@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Promotion Day: Close the Deals</title>
+<style>
+:root{--bg:#05070a;--cd:#0d1117;--bd:#2a2f38;--tx:#f2f0e9;--mu:#a9a9a2;--ac:#d9a441;--ok:#7bc47f;--bad:#ff5533;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f1efe9;--cd:#fff;--bd:#d6d3ca;--tx:#16181c;--mu:#666}}
+:root[data-theme="light"]{--bg:#f1efe9;--cd:#fff;--bd:#d6d3ca;--tx:#16181c;--mu:#666}
+:root[data-theme="dark"]{--bg:#05070a;--cd:#0d1117;--bd:#2a2f38;--tx:#f2f0e9;--mu:#a9a9a2}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--tx);font-family:Inter,-apple-system,"Segoe UI",sans-serif;line-height:1.45}
+.w{width:min(560px,94%);margin:auto;padding:14px 0 40px}
+.eb{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ac)}
+h1{font-size:26px;letter-spacing:-1px;margin:2px 0 10px}
+.st{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
+.s{border:1px solid var(--bd);background:var(--cd);border-radius:10px;padding:6px 8px}
+.s b{display:block;font-size:15px}.s span{font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:1px}
+canvas{display:block;width:100%;border-radius:12px;border:1px solid var(--bd);background:#0a0d13}
+button{font:inherit;font-size:14px;color:var(--tx);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:9px 16px;cursor:pointer;touch-action:manipulation}
+button:disabled{opacity:.35}
+.pri{background:var(--ac);border-color:var(--ac);color:#14171c;font-weight:700}
+.row{display:flex;gap:8px;margin:8px 0}.row button{flex:1}
+#dlg{border:1px solid var(--bd);background:var(--cd);border-radius:14px;padding:14px;min-height:210px}
+#who{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+#em{font-size:34px}#nm{font-weight:700}#nd{font-size:11px;color:var(--mu);letter-spacing:1px;text-transform:uppercase}
+#dtx{font-size:16px;min-height:72px;margin-bottom:10px}
+.mt{display:flex;gap:10px;margin-bottom:10px;font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:1px}
+.mt div{flex:1}.bar{height:5px;background:var(--bd);border-radius:9px;overflow:hidden;margin-top:3px}.bar i{display:block;height:100%;width:0;transition:width .3s}
+#dch{display:flex;flex-direction:column;gap:6px}
+#dch button{text-align:left;border-radius:12px}
+</style>
+</head>
+<body>
+<main class="w">
+<div class="eb">SENSTACK • Level 2</div>
+<h1>Promotion Day</h1>
+<div class="st"><div class="s"><b id="ti">Associate</b><span>Title</span></div><div class="s"><b id="ca">$0</b><span>Commission</span></div><div class="s"><b id="dl">0 / 3</b><span>Deals to promote</span></div></div>
+<canvas id="cv" width="480" height="240"></canvas>
+<div class="row"><button id="L">◀</button><button id="meet" class="pri" disabled>Park &amp; meet</button><button id="R">▶</button></div>
+<div id="dlg">
+<div id="who"><div id="em">🚪</div><div><div id="nm">Woodward Ave</div><div id="nd">Waiting</div></div></div>
+<div id="dtx">Press start to meet your boss.</div>
+<div class="mt" id="mts" style="display:none"><div>Trust<div class="bar"><i id="mt" style="background:var(--ok)"></i></div></div><div>Interest<div class="bar"><i id="mi" style="background:var(--ac)"></i></div></div></div>
+<div id="dch"><button class="pri" id="go">▶ Start</button></div>
+</div>
+</main>
+<script>
+const $=i=>document.getElementById(i),cv=$('cv'),c=cv.getContext('2d'),LEN=2400,GY=170;
+const CARS=[['🚙',180],['🚘',220],['🏎️',280]],TIT=['Associate','Account Exec','Director','VP, Business Dev'];
+const BIZ=[
+{n:'Cut Above Barbershop',o:'Mr. Dre',e:'💈',x:500,need:'a booking system',v:0,done:0,beats:[
+{q:'Chairs stay full, but my phone never stops. Missed calls, double bookings. What do you do about that?',c:[['Tell me about a bad day. I want to hear it.',2,1,'Saturday. Three people booked the same slot. I nearly lost a regular.'],['Online booking cuts the phone calls by half.',0,2,'Half? That is a start. Keep talking.'],['Stop answering the phone. Done.',-2,0,'Come on, man. That is how I pay rent.']]},
+{q:'And what is this going to cost me? I am not a tech guy.',c:[['Start small. You pay when it works.',1,1,'That I can respect.'],['Premium package, best on the market.',-1,1,'Sounds expensive. I am listening, barely.'],['I will set it up and teach your crew.',2,1,'Teaching the crew? Now you are talking.']]}]},
+{n:"Mama Rae's Kitchen",o:'Miss Rae',e:'🍲',x:1000,need:'catering orders and online ordering',v:0,done:0,beats:[
+{q:'Catering orders live on sticky notes. Last week I lost a wedding order. A WEDDING.',c:[['That hurts. Let us make sure it never happens again.',2,1,'Thank you. Somebody finally gets it.'],['Sticky notes are a liability.',0,1,'Do not I know it. But I am busy, baby.'],['Hire an assistant.',-1,0,'With what money?']]},
+{q:'I do not want anything fancy. My regulars are older.',c:[['One simple form. A printed ticket in the kitchen.',2,2,'Printed tickets? I like paper.'],['AI will handle everything automatically.',-1,1,'Automatic? That makes me nervous.'],['We keep the phone line too. Nothing gets replaced.',2,1,'You keep my phone? Okay. That is respect.']]}]},
+{n:'Static Records',o:'Marcus',e:'🎙️',x:1500,need:'an artist and release dashboard',v:0,done:0,beats:[
+{q:'Twelve artists, thirty songs, and I track it all in my head. Registrations are a mess.',c:[['Walk me through it. Where does it break first?',2,1,'Registrations. I never know what is filed.'],['One dashboard: songs, status, checklist.',0,2,'That is exactly what I need.'],['Hire an intern.',-1,0,'Interns do not stay organized either.']]},
+{q:'I have been burned by tech guys. They build it, then disappear.',c:[['I stay on after launch. You get my number.',2,1,'A number I can call? Better than most.'],['I am booked solid, but I am worth it.',-2,0,'Booked solid... I need someone who shows up.'],['Let us put a 30-day check-in in writing.',1,2,'In writing. I like that.']]}]},
+{n:'Hope Community Center',o:'Dr. Lane',e:'🏛️',x:2000,need:'a cleanup of your duplicate tools',v:0,done:0,beats:[
+{q:'We pay for three tools that do the same thing. Nobody knows which list is the real one.',c:[['Show me all three. I will find what is duplicated.',2,1,'I will pull the logins. What a relief.'],['Throw them out and start fresh.',-1,1,'Start fresh? That is years of records.'],['Keep what works and merge the rest.',1,2,'Merge. Yes. That is what we need.']]},
+{q:'Our board approves spending slowly. Can you work with a small budget?',c:[['Phase one costs very little. Prove it first.',2,1,'A small first phase will pass the board.'],['The full package is the only way.',-2,0,'They would never approve all that.'],['I can help write the board summary too.',1,2,'That would really help.']]}]}];
+let S={car:1,x:60,cash:0,deals:0,talk:false,on:false},D=null,T=0,I=0,lit=null,nb=null,tm,k={L:0,R:0},tt=0;
+function boss(){return[
+{q:'Saneca. The board loved your numbers. You are promoted to Business Development Lead.',c:[['Thank you. I earned it.',0,0,'You did. Do not get comfortable.'],['What is the catch?',0,0,'Smart. You close deals, or the car goes back.'],['Does it come with a parking spot?',0,0,'Ha. Downtown, you are on your own.']]},
+{q:'There is a company car out front. Pick your ride.',c:[['🚙 SUV: steady and roomy',0,0,'Sensible. Keys are yours.',()=>S.car=0],['🚘 Sedan: smooth and professional',0,0,'Classic. Keys are yours.',()=>S.car=1],['🏎️ Sport: fast, and a little loud',0,0,'Bold. Do not scratch it. Keys are yours.',()=>S.car=2]]},
+{q:'Four businesses on Woodward need help. Find the signs, park, and close three deals.',c:[['I will get it done.',0,0,'Go. The Board is watching.']]}]}
+function say(t,cb){clearInterval(tm);const e=$('dtx');let i=0;e.textContent='';tm=setInterval(()=>{e.textContent=t.slice(0,++i);if(i>=t.length){clearInterval(tm);D.sk=null;cb&&cb()}},15);D.sk=()=>{clearInterval(tm);e.textContent=t;D.sk=null;cb&&cb()}}
+function talk(n,e,role,beats,end){D={i:0,beats,end};$('em').textContent=e;$('nm').textContent=n;$('nd').textContent=role;show()}
+function meters(){$('mts').style.display=lit?'flex':'none';$('mt').style.width=Math.min(100,T/5*100)+'%';$('mi').style.width=Math.min(100,I/4*100)+'%'}
+function show(){const b=D.beats[D.i];if(!b){D.end();return}$('dch').innerHTML='';meters();say(b.q,()=>{b.c.forEach(ch=>{const bt=document.createElement('button');bt.textContent=ch[0];bt.onclick=()=>pick(ch);$('dch').appendChild(bt)})})}
+function pick(ch){T+=ch[1];I+=ch[2];meters();$('dch').innerHTML='';const r=typeof ch[3]==='function'?ch[3]():ch[3];if(ch[4])ch[4]();meters();say(r,()=>{const bt=document.createElement('button');bt.textContent='Continue ▸';bt.className='pri';bt.onclick=()=>{D.i++;show()};$('dch').appendChild(bt)})}
+function closeBeat(b){const full=()=>T>=4&&I>=3,pil=()=>T>=3&&I>=2;return{q:`So, ${b.need}. Where does that leave us?`,c:[
+['Ask for the signature',0,0,()=>full()?'Alright. Where do I sign?':'I am not there yet. Ask me again after we talk more.',()=>{if(full())won(b,2,500)}],
+['Offer a 2-week pilot',0,0,()=>pil()?'Two weeks. Fine. Let us try it.':'I would rather not. Not yet.',()=>{if(pil())won(b,1,250)}],
+['Follow up next week',1,0,'Fair enough. Come back Thursday.',()=>{b.v++}]]}}
+function won(b,l,m){b.done=l;S.cash+=m;S.deals++}
+function leave(){const win=S.deals>=3;S.talk=false;lit=null;meters();$('em').textContent=win?'🏆':'🚪';$('nm').textContent=win?'PROMOTED':'Woodward Ave';$('nd').textContent=win?'VP, Business Development':'Driving';$('dch').innerHTML='';
+say(win?'Three deals signed. The Board makes it official: you are the new VP of Business Development. Keep the car.':'Back on the road. Find another lit sign.')}
+function meet(){if(!nb||S.talk||nb.done===2)return;S.talk=true;lit=nb;T=1+nb.v;I=0;talk(nb.o,nb.e,nb.n,[...nb.beats,closeBeat(nb)],leave)}
+$('go').onclick=()=>{S.on=true;S.talk=true;talk('Ms. Carter','🧑🏾‍💼','Chief Operating Officer',boss(),()=>{S.talk=false;leave()})};
+$('dtx').onclick=()=>D&&D.sk&&D.sk();
+$('meet').onclick=meet;
+['L','R'].forEach(i=>{const e=$(i);e.onpointerdown=()=>k[i]=1;e.onpointerup=e.onpointerleave=()=>k[i]=0});
+addEventListener('keydown',e=>{if(e.key==='ArrowLeft')k.L=1;if(e.key==='ArrowRight')k.R=1;if(e.key==='Enter')meet()});
+addEventListener('keyup',e=>{if(e.key==='ArrowLeft')k.L=0;if(e.key==='ArrowRight')k.R=0});
+function bld(x,h,idx,b){const l=lit===b&&b,top=GY-h;c.save();if(l){c.shadowColor='#ffd27a';c.shadowBlur=28}c.fillStyle=l?'#3a3426':'#1d2026';c.fillRect(x,top,150,h);c.restore();
+for(let r=0;r<Math.floor(h/28);r++)for(let q=0;q<4;q++){const on=l||(b&&b.done)||((r*5+q*3+idx)%3===0);c.save();if(l){c.shadowColor='#ffd27a';c.shadowBlur=14}c.fillStyle=on?(b&&b.done&&!l?'#a8d9ab':'#ffd27a'):'#12141a';c.fillRect(x+14+q*32,top+10+r*28,18,16);c.restore()}
+if(b){c.fillStyle='#14171c';c.fillRect(x+62,GY-26,26,26);c.fillStyle=lit===b?'#ffd27a':'#d9a441';c.font='bold 10px sans-serif';c.textAlign='center';c.fillText(b.n,x+75,top-6);c.font='16px serif';c.fillText(b.done?'✅':b.e,x+75,top-20)}}
+function draw(cx){c.fillStyle='#0a0d13';c.fillRect(0,0,480,240);c.fillStyle='#ffffff55';for(let i=0;i<30;i++)c.fillRect((i*97-cx*.2+480*5)%480,(i*37)%90,2,2);
+for(let i=0;i<10;i++){const x=i*250+30-cx;if(x>-160&&x<480&&!BIZ.some(b=>Math.abs(b.x-(i*250+30))<150))bld(x,70+(i*23)%50,i,null)}
+BIZ.forEach((b,i)=>{const x=b.x-cx;if(x>-160&&x<480)bld(x,120+(i%2)*20,i,b)});
+c.fillStyle='#1f2126';c.fillRect(0,GY,480,70);c.fillStyle='#d9c98a';for(let x=-(cx%40);x<480;x+=40)c.fillRect(x,GY+36,20,3);
+c.font='36px serif';c.textAlign='center';c.textBaseline='alphabetic';c.fillText(CARS[S.car][0],S.x-cx,GY+34)}
+function frame(t){const dt=Math.min(.05,(t-tt)/1000);tt=t;if(S.on&&!S.talk){const d=k.R-k.L;S.x=Math.min(LEN-60,Math.max(30,S.x+d*CARS[S.car][1]*dt))}
+nb=BIZ.find(b=>Math.abs(S.x-(b.x+75))<55&&b.done!==2)||null;$('meet').disabled=!S.on||S.talk||!nb;$('meet').textContent=nb&&!S.talk?'Meet '+nb.o:'Park & meet';
+const lv=Math.min(3,S.deals);$('ti').textContent=TIT[lv];$('ca').textContent='$'+S.cash;$('dl').textContent=S.deals+' / 3';
+draw(Math.min(LEN-480,Math.max(0,S.x-200)));requestAnimationFrame(frame)}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
