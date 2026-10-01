@@ -3,92 +3,1769 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SENSTACK: Build the Control Deck</title>
+<meta name="theme-color" content="#090909">
+<title>SENSTACK: Fast Food + Beauty Game</title>
+
 <style>
-:root{--bg:#090909;--card:#101010;--bd:#292929;--tx:#f5f5f5;--mu:#aaa;--ac:#ff3b30;--ok:#34c759;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f4f2;--card:#fff;--bd:#d8d8d4;--tx:#141414;--mu:#666}}
-:root[data-theme="light"]{--bg:#f4f4f2;--card:#fff;--bd:#d8d8d4;--tx:#141414;--mu:#666}
-:root[data-theme="dark"]{--bg:#090909;--card:#101010;--bd:#292929;--tx:#f5f5f5;--mu:#aaa}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{background:var(--bg);color:var(--tx);font-family:Inter,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
-.w{width:min(920px,92%);margin:auto;padding:28px 0 50px}
-.eb{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--mu)}
-h1{font-size:clamp(30px,8vw,52px);letter-spacing:-2px;line-height:1;margin:8px 0 6px}
-h2{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--mu);margin:26px 0 10px}
-.sub{color:var(--mu);font-size:15px}
-.st{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
-.s{border:1px solid var(--bd);background:var(--card);border-radius:12px;padding:10px 12px}
-.s b{display:block;font-size:22px}.s span{font-size:11px;color:var(--mu);text-transform:uppercase;letter-spacing:1px}
-.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
-.c{border:1px solid var(--bd);background:var(--card);border-radius:14px;padding:14px}
-.c.p{border-color:var(--ac)}
-.c h3{font-size:15px;margin-bottom:2px}.c p{font-size:13px;color:var(--mu);margin-bottom:8px}
-.bar{height:6px;background:var(--bd);border-radius:9px;overflow:hidden;margin:6px 0 10px}
-.bar i{display:block;height:100%;background:var(--ok)}
-button{font:inherit;font-size:13px;color:var(--tx);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:7px 14px;cursor:pointer}
-button:hover:not(:disabled){border-color:var(--tx)}button:disabled{opacity:.35;cursor:not-allowed}
-.pri{background:var(--ac);border-color:var(--ac);color:#fff}
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.tag{font-size:11px;color:var(--mu)}
-#log{font-size:13px;color:var(--mu);border:1px solid var(--bd);border-radius:12px;padding:12px;max-height:160px;overflow:auto;background:var(--card)}
-#log div{margin-bottom:4px}
-.ov{border:1px solid var(--ac);border-radius:14px;padding:18px;margin-top:16px;background:var(--card)}
-@media(max-width:600px){.st{grid-template-columns:repeat(2,1fr)}}
+:root{
+  --bg:#090909;
+  --card:#121212;
+  --card2:#181818;
+  --bd:#2d2d2d;
+  --tx:#f5f5f5;
+  --mu:#999;
+  --ac:#ff3b30;
+  --gold:#ffd60a;
+  --ok:#34c759;
+  --pink:#ff2d55;
+  --purple:#af52de;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:var(--bg);
+  color:var(--tx);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.45;
+}
+
+button{
+  font:inherit;
+}
+
+.w{
+  width:min(960px,92%);
+  margin:auto;
+  padding:24px 0 50px;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.brand{
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--mu);
+}
+
+h1{
+  font-size:clamp(32px,9vw,58px);
+  line-height:.95;
+  letter-spacing:-2px;
+  margin:8px 0;
+}
+
+h2{
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  color:var(--mu);
+  margin:28px 0 12px;
+}
+
+.sub{
+  color:var(--mu);
+  font-size:14px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin:18px 0;
+}
+
+.stat{
+  background:var(--card);
+  border:1px solid var(--bd);
+  border-radius:14px;
+  padding:11px;
+}
+
+.stat b{
+  display:block;
+  font-size:22px;
+}
+
+.stat span{
+  display:block;
+  color:var(--mu);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.modes{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:20px;
+}
+
+.mode{
+  min-height:145px;
+  border:1px solid var(--bd);
+  background:var(--card);
+  border-radius:18px;
+  padding:18px;
+  text-align:left;
+  cursor:pointer;
+  color:var(--tx);
+  transition:.15s;
+}
+
+.mode:hover{
+  border-color:var(--tx);
+  transform:translateY(-2px);
+}
+
+.mode.active{
+  border-color:var(--ac);
+  box-shadow:0 0 0 1px var(--ac);
+}
+
+.mode.beauty.active{
+  border-color:var(--pink);
+  box-shadow:0 0 0 1px var(--pink);
+}
+
+.mode-icon{
+  font-size:38px;
+  margin-bottom:8px;
+}
+
+.mode h3{
+  font-size:18px;
+}
+
+.mode p{
+  color:var(--mu);
+  font-size:12px;
+  margin-top:4px;
+}
+
+.panel{
+  background:var(--card);
+  border:1px solid var(--bd);
+  border-radius:18px;
+  padding:16px;
+  margin-top:12px;
+}
+
+.hero{
+  border-radius:18px;
+  padding:20px;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,59,48,.22),transparent 35%),
+    var(--card);
+  border:1px solid var(--bd);
+}
+
+.beautyHero{
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,45,85,.25),transparent 35%),
+    var(--card);
+}
+
+.order{
+  font-size:25px;
+  font-weight:800;
+  margin:5px 0 10px;
+}
+
+.timer{
+  height:9px;
+  background:#252525;
+  border-radius:99px;
+  overflow:hidden;
+  margin:12px 0;
+}
+
+.timer i{
+  display:block;
+  height:100%;
+  width:100%;
+  background:var(--ok);
+  transition:width .2s linear;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(135px,1fr));
+  gap:10px;
+}
+
+.item{
+  min-height:120px;
+  background:var(--card2);
+  border:1px solid var(--bd);
+  border-radius:16px;
+  padding:13px;
+  color:var(--tx);
+  cursor:pointer;
+  text-align:center;
+}
+
+.item:hover:not(:disabled){
+  border-color:var(--tx);
+}
+
+.item:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+}
+
+.item.done{
+  border-color:var(--ok);
+  background:#102014;
+}
+
+.item-icon{
+  font-size:38px;
+  display:block;
+  margin-bottom:6px;
+}
+
+.item-name{
+  font-size:12px;
+  font-weight:700;
+}
+
+.item-small{
+  color:var(--mu);
+  font-size:10px;
+  margin-top:3px;
+}
+
+.assembly{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.box{
+  min-height:190px;
+  border:1px dashed #555;
+  border-radius:16px;
+  padding:14px;
+  background:#0d0d0d;
+}
+
+.box h3{
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:var(--mu);
+  margin-bottom:8px;
+}
+
+.stack{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.layer{
+  padding:8px;
+  border-radius:8px;
+  background:#202020;
+  text-align:center;
+  font-size:12px;
+}
+
+.btn{
+  border:1px solid var(--bd);
+  background:transparent;
+  color:var(--tx);
+  border-radius:999px;
+  padding:9px 15px;
+  cursor:pointer;
+}
+
+.btn:hover:not(:disabled){
+  border-color:var(--tx);
+}
+
+.btn:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+}
+
+.primary{
+  background:var(--ac);
+  border-color:var(--ac);
+  color:white;
+}
+
+.pink{
+  background:var(--pink);
+  border-color:var(--pink);
+  color:white;
+}
+
+.green{
+  background:var(--ok);
+  border-color:var(--ok);
+  color:#071407;
+}
+
+.row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+}
+
+.reward{
+  font-size:24px;
+  font-weight:800;
+}
+
+.notice{
+  padding:12px;
+  border:1px solid var(--bd);
+  border-radius:12px;
+  color:var(--mu);
+  font-size:13px;
+  margin-top:10px;
+}
+
+.look{
+  border:1px solid var(--bd);
+  border-radius:18px;
+  overflow:hidden;
+  background:var(--card);
+}
+
+.look-photo{
+  min-height:230px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:70px;
+  background:
+    radial-gradient(circle at 30% 20%,#5d3b4d,transparent 30%),
+    radial-gradient(circle at 70% 70%,#33244d,transparent 40%),
+    #19131a;
+}
+
+.look-body{
+  padding:15px;
+}
+
+.look-title{
+  font-size:20px;
+  font-weight:800;
+}
+
+.look-meta{
+  color:var(--mu);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(145px,1fr));
+  gap:10px;
+}
+
+.product{
+  border:1px solid var(--bd);
+  background:var(--card2);
+  border-radius:15px;
+  padding:13px;
+  cursor:pointer;
+}
+
+.product.owned{
+  border-color:var(--ok);
+}
+
+.product.selected{
+  border-color:var(--pink);
+  box-shadow:0 0 0 1px var(--pink);
+}
+
+.product-icon{
+  font-size:32px;
+}
+
+.product h3{
+  font-size:13px;
+  margin-top:5px;
+}
+
+.product p{
+  color:var(--mu);
+  font-size:11px;
+}
+
+.price{
+  display:block;
+  margin-top:7px;
+  font-weight:700;
+}
+
+.look-builder{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.face{
+  min-height:360px;
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 50% 32%,#d89d78 0 20%,transparent 20.5%),
+    radial-gradient(circle at 50% 55%,#d89d78 0 26%,transparent 26.5%),
+    linear-gradient(#292029,#171317);
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.face-label{
+  font-size:70px;
+  opacity:.2;
+}
+
+.applied{
+  padding:12px;
+  border:1px solid var(--bd);
+  border-radius:14px;
+}
+
+.applied div{
+  padding:8px 0;
+  border-bottom:1px solid var(--bd);
+  font-size:12px;
+}
+
+.applied div:last-child{
+  border-bottom:0;
+}
+
+.log{
+  max-height:170px;
+  overflow:auto;
+  color:var(--mu);
+  font-size:12px;
+}
+
+.log div{
+  padding:5px 0;
+  border-bottom:1px solid #1e1e1e;
+}
+
+.hidden{
+  display:none!important;
+}
+
+@media(max-width:650px){
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .modes{
+    grid-template-columns:1fr;
+  }
+
+  .assembly,
+  .look-builder{
+    grid-template-columns:1fr;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
 </style>
 </head>
+
 <body>
+
 <main class="w">
-<div class="eb">STV-ONAIR • Business Builder</div>
-<h1>SENSTACK:<br>Build the Control Deck</h1>
-<p class="sub">You're Saneca Mack, a digital systems builder in Atlanta. Win clients, fix their systems, grow your skills, and bring every STV department online. Reach <b>$15,000</b> and <b>60 reputation</b> within <b>52 weeks</b>.</p>
-<div class="st" id="st"></div>
-<div id="ov"></div>
-<h2>Active projects (max 3)</h2><div class="g" id="act"></div>
-<h2>Client board</h2><div class="row" style="margin-bottom:10px"><button id="pitch" onclick="pitch()">Pitch a new client (1 hr)</button></div><div class="g" id="brd"></div>
-<h2>Capabilities</h2><div class="g" id="sk"></div>
-<h2>STV departments</h2><div class="g" id="dp"></div>
-<h2>Activity</h2><div id="log"></div>
-<div class="row" style="margin-top:18px"><button class="pri" id="end" onclick="endWeek()">End week →</button><button onclick="reset()">Restart</button></div>
+
+  <div class="top">
+    <div class="brand">SENSTACK • GAME LAB</div>
+    <button class="btn" onclick="resetGame()">Restart</button>
+  </div>
+
+  <section class="hero" id="hero">
+    <div class="brand">MINI GAME COLLECTION</div>
+    <h1>FAST FOOD<br>& BEAUTY.</h1>
+    <p class="sub">
+      Collect what you need. Build the order. Recreate the look.
+      Earn cash, stars and unlock better products.
+    </p>
+  </section>
+
+  <div class="stats" id="stats"></div>
+
+  <section class="modes">
+    <button class="mode active" id="foodMode" onclick="setMode('food')">
+      <div class="mode-icon">🍔</div>
+      <h3>FAST FOOD RUSH</h3>
+      <p>Collect fries, nuggets and ingredients. Build the customer's order.</p>
+    </button>
+
+    <button class="mode beauty" id="beautyMode" onclick="setMode('beauty')">
+      <div class="mode-icon">💄</div>
+      <h3>BEAUTY LOOK</h3>
+      <p>Post a look, shop for the products and recreate the hair + makeup.</p>
+    </button>
+  </section>
+
+  <!-- =========================================================
+       FAST FOOD GAME
+       ========================================================= -->
+
+  <section id="foodGame">
+
+    <h2>Order ticket</h2>
+
+    <div class="panel">
+      <div class="brand">CUSTOMER ORDER</div>
+      <div class="order" id="foodOrder"></div>
+      <p class="sub" id="foodInstructions"></p>
+
+      <div class="timer">
+        <i id="foodTimer"></i>
+      </div>
+
+      <div class="row">
+        <span class="sub">Time remaining:</span>
+        <b id="foodTime"></b>
+      </div>
+    </div>
+
+    <h2>Kitchen shelves</h2>
+
+    <div class="grid" id="foodItems"></div>
+
+    <h2>Build the order</h2>
+
+    <div class="assembly">
+
+      <div class="box">
+        <h3>🍟 Fries Box</h3>
+        <div class="stack" id="friesBox"></div>
+      </div>
+
+      <div class="box">
+        <h3>🍗 Nugget Box</h3>
+        <div class="stack" id="nuggetBox"></div>
+      </div>
+
+      <div class="box">
+        <h3>🍔 Burger</h3>
+        <div class="stack" id="burgerBox"></div>
+      </div>
+
+      <div class="box">
+        <h3>🥤 Drink</h3>
+        <div class="stack" id="drinkBox"></div>
+      </div>
+
+    </div>
+
+    <div class="panel">
+      <div class="row">
+        <button class="btn primary" id="serveBtn" onclick="serveFood()">
+          SERVE ORDER
+        </button>
+
+        <button class="btn" onclick="newFoodOrder()">
+          NEW ORDER
+        </button>
+      </div>
+
+      <div class="notice" id="foodMessage">
+        Grab the ingredients from the kitchen, then serve the completed order.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- =========================================================
+       BEAUTY GAME
+       ========================================================= -->
+
+  <section id="beautyGame" class="hidden">
+
+    <h2>Social beauty feed</h2>
+
+    <div class="look beautyHero">
+
+      <div class="look-photo" id="lookPhoto">
+        💋
+      </div>
+
+      <div class="look-body">
+        <div class="brand">TRENDING LOOK</div>
+        <div class="look-title" id="lookTitle"></div>
+        <div class="look-meta" id="lookMeta"></div>
+
+        <div class="notice" id="lookDescription"></div>
+
+        <div style="margin-top:12px">
+          <button class="btn pink" onclick="postLook()">
+            📸 POST THIS LOOK
+          </button>
+
+          <button class="btn" onclick="newLook()">
+            NEXT LOOK
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <h2>Shopping list</h2>
+
+    <div class="panel">
+      <div class="brand">PRODUCTS NEEDED</div>
+      <div id="shoppingList"></div>
+    </div>
+
+    <h2>Beauty store</h2>
+
+    <div class="product-grid" id="products"></div>
+
+    <h2>Recreate the look</h2>
+
+    <div class="look-builder">
+
+      <div class="face">
+        <div class="face-label">✨</div>
+      </div>
+
+      <div class="panel">
+
+        <div class="brand">YOUR BEAUTY BAG</div>
+
+        <div class="applied" id="applied"></div>
+
+        <div style="margin-top:14px">
+          <button class="btn pink" id="applyBtn" onclick="applyLook()">
+            APPLY LOOK
+          </button>
+        </div>
+
+        <div class="notice" id="beautyMessage">
+          Shop for every product required by the posted look.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <h2>Activity</h2>
+
+  <div class="panel">
+    <div class="log" id="log"></div>
+  </div>
+
 </main>
+
 <script>
-const SK={web:'Websites & Digital Presence',sys:'Business Systems',media:'Media & Entertainment',ai:'AI & Automation',org:'Digital Organization',clean:'System Cleanup'};
-const PR={web:'needs a site redesign',sys:'needs a booking and workflow system',media:'needs a streaming and media setup',ai:'wants AI-powered workflows',org:'has disconnected domains and hosting',clean:'has duplicated tools to tidy up'};
-const IND=[['Small Business','web'],['Entrepreneur','ai'],['Restaurant & Catering','sys'],['Retail Shop','web'],['Barber & Beauty Pro','sys'],['Artist & Record Label','media'],['Radio & Media Company','media'],['Event Producer','media'],['Education & Training','org'],['Nonprofit','clean'],['Creator & Personal Brand','ai'],['Digital Startup','ai']];
-const DEP={radio:['📡 Radio','Radio control and live audio. +$150 per week',800],studio:['📺 Studio','Live studio and production. +$200 per week',1200],news:['📰 Newsroom','Stories and editorial. +2 reputation per week',1000],edu:['🎓 Education','Courses and books. +$250 per week',1500],sen:['🧠 SENSTACK','Unlocks premium clients paying about 1.8x',2000],admin:['⚙️ Admin','Dashboard and back office. +4 hours per week',1500]};
-const EVT=[['Radiomeltdown moment goes viral. +$300',s=>s.cash+=300],['Surprise server bill. -$150',s=>s.cash-=150],['A happy client refers you. +3 reputation',s=>s.rep+=3],['A referral drops a client on your board.',s=>s.board.push(gen(s))]];
-let S,id=0;
-const R=n=>Math.floor(Math.random()*n);
-function fresh(){S={w:1,cash:500,rep:0,hrs:10,sk:{web:0,sys:0,media:0,ai:0,org:0,clean:0},dep:{},jobs:[],board:[],log:['Week 1. Open for business.'],over:null};for(let i=0;i<3;i++)S.board.push(gen(S))}
-function gen(s){const [n,k]=IND[R(IND.length)],pm=s.dep.sen&&Math.random()<.4,need=6+R(9)*(pm?1.5:1)|0,pay=Math.round((need*60+R(100))*(pm?1.8:1));return{id:++id+Date.now(),n:(pm?'⭐ ':'')+n,k,need,pay,rep:2+(need/5|0),dl:3+R(4),p:0}}
-function load(){try{const d=localStorage.getItem('sbq1');if(d){S=JSON.parse(d);return}}catch(e){}fresh()}
-function save(){try{localStorage.setItem('sbq1',JSON.stringify(S))}catch(e){}}
-function log(t){S.log.unshift(t);S.log=S.log.slice(0,30)}
-function pitch(){if(S.hrs<1||S.over)return;S.hrs--;S.board.push(gen(S));if(S.board.length>6)S.board.shift();log('You pitched and a new lead came in.');draw()}
-function take(i){if(S.jobs.length>=3||S.over)return;S.jobs.push(S.board.splice(i,1)[0]);draw()}
-function work(i){const j=S.jobs[i];if(S.hrs<1||S.over)return;S.hrs--;j.p+=1+.5*S.sk[j.k];if(j.p>=j.need){const pay=Math.round(j.pay*(1+.1*S.sk[j.k]));S.cash+=pay;S.rep+=j.rep;S.jobs.splice(i,1);log(`Delivered ${j.n}: +$${pay}, +${j.rep} rep.`)}draw()}
-function up(k){const c=300*(S.sk[k]+1);if(S.sk[k]>=3||S.cash<c||S.over)return;S.cash-=c;S.sk[k]++;log(`${SK[k]} is now level ${S.sk[k]}.`);draw()}
-function buy(k){const c=DEP[k][2];if(S.dep[k]||S.cash<c||S.over)return;S.cash-=c;S.dep[k]=1;log(`${DEP[k][0]} is online.`);draw()}
-function endWeek(){if(S.over)return;let inc=(S.dep.radio?150:0)+(S.dep.studio?200:0)+(S.dep.edu?250:0);S.cash+=inc-250;if(S.dep.news)S.rep+=2;log(`Week ${S.w} closed. Income +$${inc}, costs -$250.`);
-S.jobs.forEach(j=>j.dl--);S.jobs.filter(j=>j.dl<=0).forEach(j=>{S.rep=Math.max(0,S.rep-3);log(`Missed the deadline on ${j.n}. -3 rep.`)});S.jobs=S.jobs.filter(j=>j.dl>0);
-S.board.forEach(j=>j.dl--);S.board=S.board.filter(j=>j.dl>0);while(S.board.length<3)S.board.push(gen(S));
-if(Math.random()<.3){const e=EVT[R(EVT.length)];e[1](S);log('Event: '+e[0])}
-S.w++;S.hrs=10+(S.dep.admin?4:0);
-if(S.cash>=15000&&S.rep>=60)S.over='win';else if(S.cash<0)S.over='lose';else if(S.w>52)S.over='time';
-draw()}
-function reset(){try{localStorage.removeItem('sbq1')}catch(e){}fresh();draw()}
-function draw(){save();const $=x=>document.getElementById(x);
-$('st').innerHTML=[['Week',S.w+' / 52'],['Cash','$'+S.cash.toLocaleString()],['Reputation',S.rep+' / 60'],['Hours left',S.hrs]].map(a=>`<div class="s"><b>${a[1]}</b><span>${a[0]}</span></div>`).join('');
-const m={win:['You did it. The Control Deck is live.','Every department is humming and your reputation is set. SENSTACK is open for business.'],lose:['Out of cash.','The bills outran the work. Restart and try pricing up and hiring skills sooner.'],time:['Year over.','You ran out of weeks before hitting the goals. Restart and try again.']}[S.over];
-$('ov').innerHTML=m?`<div class="ov"><h3>${m[0]}</h3><p class="sub">${m[1]}</p></div>`:'';
-$('act').innerHTML=S.jobs.length?S.jobs.map((j,i)=>`<div class="c p"><h3>${j.n}</h3><p>${PR[j.k]} • ${SK[j.k]}</p><div class="bar"><i style="width:${Math.min(100,j.p/j.need*100)}%"></i></div><div class="row"><button class="pri" onclick="work(${i})" ${S.hrs<1||S.over?'disabled':''}>Work 1 hr</button><span class="tag">$${j.pay} • +${j.rep} rep • ${j.dl}w left</span></div></div>`).join(''):'<p class="sub">No active projects. Take one from the board.</p>';
-$('brd').innerHTML=S.board.map((j,i)=>`<div class="c"><h3>${j.n}</h3><p>${PR[j.k]}</p><div class="row"><button onclick="take(${i})" ${S.jobs.length>=3||S.over?'disabled':''}>Take job</button><span class="tag">$${j.pay} • ${j.need} pts • ${j.dl}w</span></div></div>`).join('');
-$('pitch').disabled=S.hrs<1||!!S.over;
-$('sk').innerHTML=Object.keys(SK).map(k=>{const c=300*(S.sk[k]+1);return`<div class="c"><h3>${SK[k]}</h3><p>Level ${S.sk[k]} / 3: faster work, +10% pay per level</p><button onclick="up('${k}')" ${S.sk[k]>=3||S.cash<c||S.over?'disabled':''}>${S.sk[k]>=3?'Maxed':'Upgrade $'+c}</button></div>`}).join('');
-$('dp').innerHTML=Object.keys(DEP).map(k=>{const d=DEP[k];return`<div class="c"><h3>${d[0]}</h3><p>${d[1]}</p><button onclick="buy('${k}')" ${S.dep[k]||S.cash<d[2]||S.over?'disabled':''}>${S.dep[k]?'Online ✓':'Launch $'+d[2]}</button></div>`}).join('');
-$('log').innerHTML=S.log.map(t=>`<div>${t}</div>`).join('');
-$('end').disabled=!!S.over}
-load();draw();
+
+/* ============================================================
+   GAME STATE
+   ============================================================ */
+
+const SAVE_KEY = "senstack-fastfood-beauty-v1";
+
+let S = {
+  cash: 100,
+  stars: 0,
+  orders: 0,
+  looks: 0,
+  mode: "food",
+
+  food: {
+    order: null,
+    collected: [],
+    time: 60
+  },
+
+  beauty: {
+    look: null,
+    shopping: [],
+    applied: []
+  },
+
+  log: []
+};
+
+
+/* ============================================================
+   FOOD DATABASE
+   ============================================================ */
+
+const FOOD_ITEMS = {
+
+  fries: {
+    name:"Fries",
+    icon:"🍟",
+    type:"fries"
+  },
+
+  nuggets: {
+    name:"Nuggets",
+    icon:"🍗",
+    type:"nuggets"
+  },
+
+  bun: {
+    name:"Burger Bun",
+    icon:"🍞",
+    type:"burger"
+  },
+
+  patty: {
+    name:"Beef Patty",
+    icon:"🥩",
+    type:"burger"
+  },
+
+  cheese: {
+    name:"Cheese",
+    icon:"🧀",
+    type:"burger"
+  },
+
+  lettuce: {
+    name:"Lettuce",
+    icon:"🥬",
+    type:"burger"
+  },
+
+  tomato: {
+    name:"Tomato",
+    icon:"🍅",
+    type:"burger"
+  },
+
+  sauce: {
+    name:"Secret Sauce",
+    icon:"🥫",
+    type:"burger"
+  },
+
+  cola: {
+    name:"Cola",
+    icon:"🥤",
+    type:"drink"
+  },
+
+  water: {
+    name:"Water",
+    icon:"💧",
+    type:"drink"
+  }
+
+};
+
+
+/* ============================================================
+   BEAUTY DATABASE
+   ============================================================ */
+
+const PRODUCTS = {
+
+  foundation:{
+    name:"Glow Foundation",
+    icon:"🧴",
+    category:"Makeup",
+    price:18
+  },
+
+  concealer:{
+    name:"Perfect Concealer",
+    icon:"🎨",
+    category:"Makeup",
+    price:12
+  },
+
+  blush:{
+    name:"Pink Blush",
+    icon:"🌸",
+    category:"Makeup",
+    price:10
+  },
+
+  lipgloss:{
+    name:"Glass Lip Gloss",
+    icon:"💋",
+    category:"Lips",
+    price:9
+  },
+
+  lipstick:{
+    name:"Berry Lipstick",
+    icon:"💄",
+    category:"Lips",
+    price:14
+  },
+
+  mascara:{
+    name:"Volume Mascara",
+    icon:"👁️",
+    category:"Eyes",
+    price:13
+  },
+
+  eyeliner:{
+    name:"Black Liner",
+    icon:"🖊️",
+    category:"Eyes",
+    price:11
+  },
+
+  highlighter:{
+    name:"Face Highlighter",
+    icon:"✨",
+    category:"Face",
+    price:15
+  },
+
+  edgegel:{
+    name:"Edge Control",
+    icon:"🫧",
+    category:"Hair",
+    price:8
+  },
+
+  curls:{
+    name:"Curl Cream",
+    icon:"🌀",
+    category:"Hair",
+    price:16
+  },
+
+  wig:{
+    name:"Signature Wig",
+    icon:"💇🏾‍♀️",
+    category:"Hair",
+    price:35
+  },
+
+  braids:{
+    name:"Knotless Braids",
+    icon:"👧🏾",
+    category:"Hair",
+    price:42
+  },
+
+  lashes:{
+    name:"Wispy Lashes",
+    icon:"🪶",
+    category:"Eyes",
+    price:12
+  }
+
+};
+
+
+/* ============================================================
+   LOOK DATABASE
+   ============================================================ */
+
+const LOOKS = [
+
+  {
+    title:"Soft Glam Sunday",
+    emoji:"💗",
+    description:"A soft, polished glam look with glowing skin, pink cheeks, glossy lips and styled curls.",
+    products:[
+      "foundation",
+      "concealer",
+      "blush",
+      "lipgloss",
+      "mascara",
+      "highlighter",
+      "curls"
+    ]
+  },
+
+  {
+    title:"Main Character",
+    emoji:"💋",
+    description:"Bold lips, defined eyes, glowing skin and a signature hairstyle.",
+    products:[
+      "foundation",
+      "concealer",
+      "lipstick",
+      "eyeliner",
+      "mascara",
+      "highlighter",
+      "wig"
+    ]
+  },
+
+  {
+    title:"Clean Girl",
+    emoji:"✨",
+    description:"Fresh skin, subtle color, glossy lips and a sleek pulled-back hairstyle.",
+    products:[
+      "foundation",
+      "concealer",
+      "blush",
+      "lipgloss",
+      "mascara",
+      "edgegel"
+    ]
+  },
+
+  {
+    title:"Birthday Glam",
+    emoji:"🎂",
+    description:"Full glam with lashes, highlighter, glossy lips and a dramatic hairstyle.",
+    products:[
+      "foundation",
+      "concealer",
+      "blush",
+      "lipgloss",
+      "mascara",
+      "lashes",
+      "highlighter",
+      "wig"
+    ]
+  },
+
+  {
+    title:"Braided Beauty",
+    emoji:"👑",
+    description:"Natural glam paired with a fresh knotless braid style.",
+    products:[
+      "foundation",
+      "concealer",
+      "blush",
+      "lipgloss",
+      "mascara",
+      "edgegel",
+      "braids"
+    ]
+  }
+
+];
+
+
+/* ============================================================
+   FOOD ORDERS
+   ============================================================ */
+
+const FOOD_ORDERS = [
+
+  {
+    name:"Classic Combo",
+    fries:1,
+    nuggets:0,
+    burger:["bun","patty","cheese","lettuce","tomato","sauce"],
+    drink:"cola"
+  },
+
+  {
+    name:"Nugget Box",
+    fries:1,
+    nuggets:1,
+    burger:[],
+    drink:"water"
+  },
+
+  {
+    name:"Big Burger Meal",
+    fries:1,
+    nuggets:0,
+    burger:["bun","patty","cheese","lettuce","tomato","sauce"],
+    drink:"cola"
+  },
+
+  {
+    name:"Burger + Nuggets",
+    fries:1,
+    nuggets:1,
+    burger:["bun","patty","cheese","lettuce","sauce"],
+    drink:"cola"
+  }
+
+];
+
+
+/* ============================================================
+   INITIALIZATION
+   ============================================================ */
+
+function load(){
+
+  try{
+
+    const saved = localStorage.getItem(SAVE_KEY);
+
+    if(saved){
+      S = JSON.parse(saved);
+    }
+
+  }catch(e){}
+
+  if(!S.log.length){
+    S.log = ["Welcome to SENSTACK Game Lab."];
+  }
+
+  if(!S.food.order){
+    newFoodOrder();
+  }
+
+  if(!S.beauty.look){
+    newLook();
+  }
+
+  draw();
+
+}
+
+
+function save(){
+
+  try{
+    localStorage.setItem(SAVE_KEY,JSON.stringify(S));
+  }catch(e){}
+
+}
+
+
+function log(message){
+
+  S.log.unshift(message);
+
+  S.log = S.log.slice(0,30);
+
+}
+
+
+/* ============================================================
+   MODE SWITCHING
+   ============================================================ */
+
+function setMode(mode){
+
+  S.mode = mode;
+
+  document
+    .getElementById("foodGame")
+    .classList.toggle("hidden",mode !== "food");
+
+  document
+    .getElementById("beautyGame")
+    .classList.toggle("hidden",mode !== "beauty");
+
+  document
+    .getElementById("foodMode")
+    .classList.toggle("active",mode === "food");
+
+  document
+    .getElementById("beautyMode")
+    .classList.toggle("active",mode === "beauty");
+
+  draw();
+
+}
+
+
+/* ============================================================
+   FOOD GAME
+   ============================================================ */
+
+function newFoodOrder(){
+
+  const source =
+    FOOD_ORDERS[
+      Math.floor(Math.random()*FOOD_ORDERS.length)
+    ];
+
+  S.food.order = JSON.parse(JSON.stringify(source));
+
+  S.food.collected = [];
+
+  S.food.time = 60;
+
+  log("New food order: " + source.name);
+
+  draw();
+
+}
+
+
+function collectFood(id){
+
+  const item = FOOD_ITEMS[id];
+
+  if(!item) return;
+
+  S.food.collected.push(id);
+
+  log("Collected " + item.name + ".");
+
+  draw();
+
+}
+
+
+function countCollected(id){
+
+  return S.food.collected.filter(x=>x===id).length;
+
+}
+
+
+function hasRequiredFood(id){
+
+  const order = S.food.order;
+
+  if(id==="fries") return order.fries > 0;
+
+  if(id==="nuggets") return order.nuggets > 0;
+
+  if(id==="drink") return !!order.drink;
+
+  return order.burger.includes(id);
+
+}
+
+
+function serveFood(){
+
+  const order = S.food.order;
+
+  const required = [];
+
+  if(order.fries) required.push("fries");
+
+  if(order.nuggets) required.push("nuggets");
+
+  order.burger.forEach(x=>required.push(x));
+
+  if(order.drink) required.push(order.drink);
+
+  const success =
+    required.every(x=>countCollected(x)>0);
+
+  if(!success){
+
+    document.getElementById("foodMessage").innerHTML =
+      "❌ The order is incomplete. Check the ticket and collect every required item.";
+
+    return;
+
+  }
+
+  const reward = 25 + required.length * 3;
+
+  S.cash += reward;
+
+  S.stars++;
+
+  S.orders++;
+
+  log(
+    `Order completed: ${order.name}. +$${reward} and +1 star.`
+  );
+
+  document.getElementById("foodMessage").innerHTML =
+    `✅ ORDER COMPLETE! You earned $${reward}.`;
+
+  setTimeout(newFoodOrder,900);
+
+}
+
+
+/* ============================================================
+   FOOD TIMER
+   ============================================================ */
+
+setInterval(()=>{
+
+  if(S.mode !== "food") return;
+
+  if(!S.food.order) return;
+
+  if(S.food.time <= 0) return;
+
+  S.food.time--;
+
+  if(S.food.time === 0){
+
+    log("Food order timed out.");
+
+    S.cash = Math.max(0,S.cash-5);
+
+    S.food.time = 60;
+
+    document.getElementById("foodMessage").innerHTML =
+      "⏰ Order timed out. The customer left.";
+
+  }
+
+  draw();
+
+},1000);
+
+
+/* ============================================================
+   BEAUTY GAME
+   ============================================================ */
+
+function newLook(){
+
+  const look =
+    LOOKS[
+      Math.floor(Math.random()*LOOKS.length)
+    ];
+
+  S.beauty.look = JSON.parse(JSON.stringify(look));
+
+  S.beauty.shopping = [];
+
+  S.beauty.applied = [];
+
+  log("A new beauty look was posted: " + look.title);
+
+  draw();
+
+}
+
+
+function postLook(){
+
+  if(!S.beauty.look) return;
+
+  log(
+    `📸 You posted "${S.beauty.look.title}" to the beauty feed.`
+  );
+
+  S.stars++;
+
+  document.getElementById("beautyMessage").innerHTML =
+    "📸 Look posted. Now shop for every product needed to recreate it.";
+
+  draw();
+
+}
+
+
+function buyBeauty(id){
+
+  const product = PRODUCTS[id];
+
+  if(!product) return;
+
+  if(S.beauty.shopping.includes(id)) return;
+
+  if(S.cash < product.price){
+
+    document.getElementById("beautyMessage").innerHTML =
+      "You don't have enough cash for that product.";
+
+    return;
+
+  }
+
+  S.cash -= product.price;
+
+  S.beauty.shopping.push(id);
+
+  log(
+    `Bought ${product.name} for $${product.price}.`
+  );
+
+  draw();
+
+}
+
+
+function applyLook(){
+
+  const look = S.beauty.look;
+
+  if(!look) return;
+
+  const missing =
+    look.products.filter(
+      id => !S.beauty.shopping.includes(id)
+    );
+
+  if(missing.length){
+
+    document.getElementById("beautyMessage").innerHTML =
+      `❌ You're missing ${missing.length} product${
+        missing.length===1?"":"s"
+      }. Go shopping first.`;
+
+    return;
+
+  }
+
+  S.beauty.applied = [...look.products];
+
+  const reward = 35 + look.products.length * 5;
+
+  S.cash += reward;
+
+  S.stars += 2;
+
+  S.looks++;
+
+  log(
+    `💄 Look completed: ${look.title}. +$${reward} and +2 stars.`
+  );
+
+  document.getElementById("beautyMessage").innerHTML =
+    `✨ LOOK COMPLETE! You earned $${reward}.`;
+
+  draw();
+
+}
+
+
+/* ============================================================
+   RESET
+   ============================================================ */
+
+function resetGame(){
+
+  if(!confirm("Restart the game and erase your progress?")) return;
+
+  localStorage.removeItem(SAVE_KEY);
+
+  S = {
+    cash:100,
+    stars:0,
+    orders:0,
+    looks:0,
+    mode:"food",
+
+    food:{
+      order:null,
+      collected:[],
+      time:60
+    },
+
+    beauty:{
+      look:null,
+      shopping:[],
+      applied:[]
+    },
+
+    log:[]
+  };
+
+  newFoodOrder();
+
+  newLook();
+
+  draw();
+
+}
+
+
+/* ============================================================
+   DRAW STATS
+   ============================================================ */
+
+function drawStats(){
+
+  document.getElementById("stats").innerHTML = `
+
+    <div class="stat">
+      <b>$${S.cash}</b>
+      <span>Cash</span>
+    </div>
+
+    <div class="stat">
+      <b>⭐ ${S.stars}</b>
+      <span>Stars</span>
+    </div>
+
+    <div class="stat">
+      <b>${S.orders}</b>
+      <span>Orders</span>
+    </div>
+
+    <div class="stat">
+      <b>${S.looks}</b>
+      <span>Looks</span>
+    </div>
+
+  `;
+
+}
+
+
+/* ============================================================
+   DRAW FOOD
+   ============================================================ */
+
+function drawFood(){
+
+  const order = S.food.order;
+
+  if(!order) return;
+
+  let orderText = "";
+
+  if(order.fries){
+    orderText += "🍟 Fries ";
+  }
+
+  if(order.nuggets){
+    orderText += "🍗 Nuggets ";
+  }
+
+  if(order.burger.length){
+    orderText += "🍔 Burger ";
+  }
+
+  if(order.drink){
+    orderText += order.drink==="cola"
+      ? "🥤 Cola"
+      : "💧 Water";
+  }
+
+  document.getElementById("foodOrder").textContent =
+    order.name;
+
+  document.getElementById("foodInstructions").textContent =
+    orderText;
+
+  document.getElementById("foodTime").textContent =
+    S.food.time + " sec";
+
+  document.getElementById("foodTimer").style.width =
+    Math.max(0,S.food.time/60*100) + "%";
+
+
+  const items = Object.keys(FOOD_ITEMS);
+
+  document.getElementById("foodItems").innerHTML =
+    items.map(id=>{
+
+      const item = FOOD_ITEMS[id];
+
+      const collected =
+        countCollected(id);
+
+      const needed =
+        hasRequiredFood(id);
+
+      return `
+
+        <button
+          class="item ${collected?'done':''}"
+          onclick="collectFood('${id}')"
+          ${needed?'':'disabled'}
+        >
+
+          <span class="item-icon">${item.icon}</span>
+
+          <span class="item-name">
+            ${item.name}
+          </span>
+
+          <span class="item-small">
+            ${collected ? "Collected ✓" : "Collect"}
+          </span>
+
+        </button>
+
+      `;
+
+    }).join("");
+
+
+  const friesCount =
+    countCollected("fries");
+
+  const nuggetCount =
+    countCollected("nuggets");
+
+  document.getElementById("friesBox").innerHTML =
+    friesCount
+      ? `<div class="layer">🍟 Fries × ${friesCount}</div>`
+      : `<div class="sub">Collect fries</div>`;
+
+
+  document.getElementById("nuggetBox").innerHTML =
+    nuggetCount
+      ? `<div class="layer">🍗 Nuggets × ${nuggetCount}</div>`
+      : `<div class="sub">Collect nuggets</div>`;
+
+
+  document.getElementById("burgerBox").innerHTML =
+    order.burger.map(id=>{
+
+      const item = FOOD_ITEMS[id];
+
+      const have =
+        countCollected(id)>0;
+
+      return `
+
+        <div class="layer">
+          ${have ? item.icon : "⬜"}
+          ${item.name}
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  if(order.drink){
+
+    const drink =
+      FOOD_ITEMS[order.drink];
+
+    const have =
+      countCollected(order.drink)>0;
+
+    document.getElementById("drinkBox").innerHTML = `
+
+      <div class="layer">
+        ${have ? drink.icon : "⬜"}
+        ${drink.name}
+      </div>
+
+    `;
+
+  }
+
+
+  document.getElementById("serveBtn").disabled =
+    !canServeFood();
+
+}
+
+
+function canServeFood(){
+
+  const order = S.food.order;
+
+  if(order.fries && !countCollected("fries"))
+    return false;
+
+  if(order.nuggets && !countCollected("nuggets"))
+    return false;
+
+  for(const id of order.burger){
+
+    if(!countCollected(id))
+      return false;
+
+  }
+
+  if(order.drink &&
+     !countCollected(order.drink))
+    return false;
+
+  return true;
+
+}
+
+
+/* ============================================================
+   DRAW BEAUTY
+   ============================================================ */
+
+function drawBeauty(){
+
+  const look = S.beauty.look;
+
+  if(!look) return;
+
+
+  document.getElementById("lookPhoto").innerHTML =
+    look.emoji;
+
+  document.getElementById("lookTitle").textContent =
+    look.title;
+
+  document.getElementById("lookMeta").textContent =
+    `${look.products.length} products • Hair + Makeup`;
+
+  document.getElementById("lookDescription").textContent =
+    look.description;
+
+
+  document.getElementById("shoppingList").innerHTML =
+    look.products.map(id=>{
+
+      const p = PRODUCTS[id];
+
+      const bought =
+        S.beauty.shopping.includes(id);
+
+      return `
+
+        <div
+          style="
+            padding:8px 0;
+            border-bottom:1px solid var(--bd);
+          "
+        >
+
+          ${bought ? "✅" : "⬜"}
+          ${p.icon}
+          <b>${p.name}</b>
+
+          <span
+            class="tag"
+            style="float:right"
+          >
+            $${p.price}
+          </span>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  document.getElementById("products").innerHTML =
+    Object.keys(PRODUCTS).map(id=>{
+
+      const p = PRODUCTS[id];
+
+      const owned =
+        S.beauty.shopping.includes(id);
+
+      const needed =
+        look.products.includes(id);
+
+      return `
+
+        <button
+          class="
+            product
+            ${owned?'owned':''}
+            ${needed?'selected':''}
+          "
+          onclick="buyBeauty('${id}')"
+          ${owned?'disabled':''}
+        >
+
+          <div class="product-icon">
+            ${p.icon}
+          </div>
+
+          <h3>${p.name}</h3>
+
+          <p>${p.category}</p>
+
+          <span class="price">
+            ${owned ? "OWNED ✓" : "$"+p.price}
+          </span>
+
+        </button>
+
+      `;
+
+    }).join("");
+
+
+  document.getElementById("applied").innerHTML =
+    S.beauty.applied.length
+
+      ? S.beauty.applied.map(id=>{
+
+          const p = PRODUCTS[id];
+
+          return `
+            <div>
+              ${p.icon} ${p.name}
+              <b style="float:right">✓</b>
+            </div>
+          `;
+
+        }).join("")
+
+      : `
+        <div class="sub">
+          Nothing applied yet.
+        </div>
+      `;
+
+
+  const missing =
+    look.products.filter(
+      id=>!S.beauty.shopping.includes(id)
+    );
+
+  document.getElementById("applyBtn").disabled =
+    missing.length > 0;
+
+}
+
+
+/* ============================================================
+   DRAW LOG
+   ============================================================ */
+
+function drawLog(){
+
+  document.getElementById("log").innerHTML =
+    S.log.map(x=>`<div>${x}</div>`).join("");
+
+}
+
+
+/* ============================================================
+   MAIN DRAW
+   ============================================================ */
+
+function draw(){
+
+  save();
+
+  drawStats();
+
+  drawFood();
+
+  drawBeauty();
+
+  drawLog();
+
+}
+
+
+/* ============================================================
+   START
+   ============================================================ */
+
+load();
+
 </script>
+
 </body>
 </html>
