@@ -64,7 +64,7 @@ const BIZ=[
 {q:'We pay for three tools that do the same thing. Nobody knows which list is the real one.',c:[['Show me all three. I will find what is duplicated.',2,1,'I will pull the logins. What a relief.'],['Throw them out and start fresh.',-1,1,'Start fresh? That is years of records.'],['Keep what works and merge the rest.',1,2,'Merge. Yes. That is what we need.']]},
 {q:'Our board approves spending slowly. Can you work with a small budget?',c:[['Phase one costs very little. Prove it first.',2,1,'A small first phase will pass the board.'],['The full package is the only way.',-2,0,'They would never approve all that.'],['I can help write the board summary too.',1,2,'That would really help.']]}]}];
 let S={car:1,x:60,cash:0,deals:0,talk:false,on:false},D=null,T=0,I=0,lit=null,nb=null,tm,k={L:0,R:0},tt=0;
-const MEET_MP3='./assets/music/garage.mp3';
+const MEET_MP3='./assets/music/Get Up (produced by Jupyter).mp3';
 let au=null,ac=null,syn=null;
 function fade(a,to,done){const i=setInterval(()=>{const d=to-a.volume;if(Math.abs(d)<.06){a.volume=to;clearInterval(i);done&&done()}else a.volume=Math.max(0,Math.min(1,a.volume+(d>0?.05:-.05)))},60)}
 function synth(b){if(syn)return;try{ac=ac||new AudioContext();ac.resume()}catch(e){return}
