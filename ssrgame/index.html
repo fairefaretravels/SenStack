@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DriveWise: Promotion Day</title>
+
+<style>
+:root{
+  --bg:#05070a;
+  --cd:#0d1117;
+  --bd:#2a2f38;
+  --tx:#f2f0e9;
+  --mu:#a9a9a2;
+  --ac:#d9a441;
+  --ok:#7bc47f;
+  --bad:#ff5533;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-padding-top:env(safe-area-inset-top,0px);
+}
+
+body{
+  background:var(--bg);
+  color:var(--tx);
+  font-family:Inter,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.45;
+}
+
+.w{
+  width:min(620px,94%);
+  margin:auto;
+  padding:14px 0 50px;
+}
+
+.eb{
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--ac);
+}
+
+h1{
+  font-size:26px;
+  letter-spacing:-1px;
+  margin:2px 0 10px;
+}
+
+h2{
+  font-size:20px;
+  margin-bottom:6px;
+}
+
+.small{
+  font-size:11px;
+  color:var(--mu);
+}
+
+.st{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+  margin-bottom:8px;
+}
+
+.s{
+  border:1px solid var(--bd);
+  background:var(--cd);
+  border-radius:10px;
+  padding:6px 8px;
+}
+
+.s b{
+  display:block;
+  font-size:14px;
+}
+
+.s span{
+  font-size:9px;
+  color:var(--mu);
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+canvas{
+  display:block;
+  width:100%;
+  border-radius:12px;
+  border:1px solid var(--bd);
+  background:#0a0d13;
+}
+
+button{
+  font:inherit;
+  font-size:14px;
+  color:var(--tx);
+  background:transparent;
+  border:1px solid var(--bd);
+  border-radius:999px;
+  padding:9px 16px;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+
+button:disabled{
+  opacity:.35;
+}
+
+.pri{
+  background:var(--ac);
+  border-color:var(--ac);
+  color:#14171c;
+  font-weight:700;
+}
+
+.row{
+  display:flex;
+  gap:8px;
+  margin:8px 0;
+}
+
+.row button{
+  flex:1;
+}
+
+.panel{
+  border:1px solid var(--bd);
+  background:var(--cd);
+  border-radius:14px;
+  padding:14px;
+  margin-top:10px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* RADIO */
+
+#radioPanel{
+  position:relative;
+}
+
+.radioHead{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.radioIcon{
+  width:54px;
+  height:54px;
+  border-radius:12px;
+  background:#171b22;
+  border:1px solid var(--bd);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+}
+
+.radioTitle{
+  font-weight:800;
+  font-size:18px;
+}
+
+.radioSub{
+  font-size:10px;
+  color:var(--mu);
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.stationBar{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:9px 10px;
+  background:#080a0e;
+  border:1px solid var(--bd);
+  border-radius:10px;
+  margin-bottom:12px;
+}
+
+.stationBar span{
+  font-size:11px;
+}
+
+/* ARTISTS */
+
+.artistList{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+}
+
+.artist{
+  border:1px solid var(--bd);
+  border-radius:12px;
+  background:#080a0e;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.artist img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  display:block;
+  background:#151922;
+}
+
+.artistInfo{
+  padding:9px;
+}
+
+.artistName{
+  font-weight:800;
+  font-size:14px;
+}
+
+.artistGenre{
+  font-size:10px;
+  color:var(--mu);
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.artistStats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+  margin-top:7px;
+}
+
+.artistStats div{
+  font-size:9px;
+  color:var(--mu);
+  border-top:1px solid var(--bd);
+  padding-top:4px;
+}
+
+.artistStats b{
+  display:block;
+  color:var(--tx);
+  font-size:11px;
+}
+
+/* ARTIST DETAIL */
+
+#artistDetail{
+  text-align:center;
+}
+
+#artistPhoto{
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  border-radius:14px;
+  border:1px solid var(--bd);
+  margin-bottom:10px;
+}
+
+.detailStats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+  margin:12px 0;
+}
+
+.detailStat{
+  border:1px solid var(--bd);
+  border-radius:9px;
+  padding:7px;
+}
+
+.detailStat b{
+  display:block;
+}
+
+.detailStat span{
+  font-size:9px;
+  color:var(--mu);
+  text-transform:uppercase;
+}
+
+.barWrap{
+  text-align:left;
+  margin:9px 0;
+}
+
+.barLabel{
+  font-size:10px;
+  color:var(--mu);
+  display:flex;
+  justify-content:space-between;
+}
+
+.bar{
+  height:6px;
+  background:var(--bd);
+  border-radius:99px;
+  overflow:hidden;
+  margin-top:4px;
+}
+
+.bar i{
+  display:block;
+  height:100%;
+  width:0;
+  background:var(--ac);
+  transition:width .3s;
+}
+
+/* LEDGER */
+
+.ledger{
+  margin-top:12px;
+  border-top:1px solid var(--bd);
+}
+
+.ledgerRow{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:7px 0;
+  border-bottom:1px solid #20242c;
+  font-size:12px;
+}
+
+.ledgerRow span:last-child{
+  font-weight:700;
+}
+
+.green{
+  color:var(--ok);
+}
+
+.red{
+  color:var(--bad);
+}
+
+.gold{
+  color:var(--ac);
+}
+
+/* ROTATION */
+
+.rotation{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding:5px 0;
+}
+
+.rotCard{
+  min-width:90px;
+  border:1px solid var(--bd);
+  background:#080a0e;
+  border-radius:10px;
+  padding:7px;
+}
+
+.rotCard img{
+  width:72px;
+  height:72px;
+  object-fit:cover;
+  border-radius:8px;
+  display:block;
+  margin:auto;
+}
+
+.rotCard b{
+  display:block;
+  font-size:10px;
+  text-align:center;
+  margin-top:5px;
+}
+
+.rotCard span{
+  display:block;
+  font-size:9px;
+  text-align:center;
+  color:var(--mu);
+}
+
+/* DIALOG */
+
+#dlg{
+  border:1px solid var(--bd);
+  background:var(--cd);
+  border-radius:14px;
+  padding:14px;
+  min-height:150px;
+  margin-top:10px;
+}
+
+#who{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-bottom:8px;
+}
+
+#em{
+  font-size:32px;
+}
+
+#nm{
+  font-weight:700;
+}
+
+#nd{
+  font-size:10px;
+  color:var(--mu);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+#dtx{
+  font-size:15px;
+  min-height:55px;
+  margin-bottom:10px;
+}
+
+#dch{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+#dch button{
+  text-align:left;
+  border-radius:11px;
+}
+
+@media(max-width:420px){
+  .st{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="w">
+
+<div class="eb">SENSTACK • DRIVEWISE</div>
+
+<h1>Promotion Day</h1>
+
+<div class="st">
+  <div class="s">
+    <b id="cash">$0</b>
+    <span>Cash</span>
+  </div>
+
+  <div class="s">
+    <b id="sales">$0</b>
+    <span>Music Sales</span>
+  </div>
+
+  <div class="s">
+    <b id="spins">0</b>
+    <span>Radio Spins</span>
+  </div>
+
+  <div class="s">
+    <b id="roster">0</b>
+    <span>Roster</span>
+  </div>
+</div>
+
+<canvas id="cv" width="480" height="240"></canvas>
+
+<div class="row">
+  <button id="L">◀</button>
+  <button id="radioBtn" class="pri" disabled>📻 Radio</button>
+  <button id="R">▶</button>
+</div>
+
+<!-- RADIO -->
+
+<section id="radioPanel" class="panel hidden">
+
+  <div class="radioHead">
+    <div class="radioIcon">📻</div>
+
+    <div>
+      <div class="radioTitle">8 MILE RADIO</div>
+      <div class="radioSub">Detroit Music Exchange</div>
+    </div>
+  </div>
+
+  <div class="stationBar">
+    <span>LIVE</span>
+    <span id="stationStatus">Choose an artist for your rotation.</span>
+  </div>
+
+  <h2>Artist Roster</h2>
+
+  <p class="small">
+    Choose artists to promote through your in-car rotation.
+    More legitimate exposure can create more music sales.
+  </p>
+
+  <div id="artistList" class="artistList"></div>
+
+</section>
+
+<!-- ARTIST -->
+
+<section id="artistDetail" class="panel hidden">
+
+  <img id="artistPhoto" src="" alt="Artist">
+
+  <h2 id="artistName"></h2>
+
+  <div class="small" id="artistDescription"></div>
+
+  <div class="detailStats">
+
+    <div class="detailStat">
+      <b id="artistSpins">0</b>
+      <span>Spins</span>
+    </div>
+
+    <div class="detailStat">
+      <b id="artistFans">0</b>
+      <span>Fans</span>
+    </div>
+
+    <div class="detailStat">
+      <b id="artistSales">$0</b>
+      <span>Sales</span>
+    </div>
+
+  </div>
+
+  <div class="barWrap">
+    <div class="barLabel">
+      <span>Exposure</span>
+      <span id="exposureText">0%</span>
+    </div>
+
+    <div class="bar">
+      <i id="exposureBar"></i>
+    </div>
+  </div>
+
+  <div class="barWrap">
+    <div class="barLabel">
+      <span>Fan Demand</span>
+      <span id="demandText">0%</span>
+    </div>
+
+    <div class="bar">
+      <i id="demandBar"></i>
+    </div>
+  </div>
+
+  <div class="row">
+    <button id="playArtist" class="pri">▶ Play Rotation</button>
+    <button id="backRadio">Back</button>
+  </div>
+
+  <div class="ledger">
+
+    <div class="ledgerRow">
+      <span>Gross music revenue</span>
+      <span id="gross">$0</span>
+    </div>
+
+    <div class="ledgerRow">
+      <span>Artist royalty</span>
+      <span id="artistCut" class="red">$0</span>
+    </div>
+
+    <div class="ledgerRow">
+      <span>Publishing</span>
+      <span id="pubCut" class="red">$0</span>
+    </div>
+
+    <div class="ledgerRow">
+      <span>Distribution</span>
+      <span id="distCut" class="red">$0</span>
+    </div>
+
+    <div class="ledgerRow">
+      <span>Promotion / distribution income</span>
+      <span id="yourCut" class="green">$0</span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ROTATION -->
+
+<section class="panel">
+
+  <h2>Car Rotation</h2>
+
+  <p class="small">
+    Artists currently being promoted in your vehicle.
+  </p>
+
+  <div id="rotation" class="rotation"></div>
+
+</section>
+
+<!-- MESSAGE -->
+
+<div id="dlg">
+
+  <div id="who">
+    <div id="em">🚗</div>
+
+    <div>
+      <div id="nm">Woodward Ave</div>
+      <div id="nd">Driving</div>
+    </div>
+  </div>
+
+  <div id="dtx">
+    Drive to the radio station and stop to build your music roster.
+  </div>
+
+  <div id="dch">
+    <button id="start" class="pri">▶ Start Drive</button>
+  </div>
+
+</div>
+
+</main>
+
+<script>
+
+/* ============================================================
+   DRIVEWISE — PROMOTION & DISTRIBUTION
+   ============================================================ */
+
+const $ = id => document.getElementById(id);
+
+const cv = $("cv");
+const c = cv.getContext("2d");
+
+const LEN = 3000;
+const GY = 170;
+
+const CARS = [
+  ["🚙",180],
+  ["🚘",220],
+  ["🏎️",280]
+];
+
+/* ============================================================
+   ARTIST DATABASE
+   ============================================================
+
+   Add future artists here.
+
+   photo:
+   ./assets/artists/Mitd.PNG
+
+   track:
+   Put the actual MP3 path here when ready.
+   ============================================================ */
+
+const ARTISTS = [
+
+  {
+    id:"mitd",
+
+    name:"Saneca Mack",
+
+    displayName:"Mackinthedark",
+
+    photo:"./assets/artists/Mitd.PNG",
+
+    genre:"Alternative / Hip-Hop",
+
+    description:
+      "Independent artist promoted and distributed through your operation.",
+
+    track:
+      "./assets/music/Mitd.mp3",
+
+    exposure:0,
+
+    demand:5,
+
+    fans:0,
+
+    spins:0,
+
+    sales:0,
+
+    rotation:false,
+
+    discovered:true
+  },
+
+  {
+    id:"artist2",
+
+    name:"New Artist",
+
+    displayName:"Unsigned",
+
+    photo:"./assets/artists/artist2.PNG",
+
+    genre:"Alternative",
+
+    description:
+      "Artist waiting for discovery.",
+
+    track:
+      "./assets/music/artist2.mp3",
+
+    exposure:0,
+
+    demand:0,
+
+    fans:0,
+
+    spins:0,
+
+    sales:0,
+
+    rotation:false,
+
+    discovered:false
+  },
+
+  {
+    id:"artist3",
+
+    name:"Next Artist",
+
+    displayName:"Unsigned",
+
+    photo:"./assets/artists/artist3.PNG",
+
+    genre:"Hip-Hop",
+
+    description:
+      "Artist waiting for discovery.",
+
+    track:
+      "./assets/music/artist3.mp3",
+
+    exposure:0,
+
+    demand:0,
+
+    fans:0,
+
+    spins:0,
+
+    sales:0,
+
+    rotation:false,
+
+    discovered:false
+  }
+
+];
+
+/* ============================================================
+   GAME STATE
+   ============================================================ */
+
+let S = {
+
+  car:1,
+
+  x:60,
+
+  cash:0,
+
+  grossSales:0,
+
+  totalSpins:0,
+
+  radioUnlocked:false,
+
+  radioOpen:false,
+
+  selectedArtist:null,
+
+  driving:false,
+
+  rotation:[],
+
+  day:1
+
+};
+
+let k = {
+
+  L:0,
+
+  R:0
+
+};
+
+let tt = 0;
+
+let radioStationX = 1300;
+
+let nearRadio = false;
+
+let audio = null;
+
+
+/* ============================================================
+   MONEY MODEL
+   ============================================================
+
+   This is the in-game accounting model.
+
+   Gross sale:
+      $1.00
+
+   Artist:
+      50%
+
+   Publishing:
+      20%
+
+   Distribution:
+      10%
+
+   Promotion/distribution operator:
+      20%
+
+   The publishing amount is separated from the artist
+   royalty so the game teaches that recording income and
+   publishing income are different buckets.
+
+   These percentages are GAME ECONOMY SETTINGS.
+   ============================================================ */
+
+const ECONOMY = {
+
+  artistRoyalty:.50,
+
+  publishing:.20,
+
+  distribution:.10,
+
+  promotion:.20,
+
+  baseSaleValue:1.00
+
+};
+
+
+/* ============================================================
+   FORMAT MONEY
+   ============================================================ */
+
+function money(n){
+
+  return "$" + Number(n || 0).toFixed(2);
+
+}
+
+
+/* ============================================================
+   AUDIO
+   ============================================================ */
+
+function stopAudio(){
+
+  if(audio){
+
+    audio.pause();
+
+    audio.currentTime = 0;
+
+    audio = null;
+
+  }
+
+}
+
+
+function playArtistAudio(artist){
+
+  stopAudio();
+
+  if(!artist.track){
+
+    return;
+
+  }
+
+  const a = new Audio(artist.track);
+
+  audio = a;
+
+  a.loop = true;
+
+  a.volume = .55;
+
+  a.play().catch(()=>{
+
+    console.log(
+      "Add the artist MP3 at:",
+      artist.track
+    );
+
+  });
+
+}
+
+
+/* ============================================================
+   ARTIST ECONOMY
+   ============================================================ */
+
+function playRotation(artist){
+
+  if(!artist) return;
+
+  artist.spins++;
+
+  S.totalSpins++;
+
+  /*
+     Exposure increases with every spin.
+
+     Diminishing returns prevent unlimited growth.
+  */
+
+  const exposureGain =
+    Math.max(
+      1,
+      8 - Math.floor(artist.exposure / 20)
+    );
+
+  artist.exposure =
+    Math.min(
+      100,
+      artist.exposure + exposureGain
+    );
+
+  /*
+     Fan demand grows from exposure.
+  */
+
+  artist.demand =
+    Math.min(
+      100,
+      artist.demand +
+      Math.max(
+        1,
+        Math.floor(artist.exposure / 15)
+      )
+    );
+
+  /*
+     Fans convert into sales.
+
+     This makes radio exposure useful
+     without pretending that every spin
+     automatically creates a sale.
+  */
+
+  const conversion =
+    Math.max(
+      0,
+      Math.floor(
+        artist.demand / 18
+      )
+    );
+
+  const salesUnits =
+    Math.max(
+      1,
+      conversion
+    );
+
+  const gross =
+    salesUnits *
+    ECONOMY.baseSaleValue;
+
+  const artistMoney =
+    gross *
+    ECONOMY.artistRoyalty;
+
+  const publishingMoney =
+    gross *
+    ECONOMY.publishing;
+
+  const distributionMoney =
+    gross *
+    ECONOMY.distribution;
+
+  const promotionMoney =
+    gross *
+    ECONOMY.promotion;
+
+  artist.sales += gross;
+
+  artist.fans +=
+    Math.max(
+      1,
+      Math.floor(
+        artist.demand / 10
+      )
+    );
+
+  S.grossSales += gross;
+
+  /*
+     You receive your promotion/distribution
+     income.
+
+     Artist + publishing are not counted
+     as your cash.
+  */
+
+  S.cash += promotionMoney;
+
+  updateArtist();
+
+  updateHUD();
+
+  updateRotation();
+
+  showMessage(
+
+    "📻",
+
+    artist.displayName,
+
+    "Rotation",
+
+    `${artist.displayName} just received another spin. ` +
+    `${salesUnits} music sale${salesUnits === 1 ? "" : "s"} were generated.`
+
+  );
+
+  $("gross").textContent =
+    money(gross);
+
+  $("artistCut").textContent =
+    "-" + money(artistMoney);
+
+  $("pubCut").textContent =
+    "-" + money(publishingMoney);
+
+  $("distCut").textContent =
+    "-" + money(distributionMoney);
+
+  $("yourCut").textContent =
+    "+" + money(promotionMoney);
+
+  playArtistAudio(artist);
+
+}
+
+
+/* ============================================================
+   ARTIST LIST
+   ============================================================ */
+
+function renderArtists(){
+
+  const list = $("artistList");
+
+  list.innerHTML = "";
+
+  ARTISTS.forEach(artist=>{
+
+    const card =
+      document.createElement("div");
+
+    card.className = "artist";
+
+    card.innerHTML = `
+
+      <img
+        src="${artist.photo}"
+        alt="${artist.displayName}"
+        onerror="
+          this.style.background='#151922';
+          this.removeAttribute('src');
+        "
+      >
+
+      <div class="artistInfo">
+
+        <div class="artistName">
+          ${artist.displayName}
+        </div>
+
+        <div class="artistGenre">
+          ${artist.genre}
+        </div>
+
+        <div class="artistStats">
+
+          <div>
+            <b>${artist.spins}</b>
+            Spins
+          </div>
+
+          <div>
+            <b>${artist.fans}</b>
+            Fans
+          </div>
+
+        </div>
+
+      </div>
+    `;
+
+    card.onclick = ()=>{
+
+      if(!artist.discovered){
+
+        artist.discovered = true;
+
+      }
+
+      openArtist(artist);
+
+    };
+
+    list.appendChild(card);
+
+  });
+
+}
+
+
+/* ============================================================
+   ARTIST DETAIL
+   ============================================================ */
+
+function openArtist(artist){
+
+  S.selectedArtist = artist;
+
+  $("radioPanel")
+    .classList
+    .add("hidden");
+
+  $("artistDetail")
+    .classList
+    .remove("hidden");
+
+  updateArtist();
+
+}
+
+
+function updateArtist(){
+
+  const artist = S.selectedArtist;
+
+  if(!artist) return;
+
+  $("artistPhoto").src =
+    artist.photo;
+
+  $("artistName").textContent =
+    artist.displayName;
+
+  $("artistDescription").textContent =
+    artist.description;
+
+  $("artistSpins").textContent =
+    artist.spins;
+
+  $("artistFans").textContent =
+    artist.fans;
+
+  $("artistSales").textContent =
+    money(artist.sales);
+
+  $("exposureText").textContent =
+    Math.round(artist.exposure) + "%";
+
+  $("demandText").textContent =
+    Math.round(artist.demand) + "%";
+
+  $("exposureBar").style.width =
+    artist.exposure + "%";
+
+  $("demandBar").style.width =
+    artist.demand + "%";
+
+}
+
+
+/* ============================================================
+   ADD TO ROTATION
+   ============================================================ */
+
+$("playArtist").onclick = ()=>{
+
+  const artist =
+    S.selectedArtist;
+
+  if(!artist) return;
+
+  if(!artist.rotation){
+
+    artist.rotation = true;
+
+    S.rotation.push(
+      artist.id
+    );
+
+  }
+
+  playRotation(artist);
+
+  $("stationStatus").textContent =
+    artist.displayName +
+    " is now in your car rotation.";
+
+  updateRotation();
+
+};
+
+
+/* ============================================================
+   ROTATION
+   ============================================================ */
+
+function updateRotation(){
+
+  const box =
+    $("rotation");
+
+  box.innerHTML = "";
+
+  const active =
+    ARTISTS.filter(a =>
+      S.rotation.includes(a.id)
+    );
+
+  if(!active.length){
+
+    box.innerHTML =
+      `<div class="small">
+        No artists in rotation yet.
+      </div>`;
+
+    return;
+
+  }
+
+  active.forEach(artist=>{
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "rotCard";
+
+    card.innerHTML = `
+
+      <img
+        src="${artist.photo}"
+        alt="${artist.displayName}"
+      >
+
+      <b>${artist.displayName}</b>
+
+      <span>
+        ${artist.spins} spins
+      </span>
+    `;
+
+    card.onclick = ()=>{
+
+      openArtist(artist);
+
+    };
+
+    box.appendChild(card);
+
+  });
+
+}
+
+
+/* ============================================================
+   RADIO
+   ============================================================ */
+
+function openRadio(){
+
+  if(!nearRadio) return;
+
+  S.radioOpen = true;
+
+  $("radioPanel")
+    .classList
+    .remove("hidden");
+
+  $("artistDetail")
+    .classList
+    .add("hidden");
+
+  renderArtists();
+
+  $("stationStatus").textContent =
+    "Select an artist to build your rotation.";
+
+  showMessage(
+    "📻",
+    "8 Mile Radio",
+    "Promotion Stop",
+    "You stopped at the radio. " +
+    "Choose an artist and put their music into your car rotation."
+  );
+
+}
+
+
+$("radioBtn").onclick =
+  openRadio;
+
+
+$("backRadio").onclick = ()=>{
+
+  $("artistDetail")
+    .classList
+    .add("hidden");
+
+  $("radioPanel")
+    .classList
+    .remove("hidden");
+
+  renderArtists();
+
+};
+
+
+/* ============================================================
+   MESSAGE SYSTEM
+   ============================================================ */
+
+function showMessage(
+  emoji,
+  name,
+  role,
+  text
+){
+
+  $("em").textContent =
+    emoji;
+
+  $("nm").textContent =
+    name;
+
+  $("nd").textContent =
+    role;
+
+  $("dtx").textContent =
+    text;
+
+}
+
+
+/* ============================================================
+   START
+   ============================================================ */
+
+$("start").onclick = ()=>{
+
+  S.driving = true;
+
+  $("start")
+    .disabled = true;
+
+  showMessage(
+    "🚗",
+    "Woodward Ave",
+    "Driving",
+    "Drive through Detroit. " +
+    "Your first business is promotion and distribution. " +
+    "Find the radio."
+  );
+
+};
+
+
+/* ============================================================
+   CONTROLS
+   ============================================================ */
+
+["L","R"].forEach(id=>{
+
+  const el = $(id);
+
+  el.onpointerdown = ()=>{
+    k[id] = 1;
+  };
+
+  el.onpointerup =
+  el.onpointerleave = ()=>{
+    k[id] = 0;
+  };
+
+});
+
+
+addEventListener(
+  "keydown",
+  e=>{
+
+    if(e.key === "ArrowLeft")
+      k.L = 1;
+
+    if(e.key === "ArrowRight")
+      k.R = 1;
+
+  }
+);
+
+
+addEventListener(
+  "keyup",
+  e=>{
+
+    if(e.key === "ArrowLeft")
+      k.L = 0;
+
+    if(e.key === "ArrowRight")
+      k.R = 0;
+
+  }
+);
+
+
+/* ============================================================
+   WORLD
+   ============================================================ */
+
+function building(
+  x,
+  h,
+  label,
+  radio=false
+){
+
+  const top =
+    GY - h;
+
+  c.save();
+
+  c.fillStyle =
+    radio
+      ? "#332b1b"
+      : "#1d2026";
+
+  c.fillRect(
+    x,
+    top,
+    170,
+    h
+  );
+
+  if(radio){
+
+    c.shadowColor =
+      "#ffd27a";
+
+    c.shadowBlur =
+      20;
+
+  }
+
+  c.restore();
+
+  for(
+    let r=0;
+    r<Math.floor(h/28);
+    r++
+  ){
+
+    for(
+      let q=0;
+      q<4;
+      q++
+    ){
+
+      c.fillStyle =
+        radio
+          ? "#ffd27a"
+          : "#16191f";
+
+      c.fillRect(
+        x+15+q*37,
+        top+10+r*28,
+        20,
+        16
+      );
+
+    }
+
+  }
+
+  c.fillStyle =
+    radio
+      ? "#ffd27a"
+      : "#d9a441";
+
+  c.font =
+    "bold 11px sans-serif";
+
+  c.textAlign =
+    "center";
+
+  c.fillText(
+    label,
+    x+85,
+    top-9
+  );
+
+}
+
+
+/* ============================================================
+   DRAW
+   ============================================================ */
+
+function draw(cx){
+
+  c.fillStyle =
+    "#0a0d13";
+
+  c.fillRect(
+    0,
+    0,
+    480,
+    240
+  );
+
+  /*
+     Sky
+  */
+
+  c.fillStyle =
+    "#ffffff55";
+
+  for(
+    let i=0;
+    i<30;
+    i++
+  ){
+
+    c.fillRect(
+      (i*97-cx*.2+480*5)%480,
+      (i*37)%90,
+      2,
+      2
+    );
+
+  }
+
+  /*
+     Buildings
+  */
+
+  for(
+    let i=0;
+    i<12;
+    i++
+  ){
+
+    const x =
+      i*250+30-cx;
+
+    if(
+      x>-200 &&
+      x<480
+    ){
+
+      building(
+        x,
+        70+(i*23)%50,
+        "DETROIT"
+      );
+
+    }
+
+  }
+
+  /*
+     Radio station
+  */
+
+  const rx =
+    radioStationX-cx;
+
+  if(
+    rx>-200 &&
+    rx<480
+  ){
+
+    building(
+      rx,
+      135,
+      "8 MILE RADIO",
+      true
+    );
+
+    c.font =
+      "25px serif";
+
+    c.fillText(
+      "📻",
+      rx+85,
+      GY-145
+    );
+
+  }
+
+  /*
+     Road
+  */
+
+  c.fillStyle =
+    "#1f2126";
+
+  c.fillRect(
+    0,
+    GY,
+    480,
+    70
+  );
+
+  /*
+     Lane markings
+  */
+
+  c.fillStyle =
+    "#d9c98a";
+
+  for(
+    let x=-(cx%40);
+    x<480;
+    x+=40
+  ){
+
+    c.fillRect(
+      x,
+      GY+36,
+      20,
+      3
+    );
+
+  }
+
+  /*
+     Car
+  */
+
+  c.font =
+    "36px serif";
+
+  c.textAlign =
+    "center";
+
+  c.fillText(
+    CARS[S.car][0],
+    200,
+    GY+34
+  );
+
+}
+
+
+/* ============================================================
+   HUD
+   ============================================================ */
+
+function updateHUD(){
+
+  $("cash").textContent =
+    money(S.cash);
+
+  $("sales").textContent =
+    money(S.grossSales);
+
+  $("spins").textContent =
+    S.totalSpins;
+
+  $("roster").textContent =
+    S.rotation.length;
+
+}
+
+
+/* ============================================================
+   GAME LOOP
+   ============================================================ */
+
+function frame(t){
+
+  const dt =
+    Math.min(
+      .05,
+      (t-tt)/1000
+    );
+
+  tt = t;
+
+  if(
+    S.driving &&
+    !S.radioOpen &&
+    !S.selectedArtist
+  ){
+
+    const d =
+      k.R-k.L;
+
+    S.x =
+      Math.min(
+        LEN-60,
+        Math.max(
+          30,
+          S.x +
+          d*
+          CARS[S.car][1]*
+          dt
+        )
+      );
+
+  }
+
+  /*
+     Radio proximity
+  */
+
+  const distance =
+    Math.abs(
+      S.x-radioStationX
+    );
+
+  nearRadio =
+    distance < 100;
+
+  $("radioBtn").disabled =
+    !nearRadio ||
+    S.radioOpen ||
+    S.selectedArtist;
+
+  if(nearRadio){
+
+    $("radioBtn").textContent =
+      "📻 Stop at Radio";
+
+  }else{
+
+    $("radioBtn").textContent =
+      "📻 Radio";
+
+  }
+
+  /*
+     Automatically close radio
+     when driving away.
+  */
+
+  if(
+    S.radioOpen &&
+    distance > 160
+  ){
+
+    S.radioOpen = false;
+
+    $("radioPanel")
+      .classList
+      .add("hidden");
+
+    $("artistDetail")
+      .classList
+      .add("hidden");
+
+  }
+
+  /*
+     Reset selected artist when
+     driving away.
+  */
+
+  if(
+    S.selectedArtist &&
+    distance > 160
+  ){
+
+    S.selectedArtist = null;
+
+  }
+
+  draw(
+    Math.min(
+      LEN-480,
+      Math.max(
+        0,
+        S.x-200
+      )
+    )
+  );
+
+  updateHUD();
+
+  requestAnimationFrame(frame);
+
+}
+
+
+updateRotation();
+
+updateHUD();
+
+requestAnimationFrame(frame);
+
+</script>
+
+</body>
+</html>
