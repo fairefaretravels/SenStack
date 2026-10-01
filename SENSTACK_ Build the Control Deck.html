@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SENSTACK: Build the Control Deck</title>
+<style>
+:root{--bg:#090909;--card:#101010;--bd:#292929;--tx:#f5f5f5;--mu:#aaa;--ac:#ff3b30;--ok:#34c759;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f4f2;--card:#fff;--bd:#d8d8d4;--tx:#141414;--mu:#666}}
+:root[data-theme="light"]{--bg:#f4f4f2;--card:#fff;--bd:#d8d8d4;--tx:#141414;--mu:#666}
+:root[data-theme="dark"]{--bg:#090909;--card:#101010;--bd:#292929;--tx:#f5f5f5;--mu:#aaa}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--tx);font-family:Inter,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+.w{width:min(920px,92%);margin:auto;padding:28px 0 50px}
+.eb{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--mu)}
+h1{font-size:clamp(30px,8vw,52px);letter-spacing:-2px;line-height:1;margin:8px 0 6px}
+h2{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--mu);margin:26px 0 10px}
+.sub{color:var(--mu);font-size:15px}
+.st{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+.s{border:1px solid var(--bd);background:var(--card);border-radius:12px;padding:10px 12px}
+.s b{display:block;font-size:22px}.s span{font-size:11px;color:var(--mu);text-transform:uppercase;letter-spacing:1px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.c{border:1px solid var(--bd);background:var(--card);border-radius:14px;padding:14px}
+.c.p{border-color:var(--ac)}
+.c h3{font-size:15px;margin-bottom:2px}.c p{font-size:13px;color:var(--mu);margin-bottom:8px}
+.bar{height:6px;background:var(--bd);border-radius:9px;overflow:hidden;margin:6px 0 10px}
+.bar i{display:block;height:100%;background:var(--ok)}
+button{font:inherit;font-size:13px;color:var(--tx);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:7px 14px;cursor:pointer}
+button:hover:not(:disabled){border-color:var(--tx)}button:disabled{opacity:.35;cursor:not-allowed}
+.pri{background:var(--ac);border-color:var(--ac);color:#fff}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tag{font-size:11px;color:var(--mu)}
+#log{font-size:13px;color:var(--mu);border:1px solid var(--bd);border-radius:12px;padding:12px;max-height:160px;overflow:auto;background:var(--card)}
+#log div{margin-bottom:4px}
+.ov{border:1px solid var(--ac);border-radius:14px;padding:18px;margin-top:16px;background:var(--card)}
+@media(max-width:600px){.st{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<main class="w">
+<div class="eb">STV-ONAIR • Business Builder</div>
+<h1>SENSTACK:<br>Build the Control Deck</h1>
+<p class="sub">You're Saneca Mack, a digital systems builder in Atlanta. Win clients, fix their systems, grow your skills, and bring every STV department online. Reach <b>$15,000</b> and <b>60 reputation</b> within <b>52 weeks</b>.</p>
+<div class="st" id="st"></div>
+<div id="ov"></div>
+<h2>Active projects (max 3)</h2><div class="g" id="act"></div>
+<h2>Client board</h2><div class="row" style="margin-bottom:10px"><button id="pitch" onclick="pitch()">Pitch a new client (1 hr)</button></div><div class="g" id="brd"></div>
+<h2>Capabilities</h2><div class="g" id="sk"></div>
+<h2>STV departments</h2><div class="g" id="dp"></div>
+<h2>Activity</h2><div id="log"></div>
+<div class="row" style="margin-top:18px"><button class="pri" id="end" onclick="endWeek()">End week →</button><button onclick="reset()">Restart</button></div>
+</main>
+<script>
+const SK={web:'Websites & Digital Presence',sys:'Business Systems',media:'Media & Entertainment',ai:'AI & Automation',org:'Digital Organization',clean:'System Cleanup'};
+const PR={web:'needs a site redesign',sys:'needs a booking and workflow system',media:'needs a streaming and media setup',ai:'wants AI-powered workflows',org:'has disconnected domains and hosting',clean:'has duplicated tools to tidy up'};
+const IND=[['Small Business','web'],['Entrepreneur','ai'],['Restaurant & Catering','sys'],['Retail Shop','web'],['Barber & Beauty Pro','sys'],['Artist & Record Label','media'],['Radio & Media Company','media'],['Event Producer','media'],['Education & Training','org'],['Nonprofit','clean'],['Creator & Personal Brand','ai'],['Digital Startup','ai']];
+const DEP={radio:['📡 Radio','Radio control and live audio. +$150 per week',800],studio:['📺 Studio','Live studio and production. +$200 per week',1200],news:['📰 Newsroom','Stories and editorial. +2 reputation per week',1000],edu:['🎓 Education','Courses and books. +$250 per week',1500],sen:['🧠 SENSTACK','Unlocks premium clients paying about 1.8x',2000],admin:['⚙️ Admin','Dashboard and back office. +4 hours per week',1500]};
+const EVT=[['Radiomeltdown moment goes viral. +$300',s=>s.cash+=300],['Surprise server bill. -$150',s=>s.cash-=150],['A happy client refers you. +3 reputation',s=>s.rep+=3],['A referral drops a client on your board.',s=>s.board.push(gen(s))]];
+let S,id=0;
+const R=n=>Math.floor(Math.random()*n);
+function fresh(){S={w:1,cash:500,rep:0,hrs:10,sk:{web:0,sys:0,media:0,ai:0,org:0,clean:0},dep:{},jobs:[],board:[],log:['Week 1. Open for business.'],over:null};for(let i=0;i<3;i++)S.board.push(gen(S))}
+function gen(s){const [n,k]=IND[R(IND.length)],pm=s.dep.sen&&Math.random()<.4,need=6+R(9)*(pm?1.5:1)|0,pay=Math.round((need*60+R(100))*(pm?1.8:1));return{id:++id+Date.now(),n:(pm?'⭐ ':'')+n,k,need,pay,rep:2+(need/5|0),dl:3+R(4),p:0}}
+function load(){try{const d=localStorage.getItem('sbq1');if(d){S=JSON.parse(d);return}}catch(e){}fresh()}
+function save(){try{localStorage.setItem('sbq1',JSON.stringify(S))}catch(e){}}
+function log(t){S.log.unshift(t);S.log=S.log.slice(0,30)}
+function pitch(){if(S.hrs<1||S.over)return;S.hrs--;S.board.push(gen(S));if(S.board.length>6)S.board.shift();log('You pitched and a new lead came in.');draw()}
+function take(i){if(S.jobs.length>=3||S.over)return;S.jobs.push(S.board.splice(i,1)[0]);draw()}
+function work(i){const j=S.jobs[i];if(S.hrs<1||S.over)return;S.hrs--;j.p+=1+.5*S.sk[j.k];if(j.p>=j.need){const pay=Math.round(j.pay*(1+.1*S.sk[j.k]));S.cash+=pay;S.rep+=j.rep;S.jobs.splice(i,1);log(`Delivered ${j.n}: +$${pay}, +${j.rep} rep.`)}draw()}
+function up(k){const c=300*(S.sk[k]+1);if(S.sk[k]>=3||S.cash<c||S.over)return;S.cash-=c;S.sk[k]++;log(`${SK[k]} is now level ${S.sk[k]}.`);draw()}
+function buy(k){const c=DEP[k][2];if(S.dep[k]||S.cash<c||S.over)return;S.cash-=c;S.dep[k]=1;log(`${DEP[k][0]} is online.`);draw()}
+function endWeek(){if(S.over)return;let inc=(S.dep.radio?150:0)+(S.dep.studio?200:0)+(S.dep.edu?250:0);S.cash+=inc-250;if(S.dep.news)S.rep+=2;log(`Week ${S.w} closed. Income +$${inc}, costs -$250.`);
+S.jobs.forEach(j=>j.dl--);S.jobs.filter(j=>j.dl<=0).forEach(j=>{S.rep=Math.max(0,S.rep-3);log(`Missed the deadline on ${j.n}. -3 rep.`)});S.jobs=S.jobs.filter(j=>j.dl>0);
+S.board.forEach(j=>j.dl--);S.board=S.board.filter(j=>j.dl>0);while(S.board.length<3)S.board.push(gen(S));
+if(Math.random()<.3){const e=EVT[R(EVT.length)];e[1](S);log('Event: '+e[0])}
+S.w++;S.hrs=10+(S.dep.admin?4:0);
+if(S.cash>=15000&&S.rep>=60)S.over='win';else if(S.cash<0)S.over='lose';else if(S.w>52)S.over='time';
+draw()}
+function reset(){try{localStorage.removeItem('sbq1')}catch(e){}fresh();draw()}
+function draw(){save();const $=x=>document.getElementById(x);
+$('st').innerHTML=[['Week',S.w+' / 52'],['Cash','$'+S.cash.toLocaleString()],['Reputation',S.rep+' / 60'],['Hours left',S.hrs]].map(a=>`<div class="s"><b>${a[1]}</b><span>${a[0]}</span></div>`).join('');
+const m={win:['You did it. The Control Deck is live.','Every department is humming and your reputation is set. SENSTACK is open for business.'],lose:['Out of cash.','The bills outran the work. Restart and try pricing up and hiring skills sooner.'],time:['Year over.','You ran out of weeks before hitting the goals. Restart and try again.']}[S.over];
+$('ov').innerHTML=m?`<div class="ov"><h3>${m[0]}</h3><p class="sub">${m[1]}</p></div>`:'';
+$('act').innerHTML=S.jobs.length?S.jobs.map((j,i)=>`<div class="c p"><h3>${j.n}</h3><p>${PR[j.k]} • ${SK[j.k]}</p><div class="bar"><i style="width:${Math.min(100,j.p/j.need*100)}%"></i></div><div class="row"><button class="pri" onclick="work(${i})" ${S.hrs<1||S.over?'disabled':''}>Work 1 hr</button><span class="tag">$${j.pay} • +${j.rep} rep • ${j.dl}w left</span></div></div>`).join(''):'<p class="sub">No active projects. Take one from the board.</p>';
+$('brd').innerHTML=S.board.map((j,i)=>`<div class="c"><h3>${j.n}</h3><p>${PR[j.k]}</p><div class="row"><button onclick="take(${i})" ${S.jobs.length>=3||S.over?'disabled':''}>Take job</button><span class="tag">$${j.pay} • ${j.need} pts • ${j.dl}w</span></div></div>`).join('');
+$('pitch').disabled=S.hrs<1||!!S.over;
+$('sk').innerHTML=Object.keys(SK).map(k=>{const c=300*(S.sk[k]+1);return`<div class="c"><h3>${SK[k]}</h3><p>Level ${S.sk[k]} / 3: faster work, +10% pay per level</p><button onclick="up('${k}')" ${S.sk[k]>=3||S.cash<c||S.over?'disabled':''}>${S.sk[k]>=3?'Maxed':'Upgrade $'+c}</button></div>`}).join('');
+$('dp').innerHTML=Object.keys(DEP).map(k=>{const d=DEP[k];return`<div class="c"><h3>${d[0]}</h3><p>${d[1]}</p><button onclick="buy('${k}')" ${S.dep[k]||S.cash<d[2]||S.over?'disabled':''}>${S.dep[k]?'Online ✓':'Launch $'+d[2]}</button></div>`}).join('');
+$('log').innerHTML=S.log.map(t=>`<div>${t}</div>`).join('');
+$('end').disabled=!!S.over}
+load();draw();
+</script>
+</body>
+</html>
