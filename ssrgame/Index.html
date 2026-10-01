@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DriveWise — Promotion & Distribution</title>
+<style>
+:root{--bg:#05070a;--cd:#0d1117;--bd:#2a2f38;--tx:#f2f0e9;--mu:#a9a9a2;--ac:#d9a441;--ok:#7bc47f}
+*{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);color:var(--tx);font-family:Inter,-apple-system,"Segoe UI",sans-serif}.w{width:min(620px,94%);margin:auto;padding:14px 0 40px}.eb{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ac)}h1{font-size:26px;margin:2px 0 10px}.st{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px}.s,.panel{border:1px solid var(--bd);background:var(--cd);border-radius:12px}.s{padding:7px}.s b{display:block;font-size:14px}.s span{font-size:9px;color:var(--mu);text-transform:uppercase}.row{display:flex;gap:8px;margin:8px 0}.row button{flex:1}button{font:inherit;color:var(--tx);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:9px 14px;touch-action:none;user-select:none;-webkit-user-select:none}button:disabled{opacity:.45}.pri{background:var(--ac);color:#14171c;border-color:var(--ac);font-weight:700}.panel{padding:14px;margin-top:10px}.hidden{display:none}.radioHead{display:flex;gap:10px;align-items:center;margin-bottom:10px}.radioIcon{font-size:30px}.small{font-size:11px;color:var(--mu)}.artists{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}.artist{border:1px solid var(--bd);border-radius:11px;overflow:hidden;background:#080a0e;cursor:pointer}.artist img{width:100%;aspect-ratio:1;object-fit:cover;background:#151922}.artistInfo{padding:8px}.artistInfo b{display:block}.artistInfo span{font-size:9px;color:var(--mu)}.detail{text-align:center}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0}.stat{border:1px solid var(--bd);border-radius:8px;padding:6px}.stat b{display:block}.stat span{font-size:9px;color:var(--mu)}.bar{height:6px;background:var(--bd);border-radius:9px;overflow:hidden;margin:4px 0 9px}.bar i{display:block;height:100%;background:var(--ac);width:0}.ledger{border-top:1px solid var(--bd);margin-top:10px}.ledger div{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #20242c;font-size:11px}.ok{color:var(--ok)}.rotation{display:flex;gap:7px;overflow:auto;margin-top:8px}.rot{min-width:82px;border:1px solid var(--bd);border-radius:9px;padding:5px;text-align:center;cursor:pointer}.rot img{width:68px;height:68px;object-fit:cover;border-radius:7px}.rot b,.rot span{display:block;font-size:9px}.rot span{color:var(--mu)}#dtx{min-height:42px;margin:8px 0}
+
+/* ---------- COCKPIT ---------- */
+.cab{position:relative;aspect-ratio:480/300;border:1px solid var(--bd);border-radius:14px;overflow:hidden;background:#000;container-type:inline-size}
+.cab canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cab::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,0,0,.6))}
+.pl,.pr{position:absolute;top:0;bottom:30%;width:12%;z-index:2}
+.pl{left:0;background:linear-gradient(90deg,#020304,#0c0f14);clip-path:polygon(0 0,100% 0,0 100%)}
+.pr{right:0;background:linear-gradient(270deg,#020304,#0c0f14);clip-path:polygon(0 0,100% 0,100% 100%)}
+.roof{position:absolute;top:0;left:0;right:0;height:8%;z-index:2;background:linear-gradient(#020304,#090b0f);border-radius:0 0 50% 50%/0 0 100% 100%}
+.mirror{position:absolute;z-index:3;top:5%;left:50%;transform:translateX(-50%);padding:2px 12px;background:#0b0e13;border:1px solid var(--bd);border-radius:6px;font-size:max(8px,2cqw);color:var(--mu);white-space:nowrap}
+.mirror.on{color:var(--ok);border-color:#2f5b33}
+.dash{position:absolute;z-index:3;left:-4%;right:-4%;bottom:0;height:35%;background:linear-gradient(180deg,#1a1e25 0,#0a0c10 14%,#030405);border-top:2px solid #323944;border-radius:50% 50% 0 0/30% 30% 0 0;box-shadow:0 -12px 30px rgba(0,0,0,.7)}
+.gauge,.tuner{position:absolute;top:30%;text-align:center;font-variant-numeric:tabular-nums}
+.gauge{left:15%}.tuner{right:15%;max-width:20%}
+.gauge b{display:block;font-size:max(15px,5.4cqw);line-height:1;color:var(--ac);text-shadow:0 0 12px #d9a44199}
+.gauge span,.tuner span{font-size:max(7px,1.9cqw);color:var(--mu);letter-spacing:1px}
+.tuner b{display:block;font-size:max(8px,2.4cqw);color:#ffd27a;text-shadow:0 0 8px #ffd27a77;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wheel{position:absolute;z-index:4;left:50%;bottom:-46%;width:56%;transform:translateX(-50%) rotate(0deg);filter:drop-shadow(0 -6px 14px rgba(0,0,0,.8))}
+</style>
+</head>
+<body>
+<main class="w">
+<div class="eb">SENSTACK • DRIVEWISE</div>
+<h1>Promotion Day</h1>
+<div class="st">
+<div class="s"><b id="cash">$0.00</b><span>Your Income</span></div>
+<div class="s"><b id="gross">$0.00</b><span>Music Revenue</span></div>
+<div class="s"><b id="spins">0</b><span>Spins</span></div>
+<div class="s"><b id="roster">0</b><span>Artists</span></div>
+</div>
+
+<div class="cab">
+<canvas id="cv" width="480" height="300"></canvas>
+<div class="pl"></div><div class="pr"></div>
+<div class="roof"></div><div class="mirror" id="mir">◉ OFF AIR</div>
+<div class="dash">
+<div class="gauge"><b id="spd">0</b><span>MPH</span></div>
+<div class="tuner"><span>FM 88.8</span><b id="tun">Not tuned</b></div>
+</div>
+<svg class="wheel" id="wheel" viewBox="0 0 200 200" aria-hidden="true">
+<circle cx="100" cy="100" r="88" fill="none" stroke="#14171c" stroke-width="18"/>
+<circle cx="100" cy="100" r="96" fill="none" stroke="#2f3641" stroke-width="2"/>
+<circle cx="100" cy="100" r="80" fill="none" stroke="#252a33" stroke-width="1.5"/>
+<g stroke="#171a20" stroke-width="15" stroke-linecap="round"><path d="M26 108 L174 108"/><path d="M100 108 L100 176"/></g>
+<rect x="94" y="8" width="12" height="18" rx="3" fill="#d9a441"/>
+<circle cx="100" cy="106" r="27" fill="#0d1117" stroke="#d9a441" stroke-width="2"/>
+<text x="100" y="112" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="16" fill="#d9a441">DW</text>
+</svg>
+</div>
+
+<div class="row"><button id="L">◀</button><button id="B">Brake / Rev</button><button id="G" class="pri">⛽ Gas</button><button id="R">▶</button></div>
+<button id="radio" class="pri" style="width:100%" disabled>📻 Radio</button>
+
+<section id="radioPanel" class="panel hidden">
+<div class="radioHead"><div class="radioIcon">📻</div><div><b>8 MILE RADIO</b><div class="small">Independent Artist Discovery</div></div></div>
+<div class="small">Choose an artist to put their billboard up and add them to your car rotation.</div>
+<div id="artists" class="artists"></div>
+<div class="row"><button id="leave">Leave Station</button></div>
+</section>
+
+<section id="detail" class="panel detail hidden">
+<h2 id="name"></h2>
+<div id="desc" class="small"></div>
+<div class="stats"><div class="stat"><b id="aspin">0</b><span>Spins</span></div><div class="stat"><b id="afans">0</b><span>Fans</span></div><div class="stat"><b id="asales">$0</b><span>Artist Sales</span></div></div>
+<div class="small" style="text-align:left">Exposure <span id="expText">0%</span></div><div class="bar"><i id="exp"></i></div>
+<div class="small" style="text-align:left">Fan Demand <span id="demText">0%</span></div><div class="bar"><i id="dem"></i></div>
+<div style="text-align:left;margin-top:10px">
+<b>Music Catalog</b>
+<div id="songs" style="display:grid;gap:6px;margin-top:7px"></div>
+</div>
+<div class="row"><button id="play" class="pri">▶ Play Selected</button><button id="cat">🛣 Drive Catalog</button><button id="back">Back</button></div>
+<div class="ledger">
+<div><span>Gross revenue</span><b id="lgross">$0.00</b></div>
+<div><span>Artist royalty</span><b id="lartist">-$0.00</b></div>
+<div><span>Publishing</span><b id="lpub">-$0.00</b></div>
+<div><span>Distribution</span><b id="ldist">-$0.00</b></div>
+<div><span>Your promotion income</span><b id="lyour" class="ok">+$0.00</b></div>
+</div>
+</section>
+
+<section class="panel"><b>Car Rotation</b><div class="small">Artists currently playing in your vehicle.</div><div id="rotation" class="rotation"></div></section>
+
+<section class="panel"><b id="status">Woodward Ave</b><div class="small">Driving</div><div id="dtx">Start the drive, hold Gas, steer with ◀ ▶ and slow down at the glowing 8 Mile Radio on your right.</div><button id="start" class="pri">▶ Start Drive</button></section>
+</main>
+
+<script>
+const $=id=>document.getElementById(id),cv=$("cv"),ctx=cv.getContext("2d");
+const W=480,H=300,HY=128,K=250,CAMH=1.25,LEN=600,RZ=130,NEAR=1.9,AC="#d9a441";
+const ECON={artist:.50,pub:.20,dist:.10,your:.20};
+const ARTISTS=[
+{id:"mitd",display:"Mackinthedark",photo:"./assets/photos/Mitd1.PNG",
+track:"./assets/music/Get Up (produced by Jupyter).mp3",
+songs:[
+{title:"Get Up (produced by Jupyter)",file:"./assets/music/Get Up (produced by Jupyter).mp3"},
+{title:"Alexa",file:"./assets/music/Love & Co - Alexa.mp3"},
+{title:"TRY",file:"./assets/music/Love & Co - TRY.mp3"},
+{title:"Alright",file:"./assets/music/Alright.mp3"},
+{title:"Best Day Ever",file:"./assets/music/Best Day Ever.mp3"},
+{title:"Disclaimer",file:"./assets/music/Disclaimer.mp3"},
+{title:"Drive Me Crazy (Remastered)",file:"./assets/music/drive-me-crazy-(remastered).mp3"},
+{title:"Eighteen and a Clutch",file:"./assets/music/eighteen-and-a-clutch.mp3"},
+{title:"4-X-4-2 (Remastered)",file:"./assets/music/4-x-4-2-(remastered)a.mp3"}
+],genre:"Alternative / Hip-Hop",desc:"Saneca Mack — independent artist.",exp:5,demand:5,fans:0,spins:0,sales:0,rotation:false,found:true},
+{id:"a2",display:"Unsigned Artist",photo:"./assets/artists/artist2.PNG",track:"./assets/music/artist2.mp3",genre:"Alternative",desc:"Waiting to be discovered.",exp:0,demand:0,fans:0,spins:0,sales:0,rotation:false,found:false},
+{id:"a3",display:"Next Artist",photo:"./assets/artists/artist3.PNG",track:"./assets/music/artist3.mp3",genre:"Hip-Hop",desc:"Waiting to be discovered.",exp:0,demand:0,fans:0,spins:0,sales:0,rotation:false,found:false}
+];
+ARTISTS.forEach(a=>{a.img=new Image();a.img.src=a.photo});
+let S={z:2,x:0,v:0,steer:0,cruise:0,cash:0,gross:0,spins:0,rotation:[],driving:false,menu:false,run:null,bbs:[],rh:0,bump:0,artist:null,selectedSong:null};
+let keys={L:0,R:0,G:0,B:0},last=0;
+let NPC=[];const PED=[];
+for(let i=0;i<34;i++)PED.push({z:12+i*17+Math.random()*10,x:i%2?3.55:-3.55,v:(Math.random()-.5)*1.8,col:["#8a4b4b","#4b6a8a","#6a6a4b","#7a4b8a"][i%4]});
+[RZ-4,RZ-1,RZ+3].forEach(z=>PED.push({z,x:3.6,v:0,col:"#d9a441"}));
+const COLS=["#7a2e2e","#2e4a7a","#4a4f58","#2e6b5a","#8a7a3a","#5a3a7a"];
+const AUD=new Audio();AUD.preload="auto";
+AUD.onerror=()=>{const s=AUD.getAttribute("src")||"";if(s.startsWith("data:"))return;$("dtx").textContent="Can't load "+decodeURI(s)+" — check that the file name and folder match exactly (case matters).";$("tun").textContent="File missing"};
+
+function money(n){return "$"+n.toFixed(2)}
+function renderArtists(){
+ $("artists").innerHTML="";
+ ARTISTS.forEach(a=>{
+  const el=document.createElement("div");el.className="artist";
+  el.innerHTML=`<img src="${a.photo}" onerror="this.removeAttribute('src')"><div class="artistInfo"><b>${a.display}</b><span>${a.genre}</span><br><span>${a.spins} spins • ${a.fans} fans</span></div>`;
+  el.onclick=()=>openArtist(a);$("artists").appendChild(el);
+ });
+}
+function openArtist(a){
+ S.run=null;S.bbs=[];S.cruise=0;S.menu=true;
+ S.artist=a;
+ S.selectedSong=(a.songs&&a.songs.length)?a.songs[0]:null;
+ $("radioPanel").classList.add("hidden");
+ $("detail").classList.remove("hidden");
+ updateArtist();renderSongs();
+ $("dtx").textContent=a.display+": pick a track to put its billboard up the road, or drive the whole catalog. Spins only count once you pass a billboard.";
+}
+function renderSongs(){
+ const box=$("songs");box.innerHTML="";
+ const songs=S.artist?.songs||[];
+ if(!songs.length){box.innerHTML='<div class="small">No catalog loaded yet.</div>';return}
+ songs.forEach(song=>{
+  const b=document.createElement("button");
+  b.style.borderRadius="10px";b.style.textAlign="left";
+  b.textContent=(S.selectedSong===song?"▶ ":"")+song.title;
+  if(S.selectedSong===song)b.className="pri";
+  b.onclick=()=>{S.selectedSong=song;renderSongs();$("dtx").textContent="Selected: "+song.title};
+  box.appendChild(b);
+ });
+}
+function updateArtist(){
+ const a=S.artist;if(!a)return;
+ $("name").textContent=a.display;$("desc").textContent=a.desc;
+ $("aspin").textContent=a.spins;$("afans").textContent=a.fans;$("asales").textContent=money(a.sales);
+ $("expText").textContent=Math.round(a.exp)+"%";$("demText").textContent=Math.round(a.demand)+"%";
+ $("exp").style.width=a.exp+"%";$("dem").style.width=a.demand+"%";
+}
+function play(a,sg){
+ if(!a)return;
+ const song=sg||(a.songs&&a.songs[0]);
+ if(song)a.track=song.file;
+ a.spins++;S.spins++;
+ a.exp=Math.min(100,a.exp+Math.max(1,8-Math.floor(a.exp/20)));
+ a.demand=Math.min(100,a.demand+Math.max(1,Math.floor(a.exp/15)));
+ const units=Math.max(1,Math.floor(a.demand/18)),g=units;
+ const artist=g*ECON.artist,pub=g*ECON.pub,dist=g*ECON.dist,your=g*ECON.your;
+ a.sales+=g;a.fans+=Math.max(1,Math.floor(a.demand/10));S.gross+=g;S.cash+=your;
+ if(!a.rotation){a.rotation=true;S.rotation.push(a.id)}
+ $("lgross").textContent=money(g);$("lartist").textContent="-"+money(artist);$("lpub").textContent="-"+money(pub);$("ldist").textContent="-"+money(dist);$("lyour").textContent="+"+money(your);
+ updateArtist();updateHUD();renderRotation();
+ $("status").textContent="NOW PLAYING: "+a.display;
+ $("tun").textContent=(song?song.title:a.display);$("mir").textContent="◉ ON AIR";$("mir").classList.add("on");
+ $("dtx").textContent=`${a.display} received a radio spin. ${units} music sale${units===1?"":"s"} generated. Your promotion income: ${money(your)}.`;
+ AUD.pause();AUD.src=encodeURI(a.track);AUD.loop=false;AUD.volume=.8;
+ AUD.play().catch(e=>{$("dtx").textContent+=" Could not play "+a.track+" ("+(e&&e.name)+")."});
+}
+$("play").onclick=()=>{const a=S.artist;if(!a)return;launch(a,Math.max(0,(a.songs||[]).indexOf(S.selectedSong)),false)};
+$("back").onclick=()=>{S.artist=null;S.selectedSong=null;$("detail").classList.add("hidden");$("radioPanel").classList.remove("hidden");renderArtists()};
+$("leave").onclick=()=>{$("radioPanel").classList.add("hidden");S.menu=false;$("dtx").textContent="Back on Woodward. Keep driving."};
+$("cat").onclick=()=>{if(S.artist)launch(S.artist,0,true)};
+function launch(a,i0,auto){
+ const list=(a.songs&&a.songs.length)?a.songs:[{title:a.display,file:a.track}];
+ S.run={a,list,n:list.length,auto};S.bbs=[{z:S.z+26,i:i0,done:false}];
+ S.cruise=auto?14:0;S.menu=false;$("detail").classList.add("hidden");$("radioPanel").classList.add("hidden");
+ $("dtx").textContent=auto?`Driving ${a.display}'s catalog: ${list.length} billboard${list.length===1?"":"s"}, one after another. Each track plays and counts as you pass its billboard.`:`Billboard up ahead for "${list[i0].title}". Drive past it to play it — the spin only counts once you pass. The next billboard will be the next track.`;
+}
+function passBoard(o){
+ const r=S.run,song=r.list[o.i];
+ S.selectedSong=r.a.songs?song:null;
+ play(r.a,song);
+ const ni=o.i+1,nz=o.z+28;
+ if((ni<r.n||!r.auto)&&nz<LEN-6)S.bbs.push({z:nz,i:ni%r.n,done:false});
+}
+function endRun(msg){
+ S.run=null;S.bbs=[];S.cruise=0;S.artist=null;S.selectedSong=null;S.menu=false;
+ $("dtx").textContent=msg||"Catalog drive ended. Keep driving or pull back into the station.";
+}
+function updateNPC(dt){
+ NPC.forEach(n=>n.z+=n.v*dt);
+ NPC=NPC.filter(n=>n.z>S.z-25&&n.z<S.z+170);
+ if(NPC.length<9&&Math.random()<dt*2){const on=Math.random()<.55;NPC.push({x:on?-1.5:1.6,z:S.z+(on?130:100)+Math.random()*30,v:on?-(9+Math.random()*7):4+Math.random()*7,col:COLS[(Math.random()*COLS.length)|0]})}
+ if(S.bump>0)S.bump-=dt;
+ else for(const n of NPC){if(Math.abs(n.z-S.z)<1.8&&Math.abs(n.x-S.x)<1.5){S.bump=1;S.v=Math.min(S.v,2);S.z=Math.max(2,S.z-1);$("dtx").textContent="Careful — you clipped traffic.";break}}
+ PED.forEach(p=>{p.z+=p.v*dt;if(p.z<8||p.z>LEN-8)p.v=-p.v});
+}
+function renderRotation(){
+ $("rotation").innerHTML="";
+ const list=ARTISTS.filter(a=>S.rotation.includes(a.id));
+ if(!list.length){$("rotation").innerHTML='<span class="small">No artists yet.</span>';return}
+ list.forEach(a=>{const e=document.createElement("div");e.className="rot";e.innerHTML=`<img src="${a.photo}"><b>${a.display}</b><span>${a.spins} spins</span>`;e.onclick=()=>openArtist(a);$("rotation").appendChild(e)})
+}
+function updateHUD(){$("cash").textContent=money(S.cash);$("gross").textContent=money(S.gross);$("spins").textContent=S.spins;$("roster").textContent=S.rotation.length}
+$("start").onclick=()=>{AUD.src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";AUD.play().catch(()=>{});$("start").disabled=true;S.driving=true;$("dtx").textContent="Hold Gas, steer with ◀ ▶. Hold Brake at a stop to reverse. Slow down when the glowing 8 Mile Radio is beside you on the right, then tap Pull In."};
+$("radio").onclick=()=>{
+ if(S.run&&S.run.auto){endRun();return}
+ if(!S.driving||S.menu||Math.abs(S.z-RZ)>=9||S.v>=7)return;
+ S.menu=true;$("radioPanel").classList.remove("hidden");renderArtists();$("dtx").textContent="Choose an artist. Your first rotation is Mackinthedark."
+};
+["L","R","G","B"].forEach(id=>{const e=$(id);e.onpointerdown=ev=>{ev.preventDefault();keys[id]=1};e.onpointerup=e.onpointerleave=e.onpointercancel=()=>keys[id]=0});
+const KM={ArrowLeft:"L",ArrowRight:"R",ArrowUp:"G",w:"G",ArrowDown:"B",s:"B",a:"L",d:"R"};
+addEventListener("keydown",e=>{if(KM[e.key]){keys[KM[e.key]]=1;if(e.key.startsWith("Arrow"))e.preventDefault()}});
+addEventListener("keyup",e=>{if(KM[e.key])keys[KM[e.key]]=0});
+
+/* ---------- 3D-ish renderer ---------- */
+const X=(wx,dz)=>W/2+(wx-S.x)*K/dz, Y=(h,dz)=>HY+(CAMH-h)*K/dz;
+function quad(x1,x2,d1,d2,c){ctx.fillStyle=c;ctx.beginPath();ctx.moveTo(X(x1,d1),Y(0,d1));ctx.lineTo(X(x1,d2),Y(0,d2));ctx.lineTo(X(x2,d2),Y(0,d2));ctx.lineTo(X(x2,d1),Y(0,d1));ctx.fill()}
+function bld(sd,n,dz){
+ const s=K/dz,h=4+((n*5+(sd>0?2:0))%4)*1.6;
+ const xa=X(sd*4.4,dz),xb=X(sd*10,dz),y0=Y(0,dz),y1=Y(h,dz);
+ ctx.fillStyle=n%2?"#14171d":"#1b1e26";ctx.fillRect(Math.min(xa,xb),y1,Math.abs(xb-xa),y0-y1);
+ if(s<4)return;
+ for(let r=0;r<Math.floor(h/1.4);r++)for(let c=0;c<3;c++){
+  ctx.fillStyle=((n+r*2+c)%3===0)?"#ffd27a99":"#090b0f";
+  ctx.fillRect(X(sd*(4.9+c*1.6),dz),Y(.9+r*1.3,dz),.7*s,.7*s);
+ }
+}
+function station(dz){
+ const s=K/dz,xa=X(4.4,dz),xb=X(11,dz),y0=Y(0,dz),y1=Y(6.5,dz);
+ ctx.shadowColor="#ffd27a";ctx.shadowBlur=24;ctx.fillStyle="#332b1b";ctx.fillRect(xa,y1,xb-xa,y0-y1);ctx.shadowBlur=0;
+ ctx.fillStyle="#ffd27a";ctx.fillRect(xa+.4*s,Y(2.6,dz),xb-xa-.8*s,1.3*s);
+ ctx.fillStyle="#14100a";ctx.fillRect(xa+.4*s,Y(2.3,dz),1.2*s,2.3*s);
+ ctx.textAlign="center";const cx=(xa+xb)/2;
+ ctx.fillStyle="#ffd27a";ctx.font=`bold ${Math.max(6,.6*s)}px sans-serif`;ctx.fillText("8 MILE RADIO",cx,Y(5.5,dz));
+ ctx.font=`${Math.max(8,1.2*s)}px serif`;ctx.fillText("📻",cx,Y(4.4,dz));
+}
+function billboard(dz,a,title,sub){
+ const s=K/dz,xl=X(-3.4,dz),xr=X(3.4,dz),yt=Y(5.8,dz),yb=Y(2.8,dz),y0=Y(0,dz),pw=.22*s;
+ ctx.fillStyle="#1a1d24";ctx.fillRect(xl-pw/2,yt,pw,y0-yt);ctx.fillRect(xr-pw/2,yt,pw,y0-yt);
+ ctx.shadowColor=AC;ctx.shadowBlur=Math.min(30,.5*s);ctx.fillStyle="#0a0c10";ctx.fillRect(xl,yt,xr-xl,yb-yt);
+ ctx.shadowBlur=0;ctx.strokeStyle=AC;ctx.lineWidth=Math.max(1,.07*s);ctx.strokeRect(xl,yt,xr-xl,yb-yt);
+ const ph=yb-yt-.3*s,px=xl+.15*s,py=yt+.15*s,im=a.img;
+ if(im&&im.complete&&im.naturalWidth){const m=Math.min(im.naturalWidth,im.naturalHeight);ctx.drawImage(im,(im.naturalWidth-m)/2,(im.naturalHeight-m)/2,m,m,px,py,ph,ph)}
+ else{ctx.fillStyle="#151922";ctx.fillRect(px,py,ph,ph);ctx.fillStyle=AC;ctx.textAlign="center";ctx.font=`bold ${ph*.5}px sans-serif`;ctx.fillText(a.display[0],px+ph/2,py+ph*.68)}
+ const tx=px+ph+.3*s,mw=Math.max(1,xr-tx-.2*s);ctx.textAlign="left";
+ ctx.fillStyle=AC;ctx.font=`bold ${.34*s}px sans-serif`;ctx.fillText(a.display,tx,yt+.6*s,mw);
+ ctx.fillStyle="#f2f0e9";ctx.font=`bold ${.5*s}px sans-serif`;ctx.fillText(title,tx,yt+1.35*s,mw);
+ ctx.fillStyle="#a9a9a2";ctx.font=`${.27*s}px sans-serif`;ctx.fillText(sub,tx,yt+1.95*s,mw);
+}
+function car(n,dz){
+ const s=K/dz,xl=X(n.x-.9,dz),xr=X(n.x+.9,dz),yb=Y(.1,dz),yt=Y(1.4,dz),w=xr-xl,h=yb-yt;
+ ctx.fillStyle=n.col;ctx.fillRect(xl,yt+h*.3,w,h*.7);ctx.fillRect(xl+w*.1,yt,w*.8,h*.35);
+ ctx.fillStyle="#0a0c10";ctx.fillRect(xl+w*.16,yt+h*.06,w*.68,h*.24);
+ const lc=n.v<0?"#ffeeb0":"#ff3b30";ctx.fillStyle=lc;ctx.shadowColor=lc;ctx.shadowBlur=Math.min(14,.3*s);
+ ctx.fillRect(xl+w*.05,yt+h*.55,w*.2,h*.14);ctx.fillRect(xr-w*.25,yt+h*.55,w*.2,h*.14);ctx.shadowBlur=0;
+}
+function ped(p,dz){
+ const s=K/dz,x=X(p.x,dz),y0=Y(0,dz),y1=Y(1.1,dz),yh=Y(1.7,dz);
+ ctx.fillStyle=p.col;ctx.fillRect(x-.22*s,y1,.44*s,y0-y1);
+ ctx.fillStyle="#d9b99b";ctx.beginPath();ctx.arc(x,yh+.12*s,.17*s,0,7);ctx.fill();
+}
+function draw(){
+ const bob=Math.sin(S.z*2.4)*Math.min(1.4,S.v*.05);
+ ctx.save();ctx.translate(0,bob);
+ const g=ctx.createLinearGradient(0,0,0,HY);g.addColorStop(0,"#05070a");g.addColorStop(1,"#2a1d33");
+ ctx.fillStyle=g;ctx.fillRect(0,-4,W,HY+4);
+ ctx.fillStyle="#ffffff66";for(let i=0;i<26;i++)ctx.fillRect((i*97)%W,(i*37)%90,1.5,1.5);
+ ctx.fillStyle="#0b0d11";ctx.fillRect(0,HY,W,H);
+ quad(-3,3,1.2,320,"#1b1e24");quad(-4.2,-3,1.2,320,"#2a2d34");quad(3,4.2,1.2,320,"#2a2d34");
+ quad(-2.8,-2.72,1.2,320,AC);quad(2.72,2.8,1.2,320,"#d9c98a");
+ for(let z=Math.floor(S.z/6)*6;z<S.z+150;z+=6){const d1=Math.max(1.2,z-S.z),d2=z+2.5-S.z;if(d2>1.2)quad(-.06,.06,d1,d2,"#d9c98a")}
+ const it=[],n0=Math.floor(S.z/14);
+ for(let k=0;k<24;k++){const n=n0+k,z=n*14+6,dz=z-S.z;if(dz<NEAR)continue;
+  for(const sd of[-1,1]){if(sd>0&&Math.abs(z-RZ)<12)continue;it.push({dz,f:()=>bld(sd,n,dz)})}}
+ const sdz=RZ-6-S.z;if(sdz>NEAR&&sdz<340)it.push({dz:sdz,f:()=>station(sdz)});
+ NPC.forEach(n=>{const d=n.z-S.z;if(d>NEAR&&d<140)it.push({dz:d,f:()=>car(n,d)})});
+ PED.forEach(p=>{const d=p.z-S.z;if(d>NEAR&&d<90)it.push({dz:d,f:()=>ped(p,d)})});
+ const bb=[];
+ if(S.run)S.bbs.forEach(o=>bb.push({z:o.z,a:S.run.a,t:S.run.list[o.i].title,u:S.run.n>1?`Track ${o.i+1} of ${S.run.n}`:"Single"}));
+ else bb.push({z:RZ+9,a:ARTISTS[0],t:"Now on 8 Mile Radio",u:"Independent artist discovery"});
+ bb.forEach(o=>{const dz=o.z-S.z;if(dz>NEAR&&dz<150)it.push({dz,f:()=>billboard(dz,o.a,o.t,o.u)})});
+ it.sort((p,q)=>q.dz-p.dz).forEach(o=>o.f());
+ const hl=ctx.createRadialGradient(W/2,H*.8,8,W/2,H*.8,210);hl.addColorStop(0,"rgba(255,230,170,.14)");hl.addColorStop(1,"rgba(255,230,170,0)");
+ ctx.fillStyle=hl;ctx.fillRect(0,HY,W,H);
+ ctx.restore();
+}
+function loop(t){
+ const dt=Math.min(.05,(t-last)/1000||0);last=t;
+ if(S.driving&&!S.menu){
+  const auto=S.run&&S.run.auto;
+  if(keys.B){if(S.v>.05){S.v=Math.max(0,S.v-40*dt);S.rh=0}else{S.rh+=dt;if(S.rh>.3)S.v-=12*dt}}
+  else{S.rh=0;
+   if(keys.G)S.v+=(S.v<0?40:20)*dt;
+   else if(auto)S.v+=(S.v<S.cruise?16:-6)*dt;
+   else if(S.v>0)S.v=Math.max(0,S.v-7*dt);
+   else if(S.v<0)S.v=Math.min(0,S.v+12*dt);
+  }
+  S.v=Math.max(-9,Math.min(32,S.v));
+  S.steer+=((keys.R-keys.L)-S.steer)*Math.min(1,8*dt);
+  S.x=Math.max(-2.4,Math.min(2.4,S.x+S.steer*(1+Math.abs(S.v)*.08)*1.2*dt));
+  S.z=Math.max(2,Math.min(LEN,S.z+S.v*dt));if(S.z>=LEN&&S.v>0)S.v=0;
+  updateNPC(dt);
+  if(S.run){
+   S.bbs.forEach(o=>{if(!o.done&&S.z>o.z+1.5){o.done=true;passBoard(o)}});
+   const lg=S.bbs[S.bbs.length-1];
+   if(S.run&&S.run.auto&&lg.done&&lg.i===S.run.n-1&&S.z>lg.z+14)endRun("Catalog complete. Every track got a spin. Keep driving or pull back in.");
+  }
+ }else{S.v=0;S.steer*=.85}
+ const near=Math.abs(S.z-RZ)<9,canR=!!(S.run&&S.run.auto)||(S.driving&&near&&S.v<7&&!S.menu);
+ $("radio").disabled=!canR;
+ $("radio").textContent=(S.run&&S.run.auto)?"⏹ End Catalog":near?(S.v<7?"📻 Pull In":"📻 Slow Down"):"📻 Radio";
+ $("spd").textContent=(S.v<-.05?"R ":"")+Math.round(Math.abs(S.v)*2.6);
+ $("wheel").style.transform=`translateX(-50%) rotate(${S.steer*85}deg)`;
+ draw();updateHUD();requestAnimationFrame(loop)
+}
+renderArtists();renderRotation();updateHUD();requestAnimationFrame(loop);
+</script>
+</body>
+</html>
