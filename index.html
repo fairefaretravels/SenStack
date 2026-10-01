@@ -22,8 +22,35 @@
       width: min(920px, 92%);
       margin: auto;
     }
+    /* TOP NAV */
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 18px 0 0;
+    }
+    .top-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 15px;
+      border: 1px solid #333;
+      border-radius: 999px;
+      background: #111;
+      color: #ddd;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: .5px;
+      transition: .2s ease;
+    }
+    .top-nav a:hover {
+      background: #1b1b1b;
+      border-color: #666;
+      color: #fff;
+      transform: translateY(-1px);
+    }
     header {
-      padding: 70px 0 45px;
+      padding: 50px 0 45px;
       border-bottom: 1px solid #242424;
     }
     .eyebrow {
@@ -156,8 +183,16 @@
       text-align: center;
     }
     @media (max-width: 600px) {
+      .top-nav {
+        justify-content: flex-start;
+        padding-top: 14px;
+      }
+      .top-nav a {
+        flex: 1;
+        text-align: center;
+      }
       header {
-        padding-top: 50px;
+        padding-top: 42px;
       }
       .industries,
       .capabilities {
@@ -171,133 +206,142 @@
 </head>
 <body>
   <main class="container">
-    <header>
-      <div class="eyebrow">Private Portfolio</div>
-      <h1>Saneca<br>Mack</h1>
-      <p class="intro">
-        Digital systems, media, business technology and custom solutions
-        for businesses, creators, entrepreneurs and organizations.
-      </p>
-    </header>
-    <section>
-      <div class="section-label">Featured Project</div>
-      <a
-        class="featured"
-        href="https://radiomeltdown.online"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <div class="project-type">Radio • Events • Entertainment</div>
-        <div class="project-name">
-          Radiomeltdown.online
-          <span class="arrow">↗</span>
-        </div>
-        <div class="project-url">
-          HIT FOR HIT Radio + Events
-        </div>
-      </a>
-    </section>
-    <section>
-      <div class="section-label">About</div>
-      <h2>Building systems around the business.</h2>
-      <p class="about">
-        I'm Saneca Mack, a digital systems builder, entrepreneur and media
-        creator based in Atlanta.
-      </p>
-      <p class="about">
-        I work across media, entertainment, events, business technology,
-        education, food service, retail and digital products.
-      </p>
-      <p class="about">
-        My focus is taking an idea, business or collection of disconnected
-        tools and turning it into something organized, functional and usable.
-      </p>
-      <p class="about">
-        I also help businesses improve what they already have instead of
-        automatically replacing everything with something new.
-      </p>
-    </section>
-    <section>
-      <div class="section-label">Businesses I Cater To</div>
-      <h2>Built around real business needs.</h2>
-      <div class="industries">
-        <div class="industry">Small Businesses</div>
-        <div class="industry">Entrepreneurs</div>
-        <div class="industry">Restaurants & Catering</div>
-        <div class="industry">Retail Businesses</div>
-        <div class="industry">Barbers & Beauty Professionals</div>
-        <div class="industry">Artists & Record Labels</div>
-        <div class="industry">Radio & Media Companies</div>
-        <div class="industry">Event Producers</div>
-        <div class="industry">Education & Training</div>
-        <div class="industry">Nonprofits & Organizations</div>
-        <div class="industry">Creators & Personal Brands</div>
-        <div class="industry">Digital Startups</div>
-      </div>
-    </section>
-    <section>
-      <div class="section-label">What I Can Do</div>
-      <h2>From the front end to the backend.</h2>
-      <div class="capabilities">
-        <div class="capability">
-          <h3>Websites & Digital Presence</h3>
-          <p>
-            Business websites, landing pages, directories, event sites,
-            portfolio sites and redesigns.
-          </p>
-        </div>
-        <div class="capability">
-          <h3>Business Systems</h3>
-          <p>
-            Dashboards, internal tools, forms, booking systems,
-            client workflows and operational systems.
-          </p>
-        </div>
-        <div class="capability">
-          <h3>Media & Entertainment</h3>
-          <p>
-            Radio platforms, artist systems, event platforms,
-            streaming interfaces and digital media infrastructure.
-          </p>
-        </div>
-        <div class="capability">
-          <h3>AI & Automation</h3>
-          <p>
-            AI-powered workflows, custom business tools,
-            prompts, automation planning and AI-assisted operations.
-          </p>
-        </div>
-        <div class="capability">
-          <h3>Digital Organization</h3>
-          <p>
-            Connecting domains, websites, hosting, databases,
-            media platforms and business tools into a cleaner system.
-          </p>
-        </div>
-        <div class="capability">
-          <h3>System Cleanup</h3>
-          <p>
-            Organizing existing technology, removing unnecessary
-            duplication and tightening the backend.
-          </p>
-        </div>
-      </div>
-    </section>
-    <section class="request">
-      <div class="section-label">Private Portfolio</div>
-      <h2>More information available upon request.</h2>
+<!-- TOP BUTTONS -->
+<nav class="top-nav" aria-label="Quick Links">
+  <a href="/ssbgame">SSB GAME</a>
+  <a href="/ssdr">SSDR</a>
+</nav>
+<header>
+  <div class="eyebrow">Private Portfolio</div>
+  <h1>Saneca<br>Mack</h1>
+  <p class="intro">
+    Digital systems, media, business technology and custom solutions
+    for businesses, creators, entrepreneurs and organizations.
+  </p>
+</header>
+<section>
+  <div class="section-label">Featured Project</div>
+  <a
+    class="featured"
+    href="https://radiomeltdown.online"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <div class="project-type">
+      Radio • Events • Entertainment
+    </div>
+    <div class="project-name">
+      Radiomeltdown.online
+      <span class="arrow">↗</span>
+    </div>
+    <div class="project-url">
+      HIT FOR HIT Radio + Events
+    </div>
+  </a>
+</section>
+<section>
+  <div class="section-label">About</div>
+  <h2>Building systems around the business.</h2>
+  <p class="about">
+    I'm Saneca Mack, a digital systems builder, entrepreneur and media
+    creator based in Atlanta.
+  </p>
+  <p class="about">
+    I work across media, entertainment, events, business technology,
+    education, food service, retail and digital products.
+  </p>
+  <p class="about">
+    My focus is taking an idea, business or collection of disconnected
+    tools and turning it into something organized, functional and usable.
+  </p>
+  <p class="about">
+    I also help businesses improve what they already have instead of
+    automatically replacing everything with something new.
+  </p>
+</section>
+<section>
+  <div class="section-label">Businesses I Cater To</div>
+  <h2>Built around real business needs.</h2>
+  <div class="industries">
+    <div class="industry">Small Businesses</div>
+    <div class="industry">Entrepreneurs</div>
+    <div class="industry">Restaurants & Catering</div>
+    <div class="industry">Retail Businesses</div>
+    <div class="industry">Barbers & Beauty Professionals</div>
+    <div class="industry">Artists & Record Labels</div>
+    <div class="industry">Radio & Media Companies</div>
+    <div class="industry">Event Producers</div>
+    <div class="industry">Education & Training</div>
+    <div class="industry">Nonprofits & Organizations</div>
+    <div class="industry">Creators & Personal Brands</div>
+    <div class="industry">Digital Startups</div>
+  </div>
+</section>
+<section>
+  <div class="section-label">What I Can Do</div>
+  <h2>From the front end to the backend.</h2>
+  <div class="capabilities">
+    <div class="capability">
+      <h3>Websites & Digital Presence</h3>
       <p>
-        This portfolio is intentionally limited. Additional projects,
-        systems and case studies can be provided when relevant.
+        Business websites, landing pages, directories, event sites,
+        portfolio sites and redesigns.
       </p>
-      <!-- Replace this with your preferred contact method -->
-      <a class="contact" href="mailto:senstack@radiomeltdown.com">
-        Request More Information
-      </a>
-    </section>
-    <footer>
-      © 2026 SANECA MACK
-    </footer>
+    </div>
+    <div class="capability">
+      <h3>Business Systems</h3>
+      <p>
+        Dashboards, internal tools, forms, booking systems,
+        client workflows and operational systems.
+      </p>
+    </div>
+    <div class="capability">
+      <h3>Media & Entertainment</h3>
+      <p>
+        Radio platforms, artist systems, event platforms,
+        streaming interfaces and digital media infrastructure.
+      </p>
+    </div>
+    <div class="capability">
+      <h3>AI & Automation</h3>
+      <p>
+        AI-powered workflows, custom business tools,
+        prompts, automation planning and AI-assisted operations.
+      </p>
+    </div>
+    <div class="capability">
+      <h3>Digital Organization</h3>
+      <p>
+        Connecting domains, websites, hosting, databases,
+        media platforms and business tools into a cleaner system.
+      </p>
+    </div>
+    <div class="capability">
+      <h3>System Cleanup</h3>
+      <p>
+        Organizing existing technology, removing unnecessary
+        duplication and tightening the backend.
+      </p>
+    </div>
+  </div>
+</section>
+<section class="request">
+  <div class="section-label">Private Portfolio</div>
+  <h2>More information available upon request.</h2>
+  <p>
+    This portfolio is intentionally limited. Additional projects,
+    systems and case studies can be provided when relevant.
+  </p>
+  <a
+    class="contact"
+    href="mailto:senstack@radiomeltdown.com"
+  >
+    Request More Information
+  </a>
+</section>
+<footer>
+  © 2026 SANECA MACK
+</footer>
   </main>
 </body>
 </html>
