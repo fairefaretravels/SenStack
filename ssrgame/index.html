@@ -1,0 +1,2307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>DriveWise — Promotion & Distribution</title>
+
+<style>
+:root{
+  --bg:#05070a;
+  --cd:#0d1117;
+  --bd:#2a2f38;
+  --tx:#f2f0e9;
+  --mu:#a9a9a2;
+  --ac:#d9a441;
+  --ok:#7bc47f;
+  --danger:#b94b4b;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:var(--bg);
+  color:var(--tx);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  padding:14px;
+}
+
+button{
+  font:inherit;
+  cursor:pointer;
+}
+
+.w{
+  width:100%;
+  max-width:620px;
+  margin:auto;
+}
+
+header{
+  border-bottom:1px solid var(--bd);
+  padding:8px 0 14px;
+  margin-bottom:14px;
+}
+
+h1{
+  margin:0;
+  font-size:20px;
+  letter-spacing:.04em;
+}
+
+.sub{
+  margin-top:5px;
+  color:var(--mu);
+  font-size:12px;
+}
+
+.cab{
+  position:relative;
+  width:100%;
+  aspect-ratio:480/300;
+  overflow:hidden;
+  border:1px solid var(--bd);
+  border-radius:18px;
+  background:#090d12;
+  box-shadow:0 18px 50px rgba(0,0,0,.45);
+}
+
+#cv{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+.side{
+  position:absolute;
+  top:10px;
+  width:52px;
+  height:72px;
+  border:1px solid #3b414a;
+  border-radius:10px;
+  background:linear-gradient(#161b22,#090c10);
+  box-shadow:inset 0 0 15px rgba(0,0,0,.8);
+}
+
+#leftMirror{
+  left:8px;
+}
+
+#rightMirror{
+  right:8px;
+}
+
+.mirrorGlass{
+  width:100%;
+  height:100%;
+  display:grid;
+  place-items:center;
+  color:#69717b;
+  font-size:8px;
+}
+
+#mir{
+  position:absolute;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:5px 10px;
+  border:1px solid #303741;
+  border-radius:20px;
+  background:#080b0e;
+  color:#777;
+  font-size:9px;
+  letter-spacing:.08em;
+}
+
+#mir.on{
+  color:var(--ok);
+  border-color:#49684d;
+}
+
+#dash{
+  position:absolute;
+  left:50%;
+  bottom:13px;
+  transform:translateX(-50%);
+  width:68%;
+  height:55px;
+  border:1px solid #292f37;
+  border-radius:12px;
+  background:linear-gradient(#171c23,#080b0f);
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  box-shadow:0 -12px 30px rgba(0,0,0,.5);
+}
+
+#spd{
+  min-width:55px;
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  color:var(--tx);
+}
+
+#tun{
+  min-width:120px;
+  text-align:center;
+  color:var(--mu);
+  font-size:10px;
+  line-height:1.3;
+}
+
+#wheel{
+  position:absolute;
+  bottom:7px;
+  left:12px;
+  width:78px;
+  height:78px;
+  transition:transform .08s linear;
+}
+
+.controls{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+  margin-top:10px;
+}
+
+.ctrl{
+  min-height:44px;
+  border:1px solid var(--bd);
+  border-radius:10px;
+  background:#10151c;
+  color:var(--tx);
+  font-weight:bold;
+}
+
+.ctrl:active{
+  transform:scale(.97);
+  background:#191f27;
+}
+
+.ctrl.primary{
+  border-color:#675027;
+  color:var(--ac);
+}
+
+.ctrl:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+}
+
+.panel{
+  margin-top:12px;
+  padding:14px;
+  border:1px solid var(--bd);
+  border-radius:14px;
+  background:var(--cd);
+}
+
+.hidden{
+  display:none!important;
+}
+
+.panelTitle{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.panelTitle h2{
+  margin:0;
+  font-size:16px;
+}
+
+.small{
+  color:var(--mu);
+  font-size:11px;
+}
+
+.artistGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin-top:12px;
+}
+
+.artistCard{
+  overflow:hidden;
+  border:1px solid var(--bd);
+  border-radius:12px;
+  background:#090c11;
+}
+
+.artistCard img{
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  display:block;
+  background:#15191f;
+}
+
+.artistInfo{
+  padding:9px;
+}
+
+.artistName{
+  font-weight:bold;
+  font-size:13px;
+}
+
+.artistMeta{
+  margin-top:3px;
+  color:var(--mu);
+  font-size:10px;
+}
+
+.artistBtn{
+  width:100%;
+  margin-top:8px;
+  padding:8px;
+  border:1px solid #3b4149;
+  border-radius:8px;
+  background:#141920;
+  color:var(--tx);
+}
+
+#detail img{
+  width:100%;
+  max-height:230px;
+  object-fit:cover;
+  border-radius:12px;
+  border:1px solid var(--bd);
+}
+
+#name{
+  margin:12px 0 4px;
+  font-size:21px;
+}
+
+#desc{
+  color:var(--mu);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:12px;
+}
+
+.stat{
+  padding:9px;
+  border:1px solid var(--bd);
+  border-radius:9px;
+  background:#090c10;
+}
+
+.statLabel{
+  color:var(--mu);
+  font-size:9px;
+}
+
+.statValue{
+  margin-top:3px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.barWrap{
+  margin-top:12px;
+}
+
+.barLabel{
+  display:flex;
+  justify-content:space-between;
+  color:var(--mu);
+  font-size:10px;
+  margin-bottom:4px;
+}
+
+.bar{
+  height:7px;
+  border-radius:20px;
+  background:#20252c;
+  overflow:hidden;
+}
+
+.barFill{
+  height:100%;
+  width:0;
+  background:var(--ac);
+  transition:width .25s;
+}
+
+#songs{
+  display:grid;
+  gap:6px;
+  margin-top:12px;
+}
+
+.song{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  padding:9px;
+  border:1px solid var(--bd);
+  border-radius:8px;
+  background:#090c10;
+}
+
+.songTitle{
+  min-width:0;
+  font-size:11px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.songBtn{
+  flex:0 0 auto;
+  padding:6px 9px;
+  border:1px solid #3a414a;
+  border-radius:7px;
+  background:#141920;
+  color:var(--tx);
+  font-size:10px;
+}
+
+.detailButtons{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:12px;
+}
+
+.detailButtons button{
+  min-height:40px;
+  border:1px solid var(--bd);
+  border-radius:9px;
+  background:#12171d;
+  color:var(--tx);
+}
+
+.detailButtons .gold{
+  color:var(--ac);
+  border-color:#65502b;
+}
+
+.status{
+  margin-top:12px;
+  padding:12px;
+  border:1px solid var(--bd);
+  border-radius:12px;
+  background:#090c10;
+}
+
+#status{
+  font-size:12px;
+  line-height:1.45;
+}
+
+#dtx{
+  margin-top:5px;
+  color:var(--mu);
+  font-size:10px;
+}
+
+.startRow{
+  margin-top:10px;
+}
+
+#start{
+  width:100%;
+  min-height:48px;
+  border:1px solid #6a5225;
+  border-radius:10px;
+  background:#15130d;
+  color:var(--ac);
+  font-weight:bold;
+}
+
+#start:disabled{
+  opacity:.35;
+}
+
+.ledger{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:10px;
+}
+
+.ledgerBox{
+  padding:9px;
+  border:1px solid var(--bd);
+  border-radius:8px;
+  background:#090c10;
+}
+
+.ledgerLabel{
+  color:var(--mu);
+  font-size:9px;
+}
+
+.ledgerValue{
+  margin-top:3px;
+  font-weight:bold;
+  font-size:13px;
+}
+
+.billboardDebug{
+  margin-top:8px;
+  color:#666;
+  font-size:9px;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="w">
+
+<header>
+  <h1>DRIVEWISE</h1>
+  <div class="sub">Promotion & Distribution — Billboard Drive</div>
+</header>
+
+<section class="cab">
+
+  <canvas id="cv" width="480" height="300"></canvas>
+
+  <div class="side" id="leftMirror">
+    <div class="mirrorGlass">LEFT</div>
+  </div>
+
+  <div class="side" id="rightMirror">
+    <div class="mirrorGlass">RIGHT</div>
+  </div>
+
+  <div id="mir">◉ OFF AIR</div>
+
+  <svg id="wheel" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="42"
+            fill="#10151b"
+            stroke="#666"
+            stroke-width="5"/>
+    <circle cx="50" cy="50" r="10"
+            fill="#1a2027"
+            stroke="#777"
+            stroke-width="3"/>
+    <path d="M50 40 L50 10"
+          stroke="#777"
+          stroke-width="7"
+          stroke-linecap="round"/>
+    <path d="M43 54 L19 70"
+          stroke="#777"
+          stroke-width="7"
+          stroke-linecap="round"/>
+    <path d="M57 54 L81 70"
+          stroke="#777"
+          stroke-width="7"
+          stroke-linecap="round"/>
+  </svg>
+
+  <div id="dash">
+    <div id="spd">0</div>
+    <div id="tun">NO SIGNAL</div>
+  </div>
+
+</section>
+
+<div class="controls">
+  <button class="ctrl" id="L">◀ LEFT</button>
+  <button class="ctrl primary" id="B">BRAKE</button>
+  <button class="ctrl primary" id="G">GAS</button>
+  <button class="ctrl" id="R">RIGHT ▶</button>
+</div>
+
+<section class="panel hidden" id="radioPanel">
+
+  <div class="panelTitle">
+    <h2>8 Mile Radio</h2>
+    <div class="small">Independent Artist Discovery</div>
+  </div>
+
+  <div id="artists" class="artistGrid"></div>
+
+</section>
+
+<section class="panel hidden" id="detail">
+
+  <img id="artistPhoto" src="" alt="Artist">
+
+  <h2 id="name"></h2>
+
+  <div id="desc"></div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="statLabel">SPINS</div>
+      <div class="statValue" id="aspin">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="statLabel">FANS</div>
+      <div class="statValue" id="afans">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="statLabel">SALES</div>
+      <div class="statValue" id="asales">0</div>
+    </div>
+  </div>
+
+  <div class="barWrap">
+    <div class="barLabel">
+      <span>EXPOSURE</span>
+      <span id="exposureText">0%</span>
+    </div>
+    <div class="bar">
+      <div class="barFill" id="exposureBar"></div>
+    </div>
+  </div>
+
+  <div class="barWrap">
+    <div class="barLabel">
+      <span>DEMAND</span>
+      <span id="demandText">0%</span>
+    </div>
+    <div class="bar">
+      <div class="barFill" id="demandBar"></div>
+    </div>
+  </div>
+
+  <div id="songs"></div>
+
+  <div class="detailButtons">
+    <button id="play" class="gold">DRIVE TRACK</button>
+    <button id="cat" class="gold">DRIVE CATALOG</button>
+    <button id="back">BACK</button>
+  </div>
+
+</section>
+
+<section class="status">
+
+  <div id="status">
+    Parked. Start the drive to begin.
+  </div>
+
+  <div id="dtx">
+    Select an artist at 8 Mile Radio.
+  </div>
+
+  <div class="ledger">
+
+    <div class="ledgerBox">
+      <div class="ledgerLabel">CASH</div>
+      <div class="ledgerValue">$<span id="cash">0</span></div>
+    </div>
+
+    <div class="ledgerBox">
+      <div class="ledgerLabel">GROSS</div>
+      <div class="ledgerValue">$<span id="gross">0</span></div>
+    </div>
+
+    <div class="ledgerBox">
+      <div class="ledgerLabel">TOTAL SPINS</div>
+      <div class="ledgerValue"><span id="totalSpins">0</span></div>
+    </div>
+
+  </div>
+
+  <div class="startRow">
+    <button id="start">START DRIVE</button>
+  </div>
+
+</section>
+
+</div>
+
+<script>
+
+const $ = id => document.getElementById(id);
+
+const cv = $("cv");
+const ctx = cv.getContext("2d");
+
+const W = 480;
+const H = 300;
+
+const HY = 128;
+const K = 250;
+const CAMH = 1.25;
+
+const LEN = 600;
+const RZ = 130;
+const NEAR = 1.9;
+
+const AC = "#d9a441";
+
+const ECON = {
+  artist:.50,
+  pub:.20,
+  dist:.10,
+  your:.20
+};
+
+
+/* ============================================================
+   ARTISTS
+============================================================ */
+
+const ARTISTS = [
+
+  {
+    display:"Mackinthedark",
+    photo:"./assets/photos/Mitd1.PNG",
+
+    description:
+      "Detroit-rooted independent music and catalog discovery.",
+
+    fans:1200,
+    sales:240,
+
+    songs:[
+      {
+        title:"Get Up.mp3",
+        file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/Get Up.mp3"
+      },
+      {
+        title:"ALL DAT ASS.mp3",
+        file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/ALL%20DAT%20ASS.mp3"
+      },
+      {
+        title:"Love & Co - Alexa.mp3",
+        file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/Love%20%26%20Co%20-%20Alexa.mp3"
+      },
+      {
+        title:"Love & Co - TRY.mp3",
+        file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/Love%20%26%20Co%20-%20TRY.mp3"
+      },
+      {
+        title:"Alright.mp3",
+        file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/Alright.mp3"
+      },
+      {
+        title:"Birds.mp3",
+        file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/Birds.mp3"
+      },
+      {
+        title:"Disclaimer.mp3",
+        file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/Disclaimer.mp3"
+      },
+      {
+        title:"drive-me-crazy-(remastered).mp3",
+        file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/drive-me-crazy-(remastered).mp3"
+      },
+      {
+        title:"eighteen-and-a-clutch.mp3",
+        file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/eighteen-and-a-clutch.mp3"
+      },
+      {
+        title:"4-x-4-2-(remastered)a.mp3",
+        file:"https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/4-x-4-2-(remastered)a.mp3"
+      }
+    ]
+  }
+
+];
+
+
+/* ============================================================
+   STATE
+============================================================ */
+
+let S = {
+
+  z:2,
+
+  x:0,
+
+  v:0,
+
+  steer:0,
+
+  cruise:0,
+
+  cash:0,
+
+  gross:0,
+
+  spins:0,
+
+  rotation:[],
+
+  driving:false,
+
+  menu:false,
+
+  run:null,
+
+  bbs:[],
+
+  rh:0,
+
+  bump:0,
+
+  artist:null,
+
+  selectedSong:null,
+
+  waitingForNextSong:false,
+
+  currentBoard:null
+
+};
+
+
+/* ============================================================
+   AUDIO
+============================================================ */
+
+const AUD = new Audio();
+
+AUD.preload = "auto";
+AUD.loop = false;
+AUD.volume = .8;
+
+
+/* ============================================================
+   AUDIO ERROR
+============================================================ */
+
+AUD.onerror = () => {
+
+  $("mir").textContent = "◉ AUDIO ERROR";
+  $("mir").classList.remove("on");
+
+  $("tun").textContent = "Audio unavailable";
+
+  $("status").textContent =
+    "The selected track could not be loaded.";
+
+};
+
+
+/* ============================================================
+   IMPORTANT:
+   NEXT BILLBOARD ONLY APPEARS AFTER SONG ENDS
+============================================================ */
+
+AUD.addEventListener("ended", () => {
+
+  $("mir").textContent = "◉ OFF AIR";
+  $("mir").classList.remove("on");
+
+  $("tun").textContent = "Track finished";
+
+  if(S.run && S.run.auto){
+
+    spawnNextBillboard();
+
+    return;
+  }
+
+  S.waitingForNextSong = false;
+
+});
+
+
+/* ============================================================
+   AUDIO PLAY
+============================================================ */
+
+function play(a,song){
+
+  if(!a || !song) return;
+
+
+  /* ---------------------------------------------
+     RECORD SPIN
+  --------------------------------------------- */
+
+  a.spins = (a.spins || 0) + 1;
+
+  S.spins++;
+
+  $("aspin").textContent = a.spins;
+  $("totalSpins").textContent = S.spins;
+
+
+  /* ---------------------------------------------
+     EXPOSURE / DEMAND
+  --------------------------------------------- */
+
+  a.exposure = Math.min(
+    100,
+    (a.exposure || 0) + 8
+  );
+
+  a.demand = Math.min(
+    100,
+    (a.demand || 0) + 5
+  );
+
+
+  updateArtistStats(a);
+
+
+  /* ---------------------------------------------
+     ROTATION
+  --------------------------------------------- */
+
+  if(!S.rotation.includes(a.display)){
+    S.rotation.push(a.display);
+  }
+
+
+  /* ---------------------------------------------
+     RADIO DISPLAY
+  --------------------------------------------- */
+
+  $("status").textContent =
+    `ON AIR: ${a.display} — ${song.title}`;
+
+  $("tun").textContent =
+    `${a.display} • ${song.title}`;
+
+  $("mir").textContent =
+    "◉ ON AIR";
+
+  $("mir").classList.add("on");
+
+
+  /* ---------------------------------------------
+     AUDIO
+  --------------------------------------------- */
+
+  AUD.pause();
+
+  AUD.currentTime = 0;
+
+  AUD.src = encodeURI(song.file);
+
+  AUD.loop = false;
+
+  AUD.volume = .8;
+
+  const p = AUD.play();
+
+  if(p){
+
+    p.catch(() => {
+
+      $("tun").textContent =
+        "Tap DRIVE again to start audio";
+
+    });
+
+  }
+
+}
+
+
+/* ============================================================
+   ARTIST STATS
+============================================================ */
+
+function updateArtistStats(a){
+
+  if(!a) return;
+
+  $("aspin").textContent = a.spins || 0;
+
+  $("afans").textContent =
+    Math.round(
+      (a.fans || 0) +
+      ((a.spins || 0) * 3)
+    );
+
+  $("asales").textContent =
+    Math.round(
+      (a.sales || 0) +
+      ((a.spins || 0) * 1.5)
+    );
+
+  const exposure =
+    Math.min(100,a.exposure || 0);
+
+  const demand =
+    Math.min(100,a.demand || 0);
+
+  $("exposureBar").style.width =
+    exposure + "%";
+
+  $("demandBar").style.width =
+    demand + "%";
+
+  $("exposureText").textContent =
+    Math.round(exposure) + "%";
+
+  $("demandText").textContent =
+    Math.round(demand) + "%";
+
+}
+
+
+/* ============================================================
+   ARTIST PANEL
+============================================================ */
+
+function renderArtists(){
+
+  $("artists").innerHTML = "";
+
+  ARTISTS.forEach((a,index)=>{
+
+    const card =
+      document.createElement("div");
+
+    card.className = "artistCard";
+
+    card.innerHTML = `
+
+      <img
+        src="${a.photo}"
+        alt="${a.display}"
+        onerror="this.style.opacity='.2'"
+      >
+
+      <div class="artistInfo">
+
+        <div class="artistName">
+          ${a.display}
+        </div>
+
+        <div class="artistMeta">
+          ${(a.songs || []).length} tracks
+        </div>
+
+        <button
+          class="artistBtn"
+          data-index="${index}"
+        >
+          VIEW CATALOG
+        </button>
+
+      </div>
+
+    `;
+
+    $("artists").appendChild(card);
+
+  });
+
+}
+
+
+$("artists").addEventListener("click",e=>{
+
+  const btn =
+    e.target.closest(".artistBtn");
+
+  if(!btn) return;
+
+  const a =
+    ARTISTS[Number(btn.dataset.index)];
+
+  openArtist(a);
+
+});
+
+
+/* ============================================================
+   OPEN ARTIST
+============================================================ */
+
+function openArtist(a){
+
+  S.artist = a;
+
+  $("radioPanel").classList.add("hidden");
+
+  $("detail").classList.remove("hidden");
+
+  $("artistPhoto").src = a.photo;
+
+  $("name").textContent =
+    a.display;
+
+  $("desc").textContent =
+    a.description || "";
+
+  renderSongs(a);
+
+  updateArtistStats(a);
+
+}
+
+
+/* ============================================================
+   SONG LIST
+============================================================ */
+
+function renderSongs(a){
+
+  $("songs").innerHTML = "";
+
+  (a.songs || []).forEach((song,index)=>{
+
+    const row =
+      document.createElement("div");
+
+    row.className = "song";
+
+    row.innerHTML = `
+
+      <div class="songTitle">
+        ${index+1}. ${song.title}
+      </div>
+
+      <button
+        class="songBtn"
+        data-song="${index}"
+      >
+        DRIVE
+      </button>
+
+    `;
+
+    $("songs").appendChild(row);
+
+  });
+
+}
+
+
+$("songs").addEventListener("click",e=>{
+
+  const btn =
+    e.target.closest(".songBtn");
+
+  if(!btn || !S.artist) return;
+
+  const index =
+    Number(btn.dataset.song);
+
+  S.selectedSong =
+    S.artist.songs[index];
+
+  launch(
+    S.artist,
+    index,
+    false
+  );
+
+});
+
+
+/* ============================================================
+   SINGLE TRACK
+============================================================ */
+
+$("play").onclick = () => {
+
+  const a = S.artist;
+
+  if(!a) return;
+
+  const index =
+    Math.max(
+      0,
+      (a.songs || []).indexOf(
+        S.selectedSong
+      )
+    );
+
+  /*
+    IMPORTANT:
+    DO NOT PLAY HERE.
+
+    The song starts only when
+    the car passes the billboard.
+  */
+
+  launch(
+    a,
+    index,
+    false
+  );
+
+};
+
+
+/* ============================================================
+   FULL CATALOG
+============================================================ */
+
+$("cat").onclick = () => {
+
+  const a = S.artist;
+
+  if(!a) return;
+
+  launch(
+    a,
+    0,
+    true
+  );
+
+};
+
+
+/* ============================================================
+   LAUNCH DRIVE
+============================================================ */
+
+function launch(a,i0,auto){
+
+  const list =
+    (a.songs && a.songs.length)
+      ? a.songs
+      : [
+          {
+            title:a.display,
+            file:a.track
+          }
+        ];
+
+
+  S.run = {
+
+    a,
+
+    list,
+
+    n:list.length,
+
+    auto,
+
+    currentIndex:i0
+
+  };
+
+
+  S.waitingForNextSong = false;
+
+  S.currentBoard = null;
+
+
+  /*
+    ONLY ONE BILLBOARD EXISTS.
+
+    Nothing else gets created until
+    the current song finishes.
+  */
+
+  S.bbs = [
+
+    {
+      z:S.z + 30,
+      i:i0,
+      done:false
+    }
+
+  ];
+
+
+  S.cruise = 14;
+
+  S.menu = false;
+
+
+  $("detail").classList.add("hidden");
+
+  $("radioPanel").classList.add("hidden");
+
+
+  $("dtx").textContent =
+    `Billboard ahead for "${list[i0].title}". Pass it to start the song.`;
+
+}
+
+
+/* ============================================================
+   PASS BILLBOARD
+============================================================ */
+
+function passBoard(o){
+
+  if(!S.run) return;
+
+  if(o.done) return;
+
+
+  const r = S.run;
+
+  const song =
+    r.list[o.i];
+
+
+  if(!song) return;
+
+
+  /*
+    Mark billboard complete BEFORE
+    starting audio so it cannot fire twice.
+  */
+
+  o.done = true;
+
+  S.currentBoard = o;
+
+
+  /*
+    THIS IS WHERE THE SONG STARTS.
+
+    The player physically passes the billboard.
+  */
+
+  play(
+    r.a,
+    song
+  );
+
+
+  $("dtx").textContent =
+    `Now playing "${song.title}". The next billboard will appear when this song finishes.`;
+
+
+  /*
+    REMOVE CURRENT BILLBOARD.
+
+    This is important.
+
+    There is now ZERO billboard ahead
+    while the song is playing.
+  */
+
+  S.bbs = [];
+
+
+  if(r.auto){
+
+    S.waitingForNextSong = true;
+
+  }else{
+
+    S.cruise = 0;
+
+  }
+
+}
+
+
+/* ============================================================
+   SPAWN NEXT BILLBOARD
+============================================================ */
+
+function spawnNextBillboard(){
+
+  if(!S.run) return;
+
+  if(!S.run.auto) return;
+
+  const r = S.run;
+
+
+  const nextIndex =
+    r.currentIndex + 1;
+
+
+  /*
+    CATALOG FINISHED
+  */
+
+  if(nextIndex >= r.n){
+
+    S.waitingForNextSong = false;
+
+    endRun(
+      "Catalog complete. Every track received a spin."
+    );
+
+    return;
+
+  }
+
+
+  /*
+    ADVANCE TRACK
+  */
+
+  r.currentIndex =
+    nextIndex;
+
+
+  /*
+    CREATE EXACTLY ONE BILLBOARD.
+
+    This happens ONLY because the
+    previous song emitted "ended".
+  */
+
+  const nextZ =
+    Math.min(
+      S.z + 45,
+      LEN - 20
+    );
+
+
+  S.bbs = [
+
+    {
+      z:nextZ,
+      i:nextIndex,
+      done:false
+    }
+
+  ];
+
+
+  S.waitingForNextSong = false;
+
+
+  $("dtx").textContent =
+    `Next billboard ahead: "${r.list[nextIndex].title}". Keep driving.`;
+
+}
+
+
+/* ============================================================
+   END RUN
+============================================================ */
+
+function endRun(message){
+
+  $("status").textContent =
+    message;
+
+  $("dtx").textContent =
+    "Drive forward or return to the station.";
+
+  S.run = null;
+
+  S.bbs = [];
+
+  S.waitingForNextSong = false;
+
+  AUD.pause();
+
+  $("mir").textContent =
+    "◉ OFF AIR";
+
+  $("mir").classList.remove("on");
+
+  $("tun").textContent =
+    "8 Mile Radio";
+
+}
+
+
+/* ============================================================
+   BACK
+============================================================ */
+
+$("back").onclick = () => {
+
+  $("detail").classList.add("hidden");
+
+  if(S.driving){
+
+    $("status").textContent =
+      "Keep driving. The road is live.";
+
+  }
+
+};
+
+
+/* ============================================================
+   RADIO
+============================================================ */
+
+$("radio").onclick = () => {
+
+  if(!S.driving) return;
+
+  if(S.menu) return;
+
+  $("radioPanel").classList.remove("hidden");
+
+  $("detail").classList.add("hidden");
+
+  S.menu = true;
+
+};
+
+
+/* ============================================================
+   START
+============================================================ */
+
+$("start").onclick = () => {
+
+  if(S.driving) return;
+
+  S.driving = true;
+
+  $("start").disabled = true;
+
+  $("status").textContent =
+    "Driving. Find 8 Mile Radio.";
+
+  $("dtx").textContent =
+    "Use the steering controls and approach the radio station.";
+
+};
+
+
+/* ============================================================
+   CONTROL BUTTONS
+============================================================ */
+
+function steer(dir){
+
+  S.steer = dir;
+
+  setTimeout(()=>{
+
+    if(S.steer === dir){
+
+      S.steer = 0;
+
+    }
+
+  },120);
+
+}
+
+
+$("L").addEventListener("pointerdown",()=>{
+  steer(-1);
+});
+
+$("R").addEventListener("pointerdown",()=>{
+  steer(1);
+});
+
+
+$("G").addEventListener("pointerdown",()=>{
+
+  S.cruise = Math.min(
+    20,
+    S.cruise + 2
+  );
+
+});
+
+
+$("B").addEventListener("pointerdown",()=>{
+
+  S.cruise = Math.max(
+    0,
+    S.cruise - 4
+  );
+
+});
+
+
+/* ============================================================
+   KEYBOARD
+============================================================ */
+
+document.addEventListener("keydown",e=>{
+
+  if(e.key === "ArrowLeft")
+    S.steer = -1;
+
+  if(e.key === "ArrowRight")
+    S.steer = 1;
+
+  if(e.key === "ArrowUp")
+    S.cruise = Math.min(20,S.cruise+1);
+
+  if(e.key === "ArrowDown")
+    S.cruise = Math.max(0,S.cruise-2);
+
+});
+
+
+document.addEventListener("keyup",e=>{
+
+  if(
+    e.key === "ArrowLeft" ||
+    e.key === "ArrowRight"
+  ){
+
+    S.steer = 0;
+
+  }
+
+});
+
+
+/* ============================================================
+   ROAD DRAWING
+============================================================ */
+
+function road(){
+
+  ctx.fillStyle="#071018";
+  ctx.fillRect(0,0,W,HY);
+
+  ctx.fillStyle="#17191c";
+  ctx.fillRect(0,HY,W,H-HY);
+
+  /*
+    horizon glow
+  */
+
+  const grad =
+    ctx.createLinearGradient(
+      0,HY,
+      0,H
+    );
+
+  grad.addColorStop(0,"#22262b");
+  grad.addColorStop(1,"#080a0d");
+
+  ctx.fillStyle=grad;
+
+  ctx.fillRect(
+    0,
+    HY,
+    W,
+    H-HY
+  );
+
+
+  /*
+    ROAD EDGES
+  */
+
+  ctx.strokeStyle="#42464b";
+
+  ctx.lineWidth=2;
+
+  ctx.beginPath();
+
+  ctx.moveTo(60,HY);
+  ctx.lineTo(0,H);
+
+  ctx.moveTo(W-60,HY);
+  ctx.lineTo(W,H);
+
+  ctx.stroke();
+
+
+  /*
+    LANE MARKERS
+  */
+
+  ctx.strokeStyle="#777";
+
+  ctx.lineWidth=2;
+
+  for(let i=0;i<12;i++){
+
+    const p =
+      (i/12 + (S.z*.008)%1)%1;
+
+    const y =
+      HY + Math.pow(p,1.7)*(H-HY);
+
+    const x =
+      W/2;
+
+    const size =
+      2 + p*8;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      x-size,
+      y
+    );
+
+    ctx.lineTo(
+      x+size,
+      y
+    );
+
+    ctx.stroke();
+
+  }
+
+}
+
+
+/* ============================================================
+   BILLBOARD DRAW
+============================================================ */
+
+function billboard(
+  dz,
+  artist,
+  title,
+  sub
+){
+
+  const scale =
+    K / dz;
+
+  const x =
+    W/2 + S.x * scale;
+
+  const y =
+    HY + CAMH * scale;
+
+  const width =
+    Math.max(
+      25,
+      150 * scale
+    );
+
+  const height =
+    width * .56;
+
+
+  ctx.save();
+
+  ctx.translate(
+    x,
+    y
+  );
+
+
+  /*
+    posts
+  */
+
+  ctx.fillStyle="#3a3a38";
+
+  ctx.fillRect(
+    -width*.35,
+    0,
+    width*.07,
+    80*scale
+  );
+
+  ctx.fillRect(
+    width*.28,
+    0,
+    width*.07,
+    80*scale
+  );
+
+
+  /*
+    billboard
+  */
+
+  ctx.fillStyle="#080a0d";
+
+  ctx.fillRect(
+    -width/2,
+    -height,
+    width,
+    height
+  );
+
+
+  ctx.strokeStyle=AC;
+
+  ctx.lineWidth=
+    Math.max(1,2*scale);
+
+  ctx.strokeRect(
+    -width/2,
+    -height,
+    width,
+    height
+  );
+
+
+  /*
+    artist photo
+  */
+
+  if(artist.photo){
+
+    const img =
+      getImage(artist.photo);
+
+    if(img && img.complete){
+
+      ctx.save();
+
+      ctx.beginPath();
+
+      ctx.rect(
+        -width/2,
+        -height,
+        width,
+        height
+      );
+
+      ctx.clip();
+
+      ctx.globalAlpha=.55;
+
+      ctx.drawImage(
+        img,
+        -width/2,
+        -height,
+        width,
+        height
+      );
+
+      ctx.restore();
+
+    }
+
+  }
+
+
+  /*
+    dark overlay
+  */
+
+  ctx.fillStyle=
+    "rgba(0,0,0,.55)";
+
+  ctx.fillRect(
+    -width/2,
+    -height,
+    width,
+    height
+  );
+
+
+  /*
+    text
+  */
+
+  ctx.fillStyle="#fff";
+
+  ctx.textAlign="center";
+
+  ctx.font=
+    `bold ${Math.max(8,12*scale)}px Arial`;
+
+  ctx.fillText(
+    artist.display,
+    0,
+    -height*.55
+  );
+
+
+  ctx.fillStyle=AC;
+
+  ctx.font=
+    `bold ${Math.max(6,8*scale)}px Arial`;
+
+  ctx.fillText(
+    title,
+    0,
+    -height*.28
+  );
+
+
+  ctx.fillStyle="#ddd";
+
+  ctx.font=
+    `${Math.max(5,6*scale)}px Arial`;
+
+  ctx.fillText(
+    sub,
+    0,
+    -height*.08
+  );
+
+
+  ctx.restore();
+
+}
+
+
+/* ============================================================
+   IMAGE CACHE
+============================================================ */
+
+const IMAGE_CACHE = {};
+
+
+function getImage(src){
+
+  if(!src) return null;
+
+  if(!IMAGE_CACHE[src]){
+
+    const img =
+      new Image();
+
+    img.src = src;
+
+    IMAGE_CACHE[src] = img;
+
+  }
+
+  return IMAGE_CACHE[src];
+
+}
+
+
+/* ============================================================
+   GAME LOOP
+============================================================ */
+
+let last =
+  performance.now();
+
+
+function loop(now){
+
+  const dt =
+    Math.min(
+      .05,
+      (now-last)/1000
+    );
+
+  last = now;
+
+
+  update(dt);
+
+  draw();
+
+
+  requestAnimationFrame(loop);
+
+}
+
+
+function update(dt){
+
+  /*
+    SPEED
+  */
+
+  if(S.driving){
+
+    S.v +=
+      (S.cruise-S.v)
+      * Math.min(1,dt*3);
+
+    S.z +=
+      S.v * dt;
+
+    S.x +=
+      S.steer *
+      dt *
+      70;
+
+    S.x *= .985;
+
+
+    if(S.z > LEN){
+
+      S.z = 2;
+
+    }
+
+  }else{
+
+    S.v = 0;
+
+  }
+
+
+  /*
+    WHEEL
+  */
+
+  $("wheel").style.transform =
+    `rotate(${S.steer*22}deg)`;
+
+
+  $("spd").textContent =
+    Math.round(S.v);
+
+
+  /*
+    BILLBOARD COLLISION
+
+    The billboard triggers ONLY
+    when the player reaches it.
+
+    There is no distance-based
+    creation of future billboards.
+  */
+
+  if(S.run && !S.waitingForNextSong){
+
+    S.bbs.forEach(o=>{
+
+      if(
+        !o.done &&
+        S.z > o.z + 1.5
+      ){
+
+        passBoard(o);
+
+      }
+
+    });
+
+  }
+
+
+  /*
+    RADIO STATION
+  */
+
+  if(
+    Math.abs(S.z-RZ)<9 &&
+    S.v<7 &&
+    !S.menu &&
+    !S.run
+  ){
+
+    $("status").textContent =
+      "8 Mile Radio nearby. Slow down and tune in.";
+
+  }
+
+
+  /*
+    CASH / REVENUE
+  */
+
+  $("cash").textContent =
+    Math.round(S.cash);
+
+  $("gross").textContent =
+    Math.round(S.gross);
+
+}
+
+
+/* ============================================================
+   DRAW
+============================================================ */
+
+function draw(){
+
+  ctx.clearRect(
+    0,
+    0,
+    W,
+    H
+  );
+
+
+  road();
+
+
+  /*
+    Billboard layer
+  */
+
+  const items=[];
+
+
+  if(S.run){
+
+    S.bbs.forEach(o=>{
+
+      const song =
+        S.run.list[o.i];
+
+      if(!song) return;
+
+      items.push({
+
+        dz:o.z-S.z,
+
+        f:()=>billboard(
+          o.z-S.z,
+          S.run.a,
+          song.title,
+          S.run.n>1
+            ? `Track ${o.i+1} of ${S.run.n}`
+            : "Now Playing"
+        )
+
+      });
+
+    });
+
+  }else{
+
+    /*
+      Station billboard
+    */
+
+    const dz =
+      RZ + 9 - S.z;
+
+    if(
+      dz>NEAR &&
+      dz<150
+    ){
+
+      items.push({
+
+        dz,
+
+        f:()=>billboard(
+          dz,
+          ARTISTS[0],
+          "8 Mile Radio",
+          "Independent Artist Discovery"
+        )
+
+      });
+
+    }
+
+  }
+
+
+  /*
+    Draw far objects first.
+  */
+
+  items
+    .sort((a,b)=>b.dz-a.dz)
+    .forEach(o=>o.f());
+
+
+  /*
+    Road car hood
+  */
+
+  ctx.fillStyle="#090b0e";
+
+  ctx.beginPath();
+
+  ctx.moveTo(0,H);
+
+  ctx.lineTo(65,265);
+
+  ctx.lineTo(415,265);
+
+  ctx.lineTo(W,H);
+
+  ctx.closePath();
+
+  ctx.fill();
+
+
+  /*
+    hood line
+  */
+
+  ctx.strokeStyle="#30353b";
+
+  ctx.beginPath();
+
+  ctx.moveTo(65,265);
+
+  ctx.lineTo(415,265);
+
+  ctx.stroke();
+
+
+  /*
+    Current billboard status
+  */
+
+  if(S.run && S.waitingForNextSong){
+
+    ctx.fillStyle=
+      "rgba(0,0,0,.45)";
+
+    ctx.fillRect(
+      145,
+      16,
+      190,
+      25
+    );
+
+    ctx.fillStyle="#fff";
+
+    ctx.textAlign="center";
+
+    ctx.font="10px Arial";
+
+    ctx.fillText(
+      "WAITING FOR TRACK TO FINISH",
+      W/2,
+      32
+    );
+
+  }
+
+}
+
+
+/* ============================================================
+   INITIALIZE
+============================================================ */
+
+renderArtists();
+
+updateArtistStats(
+  ARTISTS[0]
+);
+
+requestAnimationFrame(loop);
+
+
+/* ============================================================
+   RADIO BUTTON
+============================================================ */
+
+const radioButton =
+  document.createElement("button");
+
+radioButton.id="radio";
+
+radioButton.className=
+  "ctrl primary";
+
+radioButton.textContent=
+  "RADIO";
+
+radioButton.disabled=true;
+
+
+/*
+  Put radio button into controls.
+*/
+
+document
+  .querySelector(".controls")
+  .appendChild(radioButton);
+
+
+/*
+  Enable radio when near station.
+*/
+
+setInterval(()=>{
+
+  if(
+    S.driving &&
+    Math.abs(S.z-RZ)<9 &&
+    S.v<7 &&
+    !S.run
+  ){
+
+    radioButton.disabled=false;
+
+  }else{
+
+    radioButton.disabled=true;
+
+  }
+
+},100);
+
+
+/*
+  Tune in.
+*/
+
+radioButton.onclick=()=>{
+
+  if(radioButton.disabled) return;
+
+  S.menu=true;
+
+  $("radioPanel").classList.remove("hidden");
+
+  $("detail").classList.add("hidden");
+
+  $("status").textContent =
+    "8 Mile Radio — choose an artist.";
+
+  $("dtx").textContent =
+    "Choose an artist, then select a track or drive the complete catalog.";
+
+};
+
+
+/* ============================================================
+   RESET MENU WHEN ARTIST SELECTED
+============================================================ */
+
+$("radioPanel").addEventListener("click",e=>{
+
+  if(e.target.closest(".artistBtn")){
+
+    S.menu=true;
+
+  }
+
+});
+
+
+/* ============================================================
+   STOP MENU WHEN DRIVING
+============================================================ */
+
+function closeMenus(){
+
+  $("radioPanel").classList.add("hidden");
+
+  $("detail").classList.add("hidden");
+
+  S.menu=false;
+
+}
+
+
+/* ============================================================
+   AUDIO STOP WHEN PAGE HIDDEN
+============================================================ */
+
+document.addEventListener(
+  "visibilitychange",
+  ()=>{
+
+    if(document.hidden){
+
+      AUD.pause();
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
