@@ -276,77 +276,471 @@ h1{margin:0;font-size:24px;letter-spacing:.14em;color:var(--cy);text-shadow:0 0 
 a.bt{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
 #gcash{color:var(--lm);font-weight:bold;font-size:16px}
 .bars{display:grid;gap:6px}
+   
+  .music-history{
+  margin:12px 0;
+  padding:14px 16px;
+  border:1px solid var(--bd);
+  border-radius:12px;
+  background:rgba(7,3,26,.88);
+}
+
+.history-label{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.16em;
+  color:var(--cy);
+  margin-bottom:5px;
+}
+
+#historyCity{
+  font-size:15px;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:.06em;
+  margin-bottom:6px;
+}
+
+#historyFact{
+  min-height:38px;
+  color:var(--mu);
+  font-size:13px;
+  line-height:1.5;
+  transition:opacity .25s ease;
+}
+
+.history-dots{
+  display:flex;
+  gap:5px;
+  margin-top:10px;
+}
+
+.history-dots span{
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--bd);
+}
+
+.history-dots span.active{
+  background:var(--lm);
+} 
 </style>
 </head>
 <body>
+
 <div class="w">
-<header><h1>THE STATIC</h1><div class="sub">Cruise. Discover. Customize.</div></header>
 
-<section class="cab">
-<canvas id="cv" width="480" height="300"></canvas>
-<div id="hud"><span id="hCity">DETROIT</span><span id="cash">$500,500</span></div>
-<div id="badge" class="hidden"></div>
-<div id="banner"><b id="bnC"></b><i id="bnL"></i></div>
-<svg id="wheel" viewBox="0 0 100 100">
-<circle cx="50" cy="50" r="42" fill="#10082a" stroke="#00f0ff" stroke-width="6"/>
-<circle cx="50" cy="50" r="10" fill="#1a0f45" stroke="#ff2bd6" stroke-width="3"/>
-<path d="M50 40 L50 10 M43 54 L19 70 M57 54 L81 70" stroke="#ff2bd6" stroke-width="7" stroke-linecap="round"/>
-</svg>
-</section>
+  <header>
+    <h1>THE STATIC</h1>
+    <div class="sub">Cruise. Discover. Customize.</div>
+  </header>
 
-<div class="controls">
-<button class="ctrl" id="L"> LEFT</button>
-<button class="ctrl b" id="B">BRAKE</button>
-<button class="ctrl g" id="G">GAS</button>
-<button class="ctrl" id="R">RIGHT </button>
-</div>
-<div class="controls two">
-<button class="ctrl big b pulse" id="deckBtn"> TAPE DECK</button>
-<button class="ctrl big" id="shopBtn"> SHOP</button>
+  <!-- DRIVING CABIN -->
+  <section class="cab">
+
+    <canvas id="cv" width="480" height="300"></canvas>
+
+    <div id="hud">
+      <span id="hCity">DETROIT</span>
+      <span id="cash">$500,500</span>
+    </div>
+
+    <div id="badge" class="hidden"></div>
+
+    <div id="banner">
+      <b id="bnC"></b>
+      <i id="bnL"></i>
+    </div>
+
+    <!-- STEERING WHEEL -->
+    <svg id="wheel" viewBox="0 0 100 100" aria-label="Steering wheel">
+
+      <circle
+        cx="50"
+        cy="50"
+        r="42"
+        fill="#10082a"
+        stroke="#00f0ff"
+        stroke-width="6"
+      />
+
+      <circle
+        cx="50"
+        cy="50"
+        r="10"
+        fill="#1a0f45"
+        stroke="#ff2bd6"
+        stroke-width="3"
+      />
+
+      <path
+        d="M50 40 L50 10 M43 54 L19 70 M57 54 L81 70"
+        stroke="#ff2bd6"
+        stroke-width="7"
+        stroke-linecap="round"
+      />
+
+    </svg>
+
+  </section>
+
+
+  <!-- DRIVING CONTROLS -->
+  <div class="controls">
+
+    <button class="ctrl" id="L">
+      LEFT
+    </button>
+
+    <button class="ctrl b" id="B">
+      BRAKE
+    </button>
+
+    <button class="ctrl g" id="G">
+      GAS
+    </button>
+
+    <button class="ctrl" id="R">
+      RIGHT
+    </button>
+
+  </div>
+
+
+  <!-- SECONDARY CONTROLS -->
+  <div class="controls two">
+
+    <button class="ctrl big b pulse" id="deckBtn">
+      TAPE DECK
+    </button>
+
+    <button class="ctrl big" id="shopBtn">
+      SHOP
+    </button>
+
+  </div>
+
+
+  <!-- STATUS -->
+  <section class="status">
+
+    <div id="status">
+      Parked. Tap START DRIVE, then open the TAPE DECK and press PLAY.
+    </div>
+
+    <div id="np"></div>
+
+    <button id="start">
+      START DRIVE
+    </button>
+
+  </section>
+
+
+  <!-- MUSIC HISTORY -->
+  <section id="musicHistory" class="music-history">
+
+    <div class="history-label">
+      MUSIC HISTORY
+    </div>
+
+    <div id="historyCity">
+      DETROIT
+    </div>
+
+    <div id="historyFact">
+      Motown transforms American pop, soul, and R&amp;B.
+    </div>
+
+    <div
+      class="history-dots"
+      id="historyDots"
+    ></div>
+
+  </section>
+
 </div>
 
-<section class="status">
-<div id="status">Parked. Tap START DRIVE, then open the TAPE DECK and press PLAY.</div>
-<div id="np"></div>
-<button id="start">START DRIVE</button>
-</section>
-</div>
 
 <!-- TAPE DECK -->
-<div id="deck" class="ov hidden"><div class="card" id="deckCard">
-<div class="row"><b class="ttl">TAPE DECK</b><button class="x" data-close>✕ CLOSE</button></div>
-<div class="cass"><svg viewBox="0 0 200 84">
-<rect x="2" y="2" width="196" height="80" rx="9" fill="#10082a" stroke="#ff2bd6" stroke-width="2.5"/>
-<rect x="30" y="12" width="140" height="42" rx="21" fill="#05010f" stroke="#00f0ff" stroke-width="2"/>
-<g class="reel"><circle cx="64" cy="33" r="14" fill="none" stroke="#b6ff00" stroke-width="3"/><path d="M64 21V45M52 33H76" stroke="#b6ff00" stroke-width="3"/></g>
-<g class="reel"><circle cx="136" cy="33" r="14" fill="none" stroke="#b6ff00" stroke-width="3"/><path d="M136 21V45M124 33H148" stroke="#b6ff00" stroke-width="3"/></g>
-<rect x="60" y="62" width="80" height="14" rx="3" fill="#1a0f45" stroke="#00f0ff"/>
-<text x="100" y="73" text-anchor="middle" font-size="9" font-weight="bold" fill="#ff2bd6" font-family="Arial">MACKINTHEDARK</text>
-</svg></div>
-<div class="art"><img id="dPhoto" src="./assets/photos/Mitd.PNG" alt="Mackinthedark"><div><div class="an">MACKINTHEDARK</div><div class="small">Detroit-rooted independent music and catalog discovery.</div></div></div>
-<div class="nowp"><div class="small">NOW PLAYING</div><div id="dSong">Press PLAY</div><div id="dCity">DETROIT</div><div class="pb"><i id="dBar"></i></div></div>
-<button id="dMsg" class="msg hidden"></button>
-<div class="tc"><button id="bPrev"> PREVIOUS</button><button id="bPlay"> PLAY</button><button id="bNext">NEXT </button></div>
-<div class="small" style="margin-top:12px">TRACKS</div>
-<div id="trk"></div>
-</div></div>
+<div id="deck" class="ov hidden">
+
+  <div class="card" id="deckCard">
+
+    <div class="row">
+      <b class="ttl">TAPE DECK</b>
+      <button class="x" data-close>CLOSE</button>
+    </div>
+
+
+    <div class="cass">
+
+      <svg viewBox="0 0 200 84">
+
+        <rect
+          x="2"
+          y="2"
+          width="196"
+          height="80"
+          rx="9"
+          fill="#10082a"
+          stroke="#ff2bd6"
+          stroke-width="2.5"
+        />
+
+        <rect
+          x="30"
+          y="12"
+          width="140"
+          height="42"
+          rx="21"
+          fill="#05010f"
+          stroke="#00f0ff"
+          stroke-width="2"
+        />
+
+        <g class="reel">
+
+          <circle
+            cx="64"
+            cy="33"
+            r="14"
+            fill="none"
+            stroke="#b6ff00"
+            stroke-width="3"
+          />
+
+          <path
+            d="M64 21V45M52 33H76"
+            stroke="#b6ff00"
+            stroke-width="3"
+          />
+
+        </g>
+
+        <g class="reel">
+
+          <circle
+            cx="136"
+            cy="33"
+            r="14"
+            fill="none"
+            stroke="#b6ff00"
+            stroke-width="3"
+          />
+
+          <path
+            d="M136 21V45M124 33H148"
+            stroke="#b6ff00"
+            stroke-width="3"
+          />
+
+        </g>
+
+        <rect
+          x="60"
+          y="62"
+          width="80"
+          height="14"
+          rx="3"
+          fill="#1a0f45"
+          stroke="#00f0ff"
+        />
+
+        <text
+          x="100"
+          y="73"
+          text-anchor="middle"
+          font-size="9"
+          font-weight="bold"
+          fill="#ff2bd6"
+          font-family="Arial"
+        >
+          MACKINTHEDARK
+        </text>
+
+      </svg>
+
+    </div>
+
+
+    <!-- ARTIST -->
+    <div class="art">
+
+      <img
+        id="dPhoto"
+        src="./assets/photos/Mitd.PNG"
+        alt="Mackinthedark"
+      >
+
+      <div>
+
+        <div class="an">
+          MACKINTHEDARK
+        </div>
+
+        <div class="small">
+          Detroit-rooted independent music and catalog discovery.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- CURRENT TRACK -->
+    <div class="nowp">
+
+      <div class="small">
+        NOW PLAYING
+      </div>
+
+      <div id="dSong">
+        Press PLAY
+      </div>
+
+      <div id="dCity">
+        DETROIT
+      </div>
+
+      <div class="pb">
+        <i id="dBar"></i>
+      </div>
+
+    </div>
+
+
+    <button
+      id="dMsg"
+      class="msg hidden"
+    ></button>
+
+
+    <!-- PLAYER CONTROLS -->
+    <div class="tc">
+
+      <button id="bPrev">
+        PREVIOUS
+      </button>
+
+      <button id="bPlay">
+        PLAY
+      </button>
+
+      <button id="bNext">
+        NEXT
+      </button>
+
+    </div>
+
+
+    <div
+      class="small"
+      style="margin-top:12px"
+    >
+      TRACKS
+    </div>
+
+    <div id="trk"></div>
+
+  </div>
+
+</div>
+
 
 <!-- GARAGE -->
-<div id="garage" class="ov hidden"><div class="card">
-<div class="row"><b class="ttl">GARAGE</b><span id="gcash"></span><button class="x" data-close>✕ CLOSE</button></div>
-<canvas id="pv" width="300" height="140"></canvas>
-<div class="tabs" id="tabs"></div>
-<div id="gBody"></div>
-</div></div>
+<div id="garage" class="ov hidden">
 
-<!-- ALERT -->
-<div id="alert" class="ov hidden"><div class="card">
-<div class="ttl">⚠ VEHICLE ALERT</div>
-<div id="alT" style="font-size:22px;font-weight:bold;margin:12px 0 6px;color:#fff"></div>
-<div id="alD" class="small" style="font-size:14px"></div>
-<button class="bt" id="alGo" style="width:100%;margin-top:14px;min-height:52px">GO TO AUTO SHOP</button>
-<button class="x" data-close style="width:100%;margin-top:8px">KEEP CRUISING</button>
-</div></div>
+  <div class="card">
+
+    <div class="row">
+
+      <b class="ttl">
+        GARAGE
+      </b>
+
+      <span id="gcash"></span>
+
+      <button
+        class="x"
+        data-close
+      >
+        CLOSE
+      </button>
+
+    </div>
+
+    <canvas
+      id="pv"
+      width="300"
+      height="140"
+    ></canvas>
+
+    <div
+      class="tabs"
+      id="tabs"
+    ></div>
+
+    <div id="gBody"></div>
+
+  </div>
+
+</div>
+
+
+<!-- VEHICLE ALERT -->
+<div id="alert" class="ov hidden">
+
+  <div class="card">
+
+    <div class="ttl">
+      VEHICLE ALERT
+    </div>
+
+    <div
+      id="alT"
+      style="
+        font-size:22px;
+        font-weight:bold;
+        margin:12px 0 6px;
+        color:#fff
+      "
+    ></div>
+
+    <div
+      id="alD"
+      class="small"
+      style="font-size:14px"
+    ></div>
+
+    <button
+      class="bt"
+      id="alGo"
+      style="
+        width:100%;
+        margin-top:14px;
+        min-height:52px
+      "
+    >
+      GO TO AUTO SHOP
+    </button>
+
+    <button
+      class="x"
+      data-close
+      style="
+        width:100%;
+        margin-top:8px
+      "
+    >
+      KEEP CRUISING
+    </button>
+
+  </div>
+
+</div>
+
 
 <script>
 "use strict";
@@ -379,19 +773,146 @@ const SONGS=[
 
 /* ---------- CITY THEMES (neon) ---------- */
 const TH={
-"Detroit":{s0:[40,20,120],s1:[255,70,170],g:[22,10,44],b:[74,60,120],a:[0,240,255],k:"tw",lm:"Woodward Avenue"},
-"New Orleans":{s0:[70,10,110],s1:[255,150,40],g:[28,10,34],b:[130,60,100],a:[255,43,214],k:"sp",lm:"French Quarter"},
-"Los Angeles":{s0:[60,20,140],s1:[255,110,50],g:[26,12,40],b:[110,70,130],a:[255,214,0],k:"tw",pm:1,lm:"Hollywood Boulevard"},
-"Las Vegas":{s0:[10,0,40],s1:[190,0,255],g:[18,6,40],b:[70,24,120],a:[255,40,200],k:"tw",lm:"The Strip"},
-"Myrtle Beach":{s0:[0,110,200],s1:[0,255,220],g:[8,56,70],b:[60,120,160],a:[0,255,200],k:"sea",pm:1,lm:"Oceanfront"},
-"Atlanta":{s0:[20,30,120],s1:[0,200,255],g:[12,18,44],b:[50,84,130],a:[182,255,0],k:"tw",lm:"Peachtree Street"},
-"Tokyo":{s0:[20,0,70],s1:[255,0,110],g:[20,6,40],b:[70,34,110],a:[255,0,110],k:"tw",lm:"Shibuya Crossing"},
-"Miami":{s0:[255,60,160],s1:[0,230,255],g:[30,10,50],b:[200,90,170],a:[0,255,230],k:"sea",pm:1,lm:"Ocean Drive"},
-"Memphis":{s0:[50,10,90],s1:[255,80,40],g:[26,10,30],b:[110,50,80],a:[255,120,0],k:"sp",lm:"Beale Street"},
-"Salt Lake City":{s0:[10,40,120],s1:[160,120,255],g:[14,16,48],b:[70,96,140],a:[120,255,255],k:"mt",lm:"Wasatch Mountains"},
-"London":{s0:[30,40,90],s1:[130,170,230],g:[16,16,40],b:[84,84,130],a:[255,40,80],k:"sp",lm:"West End"}};
-"Cozumel":{s0:[0,110,150],s1:[0,230,190],g:[5,35,42],b:[40,120,130],a:[255,190,60],k:"sea",pm:1,lm:"San Miguel Waterfront"},
-const cur={s0:TH.Detroit.s0.slice(),s1:TH.Detroit.s1.slice(),g:TH.Detroit.g.slice(),b:TH.Detroit.b.slice(),a:TH.Detroit.a.slice()};
+"Detroit":{
+  s0:[40,20,120],s1:[255,70,170],g:[22,10,44],b:[74,60,120],a:[0,240,255],
+  k:"tw",lm:"Woodward Avenue",
+  hist:[
+    "1960s — Motown transforms American pop, soul, and R&B.",
+    "1970s — Funk, gospel, rock, and soul continue shaping Detroit.",
+    "1980s — Detroit techno emerges from the city's underground scene.",
+    "1990s+ — Detroit hip-hop develops a distinctive local sound."
+  ]
+},
+
+"New Orleans":{
+  s0:[70,10,110],s1:[255,150,40],g:[28,10,34],b:[130,60,100],a:[255,43,214],
+  k:"sp",lm:"French Quarter",
+  hist:[
+    "Early 1900s — New Orleans becomes a major birthplace of jazz.",
+    "1950s–60s — R&B and rhythm-driven music thrive across the city.",
+    "1970s — Funk and soul become central to the New Orleans sound.",
+    "Today — Brass bands, jazz, bounce, and hip-hop keep evolving."
+  ]
+},
+
+"Los Angeles":{
+  s0:[60,20,140],s1:[255,110,50],g:[26,12,40],b:[110,70,130],a:[255,214,0],
+  k:"tw",pm:1,lm:"Hollywood Boulevard",
+  hist:[
+    "1920s+ — Hollywood becomes a center for recorded and film music.",
+    "1960s–70s — Rock, funk, soul, and R&B flourish throughout L.A.",
+    "1980s–90s — West Coast hip-hop becomes globally influential.",
+    "Today — L.A. remains a major recording and entertainment hub."
+  ]
+},
+
+"Las Vegas":{
+  s0:[10,0,40],s1:[190,0,255],g:[18,6,40],b:[70,24,120],a:[255,40,200],
+  k:"tw",lm:"The Strip",
+  hist:[
+    "1950s–60s — Las Vegas becomes famous for legendary live performers.",
+    "1970s–80s — Lounge, pop, rock, and major casino shows dominate.",
+    "1990s+ — DJs, residencies, and arena shows reshape the Strip.",
+    "Today — Las Vegas is one of the world's major live-music destinations."
+  ]
+},
+
+"Myrtle Beach":{
+  s0:[0,110,200],s1:[0,255,220],g:[8,56,70],b:[60,120,160],a:[0,255,200],
+  k:"sea",pm:1,lm:"Oceanfront",
+  hist:[
+    "1950s+ — Beach music and Carolina soul become part of the region's identity.",
+    "1960s–70s — Surf, rock, and R&B become staples of the coast.",
+    "1980s+ — Live bands and entertainment grow throughout the Grand Strand.",
+    "Today — Myrtle Beach remains known for live music and entertainment."
+  ]
+},
+
+"Atlanta":{
+  s0:[20,30,120],s1:[0,200,255],g:[12,18,44],b:[50,84,130],a:[182,255,0],
+  k:"tw",lm:"Peachtree Street",
+  hist:[
+    "1960s–70s — Atlanta develops deep roots in gospel, soul, and R&B.",
+    "1980s — Southern hip-hop begins gaining national attention.",
+    "1990s–2000s — Atlanta becomes a major force in hip-hop and R&B.",
+    "Today — Atlanta remains a major center for Southern music."
+  ]
+},
+
+"Tokyo":{
+  s0:[20,0,70],s1:[255,0,110],g:[20,6,40],b:[70,34,110],a:[255,0,110],
+  k:"tw",lm:"Shibuya Crossing",
+  hist:[
+    "1950s–60s — Jazz and American pop strongly influence Japanese musicians.",
+    "1970s–80s — City pop and electronic music develop distinctive sounds.",
+    "1990s+ — J-pop, hip-hop, techno, and club culture expand.",
+    "Today — Tokyo is a major center for electronic and popular music."
+  ]
+},
+
+"Miami":{
+  s0:[255,60,160],s1:[0,230,255],g:[30,10,50],b:[200,90,170],a:[0,255,230],
+  k:"sea",pm:1,lm:"Ocean Drive",
+  hist:[
+    "1950s–70s — Latin, Caribbean, soul, and funk influence Miami's sound.",
+    "1980s — Miami bass becomes a defining regional style.",
+    "1990s+ — Latin pop, hip-hop, dance, and electronic music expand.",
+    "Today — Miami remains deeply connected to Latin and Caribbean music."
+  ]
+},
+
+"Memphis":{
+  s0:[50,10,90],s1:[255,80,40],g:[26,10,30],b:[110,50,80],a:[255,120,0],
+  k:"sp",lm:"Beale Street",
+  hist:[
+    "Early 1900s — Beale Street becomes a center of blues culture.",
+    "1950s–60s — Memphis soul and R&B reach international audiences.",
+    "1970s+ — Funk, gospel, and Southern soul continue the tradition.",
+    "Today — Memphis remains closely associated with blues, soul, and rock."
+  ]
+},
+
+"Salt Lake City":{
+  s0:[10,40,120],s1:[160,120,255],g:[14,16,48],b:[70,96,140],a:[120,255,255],
+  k:"mt",lm:"Wasatch Mountains",
+  hist:[
+    "Early 1900s — Community bands and orchestras establish a strong local scene.",
+    "1950s–70s — Jazz, folk, rock, and country gain audiences.",
+    "1980s+ — Independent and alternative music scenes expand.",
+    "Today — Salt Lake City supports a diverse live-music community."
+  ]
+},
+
+"London":{
+  s0:[30,40,90],s1:[130,170,230],g:[16,16,40],b:[84,84,130],a:[255,40,80],
+  k:"sp",lm:"West End",
+  hist:[
+    "1960s — British rock and pop reshape international music.",
+    "1970s — Punk, glam, reggae, and electronic scenes emerge.",
+    "1980s–90s — New wave, electronic, Britpop, and dance music expand.",
+    "Today — London remains one of the world's major music centers."
+  ]
+},
+
+"Cozumel":{
+  s0:[0,110,150],s1:[0,230,190],g:[5,35,42],b:[40,120,130],a:[255,190,60],
+  k:"sea",pm:1,lm:"San Miguel Waterfront",
+  hist:[
+    "Caribbean roots — Cozumel's music reflects Mexican and Caribbean traditions.",
+    "Island culture — Cuban and Afro-Caribbean sounds influence local music.",
+    "Tourism era — Live bands, DJs, and beach performances become central.",
+    "Today — San Miguel combines traditional influences with modern island nightlife."
+  ]
+}
+};
+
+const cur={
+  s0:TH.Detroit.s0.slice(),
+  s1:TH.Detroit.s1.slice(),
+  g:TH.Detroit.g.slice(),
+  b:TH.Detroit.b.slice(),
+  a:TH.Detroit.a.slice()
+};
 
 /* ---------- GARAGE DATA ---------- */
 const CAT={
@@ -431,12 +952,26 @@ let T=0,N=0,DK=1;
 
 function setCity(name){
   if(!TH[name])return;
-  if(TH[name].k!==S.k1){S.k0=S.k1;S.k1=TH[name].k;S.kf=0}
+
+  if(TH[name].k!==S.k1){
+    S.k0=S.k1;
+    S.k1=TH[name].k;
+    S.kf=0;
+  }
+
   S.city=name;
+
   $("hCity").textContent=name.toUpperCase();
   $("bnC").textContent=name.toUpperCase();
   $("bnL").textContent=TH[name].lm;
-  const b=$("banner");b.classList.remove("go");void b.offsetWidth;b.classList.add("go");
+
+  // Update music history for the new city
+  updateMusicHistory(name);
+
+  const b=$("banner");
+  b.classList.remove("go");
+  void b.offsetWidth;
+  b.classList.add("go");
 }
 
 /* ---------- AUDIO ---------- */
@@ -517,6 +1052,51 @@ $("deckBtn").addEventListener("click",()=>{openOv("deck");ui()});
 $("shopBtn").addEventListener("click",()=>openShop("INTERIOR"));
 $("badge").addEventListener("click",()=>openShop("SERVICE"));
 $("alGo").addEventListener("click",()=>openShop("SERVICE"));
+
+   let historyIndex = 0;
+let historyTimer = null;
+
+function updateMusicHistory(city){
+  const data = TH[city];
+  if(!data || !data.hist) return;
+
+  historyIndex = 0;
+
+  const cityEl = document.getElementById("historyCity");
+  const factEl = document.getElementById("historyFact");
+  const dotsEl = document.getElementById("historyDots");
+
+  if(!cityEl || !factEl) return;
+
+  cityEl.textContent = city.toUpperCase();
+  factEl.textContent = data.hist[historyIndex];
+
+  if(dotsEl){
+    dotsEl.innerHTML = data.hist.map((_,i)=>
+      `<span class="${i === 0 ? "active" : ""}"></span>`
+    ).join("");
+  }
+
+  clearInterval(historyTimer);
+
+  historyTimer = setInterval(()=>{
+    historyIndex = (historyIndex + 1) % data.hist.length;
+
+    factEl.style.opacity = "0";
+
+    setTimeout(()=>{
+      factEl.textContent = data.hist[historyIndex];
+      factEl.style.opacity = "1";
+
+      if(dotsEl){
+        [...dotsEl.children].forEach((dot,i)=>{
+          dot.classList.toggle("active",i === historyIndex);
+        });
+      }
+    },250);
+
+  },7000);
+}
 
 /* ---------- CONTROLS ---------- */
 function hold(id,d){
@@ -806,7 +1386,7 @@ function cockpit(){
   f(dc);ctx.textAlign="center";ctx.font="bold 18px Arial";ctx.fillText(Math.round(S.v*3.6)+"",215,290);
   ctx.font="bold 8px Arial";ctx.fillText("KM/H",215,276);
   const a=A.i>=0?SONGS[A.i]:null;
-  f("#ff2bd6");ctx.font="bold 9px Arial";ctx.fillText(a?(A.playing?"▶ ":"❚❚ ")+a.t.slice(0,18):"📼 TAPE DECK",262,280);
+  f("#ff2bd6");ctx.font="bold 9px Arial";ctx.fillText(a?(A.playing?"▶ ":"❚❚ ")+a.t.slice(0,18):" TAPE DECK",262,280);
   f("#a596d0");ctx.font="8px Arial";ctx.fillText(a?a.c:S.city,262,291);
   if(G.eq.DASHBOARD==="Digital"){
     ctx.strokeStyle=dc;ctx.lineWidth=3;ctx.shadowColor=dc;ctx.shadowBlur=8;
