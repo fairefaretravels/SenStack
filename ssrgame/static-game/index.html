@@ -1276,6 +1276,36 @@ document.addEventListener("keydown",e=>{
 });
 document.addEventListener("keyup",e=>{if(e.key==="ArrowLeft"||e.key==="ArrowRight")S.steer=0});
 
+/* ---------- DIGITAL CASH ---------- */
+
+function earnCash(amount, reason="MISSION COMPLETE"){
+  amount = Math.max(0, Math.round(amount));
+
+  G.cash += amount;
+
+  save();
+  ui();
+
+  if ($("gcash")) {
+    $("gcash").textContent =
+      "+$" + amount + " — " + reason;
+  }
+}
+
+function spendCash(amount){
+  amount = Math.max(0, Math.round(amount));
+
+  if (G.cash < amount) {
+    return false;
+  }
+
+  G.cash -= amount;
+
+  save();
+  ui();
+
+  return true;
+}   
 /* ---------- GARAGE UI ---------- */
 let tab="INTERIOR";
 const TABS=["INTERIOR","PAINT","SEATS","LIGHTING","WHEELS","TIRES","DASHBOARD","AUDIO","SERVICE","REAL"];
