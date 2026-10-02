@@ -119,23 +119,148 @@ h1{margin:0;font-size:24px;letter-spacing:.14em;color:var(--cy);text-shadow:0 0 
 .reel{transform-box:fill-box;transform-origin:center}
 .spin .reel{animation:sp 1.6s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-.art{display:flex;gap:12px;align-items:center}
-.art img{width:84px;height:84px;object-fit:cover;border-radius:12px;border:2px solid var(--cy);box-shadow:0 0 12px var(--cy);background:#1a0f45}
-.an{font-size:18px;font-weight:bold;letter-spacing:.06em;color:#fff;margin-bottom:4px}
-.nowp{margin:12px 0;padding:10px;border:1px solid var(--bd);border-radius:12px;background:#07031a}
-#dSong{font-size:20px;font-weight:bold;color:var(--lm);text-shadow:0 0 8px var(--lm);margin-top:2px;word-break:break-word}
-#dCity{font-size:14px;color:var(--cy);margin-top:2px}
-.pb{height:6px;margin-top:8px;border-radius:6px;background:#241554;overflow:hidden}
-.pb i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cy),var(--mg))}
-.msg{width:100%;min-height:48px;margin-bottom:8px;border:2px solid var(--mg);border-radius:10px;background:#2a0620;color:#fff;font-weight:bold;font-size:14px}
-.tc{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:8px}
-.tc button{min-height:54px;border:2px solid var(--cy);border-radius:12px;background:#0b0724;font-weight:bold;font-size:13px}
-#bPlay{border-color:var(--lm);color:var(--lm);font-size:15px}
-#trk{display:grid;gap:6px;margin-top:6px}
-.t{display:flex;align-items:center;gap:8px;min-height:46px;padding:6px 10px;border:1px solid var(--bd);border-radius:10px;background:#07031a;text-align:left;width:100%}
-.t.on{border-color:var(--lm);background:#14210a;color:var(--lm);box-shadow:0 0 12px rgba(182,255,0,.4)}
-.t span{flex:1;font-size:14px;font-weight:bold;text-transform:uppercase}
-.t small{color:var(--mu);font-size:12px}
+.art{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.art img{
+  width:76px;
+  height:76px;
+  object-fit:cover;
+  border-radius:10px;
+  border:1px solid var(--cy);
+  background:#100a2b;
+}
+
+.an{
+  font-size:17px;
+  font-weight:700;
+  letter-spacing:.04em;
+  color:#fff;
+  margin-bottom:4px;
+}
+
+.nowp{
+  margin:12px 0;
+  padding:12px;
+  border:1px solid var(--bd);
+  border-radius:10px;
+  background:#09051c;
+}
+
+#dSong{
+  font-size:19px;
+  font-weight:700;
+  color:var(--lm);
+  margin-top:2px;
+  line-height:1.25;
+  word-break:break-word;
+}
+
+#dCity{
+  font-size:13px;
+  color:var(--cy);
+  margin-top:4px;
+  letter-spacing:.03em;
+}
+
+.pb{
+  height:5px;
+  margin-top:10px;
+  border-radius:5px;
+  background:#211745;
+  overflow:hidden;
+}
+
+.pb i{
+  display:block;
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--cy),var(--mg));
+}
+
+.msg{
+  width:100%;
+  min-height:46px;
+  margin-bottom:8px;
+  padding:10px 12px;
+  border:1px solid var(--mg);
+  border-radius:9px;
+  background:#18091a;
+  color:#fff;
+  font-weight:600;
+  font-size:14px;
+}
+
+.tc{
+  display:grid;
+  grid-template-columns:1fr 1.3fr 1fr;
+  gap:8px;
+}
+
+.tc button{
+  min-height:50px;
+  border:1px solid var(--cy);
+  border-radius:9px;
+  background:#0b0720;
+  color:#fff;
+  font-weight:600;
+  font-size:13px;
+  transition:background .2s ease,border-color .2s ease,transform .15s ease;
+}
+
+.tc button:active{
+  transform:scale(.97);
+}
+
+#bPlay{
+  border-color:var(--lm);
+  color:var(--lm);
+  font-size:14px;
+}
+
+#trk{
+  display:grid;
+  gap:6px;
+  margin-top:8px;
+}
+
+.t{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-height:44px;
+  padding:7px 10px;
+  border:1px solid var(--bd);
+  border-radius:9px;
+  background:#09051c;
+  color:#fff;
+  text-align:left;
+  width:100%;
+  transition:background .2s ease,border-color .2s ease;
+}
+
+.t.on{
+  border-color:var(--lm);
+  background:#111b0b;
+  color:var(--lm);
+}
+
+.t span{
+  flex:1;
+  font-size:13px;
+  font-weight:700;
+  text-transform:uppercase;
+  line-height:1.2;
+}
+
+.t small{
+  color:var(--mu);
+  font-size:11px;
+  white-space:nowrap;
+}
 .tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
 .tab{min-height:44px;border:1px solid var(--bd);border-radius:9px;background:#07031a;font-size:11px;font-weight:bold}
 .tab.on{border-color:var(--cy);color:var(--cy);box-shadow:0 0 10px rgba(0,240,255,.5)}
@@ -177,7 +302,7 @@ a.bt{display:inline-flex;align-items:center;justify-content:center;text-decorati
 </div>
 <div class="controls two">
 <button class="ctrl big b pulse" id="deckBtn"> TAPE DECK</button>
-<button class="ctrl big" id="shopBtn">🛠 SHOP</button>
+<button class="ctrl big" id="shopBtn"> SHOP</button>
 </div>
 
 <section class="status">
