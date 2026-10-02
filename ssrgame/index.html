@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <meta
+    name="theme-color"
+    content="#050505"
+  >
+  <meta
+    name="description"
+    content="The Static — art, tech, music and culture."
+  >
+  <title>THE STATIC</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #050505;
+      color: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    body {
+      overflow-x: hidden;
+    }
+    /* =========================================
+       INTRO
+       ========================================= */
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(
+          circle at center,
+          #151515 0%,
+          #080808 45%,
+          #020202 100%
+        );
+      transition:
+        opacity .9s ease,
+        transform .9s ease;
+    }
+    #intro.hide {
+      opacity: 0;
+      transform: scale(1.04);
+      pointer-events: none;
+    }
+    .noise {
+      position: absolute;
+      inset: 0;
+      opacity: .08;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 3px,
+          #fff 4px
+        );
+    }
+    .intro-inner {
+      position: relative;
+      z-index: 2;
+      width: min(90%, 720px);
+      text-align: center;
+    }
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: .35em;
+      opacity: .5;
+      margin-bottom: 28px;
+    }
+    .signal {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 4px;
+      height: 28px;
+      margin-bottom: 28px;
+    }
+    .signal span {
+      width: 4px;
+      background: #fff;
+      animation:
+        pulse 1s infinite ease-in-out;
+    }
+    .signal span:nth-child(1) {
+      height: 10px;
+    }
+    .signal span:nth-child(2) {
+      height: 24px;
+      animation-delay: .15s;
+    }
+    .signal span:nth-child(3) {
+      height: 15px;
+      animation-delay: .3s;
+    }
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: .25;
+        transform: scaleY(.5);
+      }
+      50% {
+        opacity: 1;
+        transform: scaleY(1);
+      }
+    }
+    .intro-title {
+      margin: 0;
+      font-size:
+        clamp(
+          72px,
+          17vw,
+          180px
+        );
+      line-height: .75;
+      letter-spacing: -.08em;
+      font-weight: 300;
+    }
+    .intro-title strong {
+      font-weight: 900;
+    }
+    .tagline {
+      margin-top: 42px;
+      font-size: 11px;
+      letter-spacing: .3em;
+    }
+    .intro-copy {
+      color: #999;
+      line-height: 1.7;
+      font-size: 15px;
+      margin: 18px 0 35px;
+    }
+    #enter-static {
+      border: 1px solid #fff;
+      background: transparent;
+      color: #fff;
+      padding: 16px 30px;
+      font-size: 10px;
+      letter-spacing: .25em;
+      cursor: pointer;
+      transition: .25s ease;
+    }
+    #enter-static:hover {
+      background: #fff;
+      color: #000;
+      transform: translateY(-2px);
+    }
+    .status {
+      margin-top: 24px;
+      font-family: monospace;
+      font-size: 9px;
+      letter-spacing: .15em;
+      color: #555;
+    }
+    /* =========================================
+       THE STATIC LANDING
+       ========================================= */
+    #static-page {
+      min-height: 100vh;
+      background:
+        linear-gradient(
+          180deg,
+          #070707 0%,
+          #0b0b0b 50%,
+          #050505 100%
+        );
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 6%;
+      border-bottom: 1px solid #222;
+    }
+    .brand {
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+    .edition {
+      font-family: monospace;
+      font-size: 9px;
+      color: #777;
+      letter-spacing: .15em;
+    }
+    .hero {
+      width: min(1100px, 88%);
+      margin: 0 auto;
+      padding: 110px 0 90px;
+    }
+    .hero-label {
+      font-size: 10px;
+      letter-spacing: .3em;
+      color: #777;
+      margin-bottom: 25px;
+    }
+    .hero h2 {
+      max-width: 900px;
+      margin: 0;
+      font-size:
+        clamp(
+          48px,
+          9vw,
+          110px
+        );
+      line-height: .95;
+      letter-spacing: -.06em;
+    }
+    .hero h2 span {
+      color: #888;
+    }
+    .hero-description {
+      max-width: 620px;
+      margin-top: 35px;
+      color: #aaa;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+    /* =========================================
+       SECTIONS
+       ========================================= */
+    .sections {
+      width: min(1100px, 88%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns:
+        repeat(4, 1fr);
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+    }
+    .section {
+      min-height: 170px;
+      padding: 28px;
+      border-right: 1px solid #222;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .section:last-child {
+      border-right: 0;
+    }
+    .section-number {
+      font-family: monospace;
+      color: #555;
+      font-size: 10px;
+    }
+    .section h3 {
+      margin: 30px 0 0;
+      font-size: 19px;
+      letter-spacing: -.02em;
+    }
+    .section p {
+      color: #777;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    .section.music {
+      cursor: pointer;
+      transition:
+        background .25s ease;
+    }
+    .section.music:hover {
+      background: #151515;
+    }
+    .enter {
+      margin-top: 15px;
+      color: #fff;
+      font-size: 9px;
+      letter-spacing: .18em;
+    }
+    /* =========================================
+       FOOTER
+       ========================================= */
+    footer {
+      width: min(1100px, 88%);
+      margin: 0 auto;
+      padding: 55px 0;
+      display: flex;
+      justify-content: space-between;
+      color: #555;
+      font-size: 9px;
+      letter-spacing: .15em;
+    }
+    /* =========================================
+       MOBILE
+       ========================================= */
+    @media (max-width: 700px) {
+      .hero {
+        padding-top: 75px;
+      }
+      .sections {
+        grid-template-columns: 1fr 1fr;
+      }
+      .section {
+        border-bottom: 1px solid #222;
+      }
+      .section:nth-child(2) {
+        border-right: 0;
+      }
+      footer {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+    @media (max-width: 480px) {
+      .sections {
+        grid-template-columns: 1fr;
+      }
+      .section {
+        border-right: 0;
+      }
+      .section:not(:last-child) {
+        border-bottom: 1px solid #222;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- =========================================
+       INTRO
+       ========================================= -->
+  <section id="intro">
+    <div class="noise"></div>
+    <div class="intro-inner">
+      <div class="signal">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="eyebrow">
+        TRANSMISSION 001
+      </div>
+      <h1 class="intro-title">
+        THE<br>
+        <strong>STATIC</strong>
+      </h1>
+      <div class="tagline">
+        ART. TECH. MUSIC. CULTURE.
+      </div>
+      <div class="intro-copy">
+        The source for what's moving<br>
+        in the art and tech world.
+      </div>
+      <button id="enter-static">
+        ENTER THE STATIC
+      </button>
+      <div class="status">
+        SIGNAL READY_
+      </div>
+    </div>
+  </section>
+  <!-- =========================================
+       STATIC LANDING PAGE
+       ========================================= -->
+  <main id="static-page">
+    <header class="topbar">
+      <div class="brand">
+        THE STATIC
+      </div>
+      <div class="edition">
+        DIGITAL EDITION / 001
+      </div>
+    </header>
+    <section class="hero">
+      <div class="hero-label">
+        THE SOURCE
+      </div>
+      <h2>
+        WHAT'S MOVING<br>
+        <span>IS ALREADY HERE.</span>
+      </h2>
+      <p class="hero-description">
+        The Static covers the artists, creators,
+        technology, music, ideas and culture
+        shaping what's next.
+      </p>
+    </section>
+    <section class="sections">
+      <article class="section music">
+        <div class="section-number">
+          001
+        </div>
+        <div>
+          <h3>MUSIC</h3>
+          <p>
+            Artists, records, journeys,
+            sessions and the stories
+            behind the sound.
+          </p>
+          <div class="enter">
+            ENTER MUSIC →
+          </div>
+        </div>
+      </article>
+      <article class="section">
+        <div class="section-number">
+          002
+        </div>
+        <div>
+          <h3>ART</h3>
+          <p>
+            Artists and the work
+            changing the conversation.
+          </p>
+        </div>
+      </article>
+      <article class="section">
+        <div class="section-number">
+          003
+        </div>
+        <div>
+          <h3>TECH</h3>
+          <p>
+            Technology, innovation
+            and the people building it.
+          </p>
+        </div>
+      </article>
+      <article class="section">
+        <div class="section-number">
+          004
+        </div>
+        <div>
+          <h3>CULTURE</h3>
+          <p>
+            The ideas, places and moments
+            moving everything forward.
+          </p>
+        </div>
+      </article>
+    </section>
+    <footer>
+      <div>
+        THE STATIC
+      </div>
+      <div>
+        THE SIGNAL IS ALWAYS MOVING.
+      </div>
+    </footer>
+  </main>
+  <script>
+    const intro =
+      document.getElementById("intro");
+    const enterButton =
+      document.getElementById("enter-static");
+    enterButton.addEventListener(
+      "click",
+      function () {
+        enterButton.textContent =
+          "CONNECTING...";
+        enterButton.disabled = true;
+        intro.classList.add("hide");
+        setTimeout(function () {
+          intro.style.display = "none";
+          document.body.style.overflow = "auto";
+        }, 900);
+      }
+    );
+  </script>
+</body>
+</html>
