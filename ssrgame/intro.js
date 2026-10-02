@@ -15,8 +15,8 @@
    ENTER THE GAME
 
    Videos:
-   ./TheStatic1.mp4
-   ./Mitd1.mp4
+   /TheStatic1.mp4
+   /Mitd1.mp4
 
    Testing:
    ?nointro
@@ -35,7 +35,7 @@ if (/[?&]nointro\b/.test(location.search)) return;
 var CHAPTER = {
   beats: [
     {
-      src: "./TheStatic1.mp4",
+      src: "/TheStatic1/.mp4",
       tag: "CH.01 / SIGNAL",
       cards: [
         {
@@ -47,7 +47,7 @@ var CHAPTER = {
     },
 
     {
-      src: "./Mitd1.mp4",
+      src: "/Mitd1.mp4/",
       tag: "CH.01 / PLAYER ONE",
       cards: [
         {
