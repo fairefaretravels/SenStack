@@ -3,4054 +3,676 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>The Static — Promotion & Distribution</title>
-<meta name="description" content="The Static — Promotion, distribution, artists, stories, and independent media from the House of Media.">
-<!-- SEO -->
-<meta name="robots" content="index, follow">
-<meta name="author" content="The Static">
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Static — Promotion & Distribution">
-<meta property="og:description" content="Promotion, distribution, artists, stories, and independent media.">
-<meta property="og:image" content="assets/seo/thestatic.PNG">
-<meta property="og:image:alt" content="The Static">
-<!-- Twitter / Social Preview -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Static — Promotion & Distribution">
-<meta name="twitter:description" content="Promotion, distribution, artists, stories, and independent media.">
-<meta name="twitter:image" content="assets/seo/thestatic.PNG">
-<meta name="twitter:image:alt" content="The Static">
-<!-- Mobile -->
-<meta name="theme-color" content="#090909">
+<title>DRIVEWISE</title>
+<meta name="theme-color" content="#05010f">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-</head>
-
 <style>
-:root{
-  --bg:#05070a;
-  --panel:#0d1117;
-  --panel2:#090c11;
-  --border:#2a2f38;
-  --text:#f2f0e9;
-  --muted:#a9a9a2;
-  --gold:#d9a441;
-  --green:#7bc47f;
-  --red:#d85b55;
-}
-
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
-html,body{
-  margin:0;
-  min-height:100%;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
-}
-
-body{padding:14px}
-
-button{
-  font:inherit;
-  cursor:pointer;
-  touch-action:manipulation;
-}
-
-.w{
-  width:100%;
-  max-width:680px;
-  margin:auto;
-}
-
-header{
-  padding:8px 0 14px;
-  margin-bottom:14px;
-  border-bottom:1px solid var(--border);
-}
-
-h1{
-  margin:0;
-  font-size:21px;
-  letter-spacing:.08em;
-}
-
-.sub{
-  margin-top:5px;
-  color:var(--muted);
-  font-size:11px;
-}
-
-/* =========================================================
-   COCKPIT
-========================================================= */
-
-.cab{
-  position:relative;
-  width:100%;
-  aspect-ratio:480/300;
-  overflow:hidden;
-  border:1px solid var(--border);
-  border-radius:18px;
-  background:#090d12;
-  box-shadow:0 18px 50px rgba(0,0,0,.45);
-}
-
-#cv{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-}
-
-.side{
-  position:absolute;
-  top:10px;
-  width:52px;
-  height:72px;
-  border:1px solid #3b414a;
-  border-radius:10px;
-  background:linear-gradient(#161b22,#090c10);
-  box-shadow:inset 0 0 15px rgba(0,0,0,.8);
-}
-
-#leftMirror{left:8px}
-#rightMirror{right:8px}
-
-.mirrorGlass{
-  width:100%;
-  height:100%;
-  display:grid;
-  place-items:center;
-  color:#69717b;
-  font-size:8px;
-}
-
-#mir{
-  position:absolute;
-  top:10px;
-  left:50%;
-  transform:translateX(-50%);
-  padding:5px 10px;
-  border:1px solid #303741;
-  border-radius:20px;
-  background:#080b0e;
-  color:#777;
-  font-size:9px;
-  letter-spacing:.08em;
-}
-
-#mir.on{
-  color:var(--green);
-  border-color:#49684d;
-}
-
-#dash{
-  position:absolute;
-  left:50%;
-  bottom:13px;
-  transform:translateX(-50%);
-  width:68%;
-  height:55px;
-  border:1px solid #292f37;
-  border-radius:12px;
-  background:linear-gradient(#171c23,#080b0f);
-  display:flex;
-  align-items:center;
-  justify-content:space-around;
-  box-shadow:0 -12px 30px rgba(0,0,0,.5);
-}
-
-#spd{
-  min-width:55px;
-  text-align:center;
-  font-size:20px;
-  font-weight:bold;
-}
-
-#tun{
-  min-width:190px;
-  text-align:center;
-  color:var(--muted);
-  font-size:9px;
-  line-height:1.3;
-}
-
-#wheel{
-  position:absolute;
-  bottom:7px;
-  left:12px;
-  width:78px;
-  height:78px;
-  transition:transform .08s linear;
-}
-
-/* =========================================================
-   CONTROLS
-========================================================= */
-
-.controls{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:7px;
-  margin-top:10px;
-}
-
-.ctrl{
-  min-height:44px;
-  border:1px solid var(--border);
-  border-radius:10px;
-  background:#10151c;
-  color:var(--text);
-  font-weight:bold;
-}
-
-.ctrl:active{
-  transform:scale(.97);
-  background:#191f27;
-}
-
-.ctrl.primary{
-  border-color:#675027;
-  color:var(--gold);
-}
-
-.ctrl:disabled{
-  opacity:.35;
-  cursor:not-allowed;
-}
-
-/* =========================================================
-   PANELS
-========================================================= */
-
-.panel{
-  margin-top:12px;
-  padding:14px;
-  border:1px solid var(--border);
-  border-radius:14px;
-  background:var(--panel);
-}
-
-.hidden{
-  display:none!important;
-}
-
-.panelTitle{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
-
-.panelTitle h2{
-  margin:0;
-  font-size:16px;
-}
-
-.small{
-  color:var(--muted);
-  font-size:10px;
-}
-
-/* =========================================================
-   ARTISTS
-========================================================= */
-
-.artistGrid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:9px;
-  margin-top:12px;
-}
-
-.artistCard{
-  overflow:hidden;
-  border:1px solid var(--border);
-  border-radius:12px;
-  background:#090c11;
-}
-
-.artistCard img{
-  width:100%;
-  aspect-ratio:1;
-  object-fit:cover;
-  display:block;
-  background:#15191f;
-}
-
-.artistInfo{
-  padding:9px;
-}
-
-.artistName{
-  font-weight:bold;
-  font-size:13px;
-}
-
-.artistMeta{
-  margin-top:3px;
-  color:var(--muted);
-  font-size:10px;
-}
-
-.artistBtn{
-  width:100%;
-  margin-top:8px;
-  padding:8px;
-  border:1px solid #3b4149;
-  border-radius:8px;
-  background:#141920;
-  color:var(--text);
-}
-
-/* =========================================================
-   ARTIST DETAIL
-========================================================= */
-
-#detail img{
-  width:100%;
-  max-height:230px;
-  object-fit:cover;
-  border-radius:12px;
-  border:1px solid var(--border);
-}
-
-#name{
-  margin:12px 0 4px;
-  font-size:21px;
-}
-
-#desc{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.5;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:7px;
-  margin-top:12px;
-}
-
-.stat,
-.ledgerBox{
-  padding:9px;
-  border:1px solid var(--border);
-  border-radius:9px;
-  background:#090c10;
-}
-
-.statLabel,
-.ledgerLabel{
-  color:var(--muted);
-  font-size:9px;
-}
-
-.statValue{
-  margin-top:3px;
-  font-size:14px;
-  font-weight:bold;
-}
-
-.barWrap{
-  margin-top:12px;
-}
-
-.barLabel{
-  display:flex;
-  justify-content:space-between;
-  color:var(--muted);
-  font-size:10px;
-  margin-bottom:4px;
-}
-
-.bar{
-  height:7px;
-  border-radius:20px;
-  background:#20252c;
-  overflow:hidden;
-}
-
-.barFill{
-  height:100%;
-  width:0;
-  background:var(--gold);
-  transition:width .25s;
-}
-
-#songs{
-  display:grid;
-  gap:6px;
-  margin-top:12px;
-}
-
-.song{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:8px;
-  padding:9px;
-  border:1px solid var(--border);
-  border-radius:8px;
-  background:#090c10;
-}
-
-.songTitle{
-  min-width:0;
-  font-size:11px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-.songBtn{
-  flex:0 0 auto;
-  padding:6px 9px;
-  border:1px solid #3a414a;
-  border-radius:7px;
-  background:#141920;
-  color:var(--text);
-  font-size:10px;
-}
-
-.detailButtons{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:7px;
-  margin-top:12px;
-}
-
-.detailButtons button{
-  min-height:40px;
-  border:1px solid var(--border);
-  border-radius:9px;
-  background:#12171d;
-  color:var(--text);
-}
-
-.detailButtons .gold{
-  color:var(--gold);
-  border-color:#65502b;
-}
-
-/* =========================================================
-   STATUS / LEDGER
-========================================================= */
-
-.status{
-  margin-top:12px;
-  padding:12px;
-  border:1px solid var(--border);
-  border-radius:12px;
-  background:#090c10;
-}
-
-#status{
-  font-size:12px;
-  line-height:1.45;
-}
-
-#dtx{
-  margin-top:5px;
-  color:var(--muted);
-  font-size:10px;
-}
-
-.ledger{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:7px;
-  margin-top:10px;
-}
-
-.ledgerValue{
-  margin-top:3px;
-  font-weight:bold;
-  font-size:13px;
-}
-
-.startRow{
-  margin-top:10px;
-}
-
-#start{
-  width:100%;
-  min-height:48px;
-  border:1px solid #6a5225;
-  border-radius:10px;
-  background:#15130d;
-  color:var(--gold);
-  font-weight:bold;
-}
-
-#start:disabled{
-  opacity:.35;
-}
-
-/* =========================================================
-   MODALS
-========================================================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:10000;
-  display:grid;
-  place-items:center;
-  padding:18px;
-  background:rgba(0,0,0,.78);
-}
-
-.modalCard{
-  width:min(100%,520px);
-  max-height:90vh;
-  overflow:auto;
-  padding:20px;
-  border:1px solid var(--border);
-  border-radius:18px;
-  background:#0d1117;
-  box-shadow:0 25px 80px rgba(0,0,0,.7);
-}
-
-.modalTitle{
-  color:var(--gold);
-  font-size:18px;
-  font-weight:bold;
-}
-
-.modalSub{
-  color:var(--muted);
-  font-size:11px;
-  margin-top:5px;
-}
-
-.modalGrid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
-  margin-top:15px;
-}
-
-.shopBtn,
-.customBtn{
-  width:100%;
-  min-height:45px;
-  margin-top:8px;
-  border:1px solid var(--border);
-  border-radius:9px;
-  background:#12171d;
-  color:var(--text);
-  font-weight:bold;
-}
-
-.shopBtn.gold,
-.customBtn.gold{
-  border-color:#675027;
-  background:#15130d;
-  color:var(--gold);
-}
-
-.closeBtn{
-  width:100%;
-  margin-top:12px;
-  min-height:40px;
-  border:0;
-  background:transparent;
-  color:var(--muted);
-}
-
-.customGrid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  margin-top:10px;
-}
-
-.colorBtn{
-  min-height:45px;
-  border:2px solid #3b414a;
-  border-radius:10px;
-  color:white;
-  font-size:9px;
-  font-weight:bold;
-}
-
-.cityTag{
-  display:inline-block;
-  margin-top:8px;
-  padding:5px 8px;
-  border:1px solid #3d434c;
-  border-radius:20px;
-  color:var(--gold);
-  font-size:9px;
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width:430px){
-  .controls{
-    grid-template-columns:repeat(5,1fr);
-  }
-
-  .ctrl{
-    font-size:9px;
-  }
-
-  .ledger{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .detailButtons{
-    grid-template-columns:1fr;
-  }
-}
+:root{--bg:#05010f;--pn:#0c0620;--cy:#00f0ff;--mg:#ff2bd6;--lm:#b6ff00;--tx:#f4eaff;--mu:#a596d0;--bd:#3a1d7a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+body{padding:10px 10px calc(14px + env(safe-area-inset-bottom,0px))}
+button{font:inherit;color:var(--tx);cursor:pointer;touch-action:manipulation}
+.w{max-width:680px;margin:auto}
+.hidden{display:none!important}
+header{padding:4px 0 10px}
+h1{margin:0;font-size:24px;letter-spacing:.14em;color:var(--cy);text-shadow:0 0 10px var(--cy),0 0 24px var(--mg)}
+.sub{margin-top:4px;color:var(--mu);font-size:12px;letter-spacing:.06em}
+.cab{position:relative;width:100%;aspect-ratio:480/300;overflow:hidden;border:2px solid var(--cy);border-radius:18px;background:#090d12;box-shadow:0 0 18px rgba(0,240,255,.55),0 0 40px rgba(255,43,214,.3)}
+#cv{position:absolute;inset:0;width:100%;height:100%}
+#hud{position:absolute;top:8px;left:8px;right:8px;display:flex;justify-content:space-between;gap:8px;pointer-events:none}
+#hud span{padding:5px 10px;border-radius:20px;background:rgba(5,1,15,.7);border:1px solid var(--mg);font-size:13px;font-weight:bold;color:var(--lm);text-shadow:0 0 8px var(--lm)}
+#hCity{color:var(--cy)!important;border-color:var(--cy)!important;text-shadow:0 0 8px var(--cy)!important}
+#badge{position:absolute;top:44px;left:8px;padding:7px 11px;border-radius:10px;border:1px solid var(--mg);background:rgba(40,0,30,.85);color:var(--mg);font-weight:bold;font-size:13px;animation:bl 1s infinite}
+@keyframes bl{50%{opacity:.45}}
+#banner{position:absolute;left:50%;top:34%;transform:translateX(-50%);text-align:center;pointer-events:none;opacity:0;white-space:nowrap}
+#banner.go{animation:bn 3.4s ease-out}
+@keyframes bn{0%{opacity:0}12%,75%{opacity:1}100%{opacity:0}}
+#banner b{display:block;font-size:26px;letter-spacing:.12em;color:#fff;text-shadow:0 0 10px var(--cy),0 0 26px var(--mg)}
+#banner i{font-style:normal;font-size:13px;color:var(--lm);text-shadow:0 0 8px var(--lm)}
+#wheel{position:absolute;bottom:4px;left:10px;width:86px;height:86px;transition:transform .08s linear;filter:drop-shadow(0 0 6px var(--cy))}
+.controls{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.controls.two{grid-template-columns:1fr 1fr}
+.ctrl{min-height:56px;border:2px solid var(--cy);border-radius:12px;background:#0b0724;font-weight:bold;font-size:14px;box-shadow:0 0 10px rgba(0,240,255,.35)}
+.ctrl:active{transform:scale(.97);background:#1a0f45}
+.ctrl.g{border-color:var(--lm);color:var(--lm);box-shadow:0 0 10px rgba(182,255,0,.4)}
+.ctrl.b{border-color:var(--mg);color:var(--mg);box-shadow:0 0 10px rgba(255,43,214,.4)}
+.ctrl.big{min-height:62px;font-size:16px;letter-spacing:.05em}
+.pulse{animation:pl 1.2s infinite}
+@keyframes pl{50%{box-shadow:0 0 26px var(--mg)}}
+.status{margin-top:10px;padding:12px;border:1px solid var(--bd);border-radius:14px;background:var(--pn)}
+#status{font-size:14px;line-height:1.4}
+#np{margin-top:6px;color:var(--cy);font-size:13px;min-height:18px}
+#start{width:100%;min-height:54px;margin-top:10px;border:2px solid var(--lm);border-radius:12px;background:#0d1a02;color:var(--lm);font-weight:bold;font-size:16px;box-shadow:0 0 14px rgba(182,255,0,.5)}
+.ov{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:10px;background:rgba(2,0,10,.88)}
+.card{width:min(100%,520px);max-height:calc(100dvh - 20px);overflow:auto;padding:14px;border:2px solid var(--mg);border-radius:18px;background:var(--pn);box-shadow:0 0 28px rgba(255,43,214,.5),inset 0 0 22px rgba(0,240,255,.12)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ttl{font-size:18px;letter-spacing:.12em;color:var(--mg);text-shadow:0 0 10px var(--mg)}
+.x{min-height:44px;padding:0 14px;border:1px solid var(--cy);border-radius:10px;background:transparent;color:var(--cy);font-weight:bold}
+.small{color:var(--mu);font-size:12px;line-height:1.35}
+.cass svg{width:100%;height:auto;display:block;margin:8px 0}
+.reel{transform-box:fill-box;transform-origin:center}
+.spin .reel{animation:sp 1.6s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.art{display:flex;gap:12px;align-items:center}
+.art img{width:84px;height:84px;object-fit:cover;border-radius:12px;border:2px solid var(--cy);box-shadow:0 0 12px var(--cy);background:#1a0f45}
+.an{font-size:18px;font-weight:bold;letter-spacing:.06em;color:#fff;margin-bottom:4px}
+.nowp{margin:12px 0;padding:10px;border:1px solid var(--bd);border-radius:12px;background:#07031a}
+#dSong{font-size:20px;font-weight:bold;color:var(--lm);text-shadow:0 0 8px var(--lm);margin-top:2px;word-break:break-word}
+#dCity{font-size:14px;color:var(--cy);margin-top:2px}
+.pb{height:6px;margin-top:8px;border-radius:6px;background:#241554;overflow:hidden}
+.pb i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cy),var(--mg))}
+.msg{width:100%;min-height:48px;margin-bottom:8px;border:2px solid var(--mg);border-radius:10px;background:#2a0620;color:#fff;font-weight:bold;font-size:14px}
+.tc{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:8px}
+.tc button{min-height:54px;border:2px solid var(--cy);border-radius:12px;background:#0b0724;font-weight:bold;font-size:13px}
+#bPlay{border-color:var(--lm);color:var(--lm);font-size:15px}
+#trk{display:grid;gap:6px;margin-top:6px}
+.t{display:flex;align-items:center;gap:8px;min-height:46px;padding:6px 10px;border:1px solid var(--bd);border-radius:10px;background:#07031a;text-align:left;width:100%}
+.t.on{border-color:var(--lm);background:#14210a;color:var(--lm);box-shadow:0 0 12px rgba(182,255,0,.4)}
+.t span{flex:1;font-size:14px;font-weight:bold;text-transform:uppercase}
+.t small{color:var(--mu);font-size:12px}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.tab{min-height:44px;border:1px solid var(--bd);border-radius:9px;background:#07031a;font-size:11px;font-weight:bold}
+.tab.on{border-color:var(--cy);color:var(--cy);box-shadow:0 0 10px rgba(0,240,255,.5)}
+#pv{width:100%;height:auto;border:1px solid var(--bd);border-radius:12px;display:block}
+.it{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;margin-top:8px;padding:8px;border:1px solid var(--bd);border-radius:12px;background:#07031a}
+.sw{width:34px;height:34px;border-radius:8px;border:2px solid #fff3}
+.tag{display:inline-block;margin-top:3px;padding:2px 6px;border-radius:5px;font-size:10px;font-weight:bold}
+.tag.d{border:1px solid var(--cy);color:var(--cy)}
+.tag.r{border:1px solid var(--lm);color:var(--lm)}
+.bt{min-height:44px;min-width:92px;padding:0 10px;border:2px solid var(--lm);border-radius:10px;background:#0d1a02;color:var(--lm);font-weight:bold;font-size:13px}
+.bt.eq{border-color:var(--mu);color:var(--mu);background:transparent}
+.bt.has{border-color:var(--cy);color:var(--cy);background:#021a1c}
+a.bt{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+#gcash{color:var(--lm);font-weight:bold;font-size:16px}
+.bars{display:grid;gap:6px}
 </style>
 </head>
-
 <body>
-
 <div class="w">
-
-<header>
-  <h1>DRIVEWISE</h1>
-  <div class="sub">CRUISE • DISCOVER • MAINTAIN • CUSTOMIZE</div>
-</header>
+<header><h1>DRIVEWISE</h1><div class="sub">Cruise. Discover. Customize.</div></header>
 
 <section class="cab">
-
 <canvas id="cv" width="480" height="300"></canvas>
-
-<div class="side" id="leftMirror">
-  <div class="mirrorGlass">LEFT</div>
-</div>
-
-<div class="side" id="rightMirror">
-  <div class="mirrorGlass">RIGHT</div>
-</div>
-
-<div id="mir">◉ OFF AIR</div>
-
+<div id="hud"><span id="hCity">DETROIT</span><span id="cash">$2,500</span></div>
+<div id="badge" class="hidden"></div>
+<div id="banner"><b id="bnC"></b><i id="bnL"></i></div>
 <svg id="wheel" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="42" fill="#10151b" stroke="#666" stroke-width="5"/>
-  <circle cx="50" cy="50" r="10" fill="#1a2027" stroke="#777" stroke-width="3"/>
-  <path d="M50 40 L50 10" stroke="#777" stroke-width="7" stroke-linecap="round"/>
-  <path d="M43 54 L19 70" stroke="#777" stroke-width="7" stroke-linecap="round"/>
-  <path d="M57 54 L81 70" stroke="#777" stroke-width="7" stroke-linecap="round"/>
+<circle cx="50" cy="50" r="42" fill="#10082a" stroke="#00f0ff" stroke-width="6"/>
+<circle cx="50" cy="50" r="10" fill="#1a0f45" stroke="#ff2bd6" stroke-width="3"/>
+<path d="M50 40 L50 10 M43 54 L19 70 M57 54 L81 70" stroke="#ff2bd6" stroke-width="7" stroke-linecap="round"/>
 </svg>
-
-<div id="dash">
-  <div id="spd">0</div>
-  <div id="tun">NO SIGNAL</div>
-</div>
-
 </section>
 
 <div class="controls">
-  <button class="ctrl" id="L">◀ LEFT</button>
-  <button class="ctrl primary" id="B">BRAKE</button>
-  <button class="ctrl primary" id="G">GAS</button>
-  <button class="ctrl" id="R">RIGHT ▶</button>
+<button class="ctrl" id="L">◀ LEFT</button>
+<button class="ctrl b" id="B">BRAKE</button>
+<button class="ctrl g" id="G">GAS</button>
+<button class="ctrl" id="R">RIGHT ▶</button>
 </div>
-
-<section class="panel hidden" id="radioPanel">
-  <div class="panelTitle">
-    <h2>8 Mile Radio</h2>
-    <div class="small">Independent Artist Discovery</div>
-  </div>
-  <div id="artists" class="artistGrid"></div>
-</section>
-
-<section class="panel hidden" id="detail">
-
-  <img id="artistPhoto" src="" alt="Artist">
-
-  <h2 id="name"></h2>
-
-  <div id="desc"></div>
-
-  <div id="cityTag" class="cityTag">CITY: DETROIT</div>
-
-  <div class="stats">
-
-    <div class="stat">
-      <div class="statLabel">SPINS</div>
-      <div class="statValue" id="aspin">0</div>
-    </div>
-
-    <div class="stat">
-      <div class="statLabel">FANS</div>
-      <div class="statValue" id="afans">0</div>
-    </div>
-
-    <div class="stat">
-      <div class="statLabel">SALES</div>
-      <div class="statValue" id="asales">0</div>
-    </div>
-
-  </div>
-
-  <div class="barWrap">
-    <div class="barLabel">
-      <span>EXPOSURE</span>
-      <span id="exposureText">0%</span>
-    </div>
-
-    <div class="bar">
-      <div class="barFill" id="exposureBar"></div>
-    </div>
-  </div>
-
-  <div class="barWrap">
-    <div class="barLabel">
-      <span>DEMAND</span>
-      <span id="demandText">0%</span>
-    </div>
-
-    <div class="bar">
-      <div class="barFill" id="demandBar"></div>
-    </div>
-  </div>
-
-  <div id="songs"></div>
-
-  <div class="detailButtons">
-    <button id="play" class="gold">DRIVE TRACK</button>
-    <button id="cat" class="gold">DRIVE CATALOG</button>
-    <button id="back">BACK</button>
-  </div>
-
-</section>
+<div class="controls two">
+<button class="ctrl big b pulse" id="deckBtn">📼 TAPE DECK</button>
+<button class="ctrl big" id="shopBtn">🛠 SHOP</button>
+</div>
 
 <section class="status">
-
-  <div id="status">
-    Parked. Start the drive to begin.
-  </div>
-
-  <div id="dtx">
-    Select an artist at 8 Mile Radio.
-  </div>
-
-  <div class="ledger">
-
-    <div class="ledgerBox">
-      <div class="ledgerLabel">CASH</div>
-      <div class="ledgerValue">$<span id="cash">150</span></div>
-    </div>
-
-    <div class="ledgerBox">
-      <div class="ledgerLabel">GROSS</div>
-      <div class="ledgerValue">$<span id="gross">0</span></div>
-    </div>
-
-    <div class="ledgerBox">
-      <div class="ledgerLabel">SPINS</div>
-      <div class="ledgerValue"><span id="totalSpins">0</span></div>
-    </div>
-
-    <div class="ledgerBox">
-      <div class="ledgerLabel">TIRE LIFE</div>
-      <div class="ledgerValue"><span id="tireDisplay">100</span>%</div>
-    </div>
-
-  </div>
-
-  <div class="startRow">
-    <button id="start">START DRIVE</button>
-  </div>
-
+<div id="status">Parked. Tap START DRIVE, then open the TAPE DECK and press PLAY.</div>
+<div id="np"></div>
+<button id="start">START DRIVE</button>
 </section>
-
 </div>
 
+<!-- TAPE DECK -->
+<div id="deck" class="ov hidden"><div class="card" id="deckCard">
+<div class="row"><b class="ttl">TAPE DECK</b><button class="x" data-close>✕ CLOSE</button></div>
+<div class="cass"><svg viewBox="0 0 200 84">
+<rect x="2" y="2" width="196" height="80" rx="9" fill="#10082a" stroke="#ff2bd6" stroke-width="2.5"/>
+<rect x="30" y="12" width="140" height="42" rx="21" fill="#05010f" stroke="#00f0ff" stroke-width="2"/>
+<g class="reel"><circle cx="64" cy="33" r="14" fill="none" stroke="#b6ff00" stroke-width="3"/><path d="M64 21V45M52 33H76" stroke="#b6ff00" stroke-width="3"/></g>
+<g class="reel"><circle cx="136" cy="33" r="14" fill="none" stroke="#b6ff00" stroke-width="3"/><path d="M136 21V45M124 33H148" stroke="#b6ff00" stroke-width="3"/></g>
+<rect x="60" y="62" width="80" height="14" rx="3" fill="#1a0f45" stroke="#00f0ff"/>
+<text x="100" y="73" text-anchor="middle" font-size="9" font-weight="bold" fill="#ff2bd6" font-family="Arial">MACKINTHEDARK</text>
+</svg></div>
+<div class="art"><img id="dPhoto" src="./assets/photos/Mitd.PNG" alt="Mackinthedark"><div><div class="an">MACKINTHEDARK</div><div class="small">Detroit-rooted independent music and catalog discovery.</div></div></div>
+<div class="nowp"><div class="small">NOW PLAYING</div><div id="dSong">Press PLAY</div><div id="dCity">DETROIT</div><div class="pb"><i id="dBar"></i></div></div>
+<button id="dMsg" class="msg hidden"></button>
+<div class="tc"><button id="bPrev">◀ PREVIOUS</button><button id="bPlay">▶ PLAY</button><button id="bNext">NEXT ▶</button></div>
+<div class="small" style="margin-top:12px">TRACKS</div>
+<div id="trk"></div>
+</div></div>
+
+<!-- GARAGE -->
+<div id="garage" class="ov hidden"><div class="card">
+<div class="row"><b class="ttl">GARAGE</b><span id="gcash"></span><button class="x" data-close>✕ CLOSE</button></div>
+<canvas id="pv" width="300" height="140"></canvas>
+<div class="tabs" id="tabs"></div>
+<div id="gBody"></div>
+</div></div>
+
+<!-- ALERT -->
+<div id="alert" class="ov hidden"><div class="card">
+<div class="ttl">⚠ VEHICLE ALERT</div>
+<div id="alT" style="font-size:22px;font-weight:bold;margin:12px 0 6px;color:#fff"></div>
+<div id="alD" class="small" style="font-size:14px"></div>
+<button class="bt" id="alGo" style="width:100%;margin-top:14px;min-height:52px">GO TO AUTO SHOP</button>
+<button class="x" data-close style="width:100%;margin-top:8px">KEEP CRUISING</button>
+</div></div>
+
 <script>
+"use strict";
+const $=id=>document.getElementById(id);
+const cv=$("cv"),ctx=cv.getContext("2d");
+const W=480,H=300,HY=120,K=250,CAMH=1.25,NEAR=1.9;
+const f=v=>{ctx.fillStyle=v};
+const lt=(a,b,u)=>{for(let i=0;i<a.length;i++)a[i]+=(b[i]-a[i])*u};
+const rs=(a,m=1)=>"rgb("+(a[0]*m|0)+","+(a[1]*m|0)+","+(a[2]*m|0)+")";
+const hs=i=>Math.abs(Math.sin(i*12.9898)*43758.5453%1);
 
-/* =========================================================
-   BASIC HELPERS
-========================================================= */
+/* ---------- MUSIC ---------- */
+const MB="https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/";
+const url=fn=>MB+encodeURIComponent(fn);
+const SILENT="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+const ARTIST={name:"Mackinthedark",photo:"./assets/photos/Mitd.PNG"};
+const SONGS=[
+{t:"Get Up",f:"Get Up.mp3",c:"Detroit"},
+{t:"ALL DAT ***",f:"ALL DAT ASS.mp3",c:"New Orleans"},
+{t:"Love & Co - Alexa",f:"Love & Co - Alexa.mp3",c:"Los Angeles"},
+{t:"Love & Co - TRY",f:"Love & Co - TRY.mp3",c:"Las Vegas"},
+{t:"Alright",f:"Alright.mp3",c:"Los Angeles"},
+{t:"Birds",f:"Birds.mp3",c:"Myrtle Beach"},
+{t:"Disclaimer",f:"Disclaimer.mp3",c:"Atlanta"},
+{t:"drive-me-crazy",f:"drive-me-crazy-(remastered).mp3",c:"Tokyo"},
+{t:"Baby Tonight",f:"Baby Tonight .mp3",c:"Miami"},
+{t:"4-X-4",f:"4-x-4-2-(remastered)a.mp3",c:"Memphis"},
+{t:"I NEED YOU",f:"I NEED YOU.mp3",c:"Salt Lake City"},
+{t:"gas-me-up",f:"gas-me-up.mp3",c:"London"}];
 
-const $ = id => document.getElementById(id);
+/* ---------- CITY THEMES (neon) ---------- */
+const TH={
+"Detroit":{s0:[40,20,120],s1:[255,70,170],g:[22,10,44],b:[74,60,120],a:[0,240,255],k:"tw",lm:"Woodward Avenue"},
+"New Orleans":{s0:[70,10,110],s1:[255,150,40],g:[28,10,34],b:[130,60,100],a:[255,43,214],k:"sp",lm:"French Quarter"},
+"Los Angeles":{s0:[60,20,140],s1:[255,110,50],g:[26,12,40],b:[110,70,130],a:[255,214,0],k:"tw",pm:1,lm:"Hollywood Boulevard"},
+"Las Vegas":{s0:[10,0,40],s1:[190,0,255],g:[18,6,40],b:[70,24,120],a:[255,40,200],k:"tw",lm:"The Strip"},
+"Myrtle Beach":{s0:[0,110,200],s1:[0,255,220],g:[8,56,70],b:[60,120,160],a:[0,255,200],k:"sea",pm:1,lm:"Oceanfront"},
+"Atlanta":{s0:[20,30,120],s1:[0,200,255],g:[12,18,44],b:[50,84,130],a:[182,255,0],k:"tw",lm:"Peachtree Street"},
+"Tokyo":{s0:[20,0,70],s1:[255,0,110],g:[20,6,40],b:[70,34,110],a:[255,0,110],k:"tw",lm:"Shibuya Crossing"},
+"Miami":{s0:[255,60,160],s1:[0,230,255],g:[30,10,50],b:[200,90,170],a:[0,255,230],k:"sea",pm:1,lm:"Ocean Drive"},
+"Memphis":{s0:[50,10,90],s1:[255,80,40],g:[26,10,30],b:[110,50,80],a:[255,120,0],k:"sp",lm:"Beale Street"},
+"Salt Lake City":{s0:[10,40,120],s1:[160,120,255],g:[14,16,48],b:[70,96,140],a:[120,255,255],k:"mt",lm:"Wasatch Mountains"},
+"London":{s0:[30,40,90],s1:[130,170,230],g:[16,16,40],b:[84,84,130],a:[255,40,80],k:"sp",lm:"West End"}};
+const cur={s0:TH.Detroit.s0.slice(),s1:TH.Detroit.s1.slice(),g:TH.Detroit.g.slice(),b:TH.Detroit.b.slice(),a:TH.Detroit.a.slice()};
 
-const cv = $("cv");
-const ctx = cv.getContext("2d");
+/* ---------- GARAGE DATA ---------- */
+const CAT={
+INTERIOR:[["Black",0,"#16121f"],["Crimson",200,"#c0123f"],["Cream",200,"#eadfc4"],["Blue",250,"#1a46e0"]],
+PAINT:[["Midnight",0,"#1c1050"],["Pearl",300,"#ece9ff"],["Cherry",400,"#ff0a54"],["Sky",350,"#35b8ff"]],
+SEATS:[["Factory",0,"#34285c"],["Sport",350,"#ff2bd6"],["Plush",400,"#8a5cff"]],
+LIGHTING:[["Gold",0,"#ffc400"],["Ice",150,"#7df9ff"],["Violet",150,"#b14dff"],["Red",150,"#ff2040"]],
+WHEELS:[["Street",0,"#9aa0c8"],["Chrome",300,"#ffffff"],["Black",250,"#20202c"]],
+TIRES:[["Street",0,"#111118"],["Performance",400,"#00f0ff"]],
+DASHBOARD:[["Factory",0,"#00f0ff"],["Digital",500,"#b6ff00"]],
+AUDIO:[["Factory",0,"#00f0ff"],["Bass Boost",300,"#ff2bd6"]]};
+const SERV={al:["Fix alignment",75],tire:["New tires",60],brk:["Brake service",90]};
+const REAL=[
+["Car interior accessories","https://www.amazon.com/s?k=car+interior+accessories"],
+["Car seat covers","https://www.amazon.com/s?k=car+seat+covers"],
+["Ambient lighting","https://www.amazon.com/s?k=car+ambient+lighting+kit"],
+["Car audio","https://www.crutchfield.com/"],
+["Tires","https://www.tirerack.com/"],
+["Wheels","https://www.tirerack.com/wheels/"],
+["Car electronics","https://www.amazon.com/s?k=car+electronics"]];
+const PROB={al:["ALIGNMENT REQUIRED","The car is pulling to one side. Drive to an AUTO SHOP to repair the vehicle."],
+tire:["TIRE WEAR","Tires are worn and the ride feels unstable. Drive to an AUTO SHOP to repair the vehicle."],
+brk:["BRAKE SERVICE","Brakes are weak. Drive to an AUTO SHOP to repair the vehicle."]};
+const LIMIT={al:55,tire:35,brk:35};
+const PNAME={al:"ALIGNMENT",tire:"TIRE WEAR",brk:"BRAKES"};
 
-const W = 480;
-const H = 300;
+let G={cash:2500,own:{},eq:{INTERIOR:"Black",PAINT:"Midnight",SEATS:"Factory",LIGHTING:"Gold",WHEELS:"Street",TIRES:"Street",DASHBOARD:"Factory",AUDIO:"Factory"},al:100,tire:100,brk:100};
+try{const d=JSON.parse(localStorage.getItem("drivewise_v2"));if(d){Object.assign(G,d);G.eq=Object.assign({},{INTERIOR:"Black",PAINT:"Midnight",SEATS:"Factory",LIGHTING:"Gold",WHEELS:"Street",TIRES:"Street",DASHBOARD:"Factory",AUDIO:"Factory"},d.eq||{});G.own=d.own||{}}}catch(e){}
+function save(){try{localStorage.setItem("drivewise_v2",JSON.stringify(G))}catch(e){}}
+const col=c=>(CAT[c].find(x=>x[0]===G.eq[c])||CAT[c][0])[2];
+const owned=(c,n,p)=>p===0||!!G.own[c+":"+n];
 
-const HY = 128;
-const K = 250;
-const CAMH = 1.25;
+/* ---------- STATE ---------- */
+const S={z:2,x:0,v:0,steer:0,cruise:0,driving:false,t:.05,city:"Detroit",pull:1,k0:"tw",k1:"tw",kf:1,alerted:{}};
+const A={i:-1,playing:false,err:false,blocked:false};
+let T=0,N=0,DK=1;
 
-const LEN = 600;
-const RZ = 130;
-const NEAR = 1.9;
-
-const AC = "#d9a441";
-
-const f = v => ctx.fillStyle = v;
-
-
-/* =========================================================
-   MUSIC / CITY SYSTEM
-========================================================= */
-
-const MUSIC_BASE =
-  "https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/";
-
-function musicURL(filename){
-  return MUSIC_BASE + encodeURIComponent(filename);
+function setCity(name){
+  if(!TH[name])return;
+  if(TH[name].k!==S.k1){S.k0=S.k1;S.k1=TH[name].k;S.kf=0}
+  S.city=name;
+  $("hCity").textContent=name.toUpperCase();
+  $("bnC").textContent=name.toUpperCase();
+  $("bnL").textContent=TH[name].lm;
+  const b=$("banner");b.classList.remove("go");void b.offsetWidth;b.classList.add("go");
 }
 
-const CITY_MAP = {
-
-  "4-x-4-2-(remastered)a.mp3":{
-    city:"Memphis",
-    landmark:"Beale Street",
-    color:[95,65,45]
-  },
-
-  "ALL DAT ASS.mp3":{
-    city:"New Orleans",
-    landmark:"French Quarter",
-    color:[75,45,90]
-  },
-
-  "Alright.mp3":{
-    city:"Los Angeles",
-    landmark:"Hollywood Boulevard",
-    color:[110,85,55]
-  },
-
-  "Baby Tonight .mp3":{
-    city:"Miami",
-    landmark:"Ocean Drive",
-    color:[45,105,125]
-  },
-
-  "Birds.mp3":{
-    city:"Myrtle Beach",
-    landmark:"Oceanfront",
-    color:[55,110,120]
-  },
-
-  "Disclaimer.mp3":{
-    city:"Atlanta",
-    landmark:"Downtown Atlanta",
-    color:[70,75,95]
-  },
-
-  "Get Up.mp3":{
-    city:"Detroit",
-    landmark:"Woodward Avenue",
-    color:[65,70,78]
-  },
-
-  "I NEED YOU.mp3":{
-    city:"Salt Lake City",
-    landmark:"Wasatch Mountains",
-    color:[80,95,105]
-  },
-
-  "Love & Co - Alexa.mp3":{
-    city:"Los Angeles",
-    landmark:"Hollywood Boulevard",
-    color:[110,85,55]
-  },
-
-  "Love & Co - TRY.mp3":{
-    city:"Las Vegas",
-    landmark:"Las Vegas Strip",
-    color:[95,55,105]
-  },
-
-  "drive-me-crazy-(remastered).mp3":{
-    city:"Tokyo",
-    landmark:"Shibuya Crossing",
-    color:[35,45,75]
-  },
-
-  "gas-me-up.mp3":{
-    city:"London",
-    landmark:"West End",
-    color:[55,65,80]
-  }
-
-};
-
-const mk = (title,file) => ({
-  title,
-  file,
-  city:CITY_MAP[file]?.city || "Detroit"
-});
-
-
-/* =========================================================
-   ARTISTS
-========================================================= */
-
-const ARTISTS = [
-
-{
-  display:"Mackinthedark",
-
-  photo:"./assets/photos/Mitd.PNG",
-
-  description:
-    "Detroit-rooted independent music and catalog discovery.",
-
-  fans:1200,
-
-  sales:240,
-
-  songs:[
-
-    mk("4-X-4","4-x-4-2-(remastered)a.mp3"),
-
-    mk("ALL DAT ***","ALL DAT ASS.mp3"),
-
-    mk("Alright","Alright.mp3"),
-
-    mk("Baby Tonight","Baby Tonight .mp3"),
-
-    mk("Birds","Birds.mp3"),
-
-    mk("Disclaimer","Disclaimer.mp3"),
-
-    mk("Get Up","Get Up.mp3"),
-
-    mk("I NEED YOU","I NEED YOU.mp3"),
-
-    mk("Love & Co - Alexa","Love & Co - Alexa.mp3"),
-
-    mk("Love & Co - TRY","Love & Co - TRY.mp3"),
-
-    mk("drive-me-crazy","drive-me-crazy-(remastered).mp3"),
-
-    mk("gas-me-up","gas-me-up.mp3")
-
-  ]
-
+/* ---------- AUDIO ---------- */
+const AUD=new Audio();AUD.preload="auto";AUD.loop=false;AUD.volume=.85;
+const isSilent=()=>AUD.src.indexOf("data:")===0;
+function load(i,play){
+  A.i=(i+SONGS.length)%SONGS.length;
+  const s=SONGS[A.i];
+  A.err=false;A.blocked=false;
+  AUD.src=url(s.f);
+  setCity(s.c);
+  if(play)go();
+  ui();
 }
-
-];
-
-
-/* =========================================================
-   GAME STATE
-========================================================= */
-
-let S = {
-
-  z:2,
-
-  x:0,
-
-  v:0,
-
-  steer:0,
-
-  cruise:0,
-
-  cash:150,
-
-  gross:0,
-
-  spins:0,
-
-  rotation:[],
-
-  driving:false,
-
-  menu:false,
-
-  run:null,
-
-  bbs:[],
-
-  artist:null,
-
-  selectedSong:null,
-
-  waitingForNextSong:false,
-
-  currentBoard:null,
-
-  city:"Detroit",
-
-  landmark:"Woodward Avenue",
-
-  cityColor:[65,70,78],
-
-  alignment:100,
-
-  tireLife:100,
-
-  maintenanceNeeded:false,
-
-  interiorColor:"#171c23",
-
-  seatColor:"#10151b",
-
-  lightColor:"#d9a441",
-
-  t:.12,
-
-  toast:null
-
-};
-
-let T=0;
-let N=0;
-let DK=1;
-let FA=1;
-let SKY;
-
-
-/* =========================================================
-   RADIO BUTTON
-========================================================= */
-
-const radioButton =
-  document.createElement("button");
-
-radioButton.id="radio";
-
-radioButton.className="ctrl primary";
-
-radioButton.textContent="RADIO";
-
-radioButton.disabled=true;
-
-document
-  .querySelector(".controls")
-  .appendChild(radioButton);
-
-
-/* =========================================================
-   AUDIO
-========================================================= */
-
-const AUD = new Audio();
-
-AUD.preload="auto";
-AUD.loop=false;
-AUD.volume=.8;
-
-const SILENT =
-  "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
-
-let audioBlocked=false;
-
-AUD.addEventListener("error",()=>{
-
-  if(!AUD.src || AUD.src===SILENT)return;
-
-  console.error("AUDIO ERROR",AUD.error);
-
-  $("tun").textContent="Audio unavailable";
-
-  $("mir").textContent="◉ AUDIO ERROR";
-
-  $("mir").classList.remove("on");
-
-});
-
-
-AUD.addEventListener("ended",()=>{
-
-  if(AUD.src===SILENT)return;
-
-  if(!S.run)return;
-
-  const run=S.run;
-
-  $("mir").textContent="◉ OFF AIR";
-
-  $("mir").classList.remove("on");
-
-  const next=run.currentIndex+1;
-
-  if(next>=run.list.length){
-
-    endRun(
-      "Catalog complete. Every track received a spin."
-    );
-
-    return;
-  }
-
-  run.currentIndex=next;
-
-  S.bbs=[{
-    z:S.z+45,
-    i:next,
-    done:false
-  }];
-
-  S.waitingForNextSong=false;
-
-  $("tun").textContent=
-    `NEXT: ${run.list[next].title}`;
-
-  $("dtx").textContent=
-    `Next billboard: ${run.list[next].title} — ${CITY_MAP[run.list[next].file]?.city || "Detroit"}`;
-
-});
-
-
-/* =========================================================
-   CITY CHANGE
-========================================================= */
-
-function setCityForSong(song){
-
-  if(!song)return;
-
-  const city=CITY_MAP[song.file];
-
-  if(!city)return;
-
-  S.city=city.city;
-
-  S.landmark=city.landmark;
-
-  S.cityColor=city.color;
-
-  /*
-    Every new song starts a fresh city atmosphere.
-  */
-
-  S.t=.12;
-
-  $("status").textContent=
-    `${city.city} — ${song.title}`;
-
-  $("dtx").textContent=
-    `Cruising through ${city.city}. ${city.landmark} ahead.`;
-
-  console.log(
-    "CITY:",
-    city.city,
-    "LANDMARK:",
-    city.landmark
-  );
-}
-
-
-/* =========================================================
-   PLAY SONG
-========================================================= */
-
-function playArtistSong(a,song){
-
-  if(!song || !song.file)return;
-
-  setCityForSong(song);
-
-  a.spins=(a.spins||0)+1;
-
-  S.spins++;
-
-  S.cash+=5;
-
-  S.gross+=5;
-
-  a.exposure=Math.min(
-    100,
-    (a.exposure||0)+8
-  );
-
-  a.demand=Math.min(
-    100,
-    (a.demand||0)+5
-  );
-
-  $("totalSpins").textContent=S.spins;
-
-  updateArtistStats(a);
-
-  if(!S.rotation.includes(a.display)){
-    S.rotation.push(a.display);
-  }
-
-  S.nowPlaying={a,song};
-
-  audioBlocked=false;
-
-  $("status").textContent=
-    `ON AIR: ${a.display} — ${song.title}`;
-
-  AUD.pause();
-
-  try{
-    AUD.currentTime=0;
-  }catch(e){}
-
-  AUD.src=musicURL(song.file);
-
-  AUD.load();
-
+function go(){
   const p=AUD.play();
-
-  if(p){
-
-    p.catch(err=>{
-
-      console.warn("Audio playback blocked:",err);
-
-      audioBlocked=true;
-
-      $("tun").textContent=
-        "Tap the screen to enable audio.";
-
-    });
-
-  }
-
-  $("mir").textContent="◉ ON AIR";
-
-  $("mir").classList.add("on");
-
-  $("tun").textContent=
-    `${S.city} • ${a.display} • ${song.title}`;
-
-}
-
-
-/* =========================================================
-   AUDIO RETRY
-========================================================= */
-
-document.addEventListener("pointerdown",()=>{
-
-  if(!audioBlocked)return;
-
-  audioBlocked=false;
-
-  const p=AUD.play();
-
-  if(p){
-
-    p.catch(()=>{
-      audioBlocked=true;
-    });
-
-  }
-
-});
-
-
-/* =========================================================
-   ARTIST STATS
-========================================================= */
-
-function updateArtistStats(a){
-
-  if(!a)return;
-
-  $("aspin").textContent=a.spins||0;
-
-  $("afans").textContent=
-    Math.round(
-      (a.fans||0)+(a.spins||0)*3
-    );
-
-  $("asales").textContent=
-    Math.round(
-      (a.sales||0)+(a.spins||0)*1.5
-    );
-
-  const e=Math.min(
-    100,
-    a.exposure||0
-  );
-
-  const d=Math.min(
-    100,
-    a.demand||0
-  );
-
-  $("exposureBar").style.width=e+"%";
-
-  $("demandBar").style.width=d+"%";
-
-  $("exposureText").textContent=
-    Math.round(e)+"%";
-
-  $("demandText").textContent=
-    Math.round(d)+"%";
-
-}
-
-
-/* =========================================================
-   ARTIST UI
-========================================================= */
-
-function renderArtists(){
-
-  $("artists").innerHTML="";
-
-  ARTISTS.forEach((a,i)=>{
-
-    const c=document.createElement("div");
-
-    c.className="artistCard";
-
-    c.innerHTML=`
-
-      <img
-        src="${a.photo}"
-        alt="${a.display}"
-      >
-
-      <div class="artistInfo">
-
-        <div class="artistName">
-          ${a.display}
-        </div>
-
-        <div class="artistMeta">
-          ${a.songs.length} tracks
-        </div>
-
-        <button
-          class="artistBtn"
-          data-index="${i}">
-          VIEW CATALOG
-        </button>
-
-      </div>
-
-    `;
-
-    $("artists").appendChild(c);
-
+  if(p&&p.then)p.then(()=>{A.playing=true;A.blocked=false;A.err=false;ui()}).catch(e=>{
+    if(e&&e.name==="AbortError")return;
+    A.playing=false;
+    if(e&&e.name==="NotAllowedError")A.blocked=true;else A.err=true;
+    ui();
   });
-
 }
-
-
-$("artists").addEventListener(
-  "click",
-  e=>{
-
-    const b=
-      e.target.closest(".artistBtn");
-
-    if(!b)return;
-
-    openArtist(
-      ARTISTS[+b.dataset.index]
-    );
-
-  }
-);
-
-
-function openArtist(a){
-
-  if(!a)return;
-
-  S.artist=a;
-
-  S.menu=true;
-
-  $("radioPanel")
-    .classList
-    .add("hidden");
-
-  $("detail")
-    .classList
-    .remove("hidden");
-
-  $("artistPhoto").src=a.photo;
-
-  $("name").textContent=a.display;
-
-  $("desc").textContent=
-    a.description||"";
-
-  renderSongs(a);
-
-  updateArtistStats(a);
-
+function togglePlay(){
+  startDrive();
+  if(A.i<0){load(0,true);return}
+  if(A.err){load(A.i,true);return}
+  if(AUD.paused)go();else AUD.pause();
 }
+AUD.addEventListener("play",()=>{if(isSilent())return;A.playing=true;ui()});
+AUD.addEventListener("pause",()=>{if(isSilent()||AUD.ended)return;A.playing=false;ui()});
+AUD.addEventListener("ended",()=>{if(isSilent())return;load(A.i+1,true)});
+AUD.addEventListener("error",()=>{if(isSilent()||!AUD.getAttribute("src"))return;A.err=true;A.playing=false;ui()});
+AUD.addEventListener("timeupdate",()=>{if(AUD.duration>0)$("dBar").style.width=(AUD.currentTime/AUD.duration*100)+"%"});
 
-
-function renderSongs(a){
-
-  $("songs").innerHTML="";
-
-  a.songs.forEach((s,i)=>{
-
-    const r=document.createElement("div");
-
-    r.className="song";
-
-    const city=
-      CITY_MAP[s.file]?.city ||
-      "Detroit";
-
-    r.innerHTML=`
-
-      <div class="songTitle">
-        ${i+1}. ${s.title}
-        — ${city}
-      </div>
-
-      <button
-        class="songBtn"
-        data-song="${i}">
-        DRIVE
-      </button>
-
-    `;
-
-    $("songs").appendChild(r);
-
-  });
-
+function ui(){
+  const s=A.i>=0?SONGS[A.i]:null;
+  $("dSong").textContent=s?s.t:"Press PLAY";
+  $("dCity").textContent=(s?s.c:S.city).toUpperCase();
+  $("bPlay").textContent=A.playing?"❚❚ PAUSE":"▶ PLAY";
+  $("deckCard").classList.toggle("spin",A.playing);
+  const m=$("dMsg");
+  if(A.err){m.textContent="AUDIO ERROR — TAP TO RETRY";m.classList.remove("hidden")}
+  else if(A.blocked){m.textContent="PLAY NEXT — TAP TO START";m.classList.remove("hidden")}
+  else m.classList.add("hidden");
+  $("np").textContent=A.err?"AUDIO ERROR — TAP HERE TO RETRY":A.blocked?"TAP HERE TO START AUDIO":s?(A.playing?"♪ NOW PLAYING: ":"❚❚ PAUSED: ")+ARTIST.name+" — "+s.t+" • "+s.c:"";
+  document.querySelectorAll(".t").forEach(b=>b.classList.toggle("on",+b.dataset.i===A.i));
+  $("deckBtn").classList.toggle("pulse",A.i<0);
+  const pa=col("AUDIO");$("deckCard").style.borderColor=pa;
 }
-
-
-$("songs").addEventListener(
-  "click",
-  e=>{
-
-    const b=
-      e.target.closest(".songBtn");
-
-    if(!b || !S.artist)return;
-
-    const i=+b.dataset.song;
-
-    S.selectedSong=
-      S.artist.songs[i];
-
-    launch(
-      S.artist,
-      i,
-      false
-    );
-
-  }
-);
-
-
-$("play").onclick=()=>{
-
-  if(!S.artist)return;
-
-  let i=
-    S.artist.songs.indexOf(
-      S.selectedSong
-    );
-
-  if(i<0)i=0;
-
-  launch(
-    S.artist,
-    i,
-    false
-  );
-
-};
-
-
-$("cat").onclick=()=>{
-
-  if(S.artist){
-
-    launch(
-      S.artist,
-      0,
-      true
-    );
-
-  }
-
-};
-
-
-/* =========================================================
-   LAUNCH
-========================================================= */
-
-function launch(a,startIndex,auto){
-
-  const list=a.songs||[];
-
-  if(!list.length){
-
-    $("status").textContent=
-      "This artist has no tracks.";
-
-    return;
-  }
-
-  AUD.pause();
-
-  S.run={
-    a,
-    list,
-    n:list.length,
-    auto,
-    currentIndex:startIndex
-  };
-
-  S.waitingForNextSong=false;
-
-  S.currentBoard=null;
-
-  S.bbs=[{
-    z:S.z+30,
-    i:startIndex,
-    done:false
-  }];
-
-  S.cruise=14;
-
-  S.menu=false;
-
-  $("detail")
-    .classList
-    .add("hidden");
-
-  $("radioPanel")
-    .classList
-    .add("hidden");
-
-  const song=list[startIndex];
-
-  const city=
-    CITY_MAP[song.file]?.city ||
-    "Detroit";
-
-  $("status").textContent=
-    `Cruising toward ${city}.`;
-
-  $("dtx").textContent=
-    `Billboard ahead for "${song.title}".`;
-
-}
-
-
-/* =========================================================
-   BILLBOARD
-========================================================= */
-
-function passBoard(board){
-
-  if(!S.run || !board || board.done)return;
-
-  const run=S.run;
-
-  const song=
-    run.list[board.i];
-
-  if(!song)return;
-
-  board.done=true;
-
-  S.currentBoard=board;
-
-  playArtistSong(
-    run.a,
-    song
-  );
-
-  S.bbs=[];
-
-  if(run.auto){
-
-    S.waitingForNextSong=true;
-
-    $("dtx").textContent=
-      `Now playing "${song.title}". Next billboard appears when the song finishes.`;
-
-  }else{
-
-    S.waitingForNextSong=false;
-
-    S.run=null;
-
-    $("dtx").textContent=
-      `"${song.title}" is playing. Enjoy the ${S.city} cruise.`;
-
-  }
-
-}
-
-
-function endRun(message){
-
-  S.bbs=[];
-
-  S.waitingForNextSong=false;
-
-  AUD.pause();
-
-  S.run=null;
-
-  $("mir").textContent=
-    "◉ OFF AIR";
-
-  $("mir")
-    .classList
-    .remove("on");
-
-  $("tun").textContent=
-    "8 Mile Radio";
-
-  $("status").textContent=
-    message;
-
-  $("dtx").textContent=
-    "Continue cruising or choose another track.";
-
-}
-
-
-/* =========================================================
-   RADIO
-========================================================= */
-
-radioButton.onclick=()=>{
-
-  if(
-    radioButton.disabled ||
-    !S.driving ||
-    S.run
-  )return;
-
-  S.menu=true;
-
-  $("radioPanel")
-    .classList
-    .remove("hidden");
-
-  $("detail")
-    .classList
-    .add("hidden");
-
-  $("status").textContent=
-    "8 Mile Radio — choose an artist.";
-
-  $("dtx").textContent=
-    "Choose a song or catalog.";
-
-};
-
-
-/* =========================================================
-   START
-========================================================= */
-
-$("start").onclick=()=>{
-
+$("trk").innerHTML=SONGS.map((s,i)=>'<button class="t" data-i="'+i+'"><span>'+s.t+'</span><small>'+s.c+'</small></button>').join("");
+$("trk").addEventListener("click",e=>{const b=e.target.closest(".t");if(!b)return;startDrive();load(+b.dataset.i,true)});
+$("bPlay").addEventListener("click",togglePlay);
+$("bNext").addEventListener("click",()=>{startDrive();load(A.i<0?0:A.i+1,true)});
+$("bPrev").addEventListener("click",()=>{startDrive();load(A.i<0?0:A.i-1,true)});
+$("dMsg").addEventListener("click",()=>{if(A.err)load(A.i<0?0:A.i,true);else{A.blocked=false;go()}});
+$("np").addEventListener("click",()=>{if(A.err)load(A.i<0?0:A.i,true);else if(A.blocked){A.blocked=false;go()}});
+$("dPhoto").addEventListener("error",()=>{$("dPhoto").style.visibility="hidden"});
+
+/* ---------- START / OVERLAYS ---------- */
+function startDrive(){
   if(S.driving)return;
+  S.driving=true;S.cruise=14;
+  if(A.i<0){AUD.src=SILENT;const p=AUD.play();if(p&&p.catch)p.catch(()=>{})}
+  $("start").classList.add("hidden");
+  $("status").textContent="Self-driving cruise on. Steer with LEFT and RIGHT.";
+}
+$("start").addEventListener("click",()=>{startDrive();$("status").textContent="Cruising. Open the TAPE DECK and press PLAY."});
+function closeAll(){document.querySelectorAll(".ov").forEach(o=>o.classList.add("hidden"))}
+function openOv(id){closeAll();$(id).classList.remove("hidden")}
+const anyOv=()=>!!document.querySelector(".ov:not(.hidden)");
+document.addEventListener("click",e=>{
+  if(e.target.closest("[data-close]")){closeAll();return}
+  if(e.target.classList&&e.target.classList.contains("ov"))closeAll();
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
+$("deckBtn").addEventListener("click",()=>{openOv("deck");ui()});
+$("shopBtn").addEventListener("click",()=>openShop("INTERIOR"));
+$("badge").addEventListener("click",()=>openShop("SERVICE"));
+$("alGo").addEventListener("click",()=>openShop("SERVICE"));
 
-  S.driving=true;
-
-  $("start").disabled=true;
-
-  AUD.src=SILENT;
-
-  const p=AUD.play();
-
-  if(p)p.catch(()=>{});
-
-  $("status").textContent=
-    "Self-driving cruise activated.";
-
-  $("dtx").textContent=
-    "The car will cruise automatically. Use LEFT and RIGHT to steer.";
-
-};
-
-
-/* =========================================================
-   CONTROLS
-========================================================= */
-
-const hold=(id,d)=>{
-
+/* ---------- CONTROLS ---------- */
+function hold(id,d){
   const b=$(id);
-
-  b.addEventListener(
-    "pointerdown",
-    ()=>{
-      S.steer=d;
-    }
-  );
-
-  [
-    "pointerup",
-    "pointerleave",
-    "pointercancel"
-  ].forEach(e=>{
-
-    b.addEventListener(
-      e,
-      ()=>{
-        if(S.steer===d){
-          S.steer=0;
-        }
-      }
-    );
-
-  });
-
-};
-
-
-hold("L",-1);
-hold("R",1);
-
-
-$("G").addEventListener(
-  "pointerdown",
-  ()=>{
-    S.cruise=
-      Math.min(
-        20,
-        S.cruise+3
-      );
-  }
-);
-
-
-$("B").addEventListener(
-  "pointerdown",
-  ()=>{
-    S.cruise=
-      Math.max(
-        0,
-        S.cruise-5
-      );
-  }
-);
-
-
-document.addEventListener(
-  "keydown",
-  e=>{
-
-    if(e.key==="ArrowLeft")
-      S.steer=-1;
-
-    if(e.key==="ArrowRight")
-      S.steer=1;
-
-    if(e.key==="ArrowUp")
-      S.cruise=
-        Math.min(20,S.cruise+1);
-
-    if(e.key==="ArrowDown")
-      S.cruise=
-        Math.max(0,S.cruise-2);
-
-  }
-);
-
-
-document.addEventListener(
-  "keyup",
-  e=>{
-
-    if(
-      e.key==="ArrowLeft" ||
-      e.key==="ArrowRight"
-    ){
-      S.steer=0;
-    }
-
-  }
-);
-
-
-/* =========================================================
-   MAINTENANCE SYSTEM
-========================================================= */
-
-function triggerMaintenance(reason){
-
-  if(S.maintenanceNeeded)return;
-
-  S.maintenanceNeeded=true;
-
-  S.cruise=
-    Math.min(
-      S.cruise,
-      8
-    );
-
-  $("status").textContent=
-    "⚠ VEHICLE ALERT";
-
-  $("dtx").textContent=
-    reason ||
-    "Your car needs service. Find an Auto Shop.";
-
-  showMaintenancePrompt();
-
+  b.addEventListener("pointerdown",()=>{S.steer=d});
+  ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,()=>{if(S.steer===d)S.steer=0}));
 }
-
-
-function showMaintenancePrompt(){
-
-  if($("maintenancePrompt"))
-    return;
-
-  const box=
-    document.createElement("div");
-
-  box.id="maintenancePrompt";
-
-  box.className="modal";
-
-  box.innerHTML=`
-
-    <div class="modalCard">
-
-      <div class="modalTitle">
-        VEHICLE ALERT
-      </div>
-
-      <div class="modalSub">
-        ${S.city} • ${S.landmark}
-      </div>
-
-      <div style="
-        margin-top:15px;
-        font-size:13px;
-        line-height:1.5;
-      ">
-
-        Your car is pulling slightly
-        to one side.
-
-        <br><br>
-
-        Road conditions have affected
-        the wheel alignment.
-
-      </div>
-
-      <button
-        class="shopBtn gold"
-        id="findShop">
-        FIND AUTO SHOP
-      </button>
-
-      <button
-        class="closeBtn"
-        id="keepCruising">
-        KEEP CRUISING
-      </button>
-
-    </div>
-
-  `;
-
-  document.body.appendChild(box);
-
-  $("findShop").onclick=()=>{
-
-    box.remove();
-
-    openAutoShop();
-
-  };
-
-
-  $("keepCruising").onclick=()=>{
-
-    box.remove();
-
-    $("status").textContent=
-      "Cruising carefully.";
-
-    $("dtx").textContent=
-      "Auto Shop available when you're ready.";
-
-  };
-
-}
-
-
-/* =========================================================
-   AUTO SHOP
-========================================================= */
-
-function openAutoShop(){
-
-  S.cruise=0;
-
-  S.menu=true;
-
-  const box=
-    document.createElement("div");
-
-  box.id="autoShop";
-
-  box.className="modal";
-
-  box.innerHTML=`
-
-    <div class="modalCard">
-
-      <div class="modalTitle">
-        ${S.city.toUpperCase()} AUTO SHOP
-      </div>
-
-      <div class="modalSub">
-        ${S.landmark}
-      </div>
-
-      <div class="modalGrid">
-
-        <div class="stat">
-
-          <div class="statLabel">
-            ALIGNMENT
-          </div>
-
-          <div class="statValue">
-            ${Math.round(S.alignment)}%
-          </div>
-
-        </div>
-
-        <div class="stat">
-
-          <div class="statLabel">
-            TIRE LIFE
-          </div>
-
-          <div class="statValue">
-            ${Math.round(S.tireLife)}%
-          </div>
-
-        </div>
-
-      </div>
-
-      <button
-        class="shopBtn gold"
-        id="fixAlignment">
-        FIX ALIGNMENT — $75
-      </button>
-
-      <button
-        class="shopBtn"
-        id="repairTires">
-        ROTATE / SERVICE TIRES — $50
-      </button>
-
-      <button
-        class="shopBtn"
-        id="customRide">
-        PIMP MY DIGITAL RIDE
-      </button>
-
-      <button
-        class="shopBtn"
-        id="realShop">
-        SHOP REAL AUTO PRODUCTS
-      </button>
-
-      <button
-        class="closeBtn"
-        id="leaveShop">
-        BACK TO ROAD
-      </button>
-
-    </div>
-
-  `;
-
-  document.body.appendChild(box);
-
-
-  $("fixAlignment").onclick=()=>{
-
-    if(S.cash<75){
-
-      $("status").textContent=
-        "Not enough digital cash.";
-
-      return;
-    }
-
-    S.cash-=75;
-
-    S.alignment=100;
-
-    S.maintenanceNeeded=false;
-
-    $("status").textContent=
-      "Alignment fixed.";
-
-    $("dtx").textContent=
-      "Your ride is ready to roll.";
-
-    box.remove();
-
-    S.menu=false;
-
-  };
-
-
-  $("repairTires").onclick=()=>{
-
-    if(S.cash<50){
-
-      $("status").textContent=
-        "Not enough digital cash.";
-
-      return;
-    }
-
-    S.cash-=50;
-
-    S.tireLife=100;
-
-    $("status").textContent=
-      "Tires serviced.";
-
-  };
-
-
-  $("customRide").onclick=()=>{
-
-    box.remove();
-
-    openCustomization();
-
-  };
-
-
-  /*
-    PLACEHOLDER:
-    Replace this with your actual merchant,
-    affiliate, dealership or product URL.
-  */
-
-  $("realShop").onclick=()=>{
-
-    window.open(
-      "https://www.google.com/search?q=automotive+accessories",
-      "_blank"
-    );
-
-  };
-
-
-  $("leaveShop").onclick=()=>{
-
-    box.remove();
-
-    S.menu=false;
-
-    $("status").textContent=
-      "Back on the road.";
-
-    $("dtx").textContent=
-      `Cruising ${S.city}.`;
-
-  };
-
-}
-
-
-/* =========================================================
-   PIMP MY DIGITAL RIDE
-========================================================= */
-
-function openCustomization(){
-
-  S.menu=true;
-
-  const box=
-    document.createElement("div");
-
-  box.id="customization";
-
-  box.className="modal";
-
-  box.innerHTML=`
-
-    <div class="modalCard">
-
-      <div class="modalTitle">
-        PIMP MY DIGITAL RIDE
-      </div>
-
-      <div class="modalSub">
-        ${S.city} Garage • Interior Lab
-      </div>
-
-      <h3 style="
-        margin:18px 0 5px;
-        font-size:13px;
-      ">
-        INTERIOR COLOR
-      </h3>
-
-      <div class="customGrid">
-
-        <button
-          class="colorBtn"
-          style="background:#171c23"
-          data-color="#171c23">
-          BLACK
-        </button>
-
-        <button
-          class="colorBtn"
-          style="background:#eee;color:#111"
-          data-color="#eeeeee">
-          WHITE
-        </button>
-
-        <button
-          class="colorBtn"
-          style="background:#8a1f2b"
-          data-color="#8a1f2b">
-          RED
-        </button>
-
-        <button
-          class="colorBtn"
-          style="background:#203f70"
-          data-color="#203f70">
-          BLUE
-        </button>
-
-        <button
-          class="colorBtn"
-          style="background:#d9a441;color:#111"
-          data-color="#d9a441">
-          GOLD
-        </button>
-
-        <button
-          class="colorBtn"
-          style="background:#604b3b"
-          data-color="#604b3b">
-          BROWN
-        </button>
-
-        <button
-          class="colorBtn"
-          style="background:#6b6b6b"
-          data-color="#6b6b6b">
-          GREY
-        </button>
-
-        <button
-          class="colorBtn"
-          style="background:#5b315f"
-          data-color="#5b315f">
-          PURPLE
-        </button>
-
-      </div>
-
-
-      <h3 style="
-        margin:18px 0 5px;
-        font-size:13px;
-      ">
-        AMBIENT LIGHTING
-      </h3>
-
-      <div class="customGrid">
-
-        <button
-          class="colorBtn"
-          style="background:#d9a441"
-          data-light="#d9a441">
-          GOLD
-        </button>
-
-        <button
-          class="colorBtn"
-          style="background:#3b8cff"
-          data-light="#3b8cff">
-          BLUE
-        </button>
-
-        <button
-          class="colorBtn"
-          style="background:#ff3b81"
-          data-light="#ff3b81">
-          PINK
-        </button>
-
-        <button
-          class="colorBtn"
-          style="background:#55d66f"
-          data-light="#55d66f">
-          GREEN
-        </button>
-
-      </div>
-
-
-      <button
-        class="shopBtn gold"
-        id="saveRide">
-        SAVE MY RIDE
-      </button>
-
-      <button
-        class="closeBtn"
-        id="exitCustomization">
-        BACK
-      </button>
-
-    </div>
-
-  `;
-
-  document.body.appendChild(box);
-
-
-  box.querySelectorAll(
-    "[data-color]"
-  ).forEach(btn=>{
-
-    btn.onclick=()=>{
-
-      S.interiorColor=
-        btn.dataset.color;
-
-      $("status").textContent=
-        "Interior color changed.";
-
-    };
-
-  });
-
-
-  box.querySelectorAll(
-    "[data-light]"
-  ).forEach(btn=>{
-
-    btn.onclick=()=>{
-
-      S.lightColor=
-        btn.dataset.light;
-
-      $("status").textContent=
-        "Ambient lighting changed.";
-
-    };
-
-  });
-
-
-  $("saveRide").onclick=()=>{
-
-    localStorage.setItem(
-      "drivewiseGarage",
-      JSON.stringify({
-        interiorColor:S.interiorColor,
-        seatColor:S.seatColor,
-        lightColor:S.lightColor
-      })
-    );
-
-    box.remove();
-
-    S.menu=false;
-
-    $("status").textContent=
-      "INTERIOR UPDATED";
-
-    $("dtx").textContent=
-      "Your digital ride is ready to roll.";
-
-    S.cruise=12;
-
-  };
-
-
-  $("exitCustomization").onclick=()=>{
-
-    box.remove();
-
-    S.menu=false;
-
-  };
-
-}
-
-
-/* =========================================================
-   LOAD GARAGE
-========================================================= */
-
-function loadGarage(){
-
-  try{
-
-    const data=
-      JSON.parse(
-        localStorage.getItem(
-          "drivewiseGarage"
-        )
-      );
-
-    if(!data)return;
-
-    if(data.interiorColor)
-      S.interiorColor=
-        data.interiorColor;
-
-    if(data.seatColor)
-      S.seatColor=
-        data.seatColor;
-
-    if(data.lightColor)
-      S.lightColor=
-        data.lightColor;
-
-  }catch(e){
-
-    console.warn(
-      "Garage save unavailable"
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   WORLD GENERATION
-========================================================= */
-
-function rng(s){
-
-  return()=>{
-
-    s|=0;
-
-    s=
-      s+
-      0x6D2B79F5|
-      0;
-
-    let t=
-      Math.imul(
-        s^s>>>15,
-        1|s
-      );
-
-    t=
-      t+
-      Math.imul(
-        t^t>>>7,
-        61|t
-      )^t;
-
-    return(
-      (t^t>>>14)>>>0
-    )/4294967296;
-
-  };
-
-}
-
-const hash=(a,b,c)=>
-(
-  (
-    Math.imul(
-      a+1,
-      73856093
-    ) ^
-    Math.imul(
-      b+3,
-      19349663
-    ) ^
-    Math.imul(
-      c+7,
-      83492791
-    )
-  )>>>0
-)%97/97;
-
-
-const CH={};
-
-const BC=[
-  [112,84,72],
-  [84,92,104],
-  [122,108,88]
-];
-
-const CARS=[
-  [150,40,40],
-  [40,70,130],
-  [190,190,190],
-  [30,30,34],
-  [70,110,80],
-  [200,160,60]
-];
-
-const CT=[
-  {w:1.6,h:1.35},
-  {w:1.8,h:1.75},
-  {w:2.2,h:2.9}
-];
-
-
-const LANDMARKS={
-
-  "Detroit":[
-    "Woodward Avenue",
-    "Campus Martius",
-    "Fox Theatre"
-  ],
-
-  "New Orleans":[
-    "French Quarter",
-    "Bourbon Street",
-    "Mississippi River"
-  ],
-
-  "Los Angeles":[
-    "Hollywood Boulevard",
-    "Sunset Strip",
-    "Downtown LA"
-  ],
-
-  "Miami":[
-    "Ocean Drive",
-    "South Beach",
-    "Miami Downtown"
-  ],
-
-  "Myrtle Beach":[
-    "Oceanfront",
-    "Boardwalk",
-    "Coastal Highway"
-  ],
-
-  "Atlanta":[
-    "Downtown Atlanta",
-    "Peachtree Street",
-    "Midtown"
-  ],
-
-  "Memphis":[
-    "Beale Street",
-    "Downtown Memphis",
-    "Mississippi River"
-  ],
-
-  "Salt Lake City":[
-    "Wasatch Mountains",
-    "Downtown",
-    "Mountain View"
-  ],
-
-  "Las Vegas":[
-    "Las Vegas Strip",
-    "Downtown Vegas",
-    "Neon District"
-  ],
-
-  "Tokyo":[
-    "Shibuya Crossing",
-    "Shinjuku",
-    "Tokyo Tower"
-  ],
-
-  "London":[
-    "West End",
-    "Tower Bridge",
-    "Piccadilly"
-  ]
-
-};
-
-
-function gen(ci){
-
-  const r=
-    rng(
-      (ci%15)*7919+13
-    );
-
-  const o=[];
-
-  const z0=ci*40;
-
-  for(
-    const sd of [-1,1]
-  ){
-
-    for(let i=0;i<4;i++){
-
-      o.push({
-        t:"tree",
-        lx:sd*(5+r()*2),
-        z:z0+r()*40,
-        s:.7+r()*.9,
-        k:r()*6.28,
-        v:r()*3|0,
-        g:r()
-      });
-
-    }
-
-
-    for(let i=0;i<2;i++){
-
-      o.push({
-        t:"lamp",
-        lx:sd*4.7,
-        z:z0+i*20,
-        th:.25+r()*.4,
-        fl:r()<.12,
-        k:r()*6
-      });
-
-    }
-
-
-    let z=z0;
-
-    while(z<z0+40){
-
-      const w=
-        3+r()*4;
-
-      o.push({
-        t:"bld",
-        lx:
-          sd*
-          (
-            7.4+
-            w/2+
-            r()*1.5
-          ),
-        z:z+w/2,
-        w,
-        h:
-          3+
-          r()*
-          (r()<.2?12:5),
-        c:r()*3|0,
-        k:r()*1000|0
-      });
-
-      z+=
-        w+
-        .4+
-        r()*1.2;
-
-    }
-
-
-    if(r()<.55){
-
-      o.push({
-        t:"pcar",
-        lx:sd*3,
-        z:z0+r()*40,
-        ty:r()<.3?1:0,
-        col:CARS[r()*6|0],
-        sd
-      });
-
-    }
-
-  }
-
-  return o;
-
-}
-
-
-function chunks(){
-
-  const c0=
-    Math.floor(
-      S.z/40
-    );
-
-  for(
-    let i=c0;
-    i<=c0+4;
-    i++
-  ){
-
-    if(!CH[i])
-      CH[i]=gen(i);
-
-  }
-
-  for(
-    const k in CH
-  ){
-
-    if(+k<c0-1)
-      delete CH[k];
-
-  }
-
-  return c0;
-
-}
-
-
-/* =========================================================
-   TRAFFIC
-========================================================= */
-
-const TR=[];
-
-for(let i=0;i<7;i++){
-
-  const ov=i%2===0;
-
-  TR.push({
-
-    ov,
-
-    d:30+i*20,
-
-    v:
-      ov?
-      -13:
-      5+Math.random()*4,
-
-    b:0,
-
-    ty:
-      i===5?
-      2:
-      i===3?
-      1:
-      0,
-
-    col:
-      CARS[i%6],
-
-    k:
-      Math.random()*6
-
-  });
-
-}
-
-
-function updTraffic(dt){
-
-  for(
-    const car of TR
-  ){
-
-    const base=
-      car.ov?
-      -13:
-      6+(car.k%3);
-
-    car.d-=
-      (S.v-car.v)*dt;
-
-    if(
-      car.d<NEAR-.5 ||
-      car.d>175
-    ){
-
-      car.d=
-        95+
-        Math.random()*55;
-
-      car.col=
-        CARS[
-          Math.random()*6|0
-        ];
-
-    }
-
-  }
-
-}
-
-
-/* =========================================================
-   PROJECTION
-========================================================= */
-
-const P=(lx,wz)=>{
-
-  const dz=wz-S.z;
-
-  if(
-    dz<=NEAR ||
-    dz>150
-  )return null;
-
-  const s=K/dz;
-
-  return{
-
-    dz,
-
-    s,
-
-    x:
-      W/2+
-      (lx-S.x)*s,
-
-    y:
-      HY+
-      CAMH*s
-
-  };
-
-};
-
-
-const c=(r,g,b,m=1)=>{
-
-  const k=DK*m;
-
-  return `rgb(
-    ${r*k|0},
-    ${g*k|0},
-    ${b*k|0}
-  )`;
-
-};
-
-
-const el=(x,y,rx,ry)=>{
-
-  ctx.beginPath();
-
-  ctx.ellipse(
-    x,
-    y,
-    Math.max(.1,rx),
-    Math.max(.1,ry),
-    0,
-    0,
-    6.3
-  );
-
-  ctx.fill();
-
-};
-
-
-/* =========================================================
-   SKY
-========================================================= */
-
-const ST=[
-  [
-    [90,150,210],
-    [190,215,230]
-  ],
-  [
-    [110,140,190],
-    [245,190,110]
-  ],
-  [
-    [90,70,130],
-    [240,110,70]
-  ],
-  [
-    [25,35,80],
-    [90,90,130]
-  ],
-  [
-    [5,8,18],
-    [22,30,48]
-  ]
-];
-
-
-function skyc(t){
-
-  const q=
-    Math.min(
-      3.999,
-      t*4
-    );
-
-  const i=q|0;
-
-  const u=q-i;
-
-  return ST[i].map(
-    (a,j)=>
-      a.map(
-        (v,k)=>
-          v+
-          (
-            ST[i+1][j][k]-v
-          )*
-          u|0
-      )
-  );
-
-}
-
-
-const rs=a=>
-  `rgb(${a[0]},${a[1]},${a[2]})`;
-
-
-/* =========================================================
-   WORLD DRAW
-========================================================= */
-
-function drawSky(){
-
-  const [tp,bt]=SKY;
-
-  const g=
-    ctx.createLinearGradient(
-      0,0,0,HY
-    );
-
-  g.addColorStop(
-    0,
-    rs(tp)
-  );
-
-  g.addColorStop(
-    1,
-    rs(bt)
-  );
-
-  f(g);
-
-  ctx.fillRect(
-    0,0,W,HY
-  );
-
-}
-
-
-function drawGround(){
-
-  const g=
-    ctx.createLinearGradient(
-      0,
-      HY,
-      0,
-      H
-    );
-
-  g.addColorStop(
-    0,
-    c(40,52,40)
-  );
-
-  g.addColorStop(
-    1,
-    c(18,26,18)
-  );
-
-  f(g);
-
-  ctx.fillRect(
-    0,
-    HY,
-    W,
-    H-HY
-  );
-
-
-  const road=
-    ctx.createLinearGradient(
-      0,
-      HY,
-      0,
-      H
-    );
-
-  road.addColorStop(
-    0,
-    c(52,56,62)
-  );
-
-  road.addColorStop(
-    1,
-    c(26,29,34)
-  );
-
-  f(road);
-
-  ctx.beginPath();
-
-  ctx.moveTo(W/2-4*K/(S.z+3),HY);
-
-  ctx.lineTo(0,H);
-
-  ctx.lineTo(W,H);
-
-  ctx.lineTo(W/2+4*K/(S.z+3),HY);
-
-  ctx.closePath();
-
-  ctx.fill();
-
-
-  /*
-    Clear self-driving lane.
-  */
-
-  const laneX=W/2;
-
-  for(let i=0;i<20;i++){
-
-    const z=
-      S.z+
-      i*6+
-      8;
-
-    const p=P(0,z);
-
-    if(!p)continue;
-
-    f(c(210,190,90));
-
-    ctx.fillRect(
-      laneX-
-      Math.max(1,p.s*.05),
-      p.y,
-      Math.max(2,p.s*.1),
-      Math.max(1,p.s*.5)
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   SIMPLE SCENERY
-========================================================= */
-
-function dTree(o,p){
-
-  const s=p.s;
-
-  const x=p.x;
-  const y=p.y;
-
-  const h=
-    1.6*
-    o.s*
-    s;
-
-  f(c(60,42,30));
-
-  ctx.fillRect(
-    x-.08*s,
-    y-h,
-    .16*s,
-    h
-  );
-
-  f(c(
-    30+o.g*30|0,
-    80+o.g*40|0,
-    40
-  ));
-
-  el(
-    x,
-    y-h,
-    .8*o.s*s,
-    .8*o.s*s
-  );
-
-}
-
-
-function dLamp(o,p){
-
-  const s=p.s;
-
-  const x=p.x;
-  const y=p.y;
-
-  f(c(50,52,56));
-
-  ctx.fillRect(
-    x-.05*s,
-    y-4*s,
-    .1*s,
-    4*s
-  );
-
-  if(N>.2){
-
-    glow(
-      x,
-      y-4*s,
-      1.2*s,
-      "rgb(255,220,150)",
-      .3*N
-    );
-
-  }
-
-}
-
-
-function dBld(o,p){
-
-  const s=p.s;
-
-  const x=p.x;
-  const y=p.y;
-
-  const w=o.w*s;
-
-  const h=o.h*s;
-
-  f(c(
-    ...BC[o.c]
-  ));
-
-  ctx.fillRect(
-    x-w/2,
-    y-h,
-    w,
-    h
-  );
-
-  if(N>.25){
-
-    f("rgb(255,210,120)");
-
-    for(
-      let r=0;
-      r<Math.min(8,o.h);
-      r++
-    ){
-
-      ctx.fillRect(
-        x-w*.3,
-        y-h+
-        r*1.2*s,
-        .2*s,
-        .35*s
-      );
-
-    }
-
-  }
-
-}
-
-
-function dCar(
-  x,
-  y,
-  s,
-  ty,
-  col,
-  front,
-  br
-){
-
-  const w=ty.w*s;
-
-  const h=ty.h*s;
-
-  f("rgba(0,0,0,.4)");
-
-  ctx.fillRect(
-    x-w/2,
-    y,
-    w,
-    .08*s
-  );
-
-  f(c(...col));
-
-  ctx.fillRect(
-    x-w/2,
-    y-h*.55,
-    w,
-    h*.55
-  );
-
-  ctx.beginPath();
-
-  ctx.moveTo(
-    x-w*.4,
-    y-h*.55
-  );
-
-  ctx.lineTo(
-    x-w*.3,
-    y-h
-  );
-
-  ctx.lineTo(
-    x+w*.3,
-    y-h
-  );
-
-  ctx.lineTo(
-    x+w*.4,
-    y-h*.55
-  );
-
-  ctx.fill();
-
-  f("#10151b");
-
-  ctx.fillRect(
-    x-w*.25,
-    y-h*.9,
-    w*.5,
-    h*.25
-  );
-
-  if(front && N>.2){
-
-    glow(
-      x-w*.32,
-      y-h*.35,
-      .4*s,
-      "rgb(255,245,210)",
-      .3*N
-    );
-
-    glow(
-      x+w*.32,
-      y-h*.35,
-      .4*s,
-      "rgb(255,245,210)",
-      .3*N
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   GLOW
-========================================================= */
-
-function glow(
-  x,
-  y,
-  r,
-  col,
-  a
-){
-
-  ctx.globalAlpha=
-    Math.min(1,a)*FA;
-
-  f(col);
-
-  ctx.beginPath();
-
-  ctx.arc(
-    x,
-    y,
-    r,
-    0,
-    6.3
-  );
-
-  ctx.fill();
-
-  ctx.globalAlpha=FA;
-
-}
-
-
-/* =========================================================
-   BILLBOARD
-========================================================= */
-
-const IMG={};
-
-function getImage(src){
-
-  if(!src)return null;
-
-  if(!IMG[src]){
-
-    const img=
-      new Image();
-
-    img.src=src;
-
-    IMG[src]=img;
-
-  }
-
-  return IMG[src];
-
-}
-
-
-function dBoard(
-  dz,
-  artist,
-  title,
-  sub,
-  lit
-){
-
-  if(dz<=NEAR)return;
-
-  const s=K/dz;
-
-  const x=W/2-S.x*s;
-
-  const y=
-    HY+
-    CAMH*s;
-
-  const bw=6*s;
-
-  const bh=3.8*s;
-
-  ctx.globalAlpha=
-    Math.min(
-      1,
-      (150-dz)/50
-    );
-
-  f("#111");
-
-  ctx.fillRect(
-    x-bw/2,
-    y-bh,
-    bw,
-    bh
-  );
-
-  const img=
-    getImage(
-      artist.photo
-    );
-
-  if(
-    img &&
-    img.complete &&
-    img.naturalWidth
-  ){
-
-    ctx.drawImage(
-      img,
-      x-bw/2,
-      y-bh,
-      bw*.4,
-      bh
-    );
-
-  }
-
-  ctx.strokeStyle=AC;
-
-  ctx.lineWidth=
-    Math.max(
-      1,
-      .05*s
-    );
-
-  ctx.strokeRect(
-    x-bw/2,
-    y-bh,
-    bw,
-    bh
-  );
-
-  ctx.textAlign="center";
-
-  f("#fff");
-
-  ctx.font=
-    `bold ${Math.max(7,.42*s)}px Arial`;
-
-  ctx.fillText(
-    artist.display,
-    x+bw*.2,
-    y-bh*.58,
-    bw*.5
-  );
-
-  f(AC);
-
-  ctx.font=
-    `bold ${Math.max(6,.3*s)}px Arial`;
-
-  ctx.fillText(
-    title,
-    x+bw*.2,
-    y-bh*.36,
-    bw*.5
-  );
-
-  f("#ddd");
-
-  ctx.font=
-    `${Math.max(5,.22*s)}px Arial`;
-
-  ctx.fillText(
-    sub,
-    x+bw*.2,
-    y-bh*.15,
-    bw*.5
-  );
-
-  ctx.globalAlpha=1;
-
-}
-
-
-/* =========================================================
-   CITY SIGN
-========================================================= */
-
-function drawCitySign(){
-
-  if(!S.driving)return;
-
-  ctx.globalAlpha=.9;
-
-  f("rgba(0,0,0,.65)");
-
-  ctx.fillRect(
-    10,
-    10,
-    120,
-    38
-  );
-
-  f(AC);
-
-  ctx.textAlign="left";
-
-  ctx.font=
-    "bold 8px Arial";
-
-  ctx.fillText(
-    "NOW CRUISING",
-    18,
-    22
-  );
-
-  f("#fff");
-
-  ctx.font=
-    "bold 13px Arial";
-
-  ctx.fillText(
-    S.city.toUpperCase(),
-    18,
-    37
-  );
-
-  ctx.globalAlpha=1;
-
-}
-
-
-/* =========================================================
-   UPDATE
-========================================================= */
-
-function update(dt){
-
-  T+=dt;
-
-  if(S.driving){
-
-    /*
-      SELF DRIVING:
-      The car automatically follows the road.
-    */
-
-    S.v+=
-      (S.cruise-S.v)*
-      Math.min(
-        1,
-        dt*3
-      );
-
-    S.z+=
-      S.v*dt;
-
-    /*
-      Steering is optional.
-    */
-
-    S.x+=
-      S.steer*
-      dt*
-      2.5;
-
-    S.x*=
-      1-dt*.4;
-
-    S.x=
-      Math.max(
-        -2.8,
-        Math.min(
-          2.8,
-          S.x
-        )
-      );
-
-
-    /*
-      Tire wear.
-    */
-
-    if(S.v>5){
-
-      S.tireLife-=
-        dt*.003;
-
-      if(Math.abs(S.steer)>.4){
-
-        S.alignment-=
-          dt*.025;
-
-      }
-
-    }
-
-
-    S.tireLife=
-      Math.max(
-        0,
-        S.tireLife
-      );
-
-    S.alignment=
-      Math.max(
-        0,
-        S.alignment
-      );
-
-
-    /*
-      Maintenance triggers.
-    */
-
-    if(
-      S.alignment<35 &&
-      !S.maintenanceNeeded
-    ){
-
-      triggerMaintenance(
-        "Your steering feels off. Wheel alignment recommended."
-      );
-
-    }
-
-
-    if(
-      S.tireLife<15 &&
-      !S.maintenanceNeeded
-    ){
-
-      triggerMaintenance(
-        "Your tires are wearing down. Tire service recommended."
-      );
-
-    }
-
-
-    /*
-      Time of day.
-    */
-
-    S.t=
-      Math.min(
-        1,
-        S.t+dt/220
-      );
-
+hold("L",-1);hold("R",1);
+function gas(){startDrive();S.cruise=Math.min(22,S.cruise+3)}
+function brake(){const w=G.brk<LIMIT.brk?2:5;S.cruise=Math.max(0,S.cruise-w);G.brk=Math.max(0,G.brk-3)}
+$("G").addEventListener("pointerdown",gas);
+$("B").addEventListener("pointerdown",brake);
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowLeft")S.steer=-1;
+  if(e.key==="ArrowRight")S.steer=1;
+  if(e.key==="ArrowUp")gas();
+  if(e.key==="ArrowDown")brake();
+});
+document.addEventListener("keyup",e=>{if(e.key==="ArrowLeft"||e.key==="ArrowRight")S.steer=0});
+
+/* ---------- GARAGE UI ---------- */
+let tab="INTERIOR";
+const TABS=["INTERIOR","PAINT","SEATS","LIGHTING","WHEELS","TIRES","DASHBOARD","AUDIO","SERVICE","REAL"];
+const TLAB={REAL:"REAL PRODUCTS",DASHBOARD:"DASH",SERVICE:"AUTO SHOP"};
+function openShop(t){tab=t||"INTERIOR";openOv("garage");renderGarage()}
+function renderGarage(){
+  $("gcash").textContent="$"+Math.round(G.cash).toLocaleString()+" DIGITAL CASH";
+  $("tabs").innerHTML=TABS.map(t=>'<button class="tab'+(t===tab?" on":"")+'" data-tab="'+t+'">'+(TLAB[t]||t)+'</button>').join("");
+  let h="";
+  if(CAT[tab]){
+    h=CAT[tab].map(it=>{
+      const o=owned(tab,it[0],it[1]),eq=G.eq[tab]===it[0];
+      const btn=eq?'<button class="bt eq" disabled>EQUIPPED</button>':o?'<button class="bt has" data-a="eq" data-c="'+tab+'" data-n="'+it[0]+'">EQUIP</button>':'<button class="bt" data-a="buy" data-c="'+tab+'" data-n="'+it[0]+'">BUY $'+it[1]+'</button>';
+      return '<div class="it"><div class="sw" style="background:'+it[2]+'"></div><div><b>'+it[0].toUpperCase()+' — '+(it[1]?"$"+it[1]:"FREE")+'</b><br><span class="tag d">DIGITAL ITEM</span></div>'+btn+'</div>';
+    }).join("");
+  }else if(tab==="SERVICE"){
+    h='<div class="small" style="margin-top:8px">AUTO SHOP — repairs cost digital cash.</div>'+Object.keys(SERV).map(k=>
+      '<div class="it" style="grid-template-columns:1fr auto"><div><b>'+PNAME[k]+' '+Math.round(G[k])+'%</b><br><span class="tag d">DIGITAL ITEM</span></div><button class="bt" data-a="fix" data-c="'+k+'">'+SERV[k][0].toUpperCase()+' $'+SERV[k][1]+'</button></div>').join("");
   }else{
-
-    S.v=0;
-
+    h='<div class="small" style="margin-top:8px">SHOP REAL PRODUCTS — these open outside the game in a new tab. Purchases are not made in-game.</div>'+REAL.map(r=>
+      '<div class="it" style="grid-template-columns:1fr auto"><div><b>'+r[0].toUpperCase()+'</b><br><span class="tag r">REAL PRODUCT</span></div><a class="bt" href="'+r[1]+'" target="_blank" rel="noopener noreferrer">SHOP ↗</a></div>').join("");
   }
-
-
-  $("wheel").style.transform=
-    `rotate(${S.steer*22}deg)`;
-
-
-  $("spd").textContent=
-    Math.round(S.v);
-
-
-  $("cash").textContent=
-    Math.round(S.cash);
-
-
-  $("gross").textContent=
-    Math.round(S.gross);
-
-
-  $("tireDisplay").textContent=
-    Math.round(S.tireLife);
-
-
-  const n=
-    Math.max(
-      0,
-      Math.min(
-        1,
-        (S.t-.5)/.45
-      )
-    );
-
-  N=
-    n*n*
-    (3-2*n);
-
-  DK=
-    1-.62*N;
-
-  SKY=
-    skyc(S.t);
-
-
-  updTraffic(dt);
-
-
-  /*
-    Billboard collision.
-  */
-
-  if(
-    S.run &&
-    !S.waitingForNextSong
-  ){
-
-    for(
-      const b of S.bbs
-    ){
-
-      if(
-        !b.done &&
-        S.z>=b.z
-      ){
-
-        passBoard(b);
-
-        break;
-
-      }
-
-    }
-
+  $("gBody").innerHTML=h;
+  preview();
+}
+$("tabs").addEventListener("click",e=>{const b=e.target.closest("[data-tab]");if(!b)return;tab=b.dataset.tab;renderGarage()});
+$("gBody").addEventListener("click",e=>{
+  const b=e.target.closest("[data-a]");if(!b)return;
+  const a=b.dataset.a,c=b.dataset.c,n=b.dataset.n;
+  if(a==="buy"){
+    const it=CAT[c].find(x=>x[0]===n);
+    if(!it||owned(c,n,it[1]))return;
+    if(G.cash<it[1]){$("gcash").textContent="NOT ENOUGH CASH";return}
+    G.cash-=it[1];G.own[c+":"+n]=1;G.eq[c]=n;
+  }else if(a==="eq"){G.eq[c]=n}
+  else if(a==="fix"){
+    if(G[c]>=100)return;
+    if(G.cash<SERV[c][1]){$("gcash").textContent="NOT ENOUGH CASH";return}
+    G.cash-=SERV[c][1];G[c]=100;S.alerted[c]=false;
   }
-
-
-  /*
-    Radio proximity.
-  */
-
-  if(
-    S.driving &&
-    Math.abs(S.z-RZ)<9 &&
-    S.v<7 &&
-    !S.menu &&
-    !S.run
-  ){
-
-    $("status").textContent=
-      `${S.city} radio zone nearby.`;
-
-    $("dtx").textContent=
-      "Tap RADIO to discover music.";
-
+  save();renderGarage();ui();
+});
+function circ(c,x,y,r){c.beginPath();c.arc(x,y,r,0,6.2832);c.fill()}
+function preview(){
+  const c=$("pv").getContext("2d");
+  const g=c.createLinearGradient(0,0,0,140);g.addColorStop(0,"#1a0640");g.addColorStop(1,"#05010f");
+  c.fillStyle=g;c.fillRect(0,0,300,140);
+  const li=col("LIGHTING"),pa=col("PAINT"),ic=col("INTERIOR"),se=col("SEATS");
+  c.fillStyle=pa;c.beginPath();c.moveTo(22,98);c.lineTo(28,76);c.lineTo(84,68);c.lineTo(114,38);c.lineTo(204,38);c.lineTo(244,68);c.lineTo(280,76);c.lineTo(284,98);c.closePath();c.fill();
+  c.fillStyle=ic;c.beginPath();c.moveTo(98,66);c.lineTo(120,44);c.lineTo(200,44);c.lineTo(230,66);c.closePath();c.fill();
+  c.fillStyle=se;c.fillRect(176,46,16,20);c.fillRect(150,58,30,8);c.fillRect(110,56,6,10);
+  c.strokeStyle=li;c.lineWidth=3;c.shadowColor=li;c.shadowBlur=10;c.beginPath();c.moveTo(100,66);c.lineTo(228,66);c.stroke();
+  c.shadowBlur=0;
+  for(const x of [78,230]){
+    c.fillStyle="#08080f";circ(c,x,100,21);
+    if(G.eq.TIRES==="Performance"){c.strokeStyle="#00f0ff";c.lineWidth=3;c.shadowColor="#00f0ff";c.shadowBlur=8;c.beginPath();c.arc(x,100,21,0,6.2832);c.stroke();c.shadowBlur=0}
+    c.fillStyle=col("WHEELS");circ(c,x,100,12);c.fillStyle="#000";circ(c,x,100,3);
   }
-
+  c.fillStyle=col("DASHBOARD");c.fillRect(8,124,60,5);
+  c.fillStyle="#a596d0";c.font="bold 11px Arial";c.fillText("YOUR DIGITAL RIDE",76,130);
 }
 
+/* ---------- ALERTS ---------- */
+function checkProblems(){
+  const act=Object.keys(LIMIT).filter(k=>G[k]<LIMIT[k]);
+  const bd=$("badge");
+  if(act.length){bd.textContent="⚠ "+act.map(k=>PNAME[k]).join(" • ");bd.classList.remove("hidden")}
+  else bd.classList.add("hidden");
+  if(!S.driving||anyOv())return;
+  for(const k of act)if(!S.alerted[k]){
+    S.alerted[k]=true;
+    $("alT").textContent=PROB[k][0];$("alD").textContent=PROB[k][1];
+    openOv("alert");break;
+  }
+}
 
-/* =========================================================
-   DRAW
-========================================================= */
+/* ---------- WORLD ---------- */
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const CARS=[[255,40,90],[40,120,255],[220,220,255],[60,30,110],[0,220,160],[255,200,0]];
+const CT=[{w:1.6,h:1.35},{w:1.8,h:1.75},{w:2.2,h:2.9}];
+const CH={};
+function gen(ci){
+  const r=rng(ci*7919+13),o=[],z0=ci*40;
+  for(const sd of[-1,1]){
+    for(let i=0;i<4;i++)o.push({t:"tree",lx:sd*(5+r()*2),z:z0+r()*40,s:.7+r()*.9,g:r()});
+    for(let i=0;i<2;i++)o.push({t:"lamp",lx:sd*4.7,z:z0+i*20+3});
+    for(let i=0;i<2;i++)o.push({t:"ped",lx:sd*(4.5+r()*.7),z:z0+r()*40,k:r()*6,c:r()*3|0});
+    let z=z0;
+    while(z<z0+40){const w=3+r()*4;o.push({t:"bld",lx:sd*(7.4+w/2+r()*1.5),z:z+w/2,w,h:3+r()*(r()<.25?13:5),c:r()*3|0,k:r()*1000|0});z+=w+.4+r()*1.2}
+    if(r()<.5)o.push({t:"pcar",lx:sd*3.2,z:z0+r()*40,col:CARS[r()*6|0]});
+  }
+  return o;
+}
+function chunks(){
+  const c0=Math.floor(S.z/40);
+  for(let i=c0;i<=c0+4;i++)if(!CH[i])CH[i]=gen(i);
+  for(const k in CH)if(+k<c0-1)delete CH[k];
+  return c0;
+}
+const TR=[];
+for(let i=0;i<6;i++)TR.push({ov:i%2===0,d:35+i*22,v:i%2===0?-12:6+Math.random()*3,ty:i===5?2:i===3?1:0,col:CARS[i%6]});
+function updTraffic(dt){
+  for(const c of TR){
+    c.d-=(S.v-c.v)*dt;
+    if(c.d<NEAR+.5||c.d>175){c.d=100+Math.random()*60;c.col=CARS[Math.random()*6|0]}
+  }
+}
+const P=(lx,dz)=>{if(dz<=NEAR||dz>150)return null;const s=K/dz;return{s,x:W/2+(lx-S.x)*s,y:HY+CAMH*s}};
+const IMG={};
+function img(src){if(!IMG[src]){const i=new Image();i.src=src;IMG[src]=i}return IMG[src]}
 
-function draw(){
-
-  FA=1;
-
+/* ---------- DRAW HELPERS ---------- */
+function skyline(k,al){
+  if(al<.02)return;
+  ctx.globalAlpha=al;
+  for(let i=0;i<26;i++){
+    const hh=hs(i),w=16+hs(i+9)*14,x=i*20-20-S.x*3;
+    if(k==="mt"){
+      const h=35+hh*55;
+      f(rs(cur.b,.45*DK));ctx.beginPath();ctx.moveTo(x,HY);ctx.lineTo(x+w,HY-h);ctx.lineTo(x+w*2.2,HY);ctx.fill();
+      f("rgba(255,255,255,.5)");ctx.beginPath();ctx.moveTo(x+w-6,HY-h+10);ctx.lineTo(x+w,HY-h);ctx.lineTo(x+w+6,HY-h+10);ctx.fill();
+      continue;
+    }
+    const h=k==="sea"?6+hh*20:k==="sp"?18+hh*34:18+hh*58;
+    f(rs(cur.b,.5*DK));ctx.fillRect(x,HY-h,w,h);
+    if(k==="sp"){ctx.beginPath();ctx.moveTo(x,HY-h);ctx.lineTo(x+w/2,HY-h-14-hh*14);ctx.lineTo(x+w,HY-h);ctx.fill()}
+    f(rs(cur.a));ctx.globalAlpha=al*(.35+.55*N);ctx.fillRect(x,HY-h,w,1.5);ctx.globalAlpha=al;
+    if(N>.25&&k!=="sea")for(let r=0;r<h/8-1;r++)if(hs(i*13+r)>.5)ctx.fillRect(x+3+(r%3)*5,HY-h+5+r*8,2,2);
+  }
+  if(k==="sea"){f(rs(cur.a));ctx.globalAlpha=al*.5;ctx.fillRect(0,HY-4,W,4)}
   ctx.globalAlpha=1;
-
-  ctx.clearRect(
-    0,
-    0,
-    W,
-    H
-  );
-
-
-  const bump=
-    S.driving?
-
-    (
-      Math.sin(S.z*2.3)*.7+
-      Math.sin(T*31)*.25
-    )*
-    Math.min(
-      1,
-      S.v/12
-    ):
-
-    0;
-
-
-  ctx.save();
-
-  ctx.translate(
-    0,
-    bump
-  );
-
-
-  drawSky();
-
-  drawGround();
-
-
-  /*
-    Traffic.
-  */
-
-  for(
-    const t of TR
-  ){
-
-    const p=
-      P(
-        t.ov?-1.2:1.2,
-        S.z+t.d
-      );
-
-    if(!p)continue;
-
-    dCar(
-      p.x,
-      p.y,
-      p.s,
-      CT[t.ty],
-      t.col,
-      t.ov,
-      false
-    );
-
+}
+function sky(){
+  const dk=1-.8*N;
+  const g=ctx.createLinearGradient(0,0,0,HY);g.addColorStop(0,rs(cur.s0,dk));g.addColorStop(1,rs(cur.s1,dk));
+  f(g);ctx.fillRect(0,0,W,HY);
+  if(N>.3){ctx.globalAlpha=Math.min(1,(N-.3)*1.3);f("#fff");for(let i=0;i<40;i++)ctx.fillRect((i*97)%W,(i*53)%(HY-30),1.3,1.3);ctx.globalAlpha=1}
+  skyline(S.k0,1-S.kf);skyline(S.k1,S.kf);
+}
+function quad(a,b,c,d){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.lineTo(c.x,c.y);ctx.lineTo(d.x,d.y);ctx.closePath();ctx.fill()}
+function ground(){
+  const g=ctx.createLinearGradient(0,HY,0,H);g.addColorStop(0,rs(cur.g,1.8*DK));g.addColorStop(1,rs(cur.g,.7*DK));
+  f(g);ctx.fillRect(0,HY,W,H-HY);
+  const a=P(-4,149),b=P(4,149),c=P(4,2),d=P(-4,2);
+  f(rs([34,28,56],DK));quad(a,b,c,d);
+  ctx.strokeStyle=rs(cur.a);ctx.lineWidth=2;ctx.globalAlpha=.6+.4*N;
+  ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(d.x,d.y);ctx.moveTo(b.x,b.y);ctx.lineTo(c.x,c.y);ctx.stroke();
+  ctx.globalAlpha=1;
+  f("rgb(255,43,214)");
+  const base=S.z%6;
+  for(let i=0;i<24;i++){
+    const dz=i*6-base+2,p1=P(-.07,dz),p2=P(.07,dz),p3=P(.07,dz+2.5),p4=P(-.07,dz+2.5);
+    if(p1&&p2&&p3&&p4)quad(p1,p2,p3,p4);
   }
-
-
-  /*
-    World chunks.
-  */
-
-  const c0=chunks();
-
-  for(
-    let i=c0;
-    i<=c0+4;
-    i++
-  ){
-
-    const arr=CH[i];
-
-    if(!arr)continue;
-
-    for(
-      const o of arr
-    ){
-
-      const p=
-        P(
-          o.lx,
-          o.z
-        );
-
-      if(!p)continue;
-
-      switch(o.t){
-
-        case "tree":
-          dTree(o,p);
-          break;
-
-        case "lamp":
-          dLamp(o,p);
-          break;
-
-        case "bld":
-          dBld(o,p);
-          break;
-
-        case "pcar":
-
-          dCar(
-            p.x,
-            p.y,
-            p.s,
-            CT[o.ty],
-            o.col,
-            o.sd<0,
-            false
-          );
-
-          break;
-
-      }
-
-    }
-
-  }
-
-
-  /*
-    Radio / song billboard.
-  */
-
-  if(S.run){
-
-    for(
-      const b of S.bbs
-    ){
-
-      const song=
-        S.run.list[b.i];
-
-      if(!song)continue;
-
-      const dz=
-        b.z-S.z;
-
-      if(
-        dz>NEAR &&
-        dz<150
-      ){
-
-        dBoard(
-          dz,
-          S.run.a,
-          song.title,
-          CITY_MAP[song.file]?.city ||
-            "Detroit",
-          dz<40
-        );
-
-      }
-
-    }
-
-  }
-
-
-  /*
-    Radio station billboard.
-  */
-
-  if(!S.run){
-
-    const dz=
-      RZ+9-S.z;
-
-    if(
-      dz>NEAR &&
-      dz<150
-    ){
-
-      dBoard(
-        dz,
-        ARTISTS[0],
-        "8 Mile Radio",
-        "Independent Music",
-        dz<40
-      );
-
-    }
-
-  }
-
-
-  /*
-    Night headlights.
-  */
-
-  if(N>.15){
-
-    const hl=
-      ctx.createLinearGradient(
-        0,
-        H-30,
-        0,
-        HY+15
-      );
-
-    hl.addColorStop(
-      0,
-      `rgba(255,240,190,${.3*N})`
-    );
-
-    hl.addColorStop(
-      1,
-      "rgba(255,240,190,0)"
-    );
-
-    f(hl);
-
+}
+function dTree(o,p){
+  const s=p.s,x=p.x,y=p.y,h=1.7*o.s*s;
+  if(TH[S.city].pm){
+    ctx.strokeStyle=rs([120,70,40],DK);ctx.lineWidth=Math.max(1,.12*s);
+    ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+.15*s,y-h*1.3);ctx.stroke();
+    ctx.strokeStyle=rs([30,255,150],DK);ctx.lineWidth=Math.max(1,.07*s*o.s);
     ctx.beginPath();
-
-    ctx.moveTo(
-      W/2-70,
-      H-30
-    );
-
-    ctx.lineTo(
-      W/2-12,
-      HY+15
-    );
-
-    ctx.lineTo(
-      W/2+12,
-      HY+15
-    );
-
-    ctx.lineTo(
-      W/2+70,
-      H-30
-    );
-
-    ctx.fill();
-
+    for(let i=0;i<5;i++){const an=-3.1+i*.78;ctx.moveTo(x+.15*s,y-h*1.3);ctx.lineTo(x+.15*s+Math.cos(an)*.9*s*o.s,y-h*1.3+Math.sin(an)*.5*s*o.s+.4*s*o.s)}
+    ctx.stroke();return;
   }
-
-
-  ctx.restore();
-
-
-  /*
-    Hood.
-  */
-
-  f(
-    S.interiorColor ||
-    "#090b0e"
-  );
-
-  ctx.beginPath();
-
-  ctx.moveTo(
-    0,
-    H
-  );
-
-  ctx.lineTo(
-    65,
-    265
-  );
-
-  ctx.lineTo(
-    415,
-    265
-  );
-
-  ctx.lineTo(
-    W,
-    H
-  );
-
-  ctx.closePath();
-
-  ctx.fill();
-
-
-  /*
-    Interior ambient lighting.
-  */
-
-  if(S.driving){
-
-    ctx.globalAlpha=.35;
-
-    f(S.lightColor);
-
-    ctx.fillRect(
-      65,
-      265,
-      350,
-      3
-    );
-
-    ctx.globalAlpha=1;
-
-  }
-
-
-  drawCitySign();
-
-
-  /*
-    Current track overlay.
-  */
-
-  if(
-    S.run &&
-    S.waitingForNextSong
-  ){
-
-    f("rgba(0,0,0,.55)");
-
-    ctx.fillRect(
-      135,
-      16,
-      210,
-      27
-    );
-
-    f("#fff");
-
-    ctx.textAlign="center";
-
-    ctx.font=
-      "10px Arial";
-
-    ctx.fillText(
-      "♪ TRACK PLAYING — NEXT BILLBOARD PENDING",
-      W/2,
-      33
-    );
-
-  }
-
+  f(rs([60,30,90],DK));ctx.fillRect(x-.08*s,y-h,.16*s,h);
+  f(rs([20+o.g*40,160+o.g*60,110],DK));
+  ctx.beginPath();ctx.ellipse(x,y-h,Math.max(.1,.8*o.s*s),Math.max(.1,.8*o.s*s),0,0,6.3);ctx.fill();
 }
-
-
-/* =========================================================
-   RADIO BUTTON STATE
-========================================================= */
-
-setInterval(()=>{
-
-  radioButton.disabled=
-    !(
-      S.driving &&
-      Math.abs(S.z-RZ)<9 &&
-      S.v<7 &&
-      !S.run
-    );
-
-},100);
-
-
-/* =========================================================
-   BACK BUTTON
-========================================================= */
-
-$("back").onclick=()=>{
-
-  $("detail")
-    .classList
-    .add("hidden");
-
-  S.menu=false;
-
-  $("status").textContent=
-    "Back on the road.";
-
-};
-
-
-/* =========================================================
-   INITIALIZE
-========================================================= */
-
-loadGarage();
-
-renderArtists();
-
-updateArtistStats(
-  ARTISTS[0]
-);
-
-
-/* =========================================================
-   GAME LOOP
-========================================================= */
-
-let last=
-  performance.now();
-
-
-function loop(now){
-
-  const dt=
-    Math.min(
-      .05,
-      (now-last)/1000
-    );
-
-  last=now;
-
-  update(dt);
-
-  draw();
-
-  requestAnimationFrame(loop);
-
+function dLamp(o,p){
+  const s=p.s,x=p.x,y=p.y;
+  f(rs([70,60,110],DK));ctx.fillRect(x-.05*s,y-4*s,.1*s,4*s);
+  f(rs(cur.a));ctx.globalAlpha=.6+.4*N;ctx.fillRect(x-.3*s,y-4.1*s,.6*s,.14*s);
+  if(N>.2){ctx.globalAlpha=.3*N;ctx.beginPath();ctx.arc(x,y-4*s,1.3*s,0,6.3);ctx.fill()}
+  ctx.globalAlpha=1;
 }
-
-
-requestAnimationFrame(loop);
-
-
-/* =========================================================
-   VISIBILITY / AUDIO
-========================================================= */
-
-document.addEventListener(
-  "visibilitychange",
-  ()=>{
-
-    if(document.hidden){
-
-      if(!AUD.paused)
-        AUD.pause();
-
+function dBld(o,p){
+  const s=p.s,x=p.x,y=p.y,w=o.w*s,h=o.h*s,m=.75+o.c*.15;
+  f(rs(cur.b,m*DK));ctx.fillRect(x-w/2,y-h,w,h);
+  if(N>.15){
+    const cols=Math.max(1,o.w/1.2|0),rows=Math.min(12,o.h/1.1|0);
+    ctx.globalAlpha=.9*N;
+    for(let r=0;r<rows;r++)for(let c2=0;c2<cols;c2++){
+      if((o.k*(r+1)*(c2+3))%7<4){f((o.k+r)%3===0?rs(cur.a):"rgb(255,230,160)");ctx.fillRect(x-w/2+(c2+.4)*w/cols,y-h+(r+.5)*1.1*s,.5*s,.4*s)}
     }
-
+    ctx.globalAlpha=1;
   }
-);
+  if(o.k%4===0&&o.h>3){f(rs(cur.a));ctx.globalAlpha=.45+.5*N;ctx.fillRect(x-w*.4,y-h*.55,w*.8,.35*s);ctx.globalAlpha=1}
+  ctx.strokeStyle=rs(cur.a);ctx.globalAlpha=.3+.4*N;ctx.lineWidth=Math.max(1,.04*s);ctx.strokeRect(x-w/2,y-h,w,h);ctx.globalAlpha=1;
+}
+function dCar(p,ty,cc,front){
+  const s=p.s,x=p.x,y=p.y,w=ty.w*s,h=ty.h*s;
+  f(rs(cur.a));ctx.globalAlpha=.3+.3*N;ctx.fillRect(x-w/2,y-.05*s,w,.18*s);ctx.globalAlpha=1;
+  f(rs(cc,DK));ctx.fillRect(x-w/2,y-h*.55,w,h*.55);
+  ctx.beginPath();ctx.moveTo(x-w*.4,y-h*.55);ctx.lineTo(x-w*.3,y-h);ctx.lineTo(x+w*.3,y-h);ctx.lineTo(x+w*.4,y-h*.55);ctx.fill();
+  f("#0a0620");ctx.fillRect(x-w*.25,y-h*.92,w*.5,h*.26);
+  f(front?"rgb(255,255,200)":"rgb(255,30,60)");
+  ctx.fillRect(x-w*.45,y-h*.4,w*.18,h*.12);ctx.fillRect(x+w*.27,y-h*.4,w*.18,h*.12);
+}
+function dPed(o,p){
+  const s=p.s,x=p.x,y=p.y,b=Math.abs(Math.sin(T*5+o.k))*.05*s;
+  const cc=[[0,240,255],[255,43,214],[182,255,0]][o.c];
+  f(rs(cc,DK));ctx.fillRect(x-.12*s,y-.75*s-b,.24*s,.4*s);
+  f(rs([40,30,70],DK));ctx.fillRect(x-.1*s,y-.35*s-b,.08*s,.35*s);ctx.fillRect(x+.02*s,y-.35*s+b,.08*s,.35*s);
+  f("rgb(255,210,180)");ctx.beginPath();ctx.arc(x,y-.88*s-b,.11*s,0,6.3);ctx.fill();
+}
+function dBoard(k,p){
+  const s=p.s,x=p.x,y=p.y,bw=4.2*s,bh=2.4*s,by=y-2.2*s-bh;
+  f(rs([70,60,110],DK));ctx.fillRect(x-bw*.3,by+bh,.12*s,2.2*s);ctx.fillRect(x+bw*.3,by+bh,.12*s,2.2*s);
+  f("#08031a");ctx.fillRect(x-bw/2,by,bw,bh);
+  const im=img(ARTIST.photo);
+  if(im.complete&&im.naturalWidth)ctx.drawImage(im,x-bw/2,by,bw*.34,bh);
+  const a=A.i>=0?SONGS[A.i]:null;
+  const tx=x+bw*.17,mw=bw*.62;
+  ctx.textAlign="center";
+  f(A.playing?"#b6ff00":"#ff2bd6");ctx.font="bold "+Math.max(6,.2*s)+"px Arial";
+  ctx.fillText(A.playing?"NOW PLAYING":"PROMOTED",tx,by+bh*.2,mw);
+  f("#fff");ctx.font="bold "+Math.max(7,.3*s)+"px Arial";
+  ctx.fillText(ARTIST.name.toUpperCase(),tx,by+bh*.45,mw);
+  f("#00f0ff");ctx.font="bold "+Math.max(6,.26*s)+"px Arial";
+  ctx.fillText(a?a.t:"TAPE DECK",tx,by+bh*.67,mw);
+  f("#ddd");ctx.font=Math.max(5,.2*s)+"px Arial";
+  ctx.fillText((a?a.c:S.city).toUpperCase(),tx,by+bh*.88,mw);
+  ctx.strokeStyle=rs(cur.a);ctx.lineWidth=Math.max(1,.06*s);
+  if(s>12){ctx.shadowColor=rs(cur.a);ctx.shadowBlur=10}
+  ctx.strokeRect(x-bw/2,by,bw,bh);ctx.shadowBlur=0;
+}
+function scene(){
+  const L=[],c0=chunks();
+  for(let i=c0;i<=c0+4;i++)for(const o of CH[i]||[]){
+    const dz=o.z-S.z;if(dz<=NEAR||dz>150)continue;
+    const p=P(o.lx,dz);if(p)L.push({dz,o,p});
+  }
+  for(const c of TR){const p=P(c.ov?-1.2:1.2,c.d);if(p)L.push({dz:c.d,o:{t:"tc",c},p})}
+  for(let k=Math.floor((S.z-5)/70);k<Math.floor((S.z-5)/70)+4;k++){
+    const dz=k*70+35-S.z;if(dz<=NEAR||dz>150)continue;
+    const p=P(k%2?6.9:-6.9,dz);if(p)L.push({dz,o:{t:"bb",k},p});
+  }
+  L.sort((a,b)=>b.dz-a.dz);
+  for(const e of L){
+    const o=e.o,p=e.p;
+    switch(o.t){
+      case "tree":dTree(o,p);break;
+      case "lamp":dLamp(o,p);break;
+      case "bld":dBld(o,p);break;
+      case "ped":dPed(o,p);break;
+      case "pcar":dCar(p,CT[0],o.col,false);break;
+      case "tc":dCar(p,CT[o.c.ty],o.c.col,o.c.ov);break;
+      case "bb":dBoard(o.k,p);break;
+    }
+  }
+}
+function cockpit(){
+  const ic=col("INTERIOR"),pa=col("PAINT"),se=col("SEATS"),li=col("LIGHTING"),dc=col("DASHBOARD");
+  f(pa);ctx.beginPath();ctx.moveTo(20,H);ctx.lineTo(120,236);ctx.lineTo(360,236);ctx.lineTo(460,H);ctx.closePath();ctx.fill();
+  const gl=ctx.createLinearGradient(0,236,0,H);gl.addColorStop(0,"rgba(255,255,255,.35)");gl.addColorStop(1,"rgba(0,0,0,.35)");
+  f(gl);ctx.beginPath();ctx.moveTo(20,H);ctx.lineTo(120,236);ctx.lineTo(360,236);ctx.lineTo(460,H);ctx.closePath();ctx.fill();
+  ctx.strokeStyle=rs(cur.a);ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(120,236);ctx.lineTo(360,236);ctx.stroke();
+  f(se);
+  ctx.beginPath();ctx.moveTo(0,150);ctx.lineTo(36,140);ctx.lineTo(50,H);ctx.lineTo(0,H);ctx.fill();
+  ctx.beginPath();ctx.moveTo(W,150);ctx.lineTo(W-36,140);ctx.lineTo(W-50,H);ctx.lineTo(W,H);ctx.fill();
+  f(ic);ctx.beginPath();ctx.moveTo(0,H);ctx.lineTo(0,276);ctx.quadraticCurveTo(240,252,W,276);ctx.lineTo(W,H);ctx.fill();
+  ctx.strokeStyle=li;ctx.lineWidth=3;ctx.shadowColor=li;ctx.shadowBlur=10;
+  ctx.beginPath();ctx.moveTo(0,276);ctx.quadraticCurveTo(240,252,W,276);ctx.stroke();ctx.shadowBlur=0;
+  f("#05010f");ctx.fillRect(170,268,140,28);
+  ctx.strokeStyle=dc;ctx.lineWidth=1.5;ctx.strokeRect(170,268,140,28);
+  f(dc);ctx.textAlign="center";ctx.font="bold 18px Arial";ctx.fillText(Math.round(S.v*3.6)+"",215,290);
+  ctx.font="bold 8px Arial";ctx.fillText("KM/H",215,276);
+  const a=A.i>=0?SONGS[A.i]:null;
+  f("#ff2bd6");ctx.font="bold 9px Arial";ctx.fillText(a?(A.playing?"▶ ":"❚❚ ")+a.t.slice(0,18):"📼 TAPE DECK",262,280);
+  f("#a596d0");ctx.font="8px Arial";ctx.fillText(a?a.c:S.city,262,291);
+  if(G.eq.DASHBOARD==="Digital"){
+    ctx.strokeStyle=dc;ctx.lineWidth=3;ctx.shadowColor=dc;ctx.shadowBlur=8;
+    ctx.beginPath();ctx.arc(140,284,16,3.4,3.4+Math.min(1,S.v/22)*5.5);ctx.stroke();
+    ctx.beginPath();ctx.arc(340,284,16,3.4,3.4+Math.max(0,G.tire)/100*5.5);ctx.stroke();ctx.shadowBlur=0;
+  }
+}
 
+/* ---------- UPDATE / DRAW ---------- */
+function update(dt){
+  T+=dt;
+  const u=Math.min(1,dt*1.3),th=TH[S.city];
+  for(const k of["s0","s1","g","b","a"])lt(cur[k],th[k],u);
+  S.kf=Math.min(1,S.kf+dt*.8);
+  let wheelRot=S.steer*22;
+  if(S.driving){
+    S.v+=(S.cruise-S.v)*Math.min(1,dt*3);
+    S.z+=S.v*dt;
+    S.x+=S.steer*dt*2.5;
+    S.x*=1-dt*.4;
+    if(G.al<LIMIT.al){
+      const q=(LIMIT.al-G.al)/LIMIT.al;
+      S.x+=S.pull*dt*q*.8;
+      wheelRot+=S.pull*q*8+Math.sin(T*9)*q*3;
+    }
+    if(G.tire<LIMIT.tire)S.x+=Math.sin(T*5)*dt*(LIMIT.tire-G.tire)/LIMIT.tire*.8;
+    S.x=Math.max(-2.8,Math.min(2.8,S.x));
+    if(S.v>5){G.al-=dt*.5;G.tire-=dt*.3;G.brk-=dt*.2}
+    G.al=Math.max(0,G.al);G.tire=Math.max(0,G.tire);G.brk=Math.max(0,G.brk);
+    S.t=(S.t+dt/180)%1;
+  }else S.v=0;
+  $("wheel").style.transform="rotate("+wheelRot+"deg)";
+  const cash="$"+Math.round(G.cash).toLocaleString();
+  if($("cash").textContent!==cash)$("cash").textContent=cash;
+  N=.5-.5*Math.cos(S.t*6.2832);DK=1-.6*N;
+  updTraffic(dt);
+}
+function draw(){
+  ctx.globalAlpha=1;ctx.clearRect(0,0,W,H);
+  const bump=S.driving?(Math.sin(S.z*2.3)*.7+Math.sin(T*31)*.25)*Math.min(1,S.v/12):0;
+  ctx.save();ctx.translate(0,bump);
+  sky();ground();scene();
+  if(N>.15){
+    const hl=ctx.createLinearGradient(0,H-30,0,HY+15);hl.addColorStop(0,"rgba(255,240,190,"+.3*N+")");hl.addColorStop(1,"rgba(255,240,190,0)");
+    f(hl);ctx.beginPath();ctx.moveTo(W/2-70,H-30);ctx.lineTo(W/2-12,HY+15);ctx.lineTo(W/2+12,HY+15);ctx.lineTo(W/2+70,H-30);ctx.fill();
+  }
+  ctx.restore();
+  cockpit();
+}
+let last=performance.now(),acc=0;
+function loop(now){
+  const dt=Math.min(.05,(now-last)/1000);last=now;
+  update(dt);draw();
+  acc+=dt;if(acc>1){acc=0;checkProblems();save()}
+  requestAnimationFrame(loop);
+}
+ui();checkProblems();
+requestAnimationFrame(loop);
 </script>
-
 </body>
 </html>
