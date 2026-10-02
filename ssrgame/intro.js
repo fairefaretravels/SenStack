@@ -35,7 +35,7 @@ if (/[?&]nointro\b/.test(location.search)) return;
 var CHAPTER = {
   beats: [
     {
-      src: "./assets/videos/TheStatic1.mp4",
+      src: "/TheStatic1.mp4",
       tag: "CH.01 / SIGNAL",
       cards: [
         {
@@ -47,7 +47,7 @@ var CHAPTER = {
     },
 
     {
-      src: "./assets/videos/Mitd1.mp4",
+      src: "/Mitd1.mp4",
       tag: "CH.01 / PLAYER ONE",
       cards: [
         {
