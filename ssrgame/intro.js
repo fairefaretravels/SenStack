@@ -37,7 +37,7 @@
   var STORY = {
     videos: [
       {
-        src: "assets/videos/TheStatic1.mp4",
+        src: "ssrgame/assets/videos/TheStatic1.mp4",
         tag: "CH.01 / THE STATIC",
         cards: [
           {
@@ -49,7 +49,7 @@
       },
 
       {
-        src: "assets/videos/Mitd1.mp4",
+        src: "ssrgame/assets/videos/Mitd1.mp4",
         tag: "CH.01 / MACKINTHEDARK",
         cards: [
           {
