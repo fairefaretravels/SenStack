@@ -15,8 +15,8 @@
    ENTER THE GAME
 
    Videos:
-   ./assets/videos/TheStatic1.mp4
-   ./assets/videos/Mitd1.mp4
+   /TheStatic1.mp4
+   /Mitd1.mp4
 
    Testing:
    ?nointro
