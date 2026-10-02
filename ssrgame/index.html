@@ -38,6 +38,165 @@ h1{margin:0;font-size:24px;letter-spacing:.14em;color:var(--cy);text-shadow:0 0 
 .sub{margin-top:4px;color:var(--mu);font-size:12px;letter-spacing:.06em}
 .cab{position:relative;width:100%;aspect-ratio:480/300;overflow:hidden;border:2px solid var(--cy);border-radius:18px;background:#090d12;box-shadow:0 0 18px rgba(0,240,255,.55),0 0 40px rgba(255,43,214,.3)}
 #cv{position:absolute;inset:0;width:100%;height:100%}
+   /* =========================================================
+   THE STATIC — INTRO
+   ========================================================= */
+.intro-page {
+  margin: 0;
+  min-height: 100vh;
+  background: #050505;
+  color: #f5f5f5;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+#intro {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at center, #151515 0%, #080808 45%, #020202 100%);
+  transition: opacity .9s ease, transform .9s ease;
+}
+#intro.intro-exit {
+  opacity: 0;
+  transform: scale(1.04);
+}
+/* subtle screen texture */
+.static-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .08;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      #fff 4px
+    );
+  mix-blend-mode: overlay;
+}
+/* content */
+.intro-content {
+  position: relative;
+  z-index: 2;
+  width: min(90%, 700px);
+  text-align: center;
+}
+.eyebrow {
+  margin: 0 0 25px;
+  font-size: 11px;
+  letter-spacing: .35em;
+  opacity: .55;
+}
+.signal {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4px;
+  height: 28px;
+  margin-bottom: 30px;
+}
+.signal span {
+  display: block;
+  width: 4px;
+  background: #fff;
+  animation: signal 1s infinite ease-in-out;
+}
+.signal span:nth-child(1) {
+  height: 10px;
+}
+.signal span:nth-child(2) {
+  height: 24px;
+  animation-delay: .15s;
+}
+.signal span:nth-child(3) {
+  height: 15px;
+  animation-delay: .3s;
+}
+@keyframes signal {
+  0%, 100% {
+    opacity: .25;
+    transform: scaleY(.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+h1 {
+  margin: 0;
+  font-size: clamp(70px, 17vw, 180px);
+  line-height: .75;
+  letter-spacing: -.07em;
+  font-weight: 300;
+}
+h1 strong {
+  font-weight: 900;
+  letter-spacing: -.09em;
+}
+.tagline {
+  margin: 45px 0 18px;
+  font-size: 12px;
+  letter-spacing: .3em;
+}
+.intro-copy {
+  margin: 0 auto 38px;
+  color: #aaa;
+  font-size: 16px;
+  line-height: 1.7;
+}
+#start-story {
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  padding: 16px 30px;
+  font-size: 11px;
+  letter-spacing: .22em;
+  cursor: pointer;
+  transition:
+    background .25s ease,
+    color .25s ease,
+    transform .25s ease;
+}
+#start-story:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+}
+#start-story:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+.status {
+  margin-top: 25px;
+  font-family: monospace;
+  font-size: 10px;
+  color: #666;
+  letter-spacing: .15em;
+}
+@media (max-width: 600px) {
+  .intro-content {
+    width: 88%;
+  }
+  h1 {
+    font-size: 23vw;
+  }
+  .tagline {
+    font-size: 9px;
+    letter-spacing: .2em;
+  }
+  .intro-copy {
+    font-size: 14px;
+  }
+  #start-story {
+    width: 100%;
+    padding: 17px;
+  }
+}
+   
 /* =========================================================
    RADIO GAME HUD
    MPH LEFT / RADIO RIGHT
