@@ -14,8 +14,8 @@
    ENTER THE GAME
 
    File:
-   assets/videos/TheStatic1.mp4
-   assets/videos/Mitd1.mp4
+   ssrgame/assets/videos/TheStatic1.mp4
+   ssrgame/assets/videos/Mitd1.mp4
 
    ?nointro = bypass intro while testing
 ============================================================ */
@@ -786,7 +786,7 @@
     "p",
     "stLandingText",
     landingMain,
-    "Cruise through the city. Discover the music. Build the story. Get to the bag."
+    "Cruise through the city. Get to the bag."
   );
 
   var startStory = el(
