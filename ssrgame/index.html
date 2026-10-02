@@ -1,0 +1,4056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Static — Promotion & Distribution</title>
+<meta name="description" content="The Static — Promotion, distribution, artists, stories, and independent media from the House of Media.">
+<!-- SEO -->
+<meta name="robots" content="index, follow">
+<meta name="author" content="The Static">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Static — Promotion & Distribution">
+<meta property="og:description" content="Promotion, distribution, artists, stories, and independent media.">
+<meta property="og:image" content="assets/seo/thestatic.PNG">
+<meta property="og:image:alt" content="The Static">
+<!-- Twitter / Social Preview -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Static — Promotion & Distribution">
+<meta name="twitter:description" content="Promotion, distribution, artists, stories, and independent media.">
+<meta name="twitter:image" content="assets/seo/thestatic.PNG">
+<meta name="twitter:image:alt" content="The Static">
+<!-- Mobile -->
+<meta name="theme-color" content="#090909">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+
+<style>
+:root{
+  --bg:#05070a;
+  --panel:#0d1117;
+  --panel2:#090c11;
+  --border:#2a2f38;
+  --text:#f2f0e9;
+  --muted:#a9a9a2;
+  --gold:#d9a441;
+  --green:#7bc47f;
+  --red:#d85b55;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{padding:14px}
+
+button{
+  font:inherit;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+
+.w{
+  width:100%;
+  max-width:680px;
+  margin:auto;
+}
+
+header{
+  padding:8px 0 14px;
+  margin-bottom:14px;
+  border-bottom:1px solid var(--border);
+}
+
+h1{
+  margin:0;
+  font-size:21px;
+  letter-spacing:.08em;
+}
+
+.sub{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* =========================================================
+   COCKPIT
+========================================================= */
+
+.cab{
+  position:relative;
+  width:100%;
+  aspect-ratio:480/300;
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:#090d12;
+  box-shadow:0 18px 50px rgba(0,0,0,.45);
+}
+
+#cv{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+.side{
+  position:absolute;
+  top:10px;
+  width:52px;
+  height:72px;
+  border:1px solid #3b414a;
+  border-radius:10px;
+  background:linear-gradient(#161b22,#090c10);
+  box-shadow:inset 0 0 15px rgba(0,0,0,.8);
+}
+
+#leftMirror{left:8px}
+#rightMirror{right:8px}
+
+.mirrorGlass{
+  width:100%;
+  height:100%;
+  display:grid;
+  place-items:center;
+  color:#69717b;
+  font-size:8px;
+}
+
+#mir{
+  position:absolute;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:5px 10px;
+  border:1px solid #303741;
+  border-radius:20px;
+  background:#080b0e;
+  color:#777;
+  font-size:9px;
+  letter-spacing:.08em;
+}
+
+#mir.on{
+  color:var(--green);
+  border-color:#49684d;
+}
+
+#dash{
+  position:absolute;
+  left:50%;
+  bottom:13px;
+  transform:translateX(-50%);
+  width:68%;
+  height:55px;
+  border:1px solid #292f37;
+  border-radius:12px;
+  background:linear-gradient(#171c23,#080b0f);
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  box-shadow:0 -12px 30px rgba(0,0,0,.5);
+}
+
+#spd{
+  min-width:55px;
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+}
+
+#tun{
+  min-width:190px;
+  text-align:center;
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.3;
+}
+
+#wheel{
+  position:absolute;
+  bottom:7px;
+  left:12px;
+  width:78px;
+  height:78px;
+  transition:transform .08s linear;
+}
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.controls{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+  margin-top:10px;
+}
+
+.ctrl{
+  min-height:44px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#10151c;
+  color:var(--text);
+  font-weight:bold;
+}
+
+.ctrl:active{
+  transform:scale(.97);
+  background:#191f27;
+}
+
+.ctrl.primary{
+  border-color:#675027;
+  color:var(--gold);
+}
+
+.ctrl:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+}
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+.panel{
+  margin-top:12px;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:var(--panel);
+}
+
+.hidden{
+  display:none!important;
+}
+
+.panelTitle{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.panelTitle h2{
+  margin:0;
+  font-size:16px;
+}
+
+.small{
+  color:var(--muted);
+  font-size:10px;
+}
+
+/* =========================================================
+   ARTISTS
+========================================================= */
+
+.artistGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin-top:12px;
+}
+
+.artistCard{
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#090c11;
+}
+
+.artistCard img{
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  display:block;
+  background:#15191f;
+}
+
+.artistInfo{
+  padding:9px;
+}
+
+.artistName{
+  font-weight:bold;
+  font-size:13px;
+}
+
+.artistMeta{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.artistBtn{
+  width:100%;
+  margin-top:8px;
+  padding:8px;
+  border:1px solid #3b4149;
+  border-radius:8px;
+  background:#141920;
+  color:var(--text);
+}
+
+/* =========================================================
+   ARTIST DETAIL
+========================================================= */
+
+#detail img{
+  width:100%;
+  max-height:230px;
+  object-fit:cover;
+  border-radius:12px;
+  border:1px solid var(--border);
+}
+
+#name{
+  margin:12px 0 4px;
+  font-size:21px;
+}
+
+#desc{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:12px;
+}
+
+.stat,
+.ledgerBox{
+  padding:9px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:#090c10;
+}
+
+.statLabel,
+.ledgerLabel{
+  color:var(--muted);
+  font-size:9px;
+}
+
+.statValue{
+  margin-top:3px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.barWrap{
+  margin-top:12px;
+}
+
+.barLabel{
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:4px;
+}
+
+.bar{
+  height:7px;
+  border-radius:20px;
+  background:#20252c;
+  overflow:hidden;
+}
+
+.barFill{
+  height:100%;
+  width:0;
+  background:var(--gold);
+  transition:width .25s;
+}
+
+#songs{
+  display:grid;
+  gap:6px;
+  margin-top:12px;
+}
+
+.song{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  padding:9px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:#090c10;
+}
+
+.songTitle{
+  min-width:0;
+  font-size:11px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.songBtn{
+  flex:0 0 auto;
+  padding:6px 9px;
+  border:1px solid #3a414a;
+  border-radius:7px;
+  background:#141920;
+  color:var(--text);
+  font-size:10px;
+}
+
+.detailButtons{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:12px;
+}
+
+.detailButtons button{
+  min-height:40px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:#12171d;
+  color:var(--text);
+}
+
+.detailButtons .gold{
+  color:var(--gold);
+  border-color:#65502b;
+}
+
+/* =========================================================
+   STATUS / LEDGER
+========================================================= */
+
+.status{
+  margin-top:12px;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#090c10;
+}
+
+#status{
+  font-size:12px;
+  line-height:1.45;
+}
+
+#dtx{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.ledger{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+  margin-top:10px;
+}
+
+.ledgerValue{
+  margin-top:3px;
+  font-weight:bold;
+  font-size:13px;
+}
+
+.startRow{
+  margin-top:10px;
+}
+
+#start{
+  width:100%;
+  min-height:48px;
+  border:1px solid #6a5225;
+  border-radius:10px;
+  background:#15130d;
+  color:var(--gold);
+  font-weight:bold;
+}
+
+#start:disabled{
+  opacity:.35;
+}
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  display:grid;
+  place-items:center;
+  padding:18px;
+  background:rgba(0,0,0,.78);
+}
+
+.modalCard{
+  width:min(100%,520px);
+  max-height:90vh;
+  overflow:auto;
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:#0d1117;
+  box-shadow:0 25px 80px rgba(0,0,0,.7);
+}
+
+.modalTitle{
+  color:var(--gold);
+  font-size:18px;
+  font-weight:bold;
+}
+
+.modalSub{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:5px;
+}
+
+.modalGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+  margin-top:15px;
+}
+
+.shopBtn,
+.customBtn{
+  width:100%;
+  min-height:45px;
+  margin-top:8px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:#12171d;
+  color:var(--text);
+  font-weight:bold;
+}
+
+.shopBtn.gold,
+.customBtn.gold{
+  border-color:#675027;
+  background:#15130d;
+  color:var(--gold);
+}
+
+.closeBtn{
+  width:100%;
+  margin-top:12px;
+  min-height:40px;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+}
+
+.customGrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-top:10px;
+}
+
+.colorBtn{
+  min-height:45px;
+  border:2px solid #3b414a;
+  border-radius:10px;
+  color:white;
+  font-size:9px;
+  font-weight:bold;
+}
+
+.cityTag{
+  display:inline-block;
+  margin-top:8px;
+  padding:5px 8px;
+  border:1px solid #3d434c;
+  border-radius:20px;
+  color:var(--gold);
+  font-size:9px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:430px){
+  .controls{
+    grid-template-columns:repeat(5,1fr);
+  }
+
+  .ctrl{
+    font-size:9px;
+  }
+
+  .ledger{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .detailButtons{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="w">
+
+<header>
+  <h1>DRIVEWISE</h1>
+  <div class="sub">CRUISE • DISCOVER • MAINTAIN • CUSTOMIZE</div>
+</header>
+
+<section class="cab">
+
+<canvas id="cv" width="480" height="300"></canvas>
+
+<div class="side" id="leftMirror">
+  <div class="mirrorGlass">LEFT</div>
+</div>
+
+<div class="side" id="rightMirror">
+  <div class="mirrorGlass">RIGHT</div>
+</div>
+
+<div id="mir">◉ OFF AIR</div>
+
+<svg id="wheel" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="42" fill="#10151b" stroke="#666" stroke-width="5"/>
+  <circle cx="50" cy="50" r="10" fill="#1a2027" stroke="#777" stroke-width="3"/>
+  <path d="M50 40 L50 10" stroke="#777" stroke-width="7" stroke-linecap="round"/>
+  <path d="M43 54 L19 70" stroke="#777" stroke-width="7" stroke-linecap="round"/>
+  <path d="M57 54 L81 70" stroke="#777" stroke-width="7" stroke-linecap="round"/>
+</svg>
+
+<div id="dash">
+  <div id="spd">0</div>
+  <div id="tun">NO SIGNAL</div>
+</div>
+
+</section>
+
+<div class="controls">
+  <button class="ctrl" id="L">◀ LEFT</button>
+  <button class="ctrl primary" id="B">BRAKE</button>
+  <button class="ctrl primary" id="G">GAS</button>
+  <button class="ctrl" id="R">RIGHT ▶</button>
+</div>
+
+<section class="panel hidden" id="radioPanel">
+  <div class="panelTitle">
+    <h2>8 Mile Radio</h2>
+    <div class="small">Independent Artist Discovery</div>
+  </div>
+  <div id="artists" class="artistGrid"></div>
+</section>
+
+<section class="panel hidden" id="detail">
+
+  <img id="artistPhoto" src="" alt="Artist">
+
+  <h2 id="name"></h2>
+
+  <div id="desc"></div>
+
+  <div id="cityTag" class="cityTag">CITY: DETROIT</div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="statLabel">SPINS</div>
+      <div class="statValue" id="aspin">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="statLabel">FANS</div>
+      <div class="statValue" id="afans">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="statLabel">SALES</div>
+      <div class="statValue" id="asales">0</div>
+    </div>
+
+  </div>
+
+  <div class="barWrap">
+    <div class="barLabel">
+      <span>EXPOSURE</span>
+      <span id="exposureText">0%</span>
+    </div>
+
+    <div class="bar">
+      <div class="barFill" id="exposureBar"></div>
+    </div>
+  </div>
+
+  <div class="barWrap">
+    <div class="barLabel">
+      <span>DEMAND</span>
+      <span id="demandText">0%</span>
+    </div>
+
+    <div class="bar">
+      <div class="barFill" id="demandBar"></div>
+    </div>
+  </div>
+
+  <div id="songs"></div>
+
+  <div class="detailButtons">
+    <button id="play" class="gold">DRIVE TRACK</button>
+    <button id="cat" class="gold">DRIVE CATALOG</button>
+    <button id="back">BACK</button>
+  </div>
+
+</section>
+
+<section class="status">
+
+  <div id="status">
+    Parked. Start the drive to begin.
+  </div>
+
+  <div id="dtx">
+    Select an artist at 8 Mile Radio.
+  </div>
+
+  <div class="ledger">
+
+    <div class="ledgerBox">
+      <div class="ledgerLabel">CASH</div>
+      <div class="ledgerValue">$<span id="cash">150</span></div>
+    </div>
+
+    <div class="ledgerBox">
+      <div class="ledgerLabel">GROSS</div>
+      <div class="ledgerValue">$<span id="gross">0</span></div>
+    </div>
+
+    <div class="ledgerBox">
+      <div class="ledgerLabel">SPINS</div>
+      <div class="ledgerValue"><span id="totalSpins">0</span></div>
+    </div>
+
+    <div class="ledgerBox">
+      <div class="ledgerLabel">TIRE LIFE</div>
+      <div class="ledgerValue"><span id="tireDisplay">100</span>%</div>
+    </div>
+
+  </div>
+
+  <div class="startRow">
+    <button id="start">START DRIVE</button>
+  </div>
+
+</section>
+
+</div>
+
+<script>
+
+/* =========================================================
+   BASIC HELPERS
+========================================================= */
+
+const $ = id => document.getElementById(id);
+
+const cv = $("cv");
+const ctx = cv.getContext("2d");
+
+const W = 480;
+const H = 300;
+
+const HY = 128;
+const K = 250;
+const CAMH = 1.25;
+
+const LEN = 600;
+const RZ = 130;
+const NEAR = 1.9;
+
+const AC = "#d9a441";
+
+const f = v => ctx.fillStyle = v;
+
+
+/* =========================================================
+   MUSIC / CITY SYSTEM
+========================================================= */
+
+const MUSIC_BASE =
+  "https://fairefaretravels.github.io/SenStack/ssrgame/assets/music/";
+
+function musicURL(filename){
+  return MUSIC_BASE + encodeURIComponent(filename);
+}
+
+const CITY_MAP = {
+
+  "4-x-4-2-(remastered)a.mp3":{
+    city:"Memphis",
+    landmark:"Beale Street",
+    color:[95,65,45]
+  },
+
+  "ALL DAT ASS.mp3":{
+    city:"New Orleans",
+    landmark:"French Quarter",
+    color:[75,45,90]
+  },
+
+  "Alright.mp3":{
+    city:"Los Angeles",
+    landmark:"Hollywood Boulevard",
+    color:[110,85,55]
+  },
+
+  "Baby Tonight .mp3":{
+    city:"Miami",
+    landmark:"Ocean Drive",
+    color:[45,105,125]
+  },
+
+  "Birds.mp3":{
+    city:"Myrtle Beach",
+    landmark:"Oceanfront",
+    color:[55,110,120]
+  },
+
+  "Disclaimer.mp3":{
+    city:"Atlanta",
+    landmark:"Downtown Atlanta",
+    color:[70,75,95]
+  },
+
+  "Get Up.mp3":{
+    city:"Detroit",
+    landmark:"Woodward Avenue",
+    color:[65,70,78]
+  },
+
+  "I NEED YOU.mp3":{
+    city:"Salt Lake City",
+    landmark:"Wasatch Mountains",
+    color:[80,95,105]
+  },
+
+  "Love & Co - Alexa.mp3":{
+    city:"Los Angeles",
+    landmark:"Hollywood Boulevard",
+    color:[110,85,55]
+  },
+
+  "Love & Co - TRY.mp3":{
+    city:"Las Vegas",
+    landmark:"Las Vegas Strip",
+    color:[95,55,105]
+  },
+
+  "drive-me-crazy-(remastered).mp3":{
+    city:"Tokyo",
+    landmark:"Shibuya Crossing",
+    color:[35,45,75]
+  },
+
+  "gas-me-up.mp3":{
+    city:"London",
+    landmark:"West End",
+    color:[55,65,80]
+  }
+
+};
+
+const mk = (title,file) => ({
+  title,
+  file,
+  city:CITY_MAP[file]?.city || "Detroit"
+});
+
+
+/* =========================================================
+   ARTISTS
+========================================================= */
+
+const ARTISTS = [
+
+{
+  display:"Mackinthedark",
+
+  photo:"./assets/photos/Mitd.PNG",
+
+  description:
+    "Detroit-rooted independent music and catalog discovery.",
+
+  fans:1200,
+
+  sales:240,
+
+  songs:[
+
+    mk("4-X-4","4-x-4-2-(remastered)a.mp3"),
+
+    mk("ALL DAT ***","ALL DAT ASS.mp3"),
+
+    mk("Alright","Alright.mp3"),
+
+    mk("Baby Tonight","Baby Tonight .mp3"),
+
+    mk("Birds","Birds.mp3"),
+
+    mk("Disclaimer","Disclaimer.mp3"),
+
+    mk("Get Up","Get Up.mp3"),
+
+    mk("I NEED YOU","I NEED YOU.mp3"),
+
+    mk("Love & Co - Alexa","Love & Co - Alexa.mp3"),
+
+    mk("Love & Co - TRY","Love & Co - TRY.mp3"),
+
+    mk("drive-me-crazy","drive-me-crazy-(remastered).mp3"),
+
+    mk("gas-me-up","gas-me-up.mp3")
+
+  ]
+
+}
+
+];
+
+
+/* =========================================================
+   GAME STATE
+========================================================= */
+
+let S = {
+
+  z:2,
+
+  x:0,
+
+  v:0,
+
+  steer:0,
+
+  cruise:0,
+
+  cash:150,
+
+  gross:0,
+
+  spins:0,
+
+  rotation:[],
+
+  driving:false,
+
+  menu:false,
+
+  run:null,
+
+  bbs:[],
+
+  artist:null,
+
+  selectedSong:null,
+
+  waitingForNextSong:false,
+
+  currentBoard:null,
+
+  city:"Detroit",
+
+  landmark:"Woodward Avenue",
+
+  cityColor:[65,70,78],
+
+  alignment:100,
+
+  tireLife:100,
+
+  maintenanceNeeded:false,
+
+  interiorColor:"#171c23",
+
+  seatColor:"#10151b",
+
+  lightColor:"#d9a441",
+
+  t:.12,
+
+  toast:null
+
+};
+
+let T=0;
+let N=0;
+let DK=1;
+let FA=1;
+let SKY;
+
+
+/* =========================================================
+   RADIO BUTTON
+========================================================= */
+
+const radioButton =
+  document.createElement("button");
+
+radioButton.id="radio";
+
+radioButton.className="ctrl primary";
+
+radioButton.textContent="RADIO";
+
+radioButton.disabled=true;
+
+document
+  .querySelector(".controls")
+  .appendChild(radioButton);
+
+
+/* =========================================================
+   AUDIO
+========================================================= */
+
+const AUD = new Audio();
+
+AUD.preload="auto";
+AUD.loop=false;
+AUD.volume=.8;
+
+const SILENT =
+  "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+
+let audioBlocked=false;
+
+AUD.addEventListener("error",()=>{
+
+  if(!AUD.src || AUD.src===SILENT)return;
+
+  console.error("AUDIO ERROR",AUD.error);
+
+  $("tun").textContent="Audio unavailable";
+
+  $("mir").textContent="◉ AUDIO ERROR";
+
+  $("mir").classList.remove("on");
+
+});
+
+
+AUD.addEventListener("ended",()=>{
+
+  if(AUD.src===SILENT)return;
+
+  if(!S.run)return;
+
+  const run=S.run;
+
+  $("mir").textContent="◉ OFF AIR";
+
+  $("mir").classList.remove("on");
+
+  const next=run.currentIndex+1;
+
+  if(next>=run.list.length){
+
+    endRun(
+      "Catalog complete. Every track received a spin."
+    );
+
+    return;
+  }
+
+  run.currentIndex=next;
+
+  S.bbs=[{
+    z:S.z+45,
+    i:next,
+    done:false
+  }];
+
+  S.waitingForNextSong=false;
+
+  $("tun").textContent=
+    `NEXT: ${run.list[next].title}`;
+
+  $("dtx").textContent=
+    `Next billboard: ${run.list[next].title} — ${CITY_MAP[run.list[next].file]?.city || "Detroit"}`;
+
+});
+
+
+/* =========================================================
+   CITY CHANGE
+========================================================= */
+
+function setCityForSong(song){
+
+  if(!song)return;
+
+  const city=CITY_MAP[song.file];
+
+  if(!city)return;
+
+  S.city=city.city;
+
+  S.landmark=city.landmark;
+
+  S.cityColor=city.color;
+
+  /*
+    Every new song starts a fresh city atmosphere.
+  */
+
+  S.t=.12;
+
+  $("status").textContent=
+    `${city.city} — ${song.title}`;
+
+  $("dtx").textContent=
+    `Cruising through ${city.city}. ${city.landmark} ahead.`;
+
+  console.log(
+    "CITY:",
+    city.city,
+    "LANDMARK:",
+    city.landmark
+  );
+}
+
+
+/* =========================================================
+   PLAY SONG
+========================================================= */
+
+function playArtistSong(a,song){
+
+  if(!song || !song.file)return;
+
+  setCityForSong(song);
+
+  a.spins=(a.spins||0)+1;
+
+  S.spins++;
+
+  S.cash+=5;
+
+  S.gross+=5;
+
+  a.exposure=Math.min(
+    100,
+    (a.exposure||0)+8
+  );
+
+  a.demand=Math.min(
+    100,
+    (a.demand||0)+5
+  );
+
+  $("totalSpins").textContent=S.spins;
+
+  updateArtistStats(a);
+
+  if(!S.rotation.includes(a.display)){
+    S.rotation.push(a.display);
+  }
+
+  S.nowPlaying={a,song};
+
+  audioBlocked=false;
+
+  $("status").textContent=
+    `ON AIR: ${a.display} — ${song.title}`;
+
+  AUD.pause();
+
+  try{
+    AUD.currentTime=0;
+  }catch(e){}
+
+  AUD.src=musicURL(song.file);
+
+  AUD.load();
+
+  const p=AUD.play();
+
+  if(p){
+
+    p.catch(err=>{
+
+      console.warn("Audio playback blocked:",err);
+
+      audioBlocked=true;
+
+      $("tun").textContent=
+        "Tap the screen to enable audio.";
+
+    });
+
+  }
+
+  $("mir").textContent="◉ ON AIR";
+
+  $("mir").classList.add("on");
+
+  $("tun").textContent=
+    `${S.city} • ${a.display} • ${song.title}`;
+
+}
+
+
+/* =========================================================
+   AUDIO RETRY
+========================================================= */
+
+document.addEventListener("pointerdown",()=>{
+
+  if(!audioBlocked)return;
+
+  audioBlocked=false;
+
+  const p=AUD.play();
+
+  if(p){
+
+    p.catch(()=>{
+      audioBlocked=true;
+    });
+
+  }
+
+});
+
+
+/* =========================================================
+   ARTIST STATS
+========================================================= */
+
+function updateArtistStats(a){
+
+  if(!a)return;
+
+  $("aspin").textContent=a.spins||0;
+
+  $("afans").textContent=
+    Math.round(
+      (a.fans||0)+(a.spins||0)*3
+    );
+
+  $("asales").textContent=
+    Math.round(
+      (a.sales||0)+(a.spins||0)*1.5
+    );
+
+  const e=Math.min(
+    100,
+    a.exposure||0
+  );
+
+  const d=Math.min(
+    100,
+    a.demand||0
+  );
+
+  $("exposureBar").style.width=e+"%";
+
+  $("demandBar").style.width=d+"%";
+
+  $("exposureText").textContent=
+    Math.round(e)+"%";
+
+  $("demandText").textContent=
+    Math.round(d)+"%";
+
+}
+
+
+/* =========================================================
+   ARTIST UI
+========================================================= */
+
+function renderArtists(){
+
+  $("artists").innerHTML="";
+
+  ARTISTS.forEach((a,i)=>{
+
+    const c=document.createElement("div");
+
+    c.className="artistCard";
+
+    c.innerHTML=`
+
+      <img
+        src="${a.photo}"
+        alt="${a.display}"
+      >
+
+      <div class="artistInfo">
+
+        <div class="artistName">
+          ${a.display}
+        </div>
+
+        <div class="artistMeta">
+          ${a.songs.length} tracks
+        </div>
+
+        <button
+          class="artistBtn"
+          data-index="${i}">
+          VIEW CATALOG
+        </button>
+
+      </div>
+
+    `;
+
+    $("artists").appendChild(c);
+
+  });
+
+}
+
+
+$("artists").addEventListener(
+  "click",
+  e=>{
+
+    const b=
+      e.target.closest(".artistBtn");
+
+    if(!b)return;
+
+    openArtist(
+      ARTISTS[+b.dataset.index]
+    );
+
+  }
+);
+
+
+function openArtist(a){
+
+  if(!a)return;
+
+  S.artist=a;
+
+  S.menu=true;
+
+  $("radioPanel")
+    .classList
+    .add("hidden");
+
+  $("detail")
+    .classList
+    .remove("hidden");
+
+  $("artistPhoto").src=a.photo;
+
+  $("name").textContent=a.display;
+
+  $("desc").textContent=
+    a.description||"";
+
+  renderSongs(a);
+
+  updateArtistStats(a);
+
+}
+
+
+function renderSongs(a){
+
+  $("songs").innerHTML="";
+
+  a.songs.forEach((s,i)=>{
+
+    const r=document.createElement("div");
+
+    r.className="song";
+
+    const city=
+      CITY_MAP[s.file]?.city ||
+      "Detroit";
+
+    r.innerHTML=`
+
+      <div class="songTitle">
+        ${i+1}. ${s.title}
+        — ${city}
+      </div>
+
+      <button
+        class="songBtn"
+        data-song="${i}">
+        DRIVE
+      </button>
+
+    `;
+
+    $("songs").appendChild(r);
+
+  });
+
+}
+
+
+$("songs").addEventListener(
+  "click",
+  e=>{
+
+    const b=
+      e.target.closest(".songBtn");
+
+    if(!b || !S.artist)return;
+
+    const i=+b.dataset.song;
+
+    S.selectedSong=
+      S.artist.songs[i];
+
+    launch(
+      S.artist,
+      i,
+      false
+    );
+
+  }
+);
+
+
+$("play").onclick=()=>{
+
+  if(!S.artist)return;
+
+  let i=
+    S.artist.songs.indexOf(
+      S.selectedSong
+    );
+
+  if(i<0)i=0;
+
+  launch(
+    S.artist,
+    i,
+    false
+  );
+
+};
+
+
+$("cat").onclick=()=>{
+
+  if(S.artist){
+
+    launch(
+      S.artist,
+      0,
+      true
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   LAUNCH
+========================================================= */
+
+function launch(a,startIndex,auto){
+
+  const list=a.songs||[];
+
+  if(!list.length){
+
+    $("status").textContent=
+      "This artist has no tracks.";
+
+    return;
+  }
+
+  AUD.pause();
+
+  S.run={
+    a,
+    list,
+    n:list.length,
+    auto,
+    currentIndex:startIndex
+  };
+
+  S.waitingForNextSong=false;
+
+  S.currentBoard=null;
+
+  S.bbs=[{
+    z:S.z+30,
+    i:startIndex,
+    done:false
+  }];
+
+  S.cruise=14;
+
+  S.menu=false;
+
+  $("detail")
+    .classList
+    .add("hidden");
+
+  $("radioPanel")
+    .classList
+    .add("hidden");
+
+  const song=list[startIndex];
+
+  const city=
+    CITY_MAP[song.file]?.city ||
+    "Detroit";
+
+  $("status").textContent=
+    `Cruising toward ${city}.`;
+
+  $("dtx").textContent=
+    `Billboard ahead for "${song.title}".`;
+
+}
+
+
+/* =========================================================
+   BILLBOARD
+========================================================= */
+
+function passBoard(board){
+
+  if(!S.run || !board || board.done)return;
+
+  const run=S.run;
+
+  const song=
+    run.list[board.i];
+
+  if(!song)return;
+
+  board.done=true;
+
+  S.currentBoard=board;
+
+  playArtistSong(
+    run.a,
+    song
+  );
+
+  S.bbs=[];
+
+  if(run.auto){
+
+    S.waitingForNextSong=true;
+
+    $("dtx").textContent=
+      `Now playing "${song.title}". Next billboard appears when the song finishes.`;
+
+  }else{
+
+    S.waitingForNextSong=false;
+
+    S.run=null;
+
+    $("dtx").textContent=
+      `"${song.title}" is playing. Enjoy the ${S.city} cruise.`;
+
+  }
+
+}
+
+
+function endRun(message){
+
+  S.bbs=[];
+
+  S.waitingForNextSong=false;
+
+  AUD.pause();
+
+  S.run=null;
+
+  $("mir").textContent=
+    "◉ OFF AIR";
+
+  $("mir")
+    .classList
+    .remove("on");
+
+  $("tun").textContent=
+    "8 Mile Radio";
+
+  $("status").textContent=
+    message;
+
+  $("dtx").textContent=
+    "Continue cruising or choose another track.";
+
+}
+
+
+/* =========================================================
+   RADIO
+========================================================= */
+
+radioButton.onclick=()=>{
+
+  if(
+    radioButton.disabled ||
+    !S.driving ||
+    S.run
+  )return;
+
+  S.menu=true;
+
+  $("radioPanel")
+    .classList
+    .remove("hidden");
+
+  $("detail")
+    .classList
+    .add("hidden");
+
+  $("status").textContent=
+    "8 Mile Radio — choose an artist.";
+
+  $("dtx").textContent=
+    "Choose a song or catalog.";
+
+};
+
+
+/* =========================================================
+   START
+========================================================= */
+
+$("start").onclick=()=>{
+
+  if(S.driving)return;
+
+  S.driving=true;
+
+  $("start").disabled=true;
+
+  AUD.src=SILENT;
+
+  const p=AUD.play();
+
+  if(p)p.catch(()=>{});
+
+  $("status").textContent=
+    "Self-driving cruise activated.";
+
+  $("dtx").textContent=
+    "The car will cruise automatically. Use LEFT and RIGHT to steer.";
+
+};
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+const hold=(id,d)=>{
+
+  const b=$(id);
+
+  b.addEventListener(
+    "pointerdown",
+    ()=>{
+      S.steer=d;
+    }
+  );
+
+  [
+    "pointerup",
+    "pointerleave",
+    "pointercancel"
+  ].forEach(e=>{
+
+    b.addEventListener(
+      e,
+      ()=>{
+        if(S.steer===d){
+          S.steer=0;
+        }
+      }
+    );
+
+  });
+
+};
+
+
+hold("L",-1);
+hold("R",1);
+
+
+$("G").addEventListener(
+  "pointerdown",
+  ()=>{
+    S.cruise=
+      Math.min(
+        20,
+        S.cruise+3
+      );
+  }
+);
+
+
+$("B").addEventListener(
+  "pointerdown",
+  ()=>{
+    S.cruise=
+      Math.max(
+        0,
+        S.cruise-5
+      );
+  }
+);
+
+
+document.addEventListener(
+  "keydown",
+  e=>{
+
+    if(e.key==="ArrowLeft")
+      S.steer=-1;
+
+    if(e.key==="ArrowRight")
+      S.steer=1;
+
+    if(e.key==="ArrowUp")
+      S.cruise=
+        Math.min(20,S.cruise+1);
+
+    if(e.key==="ArrowDown")
+      S.cruise=
+        Math.max(0,S.cruise-2);
+
+  }
+);
+
+
+document.addEventListener(
+  "keyup",
+  e=>{
+
+    if(
+      e.key==="ArrowLeft" ||
+      e.key==="ArrowRight"
+    ){
+      S.steer=0;
+    }
+
+  }
+);
+
+
+/* =========================================================
+   MAINTENANCE SYSTEM
+========================================================= */
+
+function triggerMaintenance(reason){
+
+  if(S.maintenanceNeeded)return;
+
+  S.maintenanceNeeded=true;
+
+  S.cruise=
+    Math.min(
+      S.cruise,
+      8
+    );
+
+  $("status").textContent=
+    "⚠ VEHICLE ALERT";
+
+  $("dtx").textContent=
+    reason ||
+    "Your car needs service. Find an Auto Shop.";
+
+  showMaintenancePrompt();
+
+}
+
+
+function showMaintenancePrompt(){
+
+  if($("maintenancePrompt"))
+    return;
+
+  const box=
+    document.createElement("div");
+
+  box.id="maintenancePrompt";
+
+  box.className="modal";
+
+  box.innerHTML=`
+
+    <div class="modalCard">
+
+      <div class="modalTitle">
+        VEHICLE ALERT
+      </div>
+
+      <div class="modalSub">
+        ${S.city} • ${S.landmark}
+      </div>
+
+      <div style="
+        margin-top:15px;
+        font-size:13px;
+        line-height:1.5;
+      ">
+
+        Your car is pulling slightly
+        to one side.
+
+        <br><br>
+
+        Road conditions have affected
+        the wheel alignment.
+
+      </div>
+
+      <button
+        class="shopBtn gold"
+        id="findShop">
+        FIND AUTO SHOP
+      </button>
+
+      <button
+        class="closeBtn"
+        id="keepCruising">
+        KEEP CRUISING
+      </button>
+
+    </div>
+
+  `;
+
+  document.body.appendChild(box);
+
+  $("findShop").onclick=()=>{
+
+    box.remove();
+
+    openAutoShop();
+
+  };
+
+
+  $("keepCruising").onclick=()=>{
+
+    box.remove();
+
+    $("status").textContent=
+      "Cruising carefully.";
+
+    $("dtx").textContent=
+      "Auto Shop available when you're ready.";
+
+  };
+
+}
+
+
+/* =========================================================
+   AUTO SHOP
+========================================================= */
+
+function openAutoShop(){
+
+  S.cruise=0;
+
+  S.menu=true;
+
+  const box=
+    document.createElement("div");
+
+  box.id="autoShop";
+
+  box.className="modal";
+
+  box.innerHTML=`
+
+    <div class="modalCard">
+
+      <div class="modalTitle">
+        ${S.city.toUpperCase()} AUTO SHOP
+      </div>
+
+      <div class="modalSub">
+        ${S.landmark}
+      </div>
+
+      <div class="modalGrid">
+
+        <div class="stat">
+
+          <div class="statLabel">
+            ALIGNMENT
+          </div>
+
+          <div class="statValue">
+            ${Math.round(S.alignment)}%
+          </div>
+
+        </div>
+
+        <div class="stat">
+
+          <div class="statLabel">
+            TIRE LIFE
+          </div>
+
+          <div class="statValue">
+            ${Math.round(S.tireLife)}%
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="shopBtn gold"
+        id="fixAlignment">
+        FIX ALIGNMENT — $75
+      </button>
+
+      <button
+        class="shopBtn"
+        id="repairTires">
+        ROTATE / SERVICE TIRES — $50
+      </button>
+
+      <button
+        class="shopBtn"
+        id="customRide">
+        PIMP MY DIGITAL RIDE
+      </button>
+
+      <button
+        class="shopBtn"
+        id="realShop">
+        SHOP REAL AUTO PRODUCTS
+      </button>
+
+      <button
+        class="closeBtn"
+        id="leaveShop">
+        BACK TO ROAD
+      </button>
+
+    </div>
+
+  `;
+
+  document.body.appendChild(box);
+
+
+  $("fixAlignment").onclick=()=>{
+
+    if(S.cash<75){
+
+      $("status").textContent=
+        "Not enough digital cash.";
+
+      return;
+    }
+
+    S.cash-=75;
+
+    S.alignment=100;
+
+    S.maintenanceNeeded=false;
+
+    $("status").textContent=
+      "Alignment fixed.";
+
+    $("dtx").textContent=
+      "Your ride is ready to roll.";
+
+    box.remove();
+
+    S.menu=false;
+
+  };
+
+
+  $("repairTires").onclick=()=>{
+
+    if(S.cash<50){
+
+      $("status").textContent=
+        "Not enough digital cash.";
+
+      return;
+    }
+
+    S.cash-=50;
+
+    S.tireLife=100;
+
+    $("status").textContent=
+      "Tires serviced.";
+
+  };
+
+
+  $("customRide").onclick=()=>{
+
+    box.remove();
+
+    openCustomization();
+
+  };
+
+
+  /*
+    PLACEHOLDER:
+    Replace this with your actual merchant,
+    affiliate, dealership or product URL.
+  */
+
+  $("realShop").onclick=()=>{
+
+    window.open(
+      "https://www.google.com/search?q=automotive+accessories",
+      "_blank"
+    );
+
+  };
+
+
+  $("leaveShop").onclick=()=>{
+
+    box.remove();
+
+    S.menu=false;
+
+    $("status").textContent=
+      "Back on the road.";
+
+    $("dtx").textContent=
+      `Cruising ${S.city}.`;
+
+  };
+
+}
+
+
+/* =========================================================
+   PIMP MY DIGITAL RIDE
+========================================================= */
+
+function openCustomization(){
+
+  S.menu=true;
+
+  const box=
+    document.createElement("div");
+
+  box.id="customization";
+
+  box.className="modal";
+
+  box.innerHTML=`
+
+    <div class="modalCard">
+
+      <div class="modalTitle">
+        PIMP MY DIGITAL RIDE
+      </div>
+
+      <div class="modalSub">
+        ${S.city} Garage • Interior Lab
+      </div>
+
+      <h3 style="
+        margin:18px 0 5px;
+        font-size:13px;
+      ">
+        INTERIOR COLOR
+      </h3>
+
+      <div class="customGrid">
+
+        <button
+          class="colorBtn"
+          style="background:#171c23"
+          data-color="#171c23">
+          BLACK
+        </button>
+
+        <button
+          class="colorBtn"
+          style="background:#eee;color:#111"
+          data-color="#eeeeee">
+          WHITE
+        </button>
+
+        <button
+          class="colorBtn"
+          style="background:#8a1f2b"
+          data-color="#8a1f2b">
+          RED
+        </button>
+
+        <button
+          class="colorBtn"
+          style="background:#203f70"
+          data-color="#203f70">
+          BLUE
+        </button>
+
+        <button
+          class="colorBtn"
+          style="background:#d9a441;color:#111"
+          data-color="#d9a441">
+          GOLD
+        </button>
+
+        <button
+          class="colorBtn"
+          style="background:#604b3b"
+          data-color="#604b3b">
+          BROWN
+        </button>
+
+        <button
+          class="colorBtn"
+          style="background:#6b6b6b"
+          data-color="#6b6b6b">
+          GREY
+        </button>
+
+        <button
+          class="colorBtn"
+          style="background:#5b315f"
+          data-color="#5b315f">
+          PURPLE
+        </button>
+
+      </div>
+
+
+      <h3 style="
+        margin:18px 0 5px;
+        font-size:13px;
+      ">
+        AMBIENT LIGHTING
+      </h3>
+
+      <div class="customGrid">
+
+        <button
+          class="colorBtn"
+          style="background:#d9a441"
+          data-light="#d9a441">
+          GOLD
+        </button>
+
+        <button
+          class="colorBtn"
+          style="background:#3b8cff"
+          data-light="#3b8cff">
+          BLUE
+        </button>
+
+        <button
+          class="colorBtn"
+          style="background:#ff3b81"
+          data-light="#ff3b81">
+          PINK
+        </button>
+
+        <button
+          class="colorBtn"
+          style="background:#55d66f"
+          data-light="#55d66f">
+          GREEN
+        </button>
+
+      </div>
+
+
+      <button
+        class="shopBtn gold"
+        id="saveRide">
+        SAVE MY RIDE
+      </button>
+
+      <button
+        class="closeBtn"
+        id="exitCustomization">
+        BACK
+      </button>
+
+    </div>
+
+  `;
+
+  document.body.appendChild(box);
+
+
+  box.querySelectorAll(
+    "[data-color]"
+  ).forEach(btn=>{
+
+    btn.onclick=()=>{
+
+      S.interiorColor=
+        btn.dataset.color;
+
+      $("status").textContent=
+        "Interior color changed.";
+
+    };
+
+  });
+
+
+  box.querySelectorAll(
+    "[data-light]"
+  ).forEach(btn=>{
+
+    btn.onclick=()=>{
+
+      S.lightColor=
+        btn.dataset.light;
+
+      $("status").textContent=
+        "Ambient lighting changed.";
+
+    };
+
+  });
+
+
+  $("saveRide").onclick=()=>{
+
+    localStorage.setItem(
+      "drivewiseGarage",
+      JSON.stringify({
+        interiorColor:S.interiorColor,
+        seatColor:S.seatColor,
+        lightColor:S.lightColor
+      })
+    );
+
+    box.remove();
+
+    S.menu=false;
+
+    $("status").textContent=
+      "INTERIOR UPDATED";
+
+    $("dtx").textContent=
+      "Your digital ride is ready to roll.";
+
+    S.cruise=12;
+
+  };
+
+
+  $("exitCustomization").onclick=()=>{
+
+    box.remove();
+
+    S.menu=false;
+
+  };
+
+}
+
+
+/* =========================================================
+   LOAD GARAGE
+========================================================= */
+
+function loadGarage(){
+
+  try{
+
+    const data=
+      JSON.parse(
+        localStorage.getItem(
+          "drivewiseGarage"
+        )
+      );
+
+    if(!data)return;
+
+    if(data.interiorColor)
+      S.interiorColor=
+        data.interiorColor;
+
+    if(data.seatColor)
+      S.seatColor=
+        data.seatColor;
+
+    if(data.lightColor)
+      S.lightColor=
+        data.lightColor;
+
+  }catch(e){
+
+    console.warn(
+      "Garage save unavailable"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   WORLD GENERATION
+========================================================= */
+
+function rng(s){
+
+  return()=>{
+
+    s|=0;
+
+    s=
+      s+
+      0x6D2B79F5|
+      0;
+
+    let t=
+      Math.imul(
+        s^s>>>15,
+        1|s
+      );
+
+    t=
+      t+
+      Math.imul(
+        t^t>>>7,
+        61|t
+      )^t;
+
+    return(
+      (t^t>>>14)>>>0
+    )/4294967296;
+
+  };
+
+}
+
+const hash=(a,b,c)=>
+(
+  (
+    Math.imul(
+      a+1,
+      73856093
+    ) ^
+    Math.imul(
+      b+3,
+      19349663
+    ) ^
+    Math.imul(
+      c+7,
+      83492791
+    )
+  )>>>0
+)%97/97;
+
+
+const CH={};
+
+const BC=[
+  [112,84,72],
+  [84,92,104],
+  [122,108,88]
+];
+
+const CARS=[
+  [150,40,40],
+  [40,70,130],
+  [190,190,190],
+  [30,30,34],
+  [70,110,80],
+  [200,160,60]
+];
+
+const CT=[
+  {w:1.6,h:1.35},
+  {w:1.8,h:1.75},
+  {w:2.2,h:2.9}
+];
+
+
+const LANDMARKS={
+
+  "Detroit":[
+    "Woodward Avenue",
+    "Campus Martius",
+    "Fox Theatre"
+  ],
+
+  "New Orleans":[
+    "French Quarter",
+    "Bourbon Street",
+    "Mississippi River"
+  ],
+
+  "Los Angeles":[
+    "Hollywood Boulevard",
+    "Sunset Strip",
+    "Downtown LA"
+  ],
+
+  "Miami":[
+    "Ocean Drive",
+    "South Beach",
+    "Miami Downtown"
+  ],
+
+  "Myrtle Beach":[
+    "Oceanfront",
+    "Boardwalk",
+    "Coastal Highway"
+  ],
+
+  "Atlanta":[
+    "Downtown Atlanta",
+    "Peachtree Street",
+    "Midtown"
+  ],
+
+  "Memphis":[
+    "Beale Street",
+    "Downtown Memphis",
+    "Mississippi River"
+  ],
+
+  "Salt Lake City":[
+    "Wasatch Mountains",
+    "Downtown",
+    "Mountain View"
+  ],
+
+  "Las Vegas":[
+    "Las Vegas Strip",
+    "Downtown Vegas",
+    "Neon District"
+  ],
+
+  "Tokyo":[
+    "Shibuya Crossing",
+    "Shinjuku",
+    "Tokyo Tower"
+  ],
+
+  "London":[
+    "West End",
+    "Tower Bridge",
+    "Piccadilly"
+  ]
+
+};
+
+
+function gen(ci){
+
+  const r=
+    rng(
+      (ci%15)*7919+13
+    );
+
+  const o=[];
+
+  const z0=ci*40;
+
+  for(
+    const sd of [-1,1]
+  ){
+
+    for(let i=0;i<4;i++){
+
+      o.push({
+        t:"tree",
+        lx:sd*(5+r()*2),
+        z:z0+r()*40,
+        s:.7+r()*.9,
+        k:r()*6.28,
+        v:r()*3|0,
+        g:r()
+      });
+
+    }
+
+
+    for(let i=0;i<2;i++){
+
+      o.push({
+        t:"lamp",
+        lx:sd*4.7,
+        z:z0+i*20,
+        th:.25+r()*.4,
+        fl:r()<.12,
+        k:r()*6
+      });
+
+    }
+
+
+    let z=z0;
+
+    while(z<z0+40){
+
+      const w=
+        3+r()*4;
+
+      o.push({
+        t:"bld",
+        lx:
+          sd*
+          (
+            7.4+
+            w/2+
+            r()*1.5
+          ),
+        z:z+w/2,
+        w,
+        h:
+          3+
+          r()*
+          (r()<.2?12:5),
+        c:r()*3|0,
+        k:r()*1000|0
+      });
+
+      z+=
+        w+
+        .4+
+        r()*1.2;
+
+    }
+
+
+    if(r()<.55){
+
+      o.push({
+        t:"pcar",
+        lx:sd*3,
+        z:z0+r()*40,
+        ty:r()<.3?1:0,
+        col:CARS[r()*6|0],
+        sd
+      });
+
+    }
+
+  }
+
+  return o;
+
+}
+
+
+function chunks(){
+
+  const c0=
+    Math.floor(
+      S.z/40
+    );
+
+  for(
+    let i=c0;
+    i<=c0+4;
+    i++
+  ){
+
+    if(!CH[i])
+      CH[i]=gen(i);
+
+  }
+
+  for(
+    const k in CH
+  ){
+
+    if(+k<c0-1)
+      delete CH[k];
+
+  }
+
+  return c0;
+
+}
+
+
+/* =========================================================
+   TRAFFIC
+========================================================= */
+
+const TR=[];
+
+for(let i=0;i<7;i++){
+
+  const ov=i%2===0;
+
+  TR.push({
+
+    ov,
+
+    d:30+i*20,
+
+    v:
+      ov?
+      -13:
+      5+Math.random()*4,
+
+    b:0,
+
+    ty:
+      i===5?
+      2:
+      i===3?
+      1:
+      0,
+
+    col:
+      CARS[i%6],
+
+    k:
+      Math.random()*6
+
+  });
+
+}
+
+
+function updTraffic(dt){
+
+  for(
+    const car of TR
+  ){
+
+    const base=
+      car.ov?
+      -13:
+      6+(car.k%3);
+
+    car.d-=
+      (S.v-car.v)*dt;
+
+    if(
+      car.d<NEAR-.5 ||
+      car.d>175
+    ){
+
+      car.d=
+        95+
+        Math.random()*55;
+
+      car.col=
+        CARS[
+          Math.random()*6|0
+        ];
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   PROJECTION
+========================================================= */
+
+const P=(lx,wz)=>{
+
+  const dz=wz-S.z;
+
+  if(
+    dz<=NEAR ||
+    dz>150
+  )return null;
+
+  const s=K/dz;
+
+  return{
+
+    dz,
+
+    s,
+
+    x:
+      W/2+
+      (lx-S.x)*s,
+
+    y:
+      HY+
+      CAMH*s
+
+  };
+
+};
+
+
+const c=(r,g,b,m=1)=>{
+
+  const k=DK*m;
+
+  return `rgb(
+    ${r*k|0},
+    ${g*k|0},
+    ${b*k|0}
+  )`;
+
+};
+
+
+const el=(x,y,rx,ry)=>{
+
+  ctx.beginPath();
+
+  ctx.ellipse(
+    x,
+    y,
+    Math.max(.1,rx),
+    Math.max(.1,ry),
+    0,
+    0,
+    6.3
+  );
+
+  ctx.fill();
+
+};
+
+
+/* =========================================================
+   SKY
+========================================================= */
+
+const ST=[
+  [
+    [90,150,210],
+    [190,215,230]
+  ],
+  [
+    [110,140,190],
+    [245,190,110]
+  ],
+  [
+    [90,70,130],
+    [240,110,70]
+  ],
+  [
+    [25,35,80],
+    [90,90,130]
+  ],
+  [
+    [5,8,18],
+    [22,30,48]
+  ]
+];
+
+
+function skyc(t){
+
+  const q=
+    Math.min(
+      3.999,
+      t*4
+    );
+
+  const i=q|0;
+
+  const u=q-i;
+
+  return ST[i].map(
+    (a,j)=>
+      a.map(
+        (v,k)=>
+          v+
+          (
+            ST[i+1][j][k]-v
+          )*
+          u|0
+      )
+  );
+
+}
+
+
+const rs=a=>
+  `rgb(${a[0]},${a[1]},${a[2]})`;
+
+
+/* =========================================================
+   WORLD DRAW
+========================================================= */
+
+function drawSky(){
+
+  const [tp,bt]=SKY;
+
+  const g=
+    ctx.createLinearGradient(
+      0,0,0,HY
+    );
+
+  g.addColorStop(
+    0,
+    rs(tp)
+  );
+
+  g.addColorStop(
+    1,
+    rs(bt)
+  );
+
+  f(g);
+
+  ctx.fillRect(
+    0,0,W,HY
+  );
+
+}
+
+
+function drawGround(){
+
+  const g=
+    ctx.createLinearGradient(
+      0,
+      HY,
+      0,
+      H
+    );
+
+  g.addColorStop(
+    0,
+    c(40,52,40)
+  );
+
+  g.addColorStop(
+    1,
+    c(18,26,18)
+  );
+
+  f(g);
+
+  ctx.fillRect(
+    0,
+    HY,
+    W,
+    H-HY
+  );
+
+
+  const road=
+    ctx.createLinearGradient(
+      0,
+      HY,
+      0,
+      H
+    );
+
+  road.addColorStop(
+    0,
+    c(52,56,62)
+  );
+
+  road.addColorStop(
+    1,
+    c(26,29,34)
+  );
+
+  f(road);
+
+  ctx.beginPath();
+
+  ctx.moveTo(W/2-4*K/(S.z+3),HY);
+
+  ctx.lineTo(0,H);
+
+  ctx.lineTo(W,H);
+
+  ctx.lineTo(W/2+4*K/(S.z+3),HY);
+
+  ctx.closePath();
+
+  ctx.fill();
+
+
+  /*
+    Clear self-driving lane.
+  */
+
+  const laneX=W/2;
+
+  for(let i=0;i<20;i++){
+
+    const z=
+      S.z+
+      i*6+
+      8;
+
+    const p=P(0,z);
+
+    if(!p)continue;
+
+    f(c(210,190,90));
+
+    ctx.fillRect(
+      laneX-
+      Math.max(1,p.s*.05),
+      p.y,
+      Math.max(2,p.s*.1),
+      Math.max(1,p.s*.5)
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   SIMPLE SCENERY
+========================================================= */
+
+function dTree(o,p){
+
+  const s=p.s;
+
+  const x=p.x;
+  const y=p.y;
+
+  const h=
+    1.6*
+    o.s*
+    s;
+
+  f(c(60,42,30));
+
+  ctx.fillRect(
+    x-.08*s,
+    y-h,
+    .16*s,
+    h
+  );
+
+  f(c(
+    30+o.g*30|0,
+    80+o.g*40|0,
+    40
+  ));
+
+  el(
+    x,
+    y-h,
+    .8*o.s*s,
+    .8*o.s*s
+  );
+
+}
+
+
+function dLamp(o,p){
+
+  const s=p.s;
+
+  const x=p.x;
+  const y=p.y;
+
+  f(c(50,52,56));
+
+  ctx.fillRect(
+    x-.05*s,
+    y-4*s,
+    .1*s,
+    4*s
+  );
+
+  if(N>.2){
+
+    glow(
+      x,
+      y-4*s,
+      1.2*s,
+      "rgb(255,220,150)",
+      .3*N
+    );
+
+  }
+
+}
+
+
+function dBld(o,p){
+
+  const s=p.s;
+
+  const x=p.x;
+  const y=p.y;
+
+  const w=o.w*s;
+
+  const h=o.h*s;
+
+  f(c(
+    ...BC[o.c]
+  ));
+
+  ctx.fillRect(
+    x-w/2,
+    y-h,
+    w,
+    h
+  );
+
+  if(N>.25){
+
+    f("rgb(255,210,120)");
+
+    for(
+      let r=0;
+      r<Math.min(8,o.h);
+      r++
+    ){
+
+      ctx.fillRect(
+        x-w*.3,
+        y-h+
+        r*1.2*s,
+        .2*s,
+        .35*s
+      );
+
+    }
+
+  }
+
+}
+
+
+function dCar(
+  x,
+  y,
+  s,
+  ty,
+  col,
+  front,
+  br
+){
+
+  const w=ty.w*s;
+
+  const h=ty.h*s;
+
+  f("rgba(0,0,0,.4)");
+
+  ctx.fillRect(
+    x-w/2,
+    y,
+    w,
+    .08*s
+  );
+
+  f(c(...col));
+
+  ctx.fillRect(
+    x-w/2,
+    y-h*.55,
+    w,
+    h*.55
+  );
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    x-w*.4,
+    y-h*.55
+  );
+
+  ctx.lineTo(
+    x-w*.3,
+    y-h
+  );
+
+  ctx.lineTo(
+    x+w*.3,
+    y-h
+  );
+
+  ctx.lineTo(
+    x+w*.4,
+    y-h*.55
+  );
+
+  ctx.fill();
+
+  f("#10151b");
+
+  ctx.fillRect(
+    x-w*.25,
+    y-h*.9,
+    w*.5,
+    h*.25
+  );
+
+  if(front && N>.2){
+
+    glow(
+      x-w*.32,
+      y-h*.35,
+      .4*s,
+      "rgb(255,245,210)",
+      .3*N
+    );
+
+    glow(
+      x+w*.32,
+      y-h*.35,
+      .4*s,
+      "rgb(255,245,210)",
+      .3*N
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   GLOW
+========================================================= */
+
+function glow(
+  x,
+  y,
+  r,
+  col,
+  a
+){
+
+  ctx.globalAlpha=
+    Math.min(1,a)*FA;
+
+  f(col);
+
+  ctx.beginPath();
+
+  ctx.arc(
+    x,
+    y,
+    r,
+    0,
+    6.3
+  );
+
+  ctx.fill();
+
+  ctx.globalAlpha=FA;
+
+}
+
+
+/* =========================================================
+   BILLBOARD
+========================================================= */
+
+const IMG={};
+
+function getImage(src){
+
+  if(!src)return null;
+
+  if(!IMG[src]){
+
+    const img=
+      new Image();
+
+    img.src=src;
+
+    IMG[src]=img;
+
+  }
+
+  return IMG[src];
+
+}
+
+
+function dBoard(
+  dz,
+  artist,
+  title,
+  sub,
+  lit
+){
+
+  if(dz<=NEAR)return;
+
+  const s=K/dz;
+
+  const x=W/2-S.x*s;
+
+  const y=
+    HY+
+    CAMH*s;
+
+  const bw=6*s;
+
+  const bh=3.8*s;
+
+  ctx.globalAlpha=
+    Math.min(
+      1,
+      (150-dz)/50
+    );
+
+  f("#111");
+
+  ctx.fillRect(
+    x-bw/2,
+    y-bh,
+    bw,
+    bh
+  );
+
+  const img=
+    getImage(
+      artist.photo
+    );
+
+  if(
+    img &&
+    img.complete &&
+    img.naturalWidth
+  ){
+
+    ctx.drawImage(
+      img,
+      x-bw/2,
+      y-bh,
+      bw*.4,
+      bh
+    );
+
+  }
+
+  ctx.strokeStyle=AC;
+
+  ctx.lineWidth=
+    Math.max(
+      1,
+      .05*s
+    );
+
+  ctx.strokeRect(
+    x-bw/2,
+    y-bh,
+    bw,
+    bh
+  );
+
+  ctx.textAlign="center";
+
+  f("#fff");
+
+  ctx.font=
+    `bold ${Math.max(7,.42*s)}px Arial`;
+
+  ctx.fillText(
+    artist.display,
+    x+bw*.2,
+    y-bh*.58,
+    bw*.5
+  );
+
+  f(AC);
+
+  ctx.font=
+    `bold ${Math.max(6,.3*s)}px Arial`;
+
+  ctx.fillText(
+    title,
+    x+bw*.2,
+    y-bh*.36,
+    bw*.5
+  );
+
+  f("#ddd");
+
+  ctx.font=
+    `${Math.max(5,.22*s)}px Arial`;
+
+  ctx.fillText(
+    sub,
+    x+bw*.2,
+    y-bh*.15,
+    bw*.5
+  );
+
+  ctx.globalAlpha=1;
+
+}
+
+
+/* =========================================================
+   CITY SIGN
+========================================================= */
+
+function drawCitySign(){
+
+  if(!S.driving)return;
+
+  ctx.globalAlpha=.9;
+
+  f("rgba(0,0,0,.65)");
+
+  ctx.fillRect(
+    10,
+    10,
+    120,
+    38
+  );
+
+  f(AC);
+
+  ctx.textAlign="left";
+
+  ctx.font=
+    "bold 8px Arial";
+
+  ctx.fillText(
+    "NOW CRUISING",
+    18,
+    22
+  );
+
+  f("#fff");
+
+  ctx.font=
+    "bold 13px Arial";
+
+  ctx.fillText(
+    S.city.toUpperCase(),
+    18,
+    37
+  );
+
+  ctx.globalAlpha=1;
+
+}
+
+
+/* =========================================================
+   UPDATE
+========================================================= */
+
+function update(dt){
+
+  T+=dt;
+
+  if(S.driving){
+
+    /*
+      SELF DRIVING:
+      The car automatically follows the road.
+    */
+
+    S.v+=
+      (S.cruise-S.v)*
+      Math.min(
+        1,
+        dt*3
+      );
+
+    S.z+=
+      S.v*dt;
+
+    /*
+      Steering is optional.
+    */
+
+    S.x+=
+      S.steer*
+      dt*
+      2.5;
+
+    S.x*=
+      1-dt*.4;
+
+    S.x=
+      Math.max(
+        -2.8,
+        Math.min(
+          2.8,
+          S.x
+        )
+      );
+
+
+    /*
+      Tire wear.
+    */
+
+    if(S.v>5){
+
+      S.tireLife-=
+        dt*.003;
+
+      if(Math.abs(S.steer)>.4){
+
+        S.alignment-=
+          dt*.025;
+
+      }
+
+    }
+
+
+    S.tireLife=
+      Math.max(
+        0,
+        S.tireLife
+      );
+
+    S.alignment=
+      Math.max(
+        0,
+        S.alignment
+      );
+
+
+    /*
+      Maintenance triggers.
+    */
+
+    if(
+      S.alignment<35 &&
+      !S.maintenanceNeeded
+    ){
+
+      triggerMaintenance(
+        "Your steering feels off. Wheel alignment recommended."
+      );
+
+    }
+
+
+    if(
+      S.tireLife<15 &&
+      !S.maintenanceNeeded
+    ){
+
+      triggerMaintenance(
+        "Your tires are wearing down. Tire service recommended."
+      );
+
+    }
+
+
+    /*
+      Time of day.
+    */
+
+    S.t=
+      Math.min(
+        1,
+        S.t+dt/220
+      );
+
+  }else{
+
+    S.v=0;
+
+  }
+
+
+  $("wheel").style.transform=
+    `rotate(${S.steer*22}deg)`;
+
+
+  $("spd").textContent=
+    Math.round(S.v);
+
+
+  $("cash").textContent=
+    Math.round(S.cash);
+
+
+  $("gross").textContent=
+    Math.round(S.gross);
+
+
+  $("tireDisplay").textContent=
+    Math.round(S.tireLife);
+
+
+  const n=
+    Math.max(
+      0,
+      Math.min(
+        1,
+        (S.t-.5)/.45
+      )
+    );
+
+  N=
+    n*n*
+    (3-2*n);
+
+  DK=
+    1-.62*N;
+
+  SKY=
+    skyc(S.t);
+
+
+  updTraffic(dt);
+
+
+  /*
+    Billboard collision.
+  */
+
+  if(
+    S.run &&
+    !S.waitingForNextSong
+  ){
+
+    for(
+      const b of S.bbs
+    ){
+
+      if(
+        !b.done &&
+        S.z>=b.z
+      ){
+
+        passBoard(b);
+
+        break;
+
+      }
+
+    }
+
+  }
+
+
+  /*
+    Radio proximity.
+  */
+
+  if(
+    S.driving &&
+    Math.abs(S.z-RZ)<9 &&
+    S.v<7 &&
+    !S.menu &&
+    !S.run
+  ){
+
+    $("status").textContent=
+      `${S.city} radio zone nearby.`;
+
+    $("dtx").textContent=
+      "Tap RADIO to discover music.";
+
+  }
+
+}
+
+
+/* =========================================================
+   DRAW
+========================================================= */
+
+function draw(){
+
+  FA=1;
+
+  ctx.globalAlpha=1;
+
+  ctx.clearRect(
+    0,
+    0,
+    W,
+    H
+  );
+
+
+  const bump=
+    S.driving?
+
+    (
+      Math.sin(S.z*2.3)*.7+
+      Math.sin(T*31)*.25
+    )*
+    Math.min(
+      1,
+      S.v/12
+    ):
+
+    0;
+
+
+  ctx.save();
+
+  ctx.translate(
+    0,
+    bump
+  );
+
+
+  drawSky();
+
+  drawGround();
+
+
+  /*
+    Traffic.
+  */
+
+  for(
+    const t of TR
+  ){
+
+    const p=
+      P(
+        t.ov?-1.2:1.2,
+        S.z+t.d
+      );
+
+    if(!p)continue;
+
+    dCar(
+      p.x,
+      p.y,
+      p.s,
+      CT[t.ty],
+      t.col,
+      t.ov,
+      false
+    );
+
+  }
+
+
+  /*
+    World chunks.
+  */
+
+  const c0=chunks();
+
+  for(
+    let i=c0;
+    i<=c0+4;
+    i++
+  ){
+
+    const arr=CH[i];
+
+    if(!arr)continue;
+
+    for(
+      const o of arr
+    ){
+
+      const p=
+        P(
+          o.lx,
+          o.z
+        );
+
+      if(!p)continue;
+
+      switch(o.t){
+
+        case "tree":
+          dTree(o,p);
+          break;
+
+        case "lamp":
+          dLamp(o,p);
+          break;
+
+        case "bld":
+          dBld(o,p);
+          break;
+
+        case "pcar":
+
+          dCar(
+            p.x,
+            p.y,
+            p.s,
+            CT[o.ty],
+            o.col,
+            o.sd<0,
+            false
+          );
+
+          break;
+
+      }
+
+    }
+
+  }
+
+
+  /*
+    Radio / song billboard.
+  */
+
+  if(S.run){
+
+    for(
+      const b of S.bbs
+    ){
+
+      const song=
+        S.run.list[b.i];
+
+      if(!song)continue;
+
+      const dz=
+        b.z-S.z;
+
+      if(
+        dz>NEAR &&
+        dz<150
+      ){
+
+        dBoard(
+          dz,
+          S.run.a,
+          song.title,
+          CITY_MAP[song.file]?.city ||
+            "Detroit",
+          dz<40
+        );
+
+      }
+
+    }
+
+  }
+
+
+  /*
+    Radio station billboard.
+  */
+
+  if(!S.run){
+
+    const dz=
+      RZ+9-S.z;
+
+    if(
+      dz>NEAR &&
+      dz<150
+    ){
+
+      dBoard(
+        dz,
+        ARTISTS[0],
+        "8 Mile Radio",
+        "Independent Music",
+        dz<40
+      );
+
+    }
+
+  }
+
+
+  /*
+    Night headlights.
+  */
+
+  if(N>.15){
+
+    const hl=
+      ctx.createLinearGradient(
+        0,
+        H-30,
+        0,
+        HY+15
+      );
+
+    hl.addColorStop(
+      0,
+      `rgba(255,240,190,${.3*N})`
+    );
+
+    hl.addColorStop(
+      1,
+      "rgba(255,240,190,0)"
+    );
+
+    f(hl);
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      W/2-70,
+      H-30
+    );
+
+    ctx.lineTo(
+      W/2-12,
+      HY+15
+    );
+
+    ctx.lineTo(
+      W/2+12,
+      HY+15
+    );
+
+    ctx.lineTo(
+      W/2+70,
+      H-30
+    );
+
+    ctx.fill();
+
+  }
+
+
+  ctx.restore();
+
+
+  /*
+    Hood.
+  */
+
+  f(
+    S.interiorColor ||
+    "#090b0e"
+  );
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    0,
+    H
+  );
+
+  ctx.lineTo(
+    65,
+    265
+  );
+
+  ctx.lineTo(
+    415,
+    265
+  );
+
+  ctx.lineTo(
+    W,
+    H
+  );
+
+  ctx.closePath();
+
+  ctx.fill();
+
+
+  /*
+    Interior ambient lighting.
+  */
+
+  if(S.driving){
+
+    ctx.globalAlpha=.35;
+
+    f(S.lightColor);
+
+    ctx.fillRect(
+      65,
+      265,
+      350,
+      3
+    );
+
+    ctx.globalAlpha=1;
+
+  }
+
+
+  drawCitySign();
+
+
+  /*
+    Current track overlay.
+  */
+
+  if(
+    S.run &&
+    S.waitingForNextSong
+  ){
+
+    f("rgba(0,0,0,.55)");
+
+    ctx.fillRect(
+      135,
+      16,
+      210,
+      27
+    );
+
+    f("#fff");
+
+    ctx.textAlign="center";
+
+    ctx.font=
+      "10px Arial";
+
+    ctx.fillText(
+      "♪ TRACK PLAYING — NEXT BILLBOARD PENDING",
+      W/2,
+      33
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   RADIO BUTTON STATE
+========================================================= */
+
+setInterval(()=>{
+
+  radioButton.disabled=
+    !(
+      S.driving &&
+      Math.abs(S.z-RZ)<9 &&
+      S.v<7 &&
+      !S.run
+    );
+
+},100);
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+$("back").onclick=()=>{
+
+  $("detail")
+    .classList
+    .add("hidden");
+
+  S.menu=false;
+
+  $("status").textContent=
+    "Back on the road.";
+
+};
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+loadGarage();
+
+renderArtists();
+
+updateArtistStats(
+  ARTISTS[0]
+);
+
+
+/* =========================================================
+   GAME LOOP
+========================================================= */
+
+let last=
+  performance.now();
+
+
+function loop(now){
+
+  const dt=
+    Math.min(
+      .05,
+      (now-last)/1000
+    );
+
+  last=now;
+
+  update(dt);
+
+  draw();
+
+  requestAnimationFrame(loop);
+
+}
+
+
+requestAnimationFrame(loop);
+
+
+/* =========================================================
+   VISIBILITY / AUDIO
+========================================================= */
+
+document.addEventListener(
+  "visibilitychange",
+  ()=>{
+
+    if(document.hidden){
+
+      if(!AUD.paused)
+        AUD.pause();
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
